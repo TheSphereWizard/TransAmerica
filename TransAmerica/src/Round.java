@@ -18,7 +18,7 @@ public class Round {
 			for(int i = 0; i<r.length;i++){
 				grid.placeRail(r[i]);
 			}
-			if(p.cityReached)
+			//if(p.cityReached)
 		}
 	}
 
