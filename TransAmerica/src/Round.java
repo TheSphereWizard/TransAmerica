@@ -15,6 +15,10 @@ public class Round {
 	void startRound(){
 		for(Player p: players){
 			Rail[] r = p.runTurn();
+			for(int i = 0; i<r.length;i++){
+				grid.placeRail(r[i]);
+			}
+			if(p.cityReached)
 		}
 	}
 
@@ -25,7 +29,12 @@ public class Round {
 	}
 	
 	class Rail{}
-	class Grid{}
+	class Grid{
+
+		public void placeRail(Rail rail) {
+			// TODO Auto-generated method stub
+			
+		}}
 	class Player{
 		public void clearForNewRound() {
 		}
