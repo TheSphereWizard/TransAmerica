@@ -18,7 +18,9 @@ public class Round {
 			for(int i = 0; i<r.length;i++){
 				grid.placeRail(r[i]);
 			}
-			//if(p.cityReached)
+			if(p.cityReached.size()-1==0){
+				
+			}
 		}
 	}
 
@@ -28,19 +30,5 @@ public class Round {
 		return scoreChange;
 	}
 	
-	class Rail{}
-	class Grid{
-
-		public void placeRail(Rail rail) {
-			// TODO Auto-generated method stub
-			
-		}}
-	class Player{
-		public void clearForNewRound() {
-		}
-		public Rail[] runTurn(){
-			Rail[] r = new Rail[1];
-			return r;
-		}
-	}
+	
 }
