@@ -1,4 +1,6 @@
 
-public class EasyStrategy {
+public class EasyStrategy extends ComputerPlayer{
+	
+	
 
 }

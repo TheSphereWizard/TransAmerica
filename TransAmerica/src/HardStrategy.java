@@ -1,4 +1,4 @@
 
-public class HardStrategy {
+public class HardStrategy extends ComputerPlayer {
 
 }
