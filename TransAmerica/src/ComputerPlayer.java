@@ -1,5 +1,5 @@
 
-public class ComputerPlayerHard extends Player {
+public class ComputerPlayer extends Player {
 
 	Rail[] runTurn() {
 		return null;
