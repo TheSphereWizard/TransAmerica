@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
@@ -17,6 +18,7 @@ paintComponent(Graphics g){//calls on getShowScoreScreen in Game, if true change
  */
 public class MainGameScreen extends JPanel{
 	Map map;
+	BufferedImage train, eagle;
 	Game currentGame;
 	public MainGameScreen(Game game){
 		currentGame = game;
@@ -29,4 +31,6 @@ public class MainGameScreen extends JPanel{
 	public static void main(String[] args) {
 		
 	}
+	
+	
 }
