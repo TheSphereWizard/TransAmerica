@@ -22,13 +22,16 @@ public abstract class Player {
 	MapofUSA map;
 	
 	abstract Rail[] runTurn();
-	abstract void clearForNewRound(ArrayList<City> cities);
+	void clearForNewRound(ArrayList<City> cities){
+		cityGoal = cities;
+		cityReached.clear();
+		placedMarkerAlready = false;
+	}
 	abstract void updatePlayer();
 	abstract String playerName();
-<<<<<<< HEAD
 	abstract Position getStartMarker();
 	
-=======
+
 	
 	public class PlayerRecord {
 		//Should store player's color, cities, score, and other information as needed.
@@ -37,6 +40,5 @@ public abstract class Player {
 			
 		}
 	}
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
 }

@@ -13,12 +13,6 @@ public class HumanPlayer extends Player {
 		return null;
 	}
 
-	void clearForNewRound(ArrayList<City> cities) {
-		cityGoal = cities;
-		cityReached.clear();
-		placedMarkerAlready = false;
-	}
-
 	void updatePlayer() {
 		
 	}
