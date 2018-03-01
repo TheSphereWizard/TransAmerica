@@ -24,9 +24,21 @@ Int[] playerNumber, winningPlayer, currentScore, scores;
 public class Game {
 	ArrayList<Round> rounds;
 	ArrayList<Player> players;
-	public Game(ArrayList<Player> player, int numOfRounds){
-		// creates a Game Object used to 
+	boolean showScoreScreen;
+	boolean isAIGame;
+	boolean slowMode;
+	Game(ArrayList<Player> player, int numOfRounds){
+		// creates a Game Object 
 	}
 	
+	void runRounds(){
+		
+	}
 	
+	boolean getShowScoreScreen(){
+		if(showScoreScreen){
+			return true;
+		}
+		return false;
+	}
 }
