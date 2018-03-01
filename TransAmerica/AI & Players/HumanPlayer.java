@@ -14,7 +14,9 @@ public class HumanPlayer extends Player {
 	}
 
 	void clearForNewRound(ArrayList<City> cities) {
-		
+		cityGoal = cities;
+		cityReached.clear();
+		placedMarkerAlready = false;
 	}
 
 	void updatePlayer() {
@@ -22,6 +24,12 @@ public class HumanPlayer extends Player {
 	}
 
 	String playerName() {
+		return null;
+	}
+
+	@Override
+	Position getStartMarker() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
