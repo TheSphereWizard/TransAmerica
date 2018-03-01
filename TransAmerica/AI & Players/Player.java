@@ -19,7 +19,7 @@ public abstract class Player {
 	boolean placedMarkerAlready;
 	
 	abstract Rail[] runTurn();
-	abstract void clearForNewRound();
+	abstract void clearForNewRound(ArrayList<City> cities);
 	abstract void updatePlayer();
 	abstract String playerName();
 
