@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 /*
  * Game{//stores series of rounds
 	ArrayList<Round> rounds
@@ -22,23 +23,63 @@ Int[] playerNumber, winningPlayer, currentScore, scores;
 
  */
 public class Game {
+	public static final int GameState = 0;
+	// ^shows the types of specific game states^
 	ArrayList<Round> rounds;
 	ArrayList<Player> players;
+	Game(ArrayList<Player> player, int numberOfRounds){
+		//determines if is AI game and slow mode, Instantiates rounds with number of rounds, order of players in Round parameters is the order of player’s turns
+	}
+	void runRounds(){
+		//runs through rounds arraylist, calls returnScoreChange after finished
+	}
 	boolean showScoreScreen;
 	boolean isAIGame;
 	boolean slowMode;
-	Game(ArrayList<Player> player, int numOfRounds){
-		// creates a Game Object 
+	public boolean getShowScoreScreen(){
+		//called by MainGamePanel to determine when to change
 	}
-	
-	void runRounds(){
+	int[] playerNumber, winningPlayer, currentScore, scores;
+	public int getNumberOfPlayers(){
+		
+	}
+	public int getWinningPlayer(){
+		
+	}
+	public int[] getCurrentScore(){
+		
+	}
+	public int[] getScores(){
 		
 	}
 	
-	boolean getShowScoreScreen(){
-		if(showScoreScreen){
-			return true;
+
+
+	Grid grid;
+
+	void Round(ArrayList<Player> P) {
+		grid = new Grid();
+		players = P;
+		for (Player p : players) {
+			p.clearForNewRound();
 		}
-		return false;
+		startRound();
+	}
+
+	void startRound() {
+		for (Player p : players) {
+			Rail[] r = p.runTurn();
+			for (int i = 0; i < r.length; i++) {
+				grid.placeRail(r[i]);
+			}
+			if (p.cityReached.size() - 1 == 0) {
+
+			}
+		}
+	}
+
+	int[] returnScoreChange() {
+		int[] scoreChange = { 0 };
+		return scoreChange;
 	}
 }
