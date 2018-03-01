@@ -17,7 +17,7 @@ paintComponent(Graphics g){//calls on getShowScoreScreen in Game, if true change
 
  */
 public class MainGameScreen extends JPanel{
-	Map map;
+	MapofUSA map;
 	BufferedImage train, eagle;
 	Game currentGame;
 	public MainGameScreen(Game game){
