@@ -13,10 +13,16 @@ public class StrategyAnalyzer{
 	 * @param computerPlayers Amount of players
 	 * @param games Number of games to be played
 	 */
-	StrategyAnalyzer (ArrayList computerPlayers,int games){
-		initialize(computerPlayers.size());
-		for(int i = 0; i < games; i++)
-			setWinsAndLosses(computerPlayers.size());
+	StrategyAnalyzer (ArrayList compPlayers){
+		gamesWon = new int[compPlayers.size()];
+		gamesLost = new int[compPlayers.size()];
+		rank = new int[compPlayers.size()];
+		winPercentage = new double[compPlayers.size()];
+	}
+	public void runGames(int games){
+		for(int i = 0; i < games; i++){
+			
+		}
 		calculate();
 	}
 	/**
@@ -34,10 +40,6 @@ public class StrategyAnalyzer{
 	 * @param players Amount of players
 	 */
 	private void initialize(int players){
-		gamesWon = new int[players];
-		gamesLost = new int[players];
-		rank = new int[players];
-		winPercentage = new double[players];
 	}
 	public int[] getLost(){
 		return gamesLost;
