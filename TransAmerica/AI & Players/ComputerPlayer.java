@@ -18,4 +18,10 @@ public class ComputerPlayer extends Player {
 		return null;
 	}
 
+	@Override
+	Position getStartMarker() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
