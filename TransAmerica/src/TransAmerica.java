@@ -70,7 +70,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 		private String[] optionNames = {"None", "Human Player", "Computer"};
 		private JRadioButton[] options = new JRadioButton[3];
 		private JComboBox[] strategies = new JComboBox[2];
-		private String[] stratNames = {"Easy" , "Hard"}
+		private String[] stratNames = {"Easy" , "Hard"};
 		
 
 		public PlayerPanel(int playerNum) {
