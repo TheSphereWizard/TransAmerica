@@ -25,10 +25,8 @@ public class HumanPlayer extends Player {
 	String playerName() {
 		return null;
 	}
-
-	@Override
+	
 	Position getStartMarker() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
