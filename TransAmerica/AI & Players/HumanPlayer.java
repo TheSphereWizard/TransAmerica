@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
  * HumanPlayer extends Player{
 Rail[] runTurn() {}
@@ -11,7 +13,7 @@ public class HumanPlayer extends Player {
 		return null;
 	}
 
-	void clearForNewRound() {
+	void clearForNewRound(ArrayList<City> cities) {
 		
 	}
 
