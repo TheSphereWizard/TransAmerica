@@ -25,7 +25,18 @@ public abstract class Player {
 	abstract void clearForNewRound(ArrayList<City> cities);
 	abstract void updatePlayer();
 	abstract String playerName();
+<<<<<<< HEAD
 	abstract Position getStartMarker();
 	
+=======
+	
+	public class PlayerRecord {
+		//Should store player's color, cities, score, and other information as needed.
+		
+		public PlayerRecord() {
+			
+		}
+	}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
 }
