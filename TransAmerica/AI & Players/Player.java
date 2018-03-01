@@ -17,10 +17,15 @@ public abstract class Player {
 	ArrayList<City> cityGoal;
 	ArrayList<City> cityReached;
 	boolean placedMarkerAlready;
+	Position startMarker;
+	int score;
+	MapofUSA map;
 	
 	abstract Rail[] runTurn();
 	abstract void clearForNewRound(ArrayList<City> cities);
 	abstract void updatePlayer();
 	abstract String playerName();
+	abstract Position getStartMarker();
+	
 
 }
