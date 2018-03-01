@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class ComputerPlayer extends Player {
 
@@ -5,7 +6,7 @@ public class ComputerPlayer extends Player {
 		return null;
 	}
 
-	void clearForNewRound() {
+	void clearForNewRound(ArrayList<City> cities) {
 		
 	}
 
