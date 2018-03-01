@@ -22,5 +22,13 @@ public abstract class Player {
 	abstract void clearForNewRound();
 	abstract void updatePlayer();
 	abstract String playerName();
+	
+	public class PlayerRecord {
+		//Should store player's color, cities, score, and other information as needed.
+		
+		public PlayerRecord() {
+			
+		}
+	}
 
 }
