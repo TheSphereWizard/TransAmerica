@@ -27,8 +27,8 @@ public class StrategyAnalyzer{
 	public void runGames(int games){
 		for(int i = 0; i < games; i++){
 			//RUN GAMES
-			//THEN CALCULATE RESULTS
-			calculateResults(games);
+			
+			calculateResults(i+1);
 		}
 		displayResults(games);
 	}
@@ -61,14 +61,6 @@ public class StrategyAnalyzer{
 				}
 			}
 		}
-		//CALCULATE RANK BASED OFF OF gamesWon
-//		for(int i = 0; i < players; i++){
-//			int currentPlayer = i;
-//			int[] ranks = new int[players];
-//			for(int j = 0; j < players; j++)
-//				if(gamesWon[currentPlayer]>=gamesWon[i])
-//					ranks[currentPlayer]++;
-//		}
 	}
 	/**
 	 * Creates a ComputerStrategyScreen and passes
