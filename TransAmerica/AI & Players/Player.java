@@ -35,7 +35,6 @@ public abstract class Player {
 		placedMarkerAlready = false;
 		score = 0;
 	}
-	abstract void updatePlayer();
 	String playerName(){
 		return name;
 	}

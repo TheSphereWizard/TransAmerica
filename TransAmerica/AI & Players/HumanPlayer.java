@@ -31,10 +31,6 @@ public class HumanPlayer extends Player {
 		}
 		return newRails;
 	}
-
-	void updatePlayer() {
-		
-	}
 	
 	Position getStartMarker() {
 		return null;
