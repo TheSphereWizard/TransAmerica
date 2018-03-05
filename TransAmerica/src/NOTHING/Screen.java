@@ -1,3 +1,6 @@
+package NOTHING;
+
+
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
@@ -78,13 +81,9 @@ public class Screen {
 		o=O;
         T.schedule(new TimerTask(){
         	public void run(){
-        		O.dostuff();
-        		if (O.drawing)
         		frame.repaint();
         	}
         }, 0,i);
-        addMouseListener();
-        addMouseMotionListener();
         frame.setVisible(true);
         
 		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
