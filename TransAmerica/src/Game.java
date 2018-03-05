@@ -61,7 +61,7 @@ public class Game {
 		grid = new Grid();
 		players = P;
 		for (Player p : players) {
-			p.clearForNewRound();
+			p.clearForNewRound(grid.allcities);
 		}
 		startRound();
 	}
