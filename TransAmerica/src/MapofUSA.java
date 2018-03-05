@@ -10,10 +10,16 @@ import javax.swing.JPanel;
 public class MapofUSA extends JPanel implements MouseListener, MouseMotionListener{
 		Player currentPlayer;
 		BufferedImage Map;
-		int[] lastClick;
+		private Rail lastClick;
 		Grid currentGrid;
 		static ArrayList<City> allCities;
-
+		public static void main(String[] red){
+			
+		}
+		private int[] siz;
+		MapofUSA(int width, int height){
+			siz=new int[]{width,height};
+		}
 		void setCurrentGrid(Grid grid){//called at beginning of round
 			currentGrid = grid;
 		}
@@ -21,8 +27,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			currentPlayer = player;
 		}
 		
-		Position[] returnPlacedRail(){//checks placedMarker in Player, if true, returns marker info instead
-			
+		Rail returnPlacedRail(){//checks placedMarker in Player, if true, returns marker info instead
+			return lastClick;
 		}
 		public void paint(Graphics g){//redraws map with new rail networks
 			
