@@ -13,16 +13,22 @@ public class TransAmerica extends JFrame implements ActionListener{
 	private JButton[] buttons = new JButton[] {start, exit};
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	private JLabel backgroundPic = new JLabel(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	
-	private int players = 0;
+	private int noPlayers = 6;
 	
 	public TransAmerica() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("TransAmerica");
+		this.add(backgroundPic);
+		
 		
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
 		
-		//contentPane.setBackground(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
+//		contentPane.setContentPane(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
 		
 		
 		for(int i = 0; i < panes.length; i++) {
@@ -79,6 +85,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 			this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			this.add(new JLabel("Player " + playerNum));
 			
+			
 			for(int i = 0; i < options.length; i++) {
 				options[i] = new JRadioButton(optionNames[i]);
 				options[i].addActionListener(this);
@@ -89,17 +96,20 @@ public class TransAmerica extends JFrame implements ActionListener{
 			}
 			options[0].setSelected(true);
 			
+			for(int i = 0; i < strategies.length; i ++) {
+				strategies[i] = new JComboBox(stratNames);
+			}
 		}
 		
 		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
-				
+				noPlayers ++;
 			} else if(e.getActionCommand().equals(optionNames[1])) {
-				
+				noPlayers --;
 			} else if(e.getActionCommand().equals(optionNames[2])) {
-				
-			} 
+				noPlayers --;
+			}
 		}
 =======
 	private JLabel backgroundPic = new JLabel(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
@@ -205,6 +215,10 @@ public class TransAmerica extends JFrame implements ActionListener{
 
 
 >>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+		
+	
+
+
 		
 	}
 
