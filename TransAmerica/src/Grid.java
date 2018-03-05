@@ -53,6 +53,11 @@ public class Grid {
 	City[] getCities() {
 		return allcities;
 	}
+	private boolean legalRail(Position one, Position two){
+		boolean legal=true;
+		if(one.x)
+		return legal;
+	}
 	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
 		
 		
