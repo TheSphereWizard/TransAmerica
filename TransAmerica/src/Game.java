@@ -44,14 +44,14 @@ public class Game {
 		
 	}
 	public int getWinningPlayer(){
-		
+		for(int maxScore : ){
+			
+		}
 	}
 	public int[] getCurrentScore(){
-		
+		return currentScore;
 	}
-	public int[] getScores(){
-		
-	}
+	
 	
 
 
