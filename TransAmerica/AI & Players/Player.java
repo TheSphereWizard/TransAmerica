@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 /*Abstract Player (players and strategy){
@@ -44,9 +45,30 @@ public abstract class Player {
 	
 	public class PlayerRecord {
 		//Should store player's color, cities, score, and other information as needed.
+		private Color color;
+		private City[] cities;
+		private int score;
 		
-		public PlayerRecord() {
-			
+		public PlayerRecord(Color color, City[] cities, int score) {
+			this.color = color;
+			this.cities = cities;
+			this.score = score;
+		}
+		
+		public Color getColor() {
+			return color;
+		}
+		
+		public City[] getCities() {
+			return cities;
+		}
+		
+		public int getScore() {
+			return score;
+		}
+		
+		public void setScore(int newScore) {
+			score = newScore;
 		}
 	}
 
