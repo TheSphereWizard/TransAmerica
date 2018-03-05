@@ -8,20 +8,17 @@ String playerName() {}
 test
  */
 public class HumanPlayer extends Player {
-	
-	
-	
-	public HumanPlayer(MapofUSA map) {
-		
-	}
 
 	Rail[] runTurn() {
 		//accesses lastClick to map until it isn't null
-		while(map.lastClicked() == null){
+		while(map.returnplacedRail() == null){
 		}
-		Position click = map.lastClicked();
-		//convert to rail and return it
-		return null;
+		Rail[] newRails = new Rail[2];
+		newRails[0]=map.returnPlacedRail();
+		if(newRails[0].){
+			
+		}
+		return newRails;
 	}
 
 	void updatePlayer() {
