@@ -28,7 +28,7 @@ public class StrategyAnalyzer{
 		for(int i = 0; i < games; i++){
 			//RUN GAMES
 			
-			calculateResults(games);
+			calculateResults(i+1);
 		}
 		displayResults(games);
 	}
