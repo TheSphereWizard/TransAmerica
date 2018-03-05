@@ -1,45 +1,36 @@
 //Does the ArrayList of compPlayers mean that we are running multiple AIs against each other
 //And then using the arrays to document the results of each individual AI?
-//Also we need some setters for the arrays
-//Also we're just printing the results onto the console and not on a JPanel right?
 import java.util.ArrayList;
 public class StrategyAnalyzer{
 	private int[] gamesWon;
 	private int[] gamesLost;
 	private int[] rank;
 	private double[] winPercentage;
+	private int players;
 	/**
-	 * Runs games, then calculates statistics, then creates an AI panel
+	 * initializes the data-storing arrays
 	 * @param computerPlayers Amount of players
-	 * @param games Number of games to be played
 	 */
-	StrategyAnalyzer (ArrayList compPlayers){
-		gamesWon = new int[compPlayers.size()];
-		gamesLost = new int[compPlayers.size()];
-		rank = new int[compPlayers.size()];
-		winPercentage = new double[compPlayers.size()];
+	StrategyAnalyzer (ArrayList<ComputerPlayer> compPlayers){
+		players = compPlayers.size();
+		gamesWon = new int[players];
+		gamesLost = new int[players];
+		rank = new int[players];
+		winPercentage = new double[players];
 	}
+	/**
+	 * runs the amount of games passed and then
+	 * calculates the results and displays them
+	 * via the ComputerStrategyScreen
+	 * @param games amount of games to be played
+	 */
 	public void runGames(int games){
 		for(int i = 0; i < games; i++){
-			
+			//RUN GAMES
+			//THEN CALCULATE RESULTS
+			calculateResults(games);
 		}
-		calculate();
-	}
-	/**
-	 * Called after each game and
-	 * records the wins and losses
-	 */
-	private void setWinsAndLosses(int players){
-		for(int i = 0; i < players; i++){
-			
-		}
-	}
-	/**
-	 * Initializes arrays based off 
-	 * the number of players
-	 * @param players Amount of players
-	 */
-	private void initialize(int players){
+		displayResults(games);
 	}
 	public int[] getLost(){
 		return gamesLost;
@@ -55,12 +46,38 @@ public class StrategyAnalyzer{
 	}
 	/**
 	 * Called after each game is run
-	 * and sets winPercentage & rank
+	 * and sets the data arrays
 	 */
-	public void calculate(){
-		//called at the end for percentages and ranks
+	public void calculateResults(int games){
+		for(int i = 0; i < players; i++){
+			gamesWon[i] = gamesWon[i]+/*RESULT FROM GAME*/;
+			gamesLost[i] = gamesLost[i]+/*RESULT FROM GAME*/;
+			winPercentage[i] = gamesWon[i]/games;
+			for(int j = 0; j < players; j++){
+				if(gamesWon[i] > gamesWon[j]){
+					int temp = rank[i];
+					rank[i] = rank[j];
+					rank[j] = temp;
+				}
+			}
+		}
+		//CALCULATE RANK BASED OFF OF gamesWon
+//		for(int i = 0; i < players; i++){
+//			int currentPlayer = i;
+//			int[] ranks = new int[players];
+//			for(int j = 0; j < players; j++)
+//				if(gamesWon[currentPlayer]>=gamesWon[i])
+//					ranks[currentPlayer]++;
+//		}
 	}
-	private void displayResults(){
-		
+	/**
+	 * Creates a ComputerStrategyScreen and passes
+	 * it the amount of games played, gamesWon, gamesLost,
+	 * rank, and winPercentage
+	 * @param gamesPlayed the amount of games played
+	 */
+	private void displayResults(int gamesPlayed){
+		ComputerStrategyScreen results = new ComputerStrategyScreen
+				(gamesPlayed, gamesWon, gamesLost, rank, winPercentage);
 	}
 }
