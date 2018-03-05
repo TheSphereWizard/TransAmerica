@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Grid {
 
 	Rail[][] railGrid;
-	private int boardwidth=100,boardheight=50;
+	private int boardwidth=25,boardheight=15;
 	int[][] grid=new int[boardwidth][];
 	
 	City[] allcities = new City[]{
@@ -44,16 +44,16 @@ public class Grid {
 			new City("yellow6",new Position(4,5),Color.yellow),
 			new City("yellow7",new Position(4,6),Color.yellow),
 	};
-	void placeMarker(int x, int y){//places markers
+	void placeMarker(Position p){//places markers
 		
 	}
-	void placeRail(Rail rail) {
-		//Places a rail on the grid, update all player networks
+	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
+		
 	}
 	City[] getCities() {
-		
+		return allcities;
 	}
-	boolean validRailAddition(int x, int y, Player currentPlayer){
+	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
 		
 		
 		
