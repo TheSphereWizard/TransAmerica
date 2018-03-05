@@ -17,10 +17,37 @@ public abstract class Player {
 	ArrayList<City> cityGoal;
 	ArrayList<City> cityReached;
 	boolean placedMarkerAlready;
+	Position startMarker;
+	int score = 0;
+	MapofUSA map;
+	String name;
+	
+	Player(String n){
+		name = n;
+		placedMarkerAlready = false;
+	}
 	
 	abstract Rail[] runTurn();
-	abstract void clearForNewRound(ArrayList<City> cities);
+	void clearForNewRound(ArrayList<City> cities){
+		cityGoal = cities;
+		cityReached.clear();
+		placedMarkerAlready = false;
+		score = 0;
+	}
 	abstract void updatePlayer();
 	abstract String playerName();
+	Position getStartMarker(){
+		return startMarker;
+	}
+	
+
+	
+	public class PlayerRecord {
+		//Should store player's color, cities, score, and other information as needed.
+		
+		public PlayerRecord() {
+			
+		}
+	}
 
 }

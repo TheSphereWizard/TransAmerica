@@ -10,11 +10,12 @@ test
 public class HumanPlayer extends Player {
 
 	Rail[] runTurn() {
+		//accesses lastClick to map until it isn't null
+		while(map.lastClicked() == null){
+		}
+		Position click = map.lastClicked();
+		//convert to rail and return it
 		return null;
-	}
-
-	void clearForNewRound(ArrayList<City> cities) {
-		
 	}
 
 	void updatePlayer() {
@@ -22,6 +23,10 @@ public class HumanPlayer extends Player {
 	}
 
 	String playerName() {
+		return null;
+	}
+	
+	Position getStartMarker() {
 		return null;
 	}
 
