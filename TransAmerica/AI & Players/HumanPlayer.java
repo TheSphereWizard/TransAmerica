@@ -9,6 +9,11 @@ test
  */
 public class HumanPlayer extends Player {
 
+	HumanPlayer(String name, MapofUSA Map){
+		super(name);
+		map = Map;
+	}
+	
 	Rail[] runTurn() {
 		//accesses lastClick to map until it isn't null
 		while(map.returnplacedRail() == null){
