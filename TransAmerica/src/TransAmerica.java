@@ -105,13 +105,10 @@ public class TransAmerica extends JFrame implements ActionListener{
 				noPlayers --;
 			} else if(e.getActionCommand().equals(optionNames[2])) {
 				noPlayers --;
-				stratSelector();
 			}
 		}
 		
-		public void stratSelector() {
-			this();
-		}
+	
 
 
 		
