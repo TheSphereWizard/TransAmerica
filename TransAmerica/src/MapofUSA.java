@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -7,18 +8,24 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class MapofUSA extends JPanel implements MouseListener, MouseMotionListener{
+import NOTHING.*;
+
+public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionListener{
 		Player currentPlayer;
 		BufferedImage Map;
 		private Rail lastClick;
 		Grid currentGrid;
 		static ArrayList<City> allCities;
 		public static void main(String[] red){
-			
+			MapofUSA map = new MapofUSA(0,100,1400,700);
+			Screen.makeScreen(map,10);
 		}
 		private int[] siz;
-		MapofUSA(int width, int height){
+		private int[] mappos;
+		MapofUSA(int x, int y, int width, int height){
+			mappos = new int[]{x,y};
 			siz=new int[]{width,height};
+			this.setBounds(x, y, width, height);
 		}
 		void setCurrentGrid(Grid grid){//called at beginning of round
 			currentGrid = grid;
@@ -31,6 +38,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			return lastClick;
 		}
 		public void paint(Graphics g){//redraws map with new rail networks
+			g.translate(mappos[0], mappos[1]);
+			g.drawRect(0, 0, siz[0], siz[1]);
 			
 		}
 		public void mouseClicked(MouseEvent e) {//when mouse is clicked, converts click (x, y) coordinates to grid coordinates, and then uses the grid validrail method to determine if rail is valid, if it is then add to lastClick, else ignore that it was clicked

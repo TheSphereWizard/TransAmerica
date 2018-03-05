@@ -23,11 +23,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 		this.setTitle("TransAmerica");
 		this.add(backgroundPic);
 		
-		
-		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
-		
-//		contentPane.setContentPane(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
-		
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));		
 		
 		for(int i = 0; i < panes.length; i++) {
 			panes[i] = new JPanel();
@@ -113,8 +109,6 @@ public class TransAmerica extends JFrame implements ActionListener{
 		private JLabel backgroundPic = new JLabel(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
 	
 		private int noPlayers = 6;
-	
-
 	
 	}
 
