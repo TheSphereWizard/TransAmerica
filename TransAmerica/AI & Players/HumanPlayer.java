@@ -8,6 +8,12 @@ String playerName() {}
 test
  */
 public class HumanPlayer extends Player {
+	
+	
+	
+	public HumanPlayer(MapofUSA map) {
+		
+	}
 
 	Rail[] runTurn() {
 		//accesses lastClick to map until it isn't null
