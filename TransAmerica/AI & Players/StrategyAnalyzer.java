@@ -8,7 +8,7 @@ public class StrategyAnalyzer{
 	private double[] winPercentage;
 	private int players;
 	/**
-	 * initializes the data-storing arrays
+	 * Initializes the data-storing arrays
 	 * @param computerPlayers Amount of players
 	 */
 	StrategyAnalyzer (ArrayList<ComputerPlayer> compPlayers){
@@ -19,7 +19,7 @@ public class StrategyAnalyzer{
 		winPercentage = new double[players];
 	}
 	/**
-	 * runs the amount of games passed and then
+	 * Runs the amount of games passed and then
 	 * calculates the results and displays them
 	 * via the ComputerStrategyScreen
 	 * @param games amount of games to be played
