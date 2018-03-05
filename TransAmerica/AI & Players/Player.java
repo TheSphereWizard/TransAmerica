@@ -18,18 +18,27 @@ public abstract class Player {
 	ArrayList<City> cityReached;
 	boolean placedMarkerAlready;
 	Position startMarker;
-	int score;
+	int score = 0;
 	MapofUSA map;
+	String name;
+	
+	Player(String n){
+		name = n;
+		placedMarkerAlready = false;
+	}
 	
 	abstract Rail[] runTurn();
 	void clearForNewRound(ArrayList<City> cities){
 		cityGoal = cities;
 		cityReached.clear();
 		placedMarkerAlready = false;
+		score = 0;
 	}
 	abstract void updatePlayer();
 	abstract String playerName();
-	abstract Position getStartMarker();
+	Position getStartMarker(){
+		return startMarker;
+	}
 	
 
 	
