@@ -36,7 +36,9 @@ public abstract class Player {
 		score = 0;
 	}
 	abstract void updatePlayer();
-	abstract String playerName();
+	String playerName(){
+		return name;
+	}
 	Position getStartMarker(){
 		return startMarker;
 	}

@@ -35,10 +35,6 @@ public class HumanPlayer extends Player {
 	void updatePlayer() {
 		
 	}
-
-	String playerName() {
-		return null;
-	}
 	
 	Position getStartMarker() {
 		return null;
