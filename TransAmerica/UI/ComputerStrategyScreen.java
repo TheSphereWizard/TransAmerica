@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.*;
 
 public class ComputerStrategyScreen extends JPanel{
+	
 	Image img;
 	ComputerStrategyScreen(){
 		JFrame frame = new JFrame();
@@ -17,6 +18,10 @@ public class ComputerStrategyScreen extends JPanel{
 		 img = Toolkit.getDefaultToolkit().createImage("Screen.PNG");
 		 
 		frame.setVisible(true);
+	}
+	public ComputerStrategyScreen(int gamesPlayed, int[] gamesWon, int[] gamesLost, int[] rank,
+			double[] winPercentage) {
+		
 	}
 	public static void main(String[] args){
 		new ComputerStrategyScreen();
