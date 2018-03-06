@@ -15,5 +15,11 @@ public class Position {
 	public int getY() {
 		return y;
 	}
+	
+	public boolean equals(Position compare) {
+		if(x == compare.x && y == compare.y)
+			return true;
+		return false;
+	}
 
 }

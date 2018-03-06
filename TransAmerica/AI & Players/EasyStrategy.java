@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class EasyStrategy extends ComputerPlayer{
 	
@@ -6,8 +7,9 @@ public class EasyStrategy extends ComputerPlayer{
 		super(scores, grid);
 	}
 	
-	private void scanRails(ArrayList<Rail> rail, Position startPos){
+	private ArrayList<Rail> scanRails(ArrayList<Rail> rail, Position startPos){
 		ArrayList<Rail> rails = rail;
+		ArrayList<Rail> newRails = new ArrayList<Rail>();
 		for(Rail r: rails){
 			if(r.size()){//rail attached to network
 				Position endpoint;//endpoint is where the next scan originates at
@@ -22,19 +24,22 @@ public class EasyStrategy extends ComputerPlayer{
 						scanList.remove(r2);
 					}
 				}
-				scanRails(scanList,endpoint);
+				newRails.addAll(scanRails(scanList,endpoint));
+			}
+			else{//rail not attached to network
+				rails.remove(r);//rails only contains a list of valid rails
 			}
 		}
+		rails.addAll(newRails);
+		return rails;
 		
 	}
 
-	Rail[] runTurn() {
-		ArrayList<Rail> scanRails = getRailsAtPos(startMarker);//scanRails contains all the rails to be checked
-		for(Rail r: scanRails){
-			
-		}
-		
-		return null;
+	Rail runTurn() {
+		ArrayList<Rail> totalRails = scanRails(getRailsAtPos(startMarker),startMarker);//scanRails contains all the rails to be checked
+		Random rand = new Random();
+		int pos = rand.nextInt(totalRails.size()+1);
+		return totalRails.get(pos);
 	}
 
 }
