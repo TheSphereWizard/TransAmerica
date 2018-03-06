@@ -46,8 +46,11 @@ public abstract class Player {
 	
 	public class PlayerRecord {
 		//Should store player's color, cities, score, and other information as needed.
+		//The players color
 		private Color color;
+		//The cities the player needs/have to connect
 		private City[] cities;
+		//# of cities player has connected
 		private int score;
 		
 		public PlayerRecord(Color color, City[] cities, int score) {

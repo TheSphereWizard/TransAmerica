@@ -27,7 +27,7 @@ public class Game {
 	// ^shows the types of specific game states^
 	//ArrayList<Round> rounds;
 	ArrayList<Player> players;
-	Game(ArrayList<Player> player, int numberOfRounds){
+	Game(ArrayList<Player> player, boolean gameSpeed){
 		//determines if is AI game and slow mode, Instantiates rounds with number of rounds, order of players in Round parameters is the order of player’s turns
 	}
 	void runRounds(){
