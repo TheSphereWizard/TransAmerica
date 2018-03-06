@@ -16,9 +16,18 @@ public abstract class ComputerPlayer extends Player {
 	abstract Rail[] runTurn();
 	
 	public ArrayList<Rail> getRailsAtPos(Position pos) {
-		if(pos.x)
+		ArrayList<Rail> rails = new ArrayList<Rail>(0);
 		
-		return null;
+		if(grid.getRail(pos, new Position(pos.x, pos.y + 1)) != null && pos.y < 15)
+			rails.add(grid.getRail(pos, new Position(pos.x, pos.y + 1)));
+		if(grid.getRail(pos, new Position(pos.x + 1, pos.y)) != null && pos.x < 25)
+			rails.add(grid.getRail(pos, new Position(pos.x + 1, pos.y)));
+		if(grid.getRail(pos, new Position(pos.x, pos.y - 1)) != null && pos.y > 0)
+			rails.add(grid.getRail(pos, new Position(pos.x, pos.y - 1)));
+		if(grid.getRail(pos, new Position(pos.x - 1, pos.y)) != null && pos.x > 0)
+			rails.add(grid.getRail(pos, new Position(pos.x - 1, pos.y)));
+		
+		return rails;
 	}
 
 }

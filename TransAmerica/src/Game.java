@@ -53,6 +53,9 @@ public class Game {
 		}
 		return numOfPlayers;
 	}
+	/**
+	 * @return the position of the player who won in the ArrayList players (0-5)
+	 */
 	public int getWinningPlayer(){
 		for(int maxScore : ){
 			
