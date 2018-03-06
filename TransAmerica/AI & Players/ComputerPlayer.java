@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public abstract class ComputerPlayer extends Player {
 	
@@ -13,5 +14,11 @@ public abstract class ComputerPlayer extends Player {
 	}
 
 	abstract Rail[] runTurn();
+	
+	public ArrayList<Rail> getRailsAtPos(Position pos) {
+		if(pos.x)
+		
+		return null;
+	}
 
 }
