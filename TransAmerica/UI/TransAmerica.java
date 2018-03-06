@@ -14,7 +14,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 	private JLabel errorMessage = new JLabel();
-
+	private JFrame errorMessageFrame = new JFrame("Error Message");
 	
 	private int noPlayers = 6;
 	
@@ -22,6 +22,10 @@ public class TransAmerica extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("TransAmerica");
 		
+		errorMessageFrame.add(errorMessage);
+		errorMessageFrame.add(exit);
+		errorMessage.setLayout(new GridLayout(2,1));
+		errorMessageFrame.pack();
 		errorMessage.setText("Error: Not Enough Players");
 		
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));		
@@ -58,7 +62,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Play") && noPlayers == 6) {
-			contentPane.add(errorMessage);
+			errorMessageFrame.setVisible(true);
 		} else if(e.getActionCommand().equals("Play") && noPlayers < 6) {
 			
 		} else if(e.getActionCommand().equals("Exit")) {
