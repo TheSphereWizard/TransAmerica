@@ -31,7 +31,7 @@ public class StrategyAnalyzer{
 		for(int i = 0; i < games; i++){
 			Game game = new Game(AIs, false);
 			
-			calculateResults(i+1);
+			calculateResults(i+1, game);
 		}
 		displayResults(games);
 	}
@@ -51,17 +51,25 @@ public class StrategyAnalyzer{
 	 * Called after each game is run
 	 * and sets the data arrays
 	 */
-	public void calculateResults(int games){
+	public void calculateResults(int games, Game game){
+		//The position of the winning player
+		int winner = game.getWinningPlayer();
 		for(int i = 0; i < players; i++){
-			gamesWon[i] = gamesWon[i]+/*RESULT FROM GAME*/;
-			gamesLost[i] = gamesLost[i]+/*RESULT FROM GAME*/;
+			if(i == winner)
+				gamesWon[winner]++;
+			else
+				gamesLost[i] = gamesLost[i]++;
 			winPercentage[i] = gamesWon[i]/games;
-			for(int j = 0; j < players; j++){
-				if(gamesWon[i] > gamesWon[j]){
-					int temp = rank[i];
-					rank[i] = rank[j];
-					rank[j] = temp;
-				}
+		}
+		calculateRank();
+	}
+	//FIX
+	private void calculateRank(){
+		for(int j = 1; j < players; j++){
+			if(gamesWon[j] > gamesWon[j-1]){
+				int temp = rank[j-1];
+				rank[j-1] = rank[j];
+				rank[j] = temp;
 			}
 		}
 	}
