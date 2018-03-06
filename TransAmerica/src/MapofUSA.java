@@ -21,8 +21,14 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		public static void main(String[] red){
 			MapofUSA map = new MapofUSA(0,100,1400,700);
 			map.setCurrentGrid(new Grid());
+			Player p =new HumanPlayer("fish",map);
+			p.setColor(Color.blue);
 			try {
-				map.currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),new HumanPlayer("fish",map)));
+				map.currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
+				map.currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));
+				map.currentGrid.placeRail(new Rail(new Position(1,1),new Position(1,2),p));
+				map.currentGrid.placeRail(new Rail(new Position(1,1),new Position(2,1),p));
+				map.currentGrid.placeRail(new Rail(new Position(21,1),new Position(22,1),p));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -49,10 +55,10 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			g.translate(mappos[0], mappos[1]);
 			g.drawRect(0, 0, siz[0], siz[1]);
 			Graphics2D g2d = (Graphics2D)g;
-			g2d.setStroke(new BasicStroke(7,1,2));
+			g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			int[] scalefactor = new int[]{siz[0]/currentGrid.boardwidth,siz[1]/currentGrid.boardheight};
 			for(Rail r: currentGrid.allrails){
-				g.drawLine(scalefactor[0]*r.x1, scalefactor[1]*r.y1, scalefactor[0]*r.x2, scalefactor[1]*r.y2);
+				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==0?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==0?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
 			}
 		}
 		public void mouseClicked(MouseEvent e) {//when mouse is clicked, converts click (x, y) coordinates to grid coordinates, and then uses the grid validrail method to determine if rail is valid, if it is then add to lastClick, else ignore that it was clicked

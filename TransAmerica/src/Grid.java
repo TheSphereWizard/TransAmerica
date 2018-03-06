@@ -55,16 +55,14 @@ public class Grid {
 		return allcities;
 	}
 	static boolean legalRail(Position one, Position two){
-		if(one.x==two.x&one.y==two.x)
+		if(one.x==two.x&one.y==two.y)
 			return false;
 		if(Math.abs(one.x-two.x)>1||Math.abs(one.y-two.y)>1)
 			return false;
 		if(one.y==two.y&Math.abs(one.x-two.x)==1)
 			return true;
 		if(one.y<two.y){
-			Position temp = two;
-			two=one;
-			one=temp;
+			return legalRail(two,one);
 		}
 		if(one.y%2==0&Math.abs(one.y-two.y)==1&(one.x-two.x>=0)){
 			return true;
