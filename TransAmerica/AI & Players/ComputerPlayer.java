@@ -1,5 +1,5 @@
 
-public class ComputerPlayer extends Player {
+public abstract class ComputerPlayer extends Player {
 	
 	//Computer player should get copy of game state (but should not have access to other player’s hands)
 	//Pass in an array of scores, a grid, and a hand to computer players
@@ -12,8 +12,6 @@ public class ComputerPlayer extends Player {
 		this.grid = grid;
 	}
 
-	Rail[] runTurn() {
-		return null;
-	}
+	abstract Rail[] runTurn();
 
 }
