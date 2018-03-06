@@ -14,7 +14,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 	private JLabel errorMessage = new JLabel();
-	private JFrame errorMessageFrame = new JFrame("Error Message");
+	private JFrame errorMessageFrame = new JFrame("							Error Message");
 	private JPanel errorPanel = new JPanel();
 	
 	private int noPlayers = 6;
