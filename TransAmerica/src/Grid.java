@@ -4,7 +4,8 @@ import java.util.ArrayList;
 public class Grid {
 
 	Rail[][] railGrid;
-	private int boardwidth=25,boardheight=15;
+	ArrayList<Rail> allrails = new ArrayList<Rail>();
+	int boardwidth=25,boardheight=15;
 	int[][] grid=new int[boardwidth][];
 	
 	City[] allcities = new City[]{
@@ -48,22 +49,30 @@ public class Grid {
 		
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		
+		allrails.add(rail);
 	}
 	City[] getCities() {
 		return allcities;
 	}
 	private boolean legalRail(Position one, Position two){
-		boolean legal=true;
+		if(one.x==two.x&one.y==two.x)
+			return false;
 		if(Math.abs(one.x-two.x)>1||Math.abs(one.y-two.y)>1)
 			return false;
 		if(one.y==two.y&Math.abs(one.x-two.x)==1)
 			return true;
-		Position trueone;
-		Position truetwo;
-		if(one.x==two.x)
-			legal=false;
-		return legal;
+		if(one.y<two.y){
+			Position temp = two;
+			two=one;
+			one=temp;
+		}
+		if(one.y%2==0&Math.abs(one.y-two.y)==1&(one.x-two.x>=0)){
+			return true;
+		}
+		if(one.y%2==1&Math.abs(one.y-two.y)==1&(one.x-two.x<=0)){
+			return true;
+		}
+		return false;
 	}
 	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
 		
