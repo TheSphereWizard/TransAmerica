@@ -23,7 +23,8 @@ public class TransAmerica extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("TransAmerica");
 		
-		
+		errorMessage.setText("Error! Not Enough Players");
+		errorPanel.setLayout(new GridLayout(2,1));
 		
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));		
 		
