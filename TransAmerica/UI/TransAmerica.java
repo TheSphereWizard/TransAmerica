@@ -111,7 +111,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
-				noPlayers ++;
+				
 			} else if(e.getActionCommand().equals(optionNames[1])) {
 				noPlayers --;
 			} else if(e.getActionCommand().equals(optionNames[2])) {
