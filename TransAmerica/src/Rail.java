@@ -4,7 +4,7 @@ public class Rail {
 	Player player;
 	int size;//0 is not placed, 1 is placed, 2 is double rail
 
-	Rail(Position P1, Position P2, Player p){
+	Rail(Position P1, Position P2, Player p) throws Exception{
 		if(Grid.legalRail(P1,P2)){
 		p1 = P1;
 		p2 = P2;
