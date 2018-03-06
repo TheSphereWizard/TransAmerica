@@ -7,16 +7,19 @@ public class StrategyAnalyzer{
 	private int[] rank;
 	private double[] winPercentage;
 	private int players;
+	private ArrayList<Player> AIs;
 	/**
 	 * Initializes the data-storing arrays
+	 * Pre-supposes that all players passed are AIs
 	 * @param computerPlayers Amount of players
 	 */
-	StrategyAnalyzer (ArrayList<ComputerPlayer> compPlayers){
+	StrategyAnalyzer (ArrayList<Player> compPlayers){
 		players = compPlayers.size();
 		gamesWon = new int[players];
 		gamesLost = new int[players];
 		rank = new int[players];
 		winPercentage = new double[players];
+		AIs = compPlayers;
 	}
 	/**
 	 * Runs the amount of games passed and then
@@ -26,7 +29,7 @@ public class StrategyAnalyzer{
 	 */
 	public void runGames(int games){
 		for(int i = 0; i < games; i++){
-			//RUN GAMES
+			Game game = new Game(AIs, false);
 			
 			calculateResults(i+1);
 		}
