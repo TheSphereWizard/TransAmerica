@@ -29,6 +29,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 		errorPanel.setLayout(new GridLayout(2,1));
 		errorPanel.add(errorMessage);
 		errorPanel.add(exit);
+		errorMessageFrame.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
 		errorMessageFrame.setSize(300, 150);
 		errorMessageFrame.add(errorPanel);
 		
