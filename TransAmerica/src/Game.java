@@ -27,9 +27,14 @@ public class Game {
 	// ^shows the types of specific game states^
 	
 	ArrayList<Player> players;
+<<<<<<< HEAD
+	Game(ArrayList<Player> player, boolean gameSpeed){
+		//determines if is AI game and slow mode, Instantiates rounds with number of rounds, order of players in Round parameters is the order of player’s turns
+=======
 	Game(ArrayList<Player> player){
 		//determines if is AI game and slow mode, Instantiates rounds with number of rounds, 
 		//order of players in Round parameters is the order of player’s turns
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
 	
 	boolean showScoreScreen;

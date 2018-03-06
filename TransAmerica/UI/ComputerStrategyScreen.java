@@ -25,9 +25,13 @@ public class ComputerStrategyScreen extends JPanel{
 		e.setText("winPercentyage \n" +winPercentage);
 		
 	}
+<<<<<<< HEAD
 	public static void main(String[] args){
 		
 	}
 
 
 }
+=======
+}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
