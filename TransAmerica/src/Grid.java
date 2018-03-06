@@ -55,7 +55,14 @@ public class Grid {
 	}
 	private boolean legalRail(Position one, Position two){
 		boolean legal=true;
-		if(one.x)
+		if(Math.abs(one.x-two.x)>1||Math.abs(one.y-two.y)>1)
+			return false;
+		if(one.y==two.y&Math.abs(one.x-two.x)==1)
+			return true;
+		Position trueone;
+		Position truetwo;
+		if(one.x==two.x)
+			legal=false;
 		return legal;
 	}
 	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
