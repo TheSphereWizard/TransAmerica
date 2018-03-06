@@ -65,6 +65,12 @@ public class Grid {
 			legal=false;
 		return legal;
 	}
+	
+	public Rail getRail(Position one, Position two) {
+		//returns rail between two points
+		return null;
+	}
+	
 	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
 		
 		
