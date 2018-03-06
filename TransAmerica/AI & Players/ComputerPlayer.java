@@ -5,14 +5,11 @@ public class ComputerPlayer extends Player {
 	//Pass in an array of scores, a grid, and a hand to computer players
 	private int[] scores;
 	private Grid grid;
-	private City[] cities;
 	
-	
-	public ComputerPlayer(int[] scores, Grid grid, City[] cities) {
+	public ComputerPlayer(int[] scores, Grid grid) {
 		super(null);
 		this.scores = scores;
 		this.grid = grid;
-		this.cities = cities;
 	}
 
 	Rail[] runTurn() {
