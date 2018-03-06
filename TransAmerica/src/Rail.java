@@ -14,4 +14,10 @@ public class Rail {
 			throw new Exception();
 		}
 	}
+	
+	public boolean equals(Rail compare) {
+		if(p1.equals(compare.p1) && p2.equals(compare.p2))
+			return true;
+		return false;
+	}
 }
