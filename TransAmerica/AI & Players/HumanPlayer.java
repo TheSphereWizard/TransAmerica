@@ -16,22 +16,20 @@ public class HumanPlayer extends Player {
 	
 	Rail[] runTurn() {
 		//accesses lastClick to map until it isn't null
-		while(map.returnplacedRail() == null){
+		Rail nextRail = null;
+		while(nextRail == null){
+			nextRail = map.returnPlacedRail();
 		}
 		Rail[] newRails = new Rail[2];
-		newRails[0]=map.returnPlacedRail();
-		if(newRails[0].){
-			
+		newRails[0]=nextRail;
+		if(newRails[0].size == 1){//if it was a single rail, place the second one
+			nextRail = null;
+			while(nextRail == null){
+				nextRail = map.returnPlacedRail();
+			}
+			newRails[1]=nextRail;
 		}
 		return newRails;
-	}
-
-	void updatePlayer() {
-		
-	}
-
-	String playerName() {
-		return null;
 	}
 	
 	Position getStartMarker() {
