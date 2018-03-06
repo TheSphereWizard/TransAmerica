@@ -14,7 +14,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 	private JLabel errorMessage = new JLabel();
-	private JFrame errorMessageFrame = new JFrame("Error Message");
+	private JFrame errorMessageFrame = new JFrame("							Error Message");
 	private JPanel errorPanel = new JPanel();
 	
 	private int noPlayers = 6;
@@ -23,11 +23,15 @@ public class TransAmerica extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("TransAmerica");
 		
-		errorMessage.setText("Error! Not Enough Players");
-		errorMessage.setLocation(screenSize.width/2 , screenSize.height/2);
+		
+		errorMessage.setText("                      Error! Not Enough Players");
+		errorMessage.setAlignmentX(CENTER_ALIGNMENT);
 		errorPanel.setLayout(new GridLayout(2,1));
 		errorPanel.add(errorMessage);
 		errorPanel.add(exit);
+		errorMessageFrame.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
+		errorMessageFrame.setSize(300, 150);
+		errorMessageFrame.setResizable(false);
 		errorMessageFrame.add(errorPanel);
 		
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));		
@@ -107,7 +111,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
-				noPlayers ++;
+				
 			} else if(e.getActionCommand().equals(optionNames[1])) {
 				noPlayers --;
 			} else if(e.getActionCommand().equals(optionNames[2])) {

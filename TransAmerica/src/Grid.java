@@ -4,8 +4,7 @@ import java.util.ArrayList;
 public class Grid {
 
 	Rail[][] railGrid;
-	ArrayList<Rail> allrails = new ArrayList<Rail>();
-	int boardwidth=25,boardheight=15;
+	private int boardwidth=25,boardheight=15;
 	int[][] grid=new int[boardwidth][];
 	
 	City[] allcities = new City[]{
@@ -49,18 +48,24 @@ public class Grid {
 		
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		allrails.add(rail);
+		
 	}
 	City[] getCities() {
 		return allcities;
 	}
+<<<<<<< HEAD
 	static boolean legalRail(Position one, Position two){
 		if(one.x==two.x&one.y==two.y)
 			return false;
+=======
+	private boolean legalRail(Position one, Position two){
+		boolean legal=true;
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		if(Math.abs(one.x-two.x)>1||Math.abs(one.y-two.y)>1)
 			return false;
 		if(one.y==two.y&Math.abs(one.x-two.x)==1)
 			return true;
+<<<<<<< HEAD
 		if(one.y<two.y){
 			return legalRail(two,one);
 		}
@@ -71,16 +76,25 @@ public class Grid {
 			return true;
 		}
 		return false;
+=======
+		Position trueone;
+		Position truetwo;
+		if(one.x==two.x)
+			legal=false;
+		return legal;
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
+	
+	public Rail getRail(Position one, Position two) {
+		//returns rail between two points
+		return null;
+	}
+	
 	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
 		
 		
 		
 		return false;
-	}
-	public static int checkiflargeornot(Position p1, Position p2) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 

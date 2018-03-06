@@ -29,13 +29,6 @@ public class ComputerStrategyScreen extends JPanel{
 
 	public static void main(String args[]) {
 		
-<<<<<<< HEAD
 	}
-
-
+	
 }
-=======
-}
-=======
-	}
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica

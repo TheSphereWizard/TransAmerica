@@ -14,7 +14,7 @@ public class HumanPlayer extends Player {
 		map = Map;
 	}
 	
-	Rail[] runTurn() {
+	Rail runTurn() {
 		//accesses lastClick to map until it isn't null
 		Rail nextRail = null;
 		while(nextRail == null){
