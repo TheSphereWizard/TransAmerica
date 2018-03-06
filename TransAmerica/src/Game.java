@@ -23,16 +23,15 @@ Int[] playerNumber, winningPlayer, currentScore, scores;
 
  */
 public class Game {
-	public static final int GameState = 0;
+	public static final int ROUND = 0;
 	// ^shows the types of specific game states^
-	//ArrayList<Round> rounds;
+	
 	ArrayList<Player> players;
-	Game(ArrayList<Player> player, int numberOfRounds){
-		//determines if is AI game and slow mode, Instantiates rounds with number of rounds, order of players in Round parameters is the order of player’s turns
+	Game(ArrayList<Player> player){
+		//determines if is AI game and slow mode, Instantiates rounds with number of rounds, 
+		//order of players in Round parameters is the order of player’s turns
 	}
-	void runRounds(){
-		//runs through rounds arraylist, calls returnScoreChange after finished
-	}
+	
 	boolean showScoreScreen;
 	boolean isAIGame;
 	boolean slowMode;
@@ -69,7 +68,7 @@ public class Game {
 		grid = new Grid();
 		players = P;
 		for (Player p : players) {
-			p.clearForNewRound(grid.allcities);
+			p.clearForNewRound(p.PlayerRecord.getcities());
 		}
 		startRound();
 	}
