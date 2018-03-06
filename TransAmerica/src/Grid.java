@@ -54,7 +54,7 @@ public class Grid {
 	City[] getCities() {
 		return allcities;
 	}
-	private boolean legalRail(Position one, Position two){
+	static boolean legalRail(Position one, Position two){
 		if(one.x==two.x&one.y==two.x)
 			return false;
 		if(Math.abs(one.x-two.x)>1||Math.abs(one.y-two.y)>1)
@@ -79,6 +79,10 @@ public class Grid {
 		
 		
 		return false;
+	}
+	public static int checkiflargeornot(Position p1, Position p2) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
