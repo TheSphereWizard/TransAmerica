@@ -2,8 +2,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.*;
+
 public class ComputerStrategyScreen extends JPanel{
-<<<<<<< HEAD
+
 	
 	JTextArea a = new JTextArea();
 	JTextArea b = new JTextArea();
@@ -25,12 +26,16 @@ public class ComputerStrategyScreen extends JPanel{
 		e.setText("winPercentyage \n" +winPercentage);
 		
 	}
-<<<<<<< HEAD
-	public static void main(String[] args){
+
+	public static void main(String args[]) {
 		
+<<<<<<< HEAD
 	}
 
 
 }
 =======
 }
+=======
+	}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
