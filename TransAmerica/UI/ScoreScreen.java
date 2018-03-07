@@ -7,9 +7,12 @@ import javax.swing.JPanel;
 public class ScoreScreen extends JFrame implements ActionListener {
 
 	private JPanel contentPane = new JPanel();
-	
+	private JPanel[] 
 	
 	ScoreScreen(Color playerColor , int playerScore) {
+		
+		
+		
 		
 	}
 	
@@ -18,6 +21,16 @@ public class ScoreScreen extends JFrame implements ActionListener {
 	
 	
 	public void actionPerformed(ActionEvent e) {
+		
+	}
+	
+	private class PlayerScorePanel extends JPanel {
+		
+		
+		
+		
+		
+		
 		
 	}
 }
