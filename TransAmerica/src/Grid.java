@@ -53,19 +53,13 @@ public class Grid {
 	City[] getCities() {
 		return allcities;
 	}
-<<<<<<< HEAD
 	static boolean legalRail(Position one, Position two){
 		if(one.x==two.x&one.y==two.y)
 			return false;
-=======
-	private boolean legalRail(Position one, Position two){
-		boolean legal=true;
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		if(Math.abs(one.x-two.x)>1||Math.abs(one.y-two.y)>1)
 			return false;
 		if(one.y==two.y&Math.abs(one.x-two.x)==1)
 			return true;
-<<<<<<< HEAD
 		if(one.y<two.y){
 			return legalRail(two,one);
 		}
@@ -76,13 +70,6 @@ public class Grid {
 			return true;
 		}
 		return false;
-=======
-		Position trueone;
-		Position truetwo;
-		if(one.x==two.x)
-			legal=false;
-		return legal;
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
 	
 	public Rail getRail(Position one, Position two) {
