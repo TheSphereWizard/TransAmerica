@@ -28,7 +28,7 @@ public abstract class Player {
 		placedMarkerAlready = false;
 	}
 	
-	abstract Rail runTurn();
+	abstract Rail[] runTurn();
 	void clearForNewRound(ArrayList<City> cities){
 		cityGoal = cities;
 		cityReached.clear();
