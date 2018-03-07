@@ -130,4 +130,21 @@ public class Grid {
 			
 		}
 	}
+	ArrayList<Rail> alllegalrails=setalllegalrails();
+
+	private ArrayList<Rail> setalllegalrails() {
+		ArrayList<Rail> all = new ArrayList<Rail>();
+		for(int x =0;x<boardwidth;x++){
+			for(int y =0;y<boardheight;y++){
+				for(int x1 =0;x1<boardwidth;x1++){
+					for(int y1 =0;y1<boardheight;y1++){
+						try {
+							all.add(new Rail(new Position(x,y),new Position(x1,y1)));
+						} catch (Exception e) {}
+					}
+				}
+			}
+		}
+		return all;
+	}
 }
