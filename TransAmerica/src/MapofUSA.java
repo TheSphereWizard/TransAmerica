@@ -17,8 +17,6 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		BufferedImage Map;
 		private Rail lastClick;
 		Grid currentGrid;
-		//help
-		int help = 0;
 		static ArrayList<City> allCities;
 		public static void main(String[] red){
 			MapofUSA map = new MapofUSA(0,100,1400,700);
