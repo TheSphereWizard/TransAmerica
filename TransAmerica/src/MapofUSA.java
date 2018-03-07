@@ -21,13 +21,23 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		public static void main(String[] red){
 			MapofUSA map = new MapofUSA(0,100,1400,700);
 			map.setCurrentGrid(new Grid());
-			Player p =new HumanPlayer("fish",map);
+			Player p =new HumanPlayer(Color.blue, null, 4, "fish", map);
 			try {
 				map.currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
 				map.currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));
 				map.currentGrid.placeRail(new Rail(new Position(1,1),new Position(1,2),p));
 				map.currentGrid.placeRail(new Rail(new Position(1,1),new Position(2,1),p));
 				map.currentGrid.placeRail(new Rail(new Position(21,1),new Position(22,1),p));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			Player p2 =new HumanPlayer(Color.red, null, 4, "fish", map);
+			try {
+				map.currentGrid.placeRail(new Rail(new Position(10,0),new Position(10,1),p2));
+				map.currentGrid.placeRail(new Rail(new Position(10,1),new Position(11,1),p2));
+				map.currentGrid.placeRail(new Rail(new Position(11,1),new Position(11,2),p2));
+				map.currentGrid.placeRail(new Rail(new Position(11,1),new Position(12,1),p2));
+				//map.currentGrid.placeRail(new Rail(new Position(121,1),new Position(122,1),p));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
