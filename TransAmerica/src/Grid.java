@@ -52,6 +52,7 @@ public class Grid {
 	}
 	Grid(){
 		placemountains();
+		allRails = alllegalrails;
 	}
 	
 	void placeMarker(Position p){//places markers
