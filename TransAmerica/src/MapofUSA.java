@@ -22,7 +22,6 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			MapofUSA map = new MapofUSA(0,100,1400,700);
 			map.setCurrentGrid(new Grid());
 			Player p =new HumanPlayer("fish",map);
-			p.setColor(Color.blue);
 			try {
 				map.currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
 				map.currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));

@@ -27,9 +27,10 @@ public abstract class Player {//give players playerrecords
 	Player(String n){
 		name = n;
 		placedMarkerAlready = false;
+		record = new PlayerRecord(new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255)),new City[]{},4);
 	}
 	
-	abstract Rail runTurn();
+	abstract Rail[] runTurn();
 	void clearForNewRound(ArrayList<City> cities){
 		cityGoal = cities;
 		cityReached.clear();
