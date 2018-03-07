@@ -18,6 +18,10 @@ public class Rail {
 	public boolean equals(Rail compare) {
 		if(p1.equals(compare.p1) && p2.equals(compare.p2))
 			return true;
+		try {
+			if(compare.equals(new Rail(p2,p1,null)))
+				return true;
+		} catch (Exception e) {return false;}
 		return false;
 	}
 }
