@@ -13,7 +13,7 @@ String playerName(){}
 Int[] startMarker;
 Int[] getStartMarker();
 } */
-public abstract class Player {
+public abstract class Player {//give players playerrecords
 	
 	ArrayList<City> cityGoal;
 	ArrayList<City> cityReached;
