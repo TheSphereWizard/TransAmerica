@@ -120,7 +120,6 @@ public class TransAmerica extends JFrame implements ActionListener{
 
 		private JLabel backgroundPic = new JLabel(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
 	
-		private int noPlayers
 	}
 
 	public static void main(String[] args) {

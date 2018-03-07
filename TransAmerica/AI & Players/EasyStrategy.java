@@ -31,13 +31,13 @@ public class EasyStrategy extends ComputerPlayer{
 				rails.remove(r);//rails only contains a list of valid rails
 			}
 		}
-		rails.addAll(newRails);
+		rails=newRails;
 		return rails;
 		
 	}
 
 	Rail runTurn() {
-		ArrayList<Rail> totalRails = scanRails(getRailsAtPos(startMarker),startMarker);//scanRails contains all the rails to be checked
+		ArrayList<Rail> totalRails = scanRails(getRailsAtPos(startMarker),startMarker);//totalRails contains all the rails to be checked
 		Random rand = new Random();
 		int pos = rand.nextInt(totalRails.size()+1);
 		return totalRails.get(pos);
