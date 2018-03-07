@@ -45,6 +45,10 @@ public class Grid {
 			new City("yellow6",new Position(4,5),Color.yellow),
 			new City("yellow7",new Position(4,6),Color.yellow),
 	};
+	
+	boolean checkrail(Rail r, Player p){//checks whether the passed rail is on the player's network
+		return false;
+	}
 	Grid(){
 		placemountains();
 	}
@@ -112,14 +116,14 @@ public class Grid {
 		this.boardheight = boardheight;
 	}
 	public static int checkiflargeornot(Position p1, Position p2) throws Exception {
-		return mountains.contains(new Rail(p1,p2,null))?2:1;
+		return mountains.contains(new Rail(p1,p2))?2:1;
 	}
 	static ArrayList<Rail> mountains = new ArrayList<Rail>();
 	private void placemountains() {
 		try{
-			mountains.add(new Rail(new Position(2,3),new Position(2,2),null));
-			mountains.add(new Rail(new Position(3,2),new Position(3,3),null));
-			mountains.add(new Rail(new Position(3,3),new Position(3,4),null));
+			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
+			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
+			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
 		
 		}catch(Exception e){
 			

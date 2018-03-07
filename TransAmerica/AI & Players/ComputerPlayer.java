@@ -6,7 +6,7 @@ public abstract class ComputerPlayer extends Player {
 	//Computer player should get copy of game state (but should not have access to other player’s hands)
 	//Pass in an array of scores, a grid, and a hand to computer players
 	private int[] scores;
-	private Grid grid;
+	protected Grid grid;
 	
 	public ComputerPlayer(Color c, ArrayList<City> cities, int score, int[] scores, String name, Grid grid) {
 		super(c, cities, score, name);
@@ -29,10 +29,6 @@ public abstract class ComputerPlayer extends Player {
 			rails.add(grid.getRail(pos, new Position(pos.x - 1, pos.y)));
 		
 		return rails;
-	}
-	
-	public Grid getGrid() {
-		return grid;
 	}
 
 }
