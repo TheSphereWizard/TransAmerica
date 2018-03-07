@@ -22,7 +22,7 @@ public abstract class Player {//give players playerrecords
 	int score = 0;
 	MapofUSA map;
 	String name;
-	PlayerRecord playerRecord;
+	PlayerRecord record;
 	
 	Player(String n){
 		name = n;
