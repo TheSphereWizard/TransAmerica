@@ -6,7 +6,7 @@ public class Grid {
 	Rail[][] railGrid;
 	private int boardwidth=25,boardheight=15;
 	int[][] grid=new int[getBoardwidth()][];
-	ArrayList<Rail> allrails = new ArrayList<Rail>();
+	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	
 	City[] allcities = new City[]{
 			new City("Red1",new Position(0,0),Color.red),
@@ -57,7 +57,7 @@ public class Grid {
 		
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		allrails.add(rail);
+		allRails.add(rail);
 	}
 	City[] getCities() {
 		return allcities;
@@ -83,6 +83,17 @@ public class Grid {
 	
 	public Rail getRail(Position one, Position two) {
 		//returns rail between two points
+		Rail find = null;
+		try {
+			find = new Rail(one, two, null);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		for(Rail r : allRails) {
+			if(r.equals(find))
+				return r;
+		}
 		return null;
 	}
 	
