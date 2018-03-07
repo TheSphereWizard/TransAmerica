@@ -30,5 +30,9 @@ public abstract class ComputerPlayer extends Player {
 		
 		return rails;
 	}
+	
+	public Grid getGrid() {
+		return grid;
+	}
 
 }

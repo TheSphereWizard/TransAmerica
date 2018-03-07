@@ -12,7 +12,7 @@ public class EasyStrategy extends ComputerPlayer{
 		ArrayList<Rail> rails = rail;
 		ArrayList<Rail> newRails = new ArrayList<Rail>();
 		for(Rail r: rails){
-			if(r.size()){//rail attached to network
+			if(grid.checkRail(r,this)){//rail attached to network
 				Position endpoint;//endpoint is where the next scan originates at
 				if(r.p1.equals(startPos)){
 					endpoint = r.p2;

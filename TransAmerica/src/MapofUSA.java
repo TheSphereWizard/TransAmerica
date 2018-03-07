@@ -66,7 +66,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			Graphics2D g2d = (Graphics2D)g;
 			g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			int[] scalefactor = new int[]{siz[0]/currentGrid.getBoardwidth(),siz[1]/currentGrid.getBoardheight()};
-			for(Rail r: currentGrid.allrails){
+			for(Rail r: currentGrid.allRails){
 				g.setColor(r.player.record.getColor());
 				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==0?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==0?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
 			}
