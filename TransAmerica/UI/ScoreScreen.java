@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +16,7 @@ public class ScoreScreen extends JFrame implements ActionListener {
 	
 	private JButton continueButton = new JButton("Continue");
 	
-	ScoreScreen(Color playerColor , int playerScore) {
+	ScoreScreen(ArrayList<Player> players) {
 		
 		continueButton.addActionListener(this);
 		
