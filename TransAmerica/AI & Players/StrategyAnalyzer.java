@@ -17,9 +17,11 @@ public class StrategyAnalyzer{
 		players = compPlayers.size();
 		gamesWon = new int[players];
 		gamesLost = new int[players];
-		rank = new int[players];
 		winPercentage = new double[players];
 		AIs = compPlayers;
+		rank = new int[players];
+		for(int i = 0; i < players; i++)
+			rank[i] = i;
 	}
 	/**
 	 * Runs the amount of games passed and then
@@ -30,7 +32,6 @@ public class StrategyAnalyzer{
 	public void runGames(int games){
 		for(int i = 0; i < games; i++){
 			Game game = new Game(AIs, false);
-			
 			calculateResults(i+1, game);
 		}
 		displayResults(games);
@@ -51,7 +52,7 @@ public class StrategyAnalyzer{
 	 * Called after each game is run
 	 * and sets the data arrays
 	 */
-	public void calculateResults(int games, Game game){
+	private void calculateResults(int games, Game game){
 		//The position of the winning player
 		int winner = game.getWinningPlayer();
 		for(int i = 0; i < players; i++){
@@ -63,15 +64,18 @@ public class StrategyAnalyzer{
 		}
 		calculateRank();
 	}
-	//FIX
+	/**
+	 * Calculates the ranks, best rank is 0,
+	 * worst possible rank is 5 (if playing with 6 players)
+	 */
 	private void calculateRank(){
-		for(int j = 1; j < players; j++){
-			if(gamesWon[j] > gamesWon[j-1]){
-				int temp = rank[j-1];
-				rank[j-1] = rank[j];
-				rank[j] = temp;
-			}
-		}
+		for(int j = 0; j < players; j++)
+			for(int i = 0; i < players; i++)
+				if(gamesWon[j] > gamesWon[i] && rank[j] < rank[i]){
+					int tempRank = rank[j];
+					rank[j] = rank[i];
+					rank[i] = tempRank;
+				}
 	}
 	/**
 	 * Creates a ComputerStrategyScreen and passes
