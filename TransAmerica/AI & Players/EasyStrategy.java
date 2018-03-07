@@ -1,10 +1,11 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class EasyStrategy extends ComputerPlayer{
 	
-	public EasyStrategy(int[] scores, Grid grid) {
-		super(scores, grid);
+	public EasyStrategy(Color c, ArrayList<City> cities, int score, int[] scores, String name, Grid grid) {
+		super(c, cities, score, scores, name, grid);
 	}
 	
 	private ArrayList<Rail> scanRails(ArrayList<Rail> rail, Position startPos){

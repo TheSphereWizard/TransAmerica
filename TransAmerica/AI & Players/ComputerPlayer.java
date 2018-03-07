@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 public abstract class ComputerPlayer extends Player {
@@ -7,13 +8,13 @@ public abstract class ComputerPlayer extends Player {
 	private int[] scores;
 	private Grid grid;
 	
-	public ComputerPlayer(int[] scores, Grid grid) {
-		super(null);
+	public ComputerPlayer(Color c, ArrayList<City> cities, int score, int[] scores, String name, Grid grid) {
+		super(c, cities, score, name);
 		this.scores = scores;
 		this.grid = grid;
 	}
 
-	abstract Rail[] runTurn();
+	abstract Rail runTurn();
 	
 	public ArrayList<Rail> getRailsAtPos(Position pos) {
 		ArrayList<Rail> rails = new ArrayList<Rail>(0);
