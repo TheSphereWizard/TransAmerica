@@ -37,7 +37,6 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 				map.currentGrid.placeRail(new Rail(new Position(10,1),new Position(11,1),p2));
 				map.currentGrid.placeRail(new Rail(new Position(11,1),new Position(11,2),p2));
 				map.currentGrid.placeRail(new Rail(new Position(11,1),new Position(12,1),p2));
-				//map.currentGrid.placeRail(new Rail(new Position(121,1),new Position(122,1),p));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
