@@ -8,8 +8,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
 import NOTHING.*;
 
 public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionListener{
@@ -55,7 +53,6 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		void setCurrentPlayer(Player player){//called at beginning of each turn
 			currentPlayer = player;
 		}
-		
 		Rail returnPlacedRail(){//checks placedMarker in Player, if true, returns marker info instead
 			return lastClick;
 		}
@@ -70,13 +67,17 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==0?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==0?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
 			}
 		}
+		boolean firstturn=true;
 		public void mouseClicked(MouseEvent e) {//when mouse is clicked, converts click (x, y) coordinates to grid coordinates, and then uses the grid validrail method to determine if rail is valid, if it is then add to lastClick, else ignore that it was clicked
-			
+			if(firstturn){
+				
+			}else{
+				
+			}
 		}
 		public void mouseMoved(MouseEvent e) {//updates highlighting of rail lines
 			
 		}
-		
 		
 		
 		public void mouseEntered(MouseEvent e) {}
