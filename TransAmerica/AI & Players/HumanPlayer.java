@@ -20,16 +20,7 @@ public class HumanPlayer extends Player {
 		while(nextRail == null){
 			nextRail = map.returnPlacedRail();
 		}
-		Rail[] newRails = new Rail[2];
-		newRails[0]=nextRail;
-		if(newRails[0].size == 1){//if it was a single rail, place the second one
-			nextRail = null;
-			while(nextRail == null){
-				nextRail = map.returnPlacedRail();
-			}
-			newRails[1]=nextRail;
-		}
-		return newRails;
+		return nextRail;
 	}
 	
 	Position getStartMarker() {

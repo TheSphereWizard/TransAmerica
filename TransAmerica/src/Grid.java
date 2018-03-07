@@ -5,7 +5,8 @@ public class Grid {
 
 	Rail[][] railGrid;
 	private int boardwidth=25,boardheight=15;
-	int[][] grid=new int[boardwidth][];
+	int[][] grid=new int[getBoardwidth()][];
+	ArrayList<Rail> allrails = new ArrayList<Rail>();
 	
 	City[] allcities = new City[]{
 			new City("Red1",new Position(0,0),Color.red),
@@ -48,7 +49,7 @@ public class Grid {
 		
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		
+		allrails.add(rail);
 	}
 	City[] getCities() {
 		return allcities;
@@ -82,6 +83,18 @@ public class Grid {
 		
 		
 		return false;
+	}
+	public int getBoardwidth() {
+		return boardwidth;
+	}
+	public void setBoardwidth(int boardwidth) {
+		this.boardwidth = boardwidth;
+	}
+	public int getBoardheight() {
+		return boardheight;
+	}
+	public void setBoardheight(int boardheight) {
+		this.boardheight = boardheight;
 	}
 
 
