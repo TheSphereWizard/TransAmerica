@@ -6,6 +6,7 @@ public class Grid {
 	Rail[][] railGrid;
 	private int boardwidth=25,boardheight=15;
 	int[][] grid=new int[boardwidth][];
+	ArrayList<Rail> allrails = new ArrayList<Rail>();
 	
 	City[] allcities = new City[]{
 			new City("Red1",new Position(0,0),Color.red),
@@ -48,7 +49,7 @@ public class Grid {
 		
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		
+		allrails.add(rail);
 	}
 	City[] getCities() {
 		return allcities;
