@@ -9,12 +9,10 @@ String playerName() {}
 test
  */
 public class HumanPlayer extends Player {
-
 	HumanPlayer(Color c, ArrayList<City> cities, int score, String name, MapofUSA Map){
 		super(c, cities, score, name);
 		map = Map;
 	}
-	
 	Rail runTurn() {
 		//accesses lastClick to map until it isn't null
 		Rail nextRail = null;
