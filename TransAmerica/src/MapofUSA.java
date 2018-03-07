@@ -22,7 +22,6 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			MapofUSA map = new MapofUSA(0,100,1400,700);
 			map.setCurrentGrid(new Grid());
 			Player p =new HumanPlayer("fish",map);
-			p.setColor(Color.blue);
 			try {
 				map.currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
 				map.currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));
@@ -56,7 +55,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			g.drawRect(0, 0, siz[0], siz[1]);
 			Graphics2D g2d = (Graphics2D)g;
 			g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-			int[] scalefactor = new int[]{siz[0]/currentGrid.boardwidth,siz[1]/currentGrid.boardheight};
+			int[] scalefactor = new int[]{siz[0]/currentGrid.getBoardwidth(),siz[1]/currentGrid.getBoardheight()};
 			for(Rail r: currentGrid.allrails){
 				g.setColor(r.player.record.getColor());
 				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==0?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==0?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
