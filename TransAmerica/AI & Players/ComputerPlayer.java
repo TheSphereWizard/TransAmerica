@@ -14,6 +14,34 @@ public abstract class ComputerPlayer extends Player {
 
 	abstract Rail runTurn();
 	
+	public ArrayList<Rail> scanRails(ArrayList<Rail> rail, Position startPos){//returns an arraylist of all possible rails to be placed
+		ArrayList<Rail> rails = rail;
+		ArrayList<Rail> newRails = new ArrayList<Rail>();
+		for(Rail r: rails){
+			if(grid.checkRail(r,this)){//rail attached to network
+				Position endpoint;//endpoint is where the next scan originates at
+				if(r.p1.equals(startPos)){
+					endpoint = r.p2;
+				}else{
+					endpoint = r.p1;
+				}
+				ArrayList<Rail> scanList = getRailsAtPos(endpoint);
+				for(Rail r2: scanList){
+					if(r2.equals(r)){
+						scanList.remove(r2);
+					}
+				}
+				newRails.addAll(scanRails(scanList,endpoint));
+			}
+			else{//rail not attached to network
+				rails.remove(r);//rails only contains a list of valid rails
+			}
+		}
+		rails=newRails;
+		return rails;
+		
+	}
+	
 	public ArrayList<Rail> getRailsAtPos(Position pos) {
 		ArrayList<Rail> rails = new ArrayList<Rail>(0);
 		
