@@ -6,7 +6,7 @@ public class Grid {
 	Rail[][] railGrid;
 	private int boardwidth=25,boardheight=15;
 	int[][] grid=new int[getBoardwidth()][];
-	ArrayList<Rail> allrails = new ArrayList<Rail>();
+	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	
 	City[] allcities = new City[]{
 			new City("Red1",new Position(0,0),Color.red),
@@ -45,11 +45,19 @@ public class Grid {
 			new City("yellow6",new Position(4,5),Color.yellow),
 			new City("yellow7",new Position(4,6),Color.yellow),
 	};
+	
+	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
+		return false;
+	}
+	Grid(){
+		placemountains();
+	}
+	
 	void placeMarker(Position p){//places markers
 		
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		allrails.add(rail);
+		allRails.add(rail);
 	}
 	City[] getCities() {
 		return allcities;
@@ -75,6 +83,17 @@ public class Grid {
 	
 	public Rail getRail(Position one, Position two) {
 		//returns rail between two points
+		Rail find = null;
+		try {
+			find = new Rail(one, two, null);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		for(Rail r : allRails) {
+			if(r.equals(find))
+				return r;
+		}
 		return null;
 	}
 	
@@ -96,6 +115,18 @@ public class Grid {
 	public void setBoardheight(int boardheight) {
 		this.boardheight = boardheight;
 	}
-
-
+	public static int checkiflargeornot(Position p1, Position p2) throws Exception {
+		return mountains.contains(new Rail(p1,p2))?2:1;
+	}
+	static ArrayList<Rail> mountains = new ArrayList<Rail>();
+	private void placemountains() {
+		try{
+			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
+			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
+			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
+		
+		}catch(Exception e){
+			
+		}
+	}
 }
