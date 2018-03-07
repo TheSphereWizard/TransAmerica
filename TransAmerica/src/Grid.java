@@ -45,6 +45,10 @@ public class Grid {
 			new City("yellow6",new Position(4,5),Color.yellow),
 			new City("yellow7",new Position(4,6),Color.yellow),
 	};
+	Grid(){
+		placemountains();
+	}
+	
 	void placeMarker(Position p){//places markers
 		
 	}
@@ -107,6 +111,18 @@ public class Grid {
 	public void setBoardheight(int boardheight) {
 		this.boardheight = boardheight;
 	}
-
-
+	public static int checkiflargeornot(Position p1, Position p2) throws Exception {
+		return mountains.contains(new Rail(p1,p2,null))?2:1;
+	}
+	static ArrayList<Rail> mountains = new ArrayList<Rail>();
+	private void placemountains() {
+		try{
+			mountains.add(new Rail(new Position(2,3),new Position(2,2),null));
+			mountains.add(new Rail(new Position(3,2),new Position(3,3),null));
+			mountains.add(new Rail(new Position(3,3),new Position(3,4),null));
+		
+		}catch(Exception e){
+			
+		}
+	}
 }
