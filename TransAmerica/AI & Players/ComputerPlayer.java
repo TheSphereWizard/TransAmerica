@@ -5,12 +5,10 @@ public abstract class ComputerPlayer extends Player {
 	
 	//Computer player should get copy of game state (but should not have access to other player’s hands)
 	//Pass in an array of scores, a grid, and a hand to computer players
-	private int[] scores;
 	protected Grid grid;
 	
-	public ComputerPlayer(Color c, ArrayList<City> cities, int score, int[] scores, String name, Grid grid) {
+	public ComputerPlayer(Color c, ArrayList<City> cities, int score, String name, Grid grid) {
 		super(c, cities, score, name);
-		this.scores = scores;
 		this.grid = grid;
 	}
 
