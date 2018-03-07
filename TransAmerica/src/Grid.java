@@ -5,7 +5,8 @@ public class Grid {
 
 	Rail[][] railGrid;
 	private int boardwidth=25,boardheight=15;
-	int[][] grid=new int[boardwidth][];
+	int[][] grid=new int[getBoardwidth()][];
+	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	
 	City[] allcities = new City[]{
 			new City("Red1",new Position(0,0),Color.red),
@@ -44,30 +45,55 @@ public class Grid {
 			new City("yellow6",new Position(4,5),Color.yellow),
 			new City("yellow7",new Position(4,6),Color.yellow),
 	};
+	
+	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
+		return false;
+	}
+	Grid(){
+		placemountains();
+	}
+	
 	void placeMarker(Position p){//places markers
 		
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		
+		allRails.add(rail);
 	}
 	City[] getCities() {
 		return allcities;
 	}
-	private boolean legalRail(Position one, Position two){
-		boolean legal=true;
+	static boolean legalRail(Position one, Position two){
+		if(one.x==two.x&one.y==two.y)
+			return false;
 		if(Math.abs(one.x-two.x)>1||Math.abs(one.y-two.y)>1)
 			return false;
 		if(one.y==two.y&Math.abs(one.x-two.x)==1)
 			return true;
-		Position trueone;
-		Position truetwo;
-		if(one.x==two.x)
-			legal=false;
-		return legal;
+		if(one.y<two.y){
+			return legalRail(two,one);
+		}
+		if(one.y%2==0&Math.abs(one.y-two.y)==1&(one.x-two.x>=0)){
+			return true;
+		}
+		if(one.y%2==1&Math.abs(one.y-two.y)==1&(one.x-two.x<=0)){
+			return true;
+		}
+		return false;
 	}
 	
 	public Rail getRail(Position one, Position two) {
 		//returns rail between two points
+		Rail find = null;
+		try {
+			find = new Rail(one, two, null);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		for(Rail r : allRails) {
+			if(r.equals(find))
+				return r;
+		}
 		return null;
 	}
 	
@@ -77,6 +103,30 @@ public class Grid {
 		
 		return false;
 	}
-
-
+	public int getBoardwidth() {
+		return boardwidth;
+	}
+	public void setBoardwidth(int boardwidth) {
+		this.boardwidth = boardwidth;
+	}
+	public int getBoardheight() {
+		return boardheight;
+	}
+	public void setBoardheight(int boardheight) {
+		this.boardheight = boardheight;
+	}
+	public static int checkiflargeornot(Position p1, Position p2) throws Exception {
+		return mountains.contains(new Rail(p1,p2))?2:1;
+	}
+	static ArrayList<Rail> mountains = new ArrayList<Rail>();
+	private void placemountains() {
+		try{
+			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
+			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
+			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
+		
+		}catch(Exception e){
+			
+		}
+	}
 }

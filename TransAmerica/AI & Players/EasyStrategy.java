@@ -1,17 +1,18 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class EasyStrategy extends ComputerPlayer{
-	
-	public EasyStrategy(int[] scores, Grid grid) {
-		super(scores, grid);
+
+	public EasyStrategy(Color c, ArrayList<City> cities, int score, String name, Grid grid) {
+		super(c, cities, score, name, grid);
 	}
 	
 	private ArrayList<Rail> scanRails(ArrayList<Rail> rail, Position startPos){
 		ArrayList<Rail> rails = rail;
 		ArrayList<Rail> newRails = new ArrayList<Rail>();
 		for(Rail r: rails){
-			if(r.size()){//rail attached to network
+			if(grid.checkRail(r,this)){//rail attached to network
 				Position endpoint;//endpoint is where the next scan originates at
 				if(r.p1.equals(startPos)){
 					endpoint = r.p2;

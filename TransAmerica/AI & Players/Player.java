@@ -13,31 +13,23 @@ String playerName(){}
 Int[] startMarker;
 Int[] getStartMarker();
 } */
-public abstract class Player {
-	
-	ArrayList<City> cityGoal;
-	ArrayList<City> cityReached;
+public abstract class Player {//give players playerrecords
 	boolean placedMarkerAlready;
 	Position startMarker;
-	int score = 0;
 	MapofUSA map;
-	String name;
+	PlayerRecord record;
 	
-	Player(String n){
-		name = n;
+	Player(Color c, ArrayList<City> cities, int score,String n){
 		placedMarkerAlready = false;
+		record = new PlayerRecord(c, cities, score, n);
 	}
 	
 	abstract Rail runTurn();
 	void clearForNewRound(ArrayList<City> cities){
-		cityGoal = cities;
-		cityReached.clear();
 		placedMarkerAlready = false;
-		score = 0;
+		record.cities = cities;
 	}
-	String playerName(){
-		return name;
-	}
+	
 	Position getStartMarker(){
 		return startMarker;
 	}
@@ -49,21 +41,27 @@ public abstract class Player {
 		//The players color
 		private Color color;
 		//The cities the player needs/have to connect
-		private City[] cities;
+		private ArrayList<City> cities;
 		//# of cities player has connected
 		private int score;
+		private String name;
 		
-		public PlayerRecord(Color color, City[] cities, int score) {
+		public PlayerRecord(Color color, ArrayList<City> cities, int score, String name) {
 			this.color = color;
 			this.cities = cities;
 			this.score = score;
+			this.name = name;
+		}
+		
+		String playerName(){
+			return name;
 		}
 		
 		public Color getColor() {
 			return color;
 		}
 		
-		public City[] getCities() {
+		public ArrayList<City> getCities() {
 			return cities;
 		}
 		

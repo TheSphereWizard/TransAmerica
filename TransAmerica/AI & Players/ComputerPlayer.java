@@ -1,19 +1,18 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 public abstract class ComputerPlayer extends Player {
 	
 	//Computer player should get copy of game state (but should not have access to other player’s hands)
 	//Pass in an array of scores, a grid, and a hand to computer players
-	private int[] scores;
-	private Grid grid;
+	protected Grid grid;
 	
-	public ComputerPlayer(int[] scores, Grid grid) {
-		super(null);
-		this.scores = scores;
+	public ComputerPlayer(Color c, ArrayList<City> cities, int score, String name, Grid grid) {
+		super(c, cities, score, name);
 		this.grid = grid;
 	}
 
-	abstract Rail[] runTurn();
+	abstract Rail runTurn();
 	
 	public ArrayList<Rail> getRailsAtPos(Position pos) {
 		ArrayList<Rail> rails = new ArrayList<Rail>(0);
