@@ -1,11 +1,13 @@
+import java.awt.Color;
+import java.util.ArrayList;
 
 public class HardStrategy extends ComputerPlayer {
 
-	public HardStrategy(int[] scores, Grid grid) {
-		super(scores, grid);
+	public HardStrategy(Color c, ArrayList<City> cities, int score, int[] scores, String name, Grid grid) {
+		super(c, cities, score, scores, name, grid);
 	}
 
-	Rail[] runTurn() {
+	Rail runTurn() {
 		return null;
 	}
 

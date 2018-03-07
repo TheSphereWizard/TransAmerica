@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 /*
@@ -9,8 +10,8 @@ test
  */
 public class HumanPlayer extends Player {
 
-	HumanPlayer(String name, MapofUSA Map){
-		super(name);
+	HumanPlayer(Color c, ArrayList<City> cities, int score, String name, MapofUSA Map){
+		super(c, cities, score, name);
 		map = Map;
 	}
 	
