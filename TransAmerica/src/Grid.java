@@ -9,6 +9,7 @@ public class Grid {
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	
 	City[] allcities = new City[]{
+			
 			new City("Red1",new Position(0,0),Color.red),
 			new City("Red2",new Position(0,1),Color.red),
 			new City("Red3",new Position(0,2),Color.red),
