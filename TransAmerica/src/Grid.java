@@ -47,7 +47,7 @@ public class Grid {
 			new City("yellow7",new Position(4,6),Color.yellow),
 	};
 	
-	boolean checkrail(Rail r, Player p){//checks whether the passed rail is on the player's network
+	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
 		return false;
 	}
 	Grid(){

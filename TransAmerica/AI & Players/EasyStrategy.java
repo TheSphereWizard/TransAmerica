@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class EasyStrategy extends ComputerPlayer{
 
-	public EasyStrategy(Color c, ArrayList<City> cities, int score, int[] scores, String name, Grid grid) {
-		super(c, cities, score, scores, name, grid);
+	public EasyStrategy(Color c, ArrayList<City> cities, int score, String name, Grid grid) {
+		super(c, cities, score, name, grid);
 	}
 	
 	private ArrayList<Rail> scanRails(ArrayList<Rail> rail, Position startPos){
