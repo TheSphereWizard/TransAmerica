@@ -56,6 +56,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		Rail returnPlacedRail(){//checks placedMarker in Player, if true, returns marker info instead
 			return lastClick;
 		}
+		Rail highlighted;
 		public void paint(Graphics g){//redraws map with new rail networks
 			g.translate(mappos[0], mappos[1]);
 			g.drawRect(0, 0, siz[0], siz[1]);
@@ -63,8 +64,14 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			int[] scalefactor = new int[]{siz[0]/currentGrid.getBoardwidth(),siz[1]/currentGrid.getBoardheight()};
 			for(Rail r: currentGrid.allRails){
-				g.setColor(r.player.record.getColor());
-				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==0?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==0?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
+				if(r.player!=null){
+					g.setColor(r.player.record.getColor());
+					g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+				}else{
+					g.setColor(Color.black);
+					g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+				}
+				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
 			}
 		}
 		boolean firstturn=true;
@@ -76,7 +83,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			}
 		}
 		public void mouseMoved(MouseEvent e) {//updates highlighting of rail lines
-			
+			//prob make methiod to take x,y to rail x,y
 		}
 		
 		
