@@ -60,8 +60,7 @@ public class TransAmerica extends JFrame implements ActionListener{
 		}
 				
 		this.setContentPane(contentPane);
-		this.pack();
-		this.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setVisible(true);
 	}
 	
