@@ -146,7 +146,6 @@ public class Grid {
 			test.allRails.add(new Rail(new Position(0, 0), new Position(1, 1)));
 			System.out.println(test.RailExists(new Position(0,0), new Position(1,1)));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
