@@ -83,22 +83,6 @@ public class Grid {
 		return false;
 	}
 	
-	public Rail getRail(Position one, Position two) {
-		//returns rail between two points
-		Rail find = null;
-		try {
-			find = new Rail(one, two, null);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		for(Rail r : allRails) {
-			if(r.equals(find))
-				return r;
-		}
-		return null;
-	}
-	
 	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
 		
 		
@@ -126,10 +110,7 @@ public class Grid {
 			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
 			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
 			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
-		
-		}catch(Exception e){
-			
-		}
+		}catch(Exception e){}
 	}
 	ArrayList<Rail> alllegalrails=setalllegalrails();
 
