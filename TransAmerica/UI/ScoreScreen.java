@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class ScoreScreen extends JFrame implements ActionListener {
+public class ScoreScreen extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane = new JPanel();
