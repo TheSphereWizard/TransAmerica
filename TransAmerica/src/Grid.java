@@ -110,10 +110,7 @@ public class Grid {
 			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
 			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
 			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
-		
-		}catch(Exception e){
-			
-		}
+		}catch(Exception e){}
 	}
 	ArrayList<Rail> alllegalrails=setalllegalrails();
 
