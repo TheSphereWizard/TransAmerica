@@ -24,7 +24,7 @@ public abstract class Player {//give players playerrecords
 		record = new PlayerRecord(c, cities, score, n);
 	}
 	
-	abstract Rail runTurn();
+	abstract Rail runTurn(boolean firstRailPlaced, ReadOnlyGrid grid);
 	void clearForNewRound(ArrayList<City> cities){
 		placedMarkerAlready = false;
 		record.cities = cities;

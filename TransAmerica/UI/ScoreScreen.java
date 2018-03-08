@@ -7,23 +7,26 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class ScoreScreen extends JFrame implements ActionListener {
+@SuppressWarnings("serial")
 
-	private static final long serialVersionUID = 1L;
+public class ScoreScreen extends JPanel implements ActionListener {
+
 	private JPanel contentPane = new JPanel();
 	private PlayerScorePanel[] playerScorePanels = new PlayerScorePanel[6];
-	
-	
 	private JButton continueButton = new JButton("Continue");
+	private Game currentGame;
 	
-	ScoreScreen(ArrayList<Player> players) {
+	private boolean gameOver = false;
+	
+	ScoreScreen(ArrayList<Player> players, Game game) {
 		
 		continueButton.addActionListener(this);
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("Scores");
-		
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
+		
+		currentGame = game;
+		
+		
+		for
 		
 		
 		
@@ -34,7 +37,11 @@ public class ScoreScreen extends JFrame implements ActionListener {
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		if(e.getSource().equals(continueButton)) {
+			MainGameScreen a = new MainGameScreen(currentGame);
+		} else {
+			
+		}
 	}
 	
 	private class PlayerScorePanel extends JPanel {
