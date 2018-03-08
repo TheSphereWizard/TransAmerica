@@ -7,7 +7,7 @@ public class Grid {
 	private int boardwidth=25,boardheight=15;
 	int[][] grid=new int[getBoardwidth()][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
-	
+	ArrayList<Position> markers= new ArrayList<Position>();
 	City[] allcities = new City[]{
 			
 			new City("Red1",new Position(0,0),Color.red),

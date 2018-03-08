@@ -85,8 +85,13 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		public void mouseMoved(MouseEvent e) {//updates highlighting of rail lines
 			//prob make methiod to take x,y to rail x,y
 		}
-		
-		
+		Position nearestPosition(int x, int y){
+			
+			return null;
+		}
+		Rail nearestRail(int x, int y){
+			return highlighted;
+		}
 		public void mouseEntered(MouseEvent e) {}
 		public void mouseExited(MouseEvent e) {}
 		public void mousePressed(MouseEvent e) {}
