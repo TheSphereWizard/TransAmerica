@@ -73,6 +73,9 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 				}
 				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
 			}
+			for(Position r: currentGrid.markers){
+				
+			}
 		}
 		boolean firstturn=true;
 		public void mouseClicked(MouseEvent e) {//when mouse is clicked, converts click (x, y) coordinates to grid coordinates, and then uses the grid validrail method to determine if rail is valid, if it is then add to lastClick, else ignore that it was clicked
