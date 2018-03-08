@@ -8,8 +8,8 @@ public class HardStrategy extends ComputerPlayer {
 		this.allScores = allScores;
 	}
 
-	Rail runTurn() {
-		ArrayList<Rail> totalRails = scanRails(getRailsAtPos(startMarker),startMarker);
+	Rail runTurn(boolean firstRailPlaced, ReadOnlyGrid grid) {
+		ArrayList<Rail> totalRails = scanRails(getRailsAtPos(startMarker),startMarker, grid);
 		int minDistance = 100;
 		Rail nextRail = null;
 		for(Rail r: totalRails){
