@@ -2,14 +2,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class Grid {
-
-	Rail[][] railGrid;
-	private int boardwidth=25,boardheight=15;
-	int[][] grid=new int[getBoardwidth()][];
-	ArrayList<Rail> allRails = new ArrayList<Rail>();
-	ArrayList<Position> markers= new ArrayList<Position>();
 	City[] allcities = new City[]{
-			
 			new City("Red1",new Position(0,0),Color.red),
 			new City("Red2",new Position(0,1),Color.red),
 			new City("Red3",new Position(0,2),Color.red),
@@ -47,6 +40,13 @@ public class Grid {
 			new City("yellow7",new Position(4,6),Color.yellow),
 	};
 	
+	Rail[][] railGrid;
+	private int boardwidth=25,boardheight=15;
+	int[][] grid=new int[getBoardwidth()][];
+	ArrayList<Rail> allRails = new ArrayList<Rail>();
+	ArrayList<Position> markers= new ArrayList<Position>();
+	
+	
 	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
 		return false;
 	}
@@ -56,7 +56,7 @@ public class Grid {
 	}
 	
 	void placeMarker(Position p){//places markers
-		
+		markers.add(p);
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
 		allRails.add(rail);
