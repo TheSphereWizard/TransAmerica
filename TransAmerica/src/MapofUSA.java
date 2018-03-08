@@ -71,7 +71,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 					g.setColor(Color.black);
 					g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}
-				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
+				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==1?r.p1.x+0.5d:r.p1.x)), -10+siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==1?r.p2.x+0.5d:r.p2.x)), -10+siz[1]-scalefactor[1]*r.p2.y);
 			}
 			for(Position r: currentGrid.markers){
 				

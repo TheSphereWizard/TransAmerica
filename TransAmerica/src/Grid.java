@@ -83,22 +83,6 @@ public class Grid {
 		return false;
 	}
 	
-	public Rail getRail(Position one, Position two) {
-		//returns rail between two points
-		Rail find = null;
-		try {
-			find = new Rail(one, two, null);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		for(Rail r : allRails) {
-			if(r.equals(find))
-				return r;
-		}
-		return null;
-	}
-	
 	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
 		
 		
