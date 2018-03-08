@@ -139,4 +139,15 @@ public class Grid {
 	int distbetweenpoints(Position p1,Position p2){
 		return Math.abs(p1.x-p2.x)+Math.abs(p1.y-p2.y);
 	}
+	
+	public static void main(String[] args) {
+		Grid test = new Grid();
+		try {
+			test.allRails.add(new Rail(new Position(0, 0), new Position(1, 1)));
+			System.out.println(test.RailExists(new Position(0,0), new Position(1,1)));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+	}
 }
