@@ -2,14 +2,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class Grid {
-
-	Rail[][] railGrid;
-	private int boardwidth=25,boardheight=15;
-	int[][] grid=new int[getBoardwidth()][];
-	ArrayList<Rail> allRails = new ArrayList<Rail>();
-	
 	City[] allcities = new City[]{
-			
 			new City("Red1",new Position(0,0),Color.red),
 			new City("Red2",new Position(0,1),Color.red),
 			new City("Red3",new Position(0,2),Color.red),
@@ -47,6 +40,13 @@ public class Grid {
 			new City("yellow7",new Position(4,6),Color.yellow),
 	};
 	
+	Rail[][] railGrid;
+	private int boardwidth=25,boardheight=15;
+	int[][] grid=new int[getBoardwidth()][];
+	ArrayList<Rail> allRails = new ArrayList<Rail>();
+	ArrayList<Marker> markers= new ArrayList<Marker>();
+	
+	
 	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
 		return false;
 	}
@@ -54,9 +54,16 @@ public class Grid {
 		placemountains();
 		allRails = alllegalrails;
 	}
-	
-	void placeMarker(Position p){//places markers
-		
+	boolean RailExists(Position p1, Position p2){
+		try {
+			return allRails.contains(new Rail(p1,p2));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	void placeMarker(Position p,Player player){//places markers
+		markers.add(new Marker(p,player));
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
 		allRails.add(rail);
@@ -81,22 +88,6 @@ public class Grid {
 			return true;
 		}
 		return false;
-	}
-	
-	public Rail getRail(Position one, Position two) {
-		//returns rail between two points
-		Rail find = null;
-		try {
-			find = new Rail(one, two, null);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		for(Rail r : allRails) {
-			if(r.equals(find))
-				return r;
-		}
-		return null;
 	}
 	
 	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
@@ -126,10 +117,7 @@ public class Grid {
 			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
 			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
 			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
-		
-		}catch(Exception e){
-			
-		}
+		}catch(Exception e){}
 	}
 	ArrayList<Rail> alllegalrails=setalllegalrails();
 

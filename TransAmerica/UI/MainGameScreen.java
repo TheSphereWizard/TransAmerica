@@ -20,6 +20,7 @@ public class MainGameScreen extends JPanel{
 	MapofUSA map;
 	BufferedImage train, eagle;
 	Game currentGame;
+	
 	public MainGameScreen(Game game){
 		currentGame = game;
 	}

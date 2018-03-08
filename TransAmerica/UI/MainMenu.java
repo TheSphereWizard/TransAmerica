@@ -3,6 +3,7 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
 //TransAmerica JPanel
+<<<<<<< HEAD
 public class MainMenu extends JPanel implements ActionListener{
 	private ButtonGroup group = new ButtonGroup();
 	private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
@@ -61,14 +62,31 @@ public class MainMenu extends JPanel implements ActionListener{
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}
 	}
+=======
+public class MainMenu extends JPanel{
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Image background;
+<<<<<<< HEAD
+=======
+		
+		g.drawImage(background, 0, 0, null);
+		
+	}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
+<<<<<<< HEAD
 		g.drawImage(background, 0, 0, null);
 
+=======
+	MainMenu() {
+		
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
 }
+<<<<<<< HEAD
 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 this.setTitle("TransAmerica");
 
@@ -113,3 +131,6 @@ this.pack();
 this.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
 this.setVisible(true);
 }
+=======
+	
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica

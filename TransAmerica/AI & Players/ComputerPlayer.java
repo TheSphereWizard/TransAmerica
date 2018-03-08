@@ -5,16 +5,14 @@ public abstract class ComputerPlayer extends Player {
 	
 	//Computer player should get copy of game state (but should not have access to other player’s hands)
 	//Pass in an array of scores, a grid, and a hand to computer players
-	protected Grid grid;
 	
-	public ComputerPlayer(Color c, ArrayList<City> cities, int score, String name, Grid grid) {
+	public ComputerPlayer(Color c, ArrayList<City> cities, int score, String name) {
 		super(c, cities, score, name);
-		this.grid = grid;
 	}
 
-	abstract Rail runTurn();
+	abstract Rail runTurn(boolean firstRailPlaced, ReadOnlyGrid grid);
 	
-	public ArrayList<Rail> scanRails(ArrayList<Rail> rail, Position startPos){//returns an arraylist of all possible rails to be placed
+	public ArrayList<Rail> scanRails(ArrayList<Rail> rail, Position startPos, ReadOnlyGrid grid){//returns an arraylist of all possible rails to be placed
 		ArrayList<Rail> rails = rail;
 		ArrayList<Rail> newRails = new ArrayList<Rail>();
 		for(Rail r: rails){
@@ -31,7 +29,7 @@ public abstract class ComputerPlayer extends Player {
 						scanList.remove(r2);
 					}
 				}
-				newRails.addAll(scanRails(scanList,endpoint));
+				newRails.addAll(scanRails(scanList,endpoint,grid));
 			}
 			else{//rail not attached to network
 				rails.remove(r);//rails only contains a list of valid rails
