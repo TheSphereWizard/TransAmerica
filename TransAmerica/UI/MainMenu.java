@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
 //TransAmerica JPanel
-<<<<<<< HEAD
+
 public class MainMenu extends JPanel implements ActionListener{
 	private ButtonGroup group = new ButtonGroup();
 	private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
@@ -79,14 +79,11 @@ public class MainMenu extends JPanel{
 
 <<<<<<< HEAD
 		g.drawImage(background, 0, 0, null);
-
-=======
 	MainMenu() {
-		
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+
 	}
 }
-<<<<<<< HEAD
+
 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 this.setTitle("TransAmerica");
 
