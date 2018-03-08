@@ -18,6 +18,8 @@ public class ScoreScreen extends JPanel implements ActionListener {
 	
 	private boolean gameOver = false;
 	
+	
+	
 	ScoreScreen(ArrayList<Player> players, Game game) {
 		
 		continueButton.addActionListener(this);
@@ -26,7 +28,10 @@ public class ScoreScreen extends JPanel implements ActionListener {
 		currentGame = game;
 		
 		
-		for
+		for(Player player: players){
+			
+			
+		}
 		
 		
 		

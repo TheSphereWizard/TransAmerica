@@ -12,15 +12,22 @@ public class HardStrategy extends ComputerPlayer {
 		ArrayList<Rail> totalRails = scanRails(getRailsAtPos(startMarker),startMarker, grid);
 		int minDistance = 100;
 		Rail nextRail = null;
-		for(Rail r: totalRails){
-			int 
-			//check the distance to city, set min and nextRail if this rail is closer than previous
+		for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
+			for(City c: this.record.getCities()){
+				int distance = distanceToCity(r,c);
+				if(distance<minDistance){
+					minDistance = distance;
+					nextRail = r;
+				}
+			}
+			
 		}
 		return nextRail;
 	}
 	
 	public int distanceToCity(Rail rail, City city) {
 		//returns distance from rail to city
+		return null;
 	}
 
 }
