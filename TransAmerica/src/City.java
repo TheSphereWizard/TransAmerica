@@ -11,4 +11,12 @@ public class City {
 		this.pos = pos;
 		this.color = color;
 	}
+	
+	String getName(){
+		return name;
+	}
+	
+	Position getPos(){
+		return pos;
+	}
 }
