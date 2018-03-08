@@ -20,6 +20,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			MapofUSA map = new MapofUSA(0,100,1400,700);
 			map.setCurrentGrid(new Grid());
 			Player p =new HumanPlayer(Color.blue, null, 4, "fish", map);
+			map.currentGrid.placeMarker(new Position(15,14), p);
 			try {
 				map.currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
 				map.currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));
@@ -30,6 +31,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 				e.printStackTrace();
 			}
 			Player p2 =new HumanPlayer(Color.red, null, 4, "fish", map);
+			map.currentGrid.placeMarker(new Position(5,6), p2);
 			try {
 				map.currentGrid.placeRail(new Rail(new Position(10,0),new Position(10,1),p2));
 				map.currentGrid.placeRail(new Rail(new Position(10,1),new Position(11,1),p2));
@@ -71,11 +73,18 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 					g.setColor(Color.black);
 					g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}
-				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==1?r.p1.x+0.5d:r.p1.x)), -10+siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==1?r.p2.x+0.5d:r.p2.x)), -10+siz[1]-scalefactor[1]*r.p2.y);
+				g.drawLine(10+(int)(scalefactor[0]*(r.p1.y%2==1?r.p1.x+0.5d:r.p1.x)), -10+siz[1]-scalefactor[1]*r.p1.y, 10+(int)(scalefactor[0]*(r.p2.y%2==1?r.p2.x+0.5d:r.p2.x)), -10+siz[1]-scalefactor[1]*r.p2.y);
 			}
 			int markersize=9;
-			for(Position r: currentGrid.markers){
-				g.drawOval((int)(scalefactor[0]*(r.y%2==1?r.x+0.5d:r.x))-markersize/2, -10+siz[1]-scalefactor[1]*r.y-markersize/2, markersize, markersize);
+			for(Marker r: currentGrid.markers){
+				if(r.player!=null){
+					g.setColor(r.player.record.getColor());
+					g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+				}else{
+					g.setColor(Color.black);
+					g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+				}
+				g.fillOval(10+(int)(scalefactor[0]*(r.p.y%2==1?r.p.x+0.5d:r.p.x))-markersize/2, -10+siz[1]-scalefactor[1]*r.p.y-markersize/2, markersize, markersize);
 			}
 		}
 		boolean firstturn=true;

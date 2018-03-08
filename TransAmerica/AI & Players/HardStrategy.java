@@ -27,6 +27,8 @@ public class HardStrategy extends ComputerPlayer {
 	
 	public int distanceToCity(Rail rail, City city) {
 		//returns distance from rail to city
+		int distance = 0;
+		if(distancebetweenpoints(rail.p1,city.))
 		return null;
 	}
 
