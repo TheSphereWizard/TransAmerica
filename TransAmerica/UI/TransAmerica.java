@@ -3,7 +3,7 @@ import javax.swing.JPanel;
 public class TransAmerica extends JFrame{
 	public TransAmerica() {
 		setTitle("TransAmerica");
-		setContentPane(new ComputerStrategyScreen(0, null, null, null, null));
+		setContentPane(new MainMenu());
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
