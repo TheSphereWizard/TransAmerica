@@ -73,12 +73,16 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		void setCurrentPlayer(Player player){//called at beginning of each turn
 			currentPlayer = player;
 		}
-		Rail returnPlacedRail(){//checks placedMarker in Player, if true, returns marker info instead
-			return lastClick;
+		Object returnPlacedRail(){//checks placedMarker in Player, if true, returns marker info instead
+			if(firstturn){
+				return placedmarker;
+			}
+			else{
+				return placedRail;
+			}
 		}
 		Rail highlighted;
 		int[] scalefactor;
-		
 		public void paint(Graphics g){//redraws map with new rail networks
 			g.translate(mappos[0], mappos[1]);
 			g.drawRect(0, 0, siz[0], siz[1]);
