@@ -101,7 +101,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			}
 		}
 		public void mouseMoved(MouseEvent e) {//updates highlighting of rail lines
-			//prob make methiod to take x,y to rail x,y
+			highlighted=nearestRail(e.getX(),e.getY());
 		}
 		Position nearestPosition(int x, int y){
 			
