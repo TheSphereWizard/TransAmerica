@@ -6,4 +6,7 @@ public class Marker {
 		p=p_;
 		player=player_;
 	}
+	public Marker(Position p_) {
+		p=p_;
+	}
 }

@@ -79,7 +79,7 @@ public class Game {
 		grid = new Grid();
 		players = P;
 		for (Player p : players) {
-			p.clearForNewRound(p.PlayerRecord.getcities());
+			p.clearForNewRound(p.getPlayerRecord().getCities());
 		}
 		startRound();
 	}
