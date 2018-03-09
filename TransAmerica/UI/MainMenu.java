@@ -3,13 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
-<<<<<<< HEAD
 //TransAmerica JPanel
-=======
-
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 public class MainMenu extends JPanel implements ActionListener{
-<<<<<<< HEAD
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Play") && noPlayers == 6) {
 			errorMessageFrame.setVisible(true);
@@ -72,14 +67,9 @@ private Class PlayerOptions(){
 	private JRadioButton[] options = new JRadioButton[3];
 	private JComboBox[] strategies = new JComboBox[2];
 	private String[] stratNames = {"Easy" , "Hard"};
-=======
-
-
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	private JPanel[] panes = new JPanel[4];
 	private JButton start = new JButton("Play"), exit = new JButton("Exit");
 	private JButton[] buttons = new JButton[] {start, exit};
-<<<<<<< HEAD
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private JLabel errorMessage = new JLabel();
 	private JFrame errorMessageFrame = new JFrame("							Error Message");
@@ -100,7 +90,6 @@ private Class PlayerOptions(){
 			this.add(options[i]);
 		}
 		options[0].setSelected(true);
-=======
 	private PlayerPanel[] playerPanels = new PlayerPanel[6];
 
 	MainMenu() {
@@ -174,30 +163,24 @@ private Class PlayerOptions(){
 				this.add(options[i]);
 			}
 			options[0].setSelected(true);
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
-<<<<<<< HEAD
 		for(int i = 0; i < strategies.length; i ++) {
 			strategies[i] = new JComboBox(stratNames);
 		}
 
-=======
 			for(int i = 0; i < strategies.length; i ++) {
 				strategies[i] = new JComboBox(stratNames);
 				this.setBackground(colors[i]);
 				this.add(new JLabel("Player " + (i+1)));
 			}
 		}
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		public void actionPerformed(ActionEvent e) {
 
 
 		}
 	}
-<<<<<<< HEAD
 }
 }
-=======
 	
 }
 
