@@ -33,6 +33,7 @@ public class Game {
 	 * @param slowMode if false run a fast game
 	 */
 	Game(ArrayList<Player> players, boolean slowMode){
+		
 	}
 	
 	boolean showScoreScreen;
@@ -57,9 +58,13 @@ public class Game {
 	 * @return the position of the player who won in the ArrayList players (0-5)
 	 */
 	public int getWinningPlayer(){
-		for(int maxScore : ){
-			
+		int maxScore = 0;
+		for(int i = 0; i < scores.length; i++){
+			if(maxScore < scores[i]){
+				maxScore = scores[i];
+			}
 		}
+		return maxScore;
 	}
 	public int[] getCurrentScore(){
 		return currentScore;
@@ -74,7 +79,7 @@ public class Game {
 		grid = new Grid();
 		players = P;
 		for (Player p : players) {
-			p.clearForNewRound(p.PlayerRecord.getcities());
+			p.clearForNewRound(p.getPlayerRecord().getCities());
 		}
 		startRound();
 	}

@@ -14,7 +14,7 @@ public class HardStrategy extends ComputerPlayer {
 		Rail nextRail = null;
 		for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
 			for(City c: this.record.getCities()){
-				int distance = distanceToCity(r,c);
+				int distance = distanceToCity(r,c, grid);
 				if(distance<minDistance){
 					minDistance = distance;
 					nextRail = r;
@@ -25,9 +25,15 @@ public class HardStrategy extends ComputerPlayer {
 		return nextRail;
 	}
 	
-	public int distanceToCity(Rail rail, City city) {
+	public int distanceToCity(Rail rail, City city, ReadOnlyGrid grid) {
 		//returns distance from rail to city
-		return null;
+		int distance = 0;
+		if(grid.distbetweenpoints(rail.p1,city.getPos())>grid.distbetweenpoints(rail.p2, city.getPos())){
+			distance = grid.distbetweenpoints(rail.p2, city.getPos());
+		}else{
+			distance = grid.distbetweenpoints(rail.p1, city.getPos());
+		}
+		return distance;
 	}
 
 }
