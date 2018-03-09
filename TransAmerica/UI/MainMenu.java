@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 //TransAmerica JPanel
 
+<<<<<<< HEAD
 public class MainMenu extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private ButtonGroup group = new ButtonGroup();
@@ -23,6 +24,8 @@ public class MainMenu extends JPanel implements ActionListener{
 	private JPanel errorPanel = new JPanel();
 	//private int noPlayers = 6;
 
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 //public class PlayerPanel extends JPanel implements ActionListener{
 //	
 //	private ButtonGroup group = new ButtonGroup();
@@ -79,6 +82,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //	
 	public class MainMenu extends JPanel implements ActionListener{
 
+<<<<<<< HEAD
 	MainMenu() { 
 		this.setBackground(colors[playerNum - 1]);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -102,6 +106,8 @@ public class MainMenu extends JPanel implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
 
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		private ButtonGroup group = new ButtonGroup();
 		private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
 		private String[] optionNames = {"None", "Human Player", "Computer"};
@@ -116,10 +122,10 @@ public class MainMenu extends JPanel implements ActionListener{
 		private JLabel errorMessage = new JLabel();
 		private JFrame errorMessageFrame = new JFrame("							Error Message");
 		private JPanel errorPanel = new JPanel();
-		private 
 		
 		
-		MainMenu() { 
+		
+		 MainMenu() { 
 		
 				this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 				this.add(new JLabel("Player " + 6));
@@ -136,17 +142,21 @@ public class MainMenu extends JPanel implements ActionListener{
 				for(int i = 0; i < strategies.length; i ++) {
 					strategies[i] = new JComboBox(stratNames);
 					this.setBackground(colors[i]);
-					this.add(new JLabel("Player " + 1));
+					this.add(new JLabel("Player " + (i+1)));
 				}
 		}
+<<<<<<< HEAD
 			
 			private JLabel backgroundPic = new JLabel(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
 			
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 	}
+<<<<<<< HEAD
 
 
 	public void actionPerformed(ActionEvent e) {
@@ -196,6 +206,8 @@ public class MainMenu extends JPanel implements ActionListener{
 		contentPane.add(panes[i]);
 	}
 =======
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 //	public class MainMenu extends JPanel{
 //
 //	public void paintComponent(Graphics g){
@@ -263,6 +275,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //this.setVisible(true);
 }
 
+<<<<<<< HEAD
 	panes[0].add(new JLabel("TransAmerica"));
 
 	for(int i = 0; i < playerPanels.length - 3; i++) {
@@ -291,5 +304,7 @@ public class MainMenu extends JPanel implements ActionListener{
 >>>>>>> branch 'master' of https
 
 			://github.com/TheSphereWizard/TransAmerica
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 =======
 >>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
