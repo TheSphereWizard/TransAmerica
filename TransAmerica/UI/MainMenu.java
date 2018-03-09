@@ -1,10 +1,12 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
 //TransAmerica JPanel
 
 public class MainMenu extends JPanel implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private ButtonGroup group = new ButtonGroup();
 	private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
 	private String[] optionNames = {"None", "Human Player", "Computer"};
@@ -22,25 +24,25 @@ public class MainMenu extends JPanel implements ActionListener{
 	//private int noPlayers = 6;
 
 	MainMenu() { 
-			this.setBackground(colors[playerNum - 1]);
-			this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-			this.add(new JLabel("Player " + playerNum));
+		this.setBackground(colors[playerNum - 1]);
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.add(new JLabel("Player " + playerNum));
 
 
-			for(int i = 0; i < options.length; i++) {
-				options[i] = new JRadioButton(optionNames[i]);
-				options[i].addActionListener(this);
-				options[i].setActionCommand(optionNames[i]);
-				options[i].setBackground(colors[playerNum - 1]);
-				group.add(options[i]);
-				this.add(options[i]);
-			}
-			options[0].setSelected(true);
+		for(int i = 0; i < options.length; i++) {
+			options[i] = new JRadioButton(optionNames[i]);
+			options[i].addActionListener(this);
+			options[i].setActionCommand(optionNames[i]);
+			options[i].setBackground(colors[playerNum - 1]);
+			group.add(options[i]);
+			this.add(options[i]);
+		}
+		options[0].setSelected(true);
 
-			for(int i = 0; i < strategies.length; i ++) {
-				strategies[i] = new JComboBox(stratNames);
-			}
-		
+		for(int i = 0; i < strategies.length; i ++) {
+			strategies[i] = new JComboBox(stratNames);
+		}
+
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
 
@@ -62,72 +64,69 @@ public class MainMenu extends JPanel implements ActionListener{
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}
 	}
-=======
-public class MainMenu extends JPanel{
+			public class MainMenu extends JPanel{
 
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		Image background;
-<<<<<<< HEAD
-=======
+			public void paintComponent(Graphics g){
+			super.paintComponent(g);
+			Image background;
+			
+
+			g.drawImage(background, 0, 0, null);
+
+		}
 		
-		g.drawImage(background, 0, 0, null);
-		
+			g.drawImage(background, 0, 0, null);
+			MainMenu() {
+
+			}
 	}
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
-<<<<<<< HEAD
-		g.drawImage(background, 0, 0, null);
-	MainMenu() {
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.setTitle("TransAmerica");
 
+	errorMessage.setText("                      Error! Not Enough Players");
+	errorMessage.setAlignmentX(CENTER_ALIGNMENT);
+	errorPanel.setLayout(new GridLayout(2,1));
+	errorPanel.add(errorMessage);
+	errorPanel.add(exit);
+	errorMessageFrame.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
+	errorMessageFrame.setSize(300, 150);
+	errorMessageFrame.setResizable(false);
+	errorMessageFrame.add(errorPanel);
+
+	contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));		
+
+	for(int i = 0; i < panes.length; i++) {
+		panes[i] = new JPanel();
+		panes[i].setBackground(Color.WHITE);
+		contentPane.add(panes[i]);
 	}
-}
 
-this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-this.setTitle("TransAmerica");
+	panes[0].add(new JLabel("TransAmerica"));
 
-errorMessage.setText("                      Error! Not Enough Players");
-errorMessage.setAlignmentX(CENTER_ALIGNMENT);
-errorPanel.setLayout(new GridLayout(2,1));
-errorPanel.add(errorMessage);
-errorPanel.add(exit);
-errorMessageFrame.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
-errorMessageFrame.setSize(300, 150);
-errorMessageFrame.setResizable(false);
-errorMessageFrame.add(errorPanel);
+	for(int i = 0; i < playerPanels.length - 3; i++) {
+		playerPanels[i] = new PlayerPanel(i + 1);
+		panes[1].add(playerPanels[i]);
+	}
 
-contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));		
+	for(int i = 3; i < playerPanels.length; i++) {
+		playerPanels[i] = new PlayerPanel(i + 1);
+		panes[2].add(playerPanels[i]);
+	}
 
-for(int i = 0; i < panes.length; i++) {
-	panes[i] = new JPanel();
-	panes[i].setBackground(Color.WHITE);
-	contentPane.add(panes[i]);
-}
+	for(int i = 0; i < buttons.length; i++) {
+		buttons[i].addActionListener(this);
+		buttons[i].setActionCommand(buttons[i].getText());
+		panes[3].add(buttons[i]);
+	}
 
-panes[0].add(new JLabel("TransAmerica"));
-
-for(int i = 0; i < playerPanels.length - 3; i++) {
-	playerPanels[i] = new PlayerPanel(i + 1);
-	panes[1].add(playerPanels[i]);
-}
-
-for(int i = 3; i < playerPanels.length; i++) {
-	playerPanels[i] = new PlayerPanel(i + 1);
-	panes[2].add(playerPanels[i]);
-}
-
-for(int i = 0; i < buttons.length; i++) {
-	buttons[i].addActionListener(this);
-	buttons[i].setActionCommand(buttons[i].getText());
-	panes[3].add(buttons[i]);
-}
-
-this.setContentPane(contentPane);
-this.pack();
-this.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
-this.setVisible(true);
+	this.setContentPane(contentPane);
+	this.pack();
+	this.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
+	this.setVisible(true);
 }
 =======
-	
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+
+>>>>>>> branch 'master' of https
+
+			://github.com/TheSphereWizard/TransAmerica
