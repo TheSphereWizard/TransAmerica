@@ -22,13 +22,17 @@ public class Rail {
 		}
 	}
 	
-	public boolean equals(Rail compare) {
+	public boolean equals(Object compare2) {
+		Rail compare;
+		try{
+			compare=(Rail)compare2;
+		}catch(Exception e){
+			return false;
+		}
 		if(p1.equals(compare.p1) && p2.equals(compare.p2))
 			return true;
-		try {
-			if(compare.equals(new Rail(p2,p1)))
-				return true;
-		} catch (Exception e) {return false;}
+		if(p1.equals(compare.p2) && p2.equals(compare.p1))
+			return true;
 		return false;
 	}
 	

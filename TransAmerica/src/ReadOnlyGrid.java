@@ -7,4 +7,8 @@ public class ReadOnlyGrid {
 	boolean checkRail(Rail r, Player p){
 		return grid.checkRail(r, p);
 	}
+	
+	int distbetweenpoints(Position p1, Position p2){
+		return grid.distbetweenpoints(p1, p2);
+	}
 }
