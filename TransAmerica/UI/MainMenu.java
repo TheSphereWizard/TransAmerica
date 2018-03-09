@@ -6,15 +6,7 @@ import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener{
 
-//	public void paintComponent(Graphics g){
-//		super.paintComponent(g);
-//		Image background;
-//
-//		g.drawImage(background, 0, 0, null);
-//
-//	}
-//
-//	g.drawImage(background, 0, 0, null);
+
 	private JPanel[] panes = new JPanel[4];
 	private JButton start = new JButton("Play"), exit = new JButton("Exit");
 	private JButton[] buttons = new JButton[] {start, exit};
@@ -60,93 +52,109 @@ public class MainMenu extends JPanel implements ActionListener{
 	/////////////////////////////////////////////////////////////////////////
 	
 	
-	private class PlayerPanel extends JPanel implements ActionListener{
-
+//	private class PlayerPanel extends JPanel implements ActionListener{
+//
+//		private ButtonGroup group = new ButtonGroup();
+//		private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
+//		private String[] optionNames = {"None", "Human Player", "Computer"};
+//		private JRadioButton[] options = new JRadioButton[3];
+//		private JComboBox[] strategies = new JComboBox[2];
+//		private String[] stratNames = {"Easy" , "Hard"};
+//		private JPanel[] panes = new JPanel[4];
+//		private JButton start = new JButton("Play"), exit = new JButton("Exit");
+//		private JButton[] buttons = new JButton[] {start, exit};
+//		private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		private JLabel errorMessage = new JLabel();
+//		private JFrame errorMessageFrame = new JFrame("							Error Message");
+//		private JPanel errorPanel = new JPanel();
+//
+//
+//
+//		PlayerPanel(int PlayerNum) { 
+//
+//			
+//			this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+//			
+//			for(int i = 0; i < options.length; i++) {
+//				options[i] = new JRadioButton(optionNames[i]);
+//				options[i].addActionListener(this);
+//				options[i].setActionCommand(optionNames[i]);
+//				options[i].setBackground(colors[i]);
+//				group.add(options[i]);
+//				this.add(options[i]);
+//			}
+////			options[0].setSelected(true);			
+////			this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+////			for(int i = 0; i < 6; i++){
+////				this.add(new JLabel("Player " + i+ 1));
+////			}
+////			
+////			for(int i = 0; i < options.length; i++) {
+////				options[i] = new JRadioButton(optionNames[i]);
+////				options[i].addActionListener(this);
+////				options[i].setActionCommand(optionNames[i]);
+////				options[i].setBackground(colors[i]);
+////				group.add(options[i]);
+////				this.add(options[i]);
+////			}
+////			options[0].setSelected(true);
+////
+//			for(int i = 0; i < strategies.length; i ++) {
+//				strategies[i] = new JComboBox(stratNames);
+//				this.setBackground(colors[i]);
+//				this.add(new JLabel("Player " + (i+1)));
+//			}
+//		}
+//
+//
+//
+	
+private class PlayerPanel extends JPanel implements ActionListener{
+		
+		private static final long serialVersionUID = 1L;
 		private ButtonGroup group = new ButtonGroup();
 		private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
 		private String[] optionNames = {"None", "Human Player", "Computer"};
 		private JRadioButton[] options = new JRadioButton[3];
 		private JComboBox[] strategies = new JComboBox[2];
 		private String[] stratNames = {"Easy" , "Hard"};
-		private JPanel[] panes = new JPanel[4];
-		private JButton start = new JButton("Play"), exit = new JButton("Exit");
-		private JButton[] buttons = new JButton[] {start, exit};
-		private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		private JLabel errorMessage = new JLabel();
-		private JFrame errorMessageFrame = new JFrame("							Error Message");
-		private JPanel errorPanel = new JPanel();
+		private int noPlayers = 6;
+		
 
-
-
-		PlayerPanel(int PlayerNum) { 
-
+		public PlayerPanel(int playerNum) {
+			this.setBackground(colors[playerNum - 1]);
 			this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-			this.add(new JLabel("Player " + 6));
+			this.add(new JLabel("Player " + playerNum));
+			
+			
 			for(int i = 0; i < options.length; i++) {
 				options[i] = new JRadioButton(optionNames[i]);
 				options[i].addActionListener(this);
 				options[i].setActionCommand(optionNames[i]);
-				options[i].setBackground(colors[i]);
+				options[i].setBackground(colors[playerNum - 1]);
 				group.add(options[i]);
 				this.add(options[i]);
 			}
 			options[0].setSelected(true);
-
+			
 			for(int i = 0; i < strategies.length; i ++) {
 				strategies[i] = new JComboBox(stratNames);
-				this.setBackground(colors[i]);
-				this.add(new JLabel("Player " + (i+1)));
 			}
 		}
+		
+		
 		public void actionPerformed(ActionEvent e) {
-
-
+			if(e.getActionCommand().equals(optionNames[0])) {
+				
+			} else if(e.getActionCommand().equals(optionNames[1])) {
+				noPlayers --;
+			} else if(e.getActionCommand().equals(optionNames[2])) {
+				noPlayers --;
+			}
 		}
+
 	}
-	
 }
 
-//private class PlayerPanel extends JPanel implements ActionListener{
-//
-//	private ButtonGroup group = new ButtonGroup();
-//	private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
-//	private String[] optionNames = {"None", "Human Player", "Computer"};
-//	private JRadioButton[] options = new JRadioButton[3];
-//	private JComboBox[] strategies = new JComboBox[2];
-//	private String[] stratNames = {"Easy" , "Hard"};
-//	private JPanel[] panes = new JPanel[4];
-//	private JButton start = new JButton("Play"), exit = new JButton("Exit");
-//	private JButton[] buttons = new JButton[] {start, exit};
-//	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//	private JLabel errorMessage = new JLabel();
-//	private JFrame errorMessageFrame = new JFrame("							Error Message");
-//	private JPanel errorPanel = new JPanel();
-//
-//
-//
-//	PlayerPanel(int PlayerNum) { 
-//
-//		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-//		this.add(new JLabel("Player " + 6));
-//		for(int i = 0; i < options.length; i++) {
-//			options[i] = new JRadioButton(optionNames[i]);
-//			options[i].addActionListener(this);
-//			options[i].setActionCommand(optionNames[i]);
-//			options[i].setBackground(colors[i]);
-//			group.add(options[i]);
-//			this.add(options[i]);
-//		}
-//		options[0].setSelected(true);
-//
-//		for(int i = 0; i < strategies.length; i ++) {
-//			strategies[i] = new JComboBox(stratNames);
-//			this.setBackground(colors[i]);
-//			this.add(new JLabel("Player " + (i+1)));
-//		}
-//	}
-//	public void actionPerformed(ActionEvent e) {
-//
-//
-//	}
-//}
+
 
