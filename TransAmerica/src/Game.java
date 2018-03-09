@@ -33,7 +33,11 @@ public class Game {
 	 * @param slowMode if false run a fast game
 	 */
 	Game(ArrayList<Player> players, boolean slowMode){
-		
+		this.players = players;
+		this.slowMode = slowMode;
+		if(!slowMode){
+			
+		}
 	}
 	
 	boolean showScoreScreen;
