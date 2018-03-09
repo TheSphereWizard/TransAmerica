@@ -75,10 +75,10 @@ import javax.swing.*;
 		private JLabel errorMessage = new JLabel();
 		private JFrame errorMessageFrame = new JFrame("							Error Message");
 		private JPanel errorPanel = new JPanel();
-		private 
 		
 		
-		MainMenu() { 
+		
+		 MainMenu() { 
 		
 				this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 				this.add(new JLabel("Player " + 6));
@@ -98,9 +98,6 @@ import javax.swing.*;
 					this.add(new JLabel("Player " + 1));
 				}
 		}
-			
-			private JLabel backgroundPic = new JLabel(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
