@@ -5,7 +5,6 @@ import java.awt.*;
 import javax.swing.*;
 //TransAmerica JPanel
 
-<<<<<<< HEAD
 public class MainMenu extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private ButtonGroup group = new ButtonGroup();
@@ -23,7 +22,7 @@ public class MainMenu extends JPanel implements ActionListener{
 	private JFrame errorMessageFrame = new JFrame("							Error Message");
 	private JPanel errorPanel = new JPanel();
 	//private int noPlayers = 6;
-=======
+
 //public class PlayerPanel extends JPanel implements ActionListener{
 //	
 //	private ButtonGroup group = new ButtonGroup();
@@ -79,9 +78,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //
 //	
 	public class MainMenu extends JPanel implements ActionListener{
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
-<<<<<<< HEAD
 	MainMenu() { 
 		this.setBackground(colors[playerNum - 1]);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -104,7 +101,7 @@ public class MainMenu extends JPanel implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
-=======
+
 		private ButtonGroup group = new ButtonGroup();
 		private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
 		private String[] optionNames = {"None", "Human Player", "Computer"};
@@ -135,7 +132,6 @@ public class MainMenu extends JPanel implements ActionListener{
 					this.add(options[i]);
 				}
 				options[0].setSelected(true);
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
 				for(int i = 0; i < strategies.length; i ++) {
 					strategies[i] = new JComboBox(stratNames);
@@ -145,13 +141,13 @@ public class MainMenu extends JPanel implements ActionListener{
 		}
 			
 			private JLabel backgroundPic = new JLabel(new ImageIcon("TransAmerica\\Pix\\TransAmerica\\Background.jpg"));
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 	}
-<<<<<<< HEAD
+
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Play") && noPlayers == 6) {
@@ -266,9 +262,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //this.setLocation(screenSize.width/2 - this.getWidth()/2, screenSize.height/2 - this.getHeight()/2);
 //this.setVisible(true);
 }
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
-<<<<<<< HEAD
 	panes[0].add(new JLabel("TransAmerica"));
 
 	for(int i = 0; i < playerPanels.length - 3; i++) {
