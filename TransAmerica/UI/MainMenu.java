@@ -6,15 +6,7 @@ import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener{
 
-//	public void paintComponent(Graphics g){
-//		super.paintComponent(g);
-//		Image background;
-//
-//		g.drawImage(background, 0, 0, null);
-//
-//	}
-//
-//	g.drawImage(background, 0, 0, null);
+
 	private JPanel[] panes = new JPanel[4];
 	private JButton start = new JButton("Play"), exit = new JButton("Exit");
 	private JButton[] buttons = new JButton[] {start, exit};
