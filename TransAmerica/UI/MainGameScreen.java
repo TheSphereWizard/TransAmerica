@@ -21,6 +21,9 @@ public class MainGameScreen extends JPanel{
 	BufferedImage train, eagle;
 	Game currentGame;
 	
+	private JPanel[] panes = new JPanel[4];
+	
+	
 	public MainGameScreen(Game game){
 		currentGame = game;
 	}
