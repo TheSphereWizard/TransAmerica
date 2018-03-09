@@ -18,29 +18,32 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		static ArrayList<City> allCities;
 		public static void main(String[] red){
 			MapofUSA map = new MapofUSA(0,100,1400,700);
-			map.setCurrentGrid(new Grid());
-			Player p =new HumanPlayer(Color.blue, null, 4, "fish", map);
-			map.currentGrid.placeMarker(new Position(15,14), p);
-			try {
-				map.currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
-				map.currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));
-				map.currentGrid.placeRail(new Rail(new Position(1,1),new Position(1,2),p));
-				map.currentGrid.placeRail(new Rail(new Position(1,1),new Position(2,1),p));
-				map.currentGrid.placeRail(new Rail(new Position(21,1),new Position(22,1),p));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			Player p2 =new HumanPlayer(Color.red, null, 4, "fish", map);
-			map.currentGrid.placeMarker(new Position(5,6), p2);
-			try {
-				map.currentGrid.placeRail(new Rail(new Position(10,0),new Position(10,1),p2));
-				map.currentGrid.placeRail(new Rail(new Position(10,1),new Position(11,1),p2));
-				map.currentGrid.placeRail(new Rail(new Position(11,1),new Position(11,2),p2));
-				map.currentGrid.placeRail(new Rail(new Position(11,1),new Position(12,1),p2));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 			Screen.makeScreen(map,10);
+		}
+		private void runtestcode() {
+			setCurrentGrid(new Grid());
+			Player p =new HumanPlayer(Color.blue, null, 4, "fish", this);
+			currentGrid.placeMarker(new Position(15,14), p);
+			try {
+				currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
+				currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));
+				currentGrid.placeRail(new Rail(new Position(1,1),new Position(1,2),p));
+				currentGrid.placeRail(new Rail(new Position(1,1),new Position(2,1),p));
+				currentGrid.placeRail(new Rail(new Position(21,1),new Position(22,1),p));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			Player p2 =new HumanPlayer(Color.red, null, 4, "fish", this);
+			currentGrid.placeMarker(new Position(5,6), p2);
+			try {
+				currentGrid.placeRail(new Rail(new Position(10,0),new Position(10,1),p2));
+				currentGrid.placeRail(new Rail(new Position(10,1),new Position(11,1),p2));
+				currentGrid.placeRail(new Rail(new Position(11,1),new Position(11,2),p2));
+				currentGrid.placeRail(new Rail(new Position(11,1),new Position(12,1),p2));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		private int[] siz;
 		private int[] mappos;
@@ -48,7 +51,9 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			mappos = new int[]{x,y};
 			siz=new int[]{width,height};
 			this.setBounds(x, y, width, height);
+			runtestcode();
 		}
+		
 		void setCurrentGrid(Grid grid){//called at beginning of round
 			currentGrid = grid;
 		}
