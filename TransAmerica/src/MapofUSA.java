@@ -52,6 +52,19 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			siz=new int[]{width,height};
 			this.setBounds(x, y, width, height);
 			runtestcode();
+			scalefactor = new int[]{siz[0]/currentGrid.getBoardwidth(),siz[1]/currentGrid.getBoardheight()};
+			try {
+				highlighted=new Rail(new Position(0,0),new Position(0,1));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			final MapofUSA test = this;
+			this.addMouseMotionListener(new MouseMotionListener(){
+				public void mouseDragged(MouseEvent e) {}
+				public void mouseMoved(MouseEvent e) {
+					test.mouseMoved(e);
+				}
+			});
 		}
 		
 		void setCurrentGrid(Grid grid){//called at beginning of round
@@ -64,12 +77,17 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			return lastClick;
 		}
 		Rail highlighted;
+		int[] scalefactor;
+		
 		public void paint(Graphics g){//redraws map with new rail networks
 			g.translate(mappos[0], mappos[1]);
 			g.drawRect(0, 0, siz[0], siz[1]);
 			Graphics2D g2d = (Graphics2D)g;
+			
+			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+			g.drawLine((int)(scalefactor[0]*(highlighted.p1.y%2==1?highlighted.p1.x+0.5d:highlighted.p1.x)), siz[1]-scalefactor[1]*highlighted.p1.y, (int)(scalefactor[0]*(highlighted.p2.y%2==1?highlighted.p2.x+0.5d:highlighted.p2.x)), siz[1]-scalefactor[1]*highlighted.p2.y);
+			
 			g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-			int[] scalefactor = new int[]{siz[0]/currentGrid.getBoardwidth(),siz[1]/currentGrid.getBoardheight()};
 			for(Rail r: currentGrid.allRails){
 				if(r.player!=null){
 					g.setColor(r.player.record.getColor());
@@ -78,7 +96,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 					g.setColor(Color.black);
 					g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}
-				g.drawLine(10+(int)(scalefactor[0]*(r.p1.y%2==1?r.p1.x+0.5d:r.p1.x)), -10+siz[1]-scalefactor[1]*r.p1.y, 10+(int)(scalefactor[0]*(r.p2.y%2==1?r.p2.x+0.5d:r.p2.x)), -10+siz[1]-scalefactor[1]*r.p2.y);
+				g.drawLine((int)(scalefactor[0]*(r.p1.y%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*r.p1.y, (int)(scalefactor[0]*(r.p2.y%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*r.p2.y);
 			}
 			int markersize=9;
 			for(Marker r: currentGrid.markers){
@@ -89,27 +107,38 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 					g.setColor(Color.black);
 					g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}
-				g.fillOval(10+(int)(scalefactor[0]*(r.p.y%2==1?r.p.x+0.5d:r.p.x))-markersize/2, -10+siz[1]-scalefactor[1]*r.p.y-markersize/2, markersize, markersize);
+				g.fillOval((int)(scalefactor[0]*(r.p.y%2==1?r.p.x+0.5d:r.p.x))-markersize/2, siz[1]-scalefactor[1]*r.p.y-markersize/2, markersize, markersize);
 			}
 		}
 		boolean firstturn=true;
+		Marker placedmarker;
+		Rail placedRail;
 		public void mouseClicked(MouseEvent e) {//when mouse is clicked, converts click (x, y) coordinates to grid coordinates, and then uses the grid validrail method to determine if rail is valid, if it is then add to lastClick, else ignore that it was clicked
 			if(firstturn){
-				
+				placedmarker=new Marker(nearestPosition(e.getX(),e.getY()));
 			}else{
-				
+				placedRail = nearestRail(e.getX(),e.getY());
 			}
 		}
 		public void mouseMoved(MouseEvent e) {//updates highlighting of rail lines
 			highlighted=nearestRail(e.getX(),e.getY());
 		}
-		Position nearestPosition(int x, int y){
-			
+		//TODO below
+		
+		Rail nearestRail(int x, int y){
+			x-=mappos[0];
+			y-=mappos[1];
+			try {
+				return new Rail(new Position((int)Math.round(((double)x)/scalefactor[0]),(siz[1]-y)/scalefactor[1]),new Position(x/scalefactor[0]+1,(siz[1]-y)/scalefactor[1]));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return null;
 		}
-		Rail nearestRail(int x, int y){
-			return highlighted;
+		Position nearestPosition(int x, int y){
+			return null;
 		}
+		
 		public void mouseEntered(MouseEvent e) {}
 		public void mouseExited(MouseEvent e) {}
 		public void mousePressed(MouseEvent e) {}

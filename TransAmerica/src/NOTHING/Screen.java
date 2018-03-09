@@ -2,6 +2,7 @@ package NOTHING;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -27,6 +28,7 @@ public class Screen {
         		frame.repaint();
         	}
         }, 0,i);
+//        addMouseMotionListener();
         frame.setVisible(true);
 	}
 	static void addMouseListener(){
@@ -39,6 +41,19 @@ public class Screen {
 			public void mouseReleased(MouseEvent e) {
 				once=true;
 				o.dorelease(e);
+			}
+        }
+        );
+	}
+	static void addMouseMotionListener(){
+		frame.addMouseMotionListener(new MouseMotionListener(){
+			public void mouseDragged(MouseEvent e) {
+				o.dodrag(e);
+				
+			}
+			public void mouseMoved(MouseEvent e) {
+				o.domove(e);
+				System.out.println("h");
 			}
         }
         );

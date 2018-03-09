@@ -45,11 +45,6 @@ public class Grid {
 	int[][] grid=new int[getBoardwidth()][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	ArrayList<Marker> markers= new ArrayList<Marker>();
-	
-	
-	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
-		return false;
-	}
 	Grid(){
 		placemountains();
 		allRails = alllegalrails;
@@ -89,13 +84,6 @@ public class Grid {
 		}
 		return false;
 	}
-	
-	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
-		
-		
-		
-		return false;
-	}
 	public int getBoardwidth() {
 		return boardwidth;
 	}
@@ -111,16 +99,7 @@ public class Grid {
 	public static int checkiflargeornot(Position p1, Position p2) throws Exception {
 		return mountains.contains(new Rail(p1,p2))?2:1;
 	}
-	static ArrayList<Rail> mountains = new ArrayList<Rail>();
-	private void placemountains() {
-		try{
-			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
-			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
-			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
-		}catch(Exception e){}
-	}
 	ArrayList<Rail> alllegalrails=setalllegalrails();
-
 	private ArrayList<Rail> setalllegalrails() {
 		ArrayList<Rail> all = new ArrayList<Rail>();
 		for(int x =0;x<boardwidth;x++){
@@ -140,20 +119,22 @@ public class Grid {
 		return Math.abs(p1.x-p2.x)+Math.abs(p1.y-p2.y);
 	}
 	
-	public static void main(String[] args) {
-		Grid test = new Grid();
-		try {
-			System.out.println(new Rail(new Position(0,0),new Position(1,0)).equals(new Rail(new Position(0,0),new Position(1,0))));
-			test.placeRail(new Rail(new Position(0,0),new Position(1,0)));
-			System.out.println(test.RailExists(new Position(0,0), new Position(1,0)));
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		try {
-			test.allRails.add(new Rail(new Position(1, 1), new Position(2, 1)));
-			System.out.println(test.RailExists(new Position(1,1), new Position(2,1)));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+	//TODO below:
+	static ArrayList<Rail> mountains = new ArrayList<Rail>();
+	private void placemountains() {
+		try{
+			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
+			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
+			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
+		}catch(Exception e){}
+	}
+	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
+		
+		
+		
+		return false;
+	}
+	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
+		return false;
 	}
 }
