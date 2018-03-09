@@ -4,7 +4,7 @@ public class TransAmerica extends JFrame{
 	public TransAmerica() {
 		setTitle("TransAmerica");
 		setContentPane(new MainMenu());
-	
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 	}
 	public void changeContentPane(JPanel newPanel){
