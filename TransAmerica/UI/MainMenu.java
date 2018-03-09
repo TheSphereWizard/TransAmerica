@@ -95,11 +95,11 @@ import javax.swing.*;
 				for(int i = 0; i < strategies.length; i ++) {
 					strategies[i] = new JComboBox(stratNames);
 					this.setBackground(colors[i]);
-					this.add(new JLabel("Player " + 1));
+					this.add(new JLabel("Player " + (i+1)));
 				}
 		}
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 	}
