@@ -143,6 +143,13 @@ public class Grid {
 	public static void main(String[] args) {
 		Grid test = new Grid();
 		try {
+			System.out.println(new Rail(new Position(0,0),new Position(1,0)).equals(new Rail(new Position(0,0),new Position(1,0))));
+			test.placeRail(new Rail(new Position(0,0),new Position(1,0)));
+			System.out.println(test.RailExists(new Position(0,0), new Position(1,0)));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		try {
 			test.allRails.add(new Rail(new Position(1, 1), new Position(2, 1)));
 			System.out.println(test.RailExists(new Position(1,1), new Position(2,1)));
 		} catch (Exception e) {
