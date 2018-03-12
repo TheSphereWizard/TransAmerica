@@ -1,5 +1,4 @@
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 public class TransAmerica extends JFrame{
 	public TransAmerica() {
 		setTitle("TransAmerica");
