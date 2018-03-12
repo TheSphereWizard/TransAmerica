@@ -23,8 +23,8 @@ public abstract class Player {//give players playerrecords
 		placedMarkerAlready = false;
 		record = new PlayerRecord(c, cities, score, n);
 	}
-	
-	abstract Rail runTurn(boolean firstRailPlaced, ReadOnlyGrid grid);
+	//This needs to be an object because on first turn returns marker
+	abstract Object runTurn(boolean firstRailPlaced, ReadOnlyGrid grid);
 	void clearForNewRound(ArrayList<City> cities){
 		placedMarkerAlready = false;
 		record.cities = cities;
