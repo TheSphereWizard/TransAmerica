@@ -7,9 +7,9 @@ public class Rail {
 		if(Grid.legalRail(P1,P2)){
 			p1 = P1;
 			p2 = P2;
-			}else{
-				throw new Exception();
-			}
+		}else{
+			throw new Exception();
+		}
 	}
 	Rail(Position P1, Position P2, Player p) throws Exception{
 		if(Grid.legalRail(P1,P2)){
