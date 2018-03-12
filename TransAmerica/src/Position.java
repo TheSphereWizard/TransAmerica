@@ -16,9 +16,14 @@ public class Position {
 		return y;
 	}
 	
-	public boolean equals(Position compare) {
-		if(x == compare.x && y == compare.y)
-			return true;
+	public boolean equals(Object c) {
+		try{
+			Position compare = (Position)c;
+			if(x == compare.x && y == compare.y)
+				return true;
+		}catch(Exception E){
+			return false;
+		}
 		return false;
 	}
 
