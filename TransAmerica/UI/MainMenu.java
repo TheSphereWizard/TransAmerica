@@ -41,9 +41,26 @@ public class MainMenu extends JPanel implements ActionListener{
 
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equals("Start")) {
+			int readyPlayers = 0;
+			for(PlayerPanel p:playerPanels){
+				if(p.isPlayer()){
+					readyPlayers++;
+				}
+			}
+			if(readyPlayers>=2){//starts the game, either human or all ai
+				for(PlayerPanel p: playerPanels){
+					if(p.isHuman()){
+						//progress to human
+					}else{
+						//progress to ai
+					}
+				}
+			}
+			
+		} else if(e.getActionCommand().equals("Exit"))
+			System.exit(0);
 	}
 	
 	/////////////////////////////////////////////////////////////////////////
@@ -116,7 +133,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private JComboBox[] strategies = new JComboBox[2];
 		private String[] stratNames = {"Easy" , "Hard"};
 		private int noPlayers = 6;
-		
+		private boolean player = false;
 
 		public PlayerPanel(int playerNum) {
 			this.setBackground(colors[playerNum - 1]);
@@ -142,12 +159,19 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
-				
+				player = false;
 			} else if(e.getActionCommand().equals(optionNames[1])) {
 				noPlayers --;
+				player = true;
 			} else if(e.getActionCommand().equals(optionNames[2])) {
 				noPlayers --;
+				player = true;
 			}
+			
+		}
+		
+		public boolean isPlayer() {
+			return player;
 		}
 
 	}
