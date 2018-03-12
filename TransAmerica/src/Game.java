@@ -85,18 +85,17 @@ public class Game {
 		for (Player p : players) {
 			p.clearForNewRound(p.getPlayerRecord().getCities());
 		}
-		startRound();
+		startCompRound();
 	}
 
-	void startRound() {
+	void startCompRound() {
+		ReadOnlyGrid readGrid = null;
 		for (Player p : players) {
-			Rail[] r = p.runTurn();
+			Rail[] r = (Rail[]) p.runTurn(false,readGrid);
 			for (int i = 0; i < r.length; i++) {
 				grid.placeRail(r[i]);
 			}
-			if (p.cityReached.size() - 1 == 0) {
-
-			}
+			
 		}
 	}
 
