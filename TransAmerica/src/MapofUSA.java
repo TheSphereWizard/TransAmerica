@@ -53,12 +53,12 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+			this.setCurrentPlayer(p2);
 		}
 		
 		MapofUSA(int x, int y, int width, int height){
 			try {
-				Map=ImageIO.read(new File("C:/Users/Sphere Wizard/git/TransAmerica/TransAmerica/Pix/mapofusa.png"));
+				Map=ImageIO.read(new File("Pix\\mapofusa.png"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -130,7 +130,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			g.drawRect(0, 0, siz[0], siz[1]);
 			g.drawImage(Map,-50, -30, siz[0]+100, siz[1]+60, null);
 //			g.drawString(dist+"", 0, 10);
-			g.drawString(nearest.x+" "+nearest.y, 0, 30);
+//			g.drawString(nearest.x+" "+nearest.y, 0, 30);
 //			g.drawString(((siz[1]-mos[1]-1)/scalefactor[1])%2+"", 0, 50);
 //			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			
@@ -170,13 +170,18 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 				g.setColor(Color.black);
 				g.drawLine((int)(scalefactor[0]*(highlighted.p1.y%2==1?highlighted.p1.x+0.5d:highlighted.p1.x)), siz[1]-scalefactor[1]*(highlighted.p1.y+1), (int)(scalefactor[0]*(highlighted.p2.y%2==1?highlighted.p2.x+0.5d:highlighted.p2.x)), siz[1]-scalefactor[1]*(highlighted.p2.y+1));
 			}
+			for(Rail r: currentGrid.alllegalrails){
+				g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+				g.drawLine((int)(scalefactor[0]*((r.p1.y)%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*((r.p2.y)%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*(r.p2.y+1));
+				//g.drawLine((int)(scalefactor[0]*(r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*(r.p2.x)), siz[1]-scalefactor[1]*(r.p1.y+1));
+			}
 			for(Rail r: currentGrid.allRails){
 				if(r.player!=null){
 					g.setColor(r.player.record.getColor());
 					g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}else{
 					g.setColor(Color.black);
-					g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+					g2d.setStroke(new BasicStroke(10,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}
 				
 				g.drawLine((int)(scalefactor[0]*((r.p1.y)%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*((r.p2.y)%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*(r.p2.y+1));
