@@ -44,9 +44,11 @@ public class MainMenu extends JPanel implements ActionListener{
 
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equals("Start")) {
+			
+		} else if(e.getActionCommand().equals("Exit"))
+			System.exit(0);
 	}
 	
 	/////////////////////////////////////////////////////////////////////////
