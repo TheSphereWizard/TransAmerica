@@ -3,12 +3,12 @@ import java.awt.Color;
 public class City {
 	
 	private String name;
-	private Position pos;
-	private Color color;
+	Position p;
+	Color color;
 	
 	public City(String name, Position pos, Color color) {
 		this.name = name;
-		this.pos = pos;
+		this.p = pos;
 		this.color = color;
 	}
 	
@@ -17,6 +17,6 @@ public class City {
 	}
 	
 	Position getPos(){
-		return pos;
+		return p;
 	}
 }
