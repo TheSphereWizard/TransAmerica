@@ -9,13 +9,7 @@ public class TransAmerica extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 	}
-	public void changeContentPane(JPanel newPanel){
-		setContentPane(newPanel);
-		setTitle(newPanel.getName());
-	}
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		new TransAmerica();
 	}
 }
-
-
