@@ -13,9 +13,9 @@ public class HumanPlayer extends Player {
 		super(c, cities, score, name);
 		map = Map;
 	}
-	Rail runTurn(boolean firstPlacedRail, ReadOnlyGrid grid) {
+	Object runTurn(boolean firstPlacedRail, ReadOnlyGrid grid) {
 		//accesses lastClick to map until it isn't null
-		Rail nextRail = null;
+		Object nextRail = null;
 		while(nextRail == null){
 			nextRail = map.returnPlacedRail();
 		}
