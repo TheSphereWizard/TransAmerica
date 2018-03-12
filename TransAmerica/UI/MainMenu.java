@@ -52,7 +52,9 @@ public class MainMenu extends JPanel implements ActionListener{
 			if(readyPlayers>=2){//starts the game, either human or all ai
 				for(PlayerPanel p: playerPanels){
 					if(p.isHuman()){
-						//progress to human
+						ArrayList<Player> players = 
+						Game game = new Game(,true);
+						add(new MainGameScreen());
 					}else{
 						//progress to ai
 					}
