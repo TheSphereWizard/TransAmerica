@@ -22,8 +22,8 @@ public class HumanPlayer extends Player {
 		return nextRail;
 	}
 	
-	Position getStartMarker() {
-		return null;
-	}
+//	Position getStartMarker() {
+//		return null;
+//	}
 
 }
