@@ -13,9 +13,6 @@ public class MainMenu extends JPanel implements ActionListener{
 	private PlayerPanel[] playerPanels = new PlayerPanel[6];
 
 	MainMenu() {
-
-
-
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));		
 
 		for(int i = 0; i < panes.length; i++) {
