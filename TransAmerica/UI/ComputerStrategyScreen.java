@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 public class ComputerStrategyScreen extends JPanel{
-	//private TransAmerica trans;
 	private JPanel players = new JPanel();
 	public ComputerStrategyScreen(int gamesPlayed, int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage) {
 		add(new GeneralInfo(gamesPlayed));
@@ -46,7 +45,7 @@ public class ComputerStrategyScreen extends JPanel{
 			add(played);
 		}
 		public void actionPerformed(ActionEvent e) {
-			//trans.setContentPane(new MainMenu());
+			
 		}
 	}
 }
