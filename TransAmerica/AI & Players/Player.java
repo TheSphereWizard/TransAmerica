@@ -38,6 +38,7 @@ public abstract class Player {//give players playerrecords
 		return record;
 	}
 	
+	
 	public class PlayerRecord {
 		//Should store player's color, cities, score, and other information as needed.
 		//The players color

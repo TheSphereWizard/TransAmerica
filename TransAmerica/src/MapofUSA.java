@@ -202,8 +202,8 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			
 			for(City[] cer : currentGrid.allcities){
 				for(City c : cer){
-				g.setColor(c.color);
-				g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
+					g.setColor(c.color);
+					g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
 				}
 			}
 			tempothercode();
