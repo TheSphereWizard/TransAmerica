@@ -52,8 +52,8 @@ public class MainMenu extends JPanel implements ActionListener{
 					readyPlayers++;
 				}
 			}
-			if(readyPlayers>=2){
-				
+			if(readyPlayers>=2){//starts the game
+				new MainGameScreen();
 			}
 			
 		} else if(e.getActionCommand().equals("Exit"))
@@ -130,7 +130,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private JComboBox[] strategies = new JComboBox[2];
 		private String[] stratNames = {"Easy" , "Hard"};
 		private int noPlayers = 6;
-		
+		private boolean player = false;
 
 		public PlayerPanel(int playerNum) {
 			this.setBackground(colors[playerNum - 1]);
@@ -156,12 +156,19 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
-				
+				player = false;
 			} else if(e.getActionCommand().equals(optionNames[1])) {
 				noPlayers --;
+				player = true;
 			} else if(e.getActionCommand().equals(optionNames[2])) {
 				noPlayers --;
+				player = true;
 			}
+			
+		}
+		
+		public boolean isPlayer() {
+			return player;
 		}
 
 	}
