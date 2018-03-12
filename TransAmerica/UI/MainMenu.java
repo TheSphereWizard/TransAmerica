@@ -52,7 +52,9 @@ public class MainMenu extends JPanel implements ActionListener{
 			if(readyPlayers>=2){//starts the game, either human or all ai
 				for(PlayerPanel p: playerPanels){
 					if(p.isHuman()){
-						//progress to human
+						ArrayList<Player> players = 
+						Game game = new Game(,true);
+						add(new MainGameScreen());
 					}else{
 						//progress to ai
 					}
@@ -134,6 +136,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private String[] stratNames = {"Easy" , "Hard"};
 		private int noPlayers = 6;
 		private boolean player = false;
+		private boolean humanPlayer = false;
 
 		public PlayerPanel(int playerNum) {
 			this.setBackground(colors[playerNum - 1]);
@@ -160,18 +163,25 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals(optionNames[0])) {
 				player = false;
+				humanPlayer = false;
 			} else if(e.getActionCommand().equals(optionNames[1])) {
 				noPlayers --;
 				player = true;
+				humanPlayer = true;
 			} else if(e.getActionCommand().equals(optionNames[2])) {
 				noPlayers --;
 				player = true;
+				humanPlayer = false;
 			}
 			
 		}
 		
 		public boolean isPlayer() {
 			return player;
+		}
+		
+		public boolean isHuman(){
+			return humanPlayer;
 		}
 
 	}
