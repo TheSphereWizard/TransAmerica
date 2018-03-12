@@ -15,7 +15,12 @@ import javax.imageio.ImageIO;
 import NOTHING.*;
 
 public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionListener{
-		
+		/*
+		rounding error on left side of screen
+		make rails not be placed at all if invalid, 
+		make markers be placed in valid position	
+	
+		*/
 		BufferedImage Map;
 		
 		Player currentPlayer;
@@ -32,27 +37,27 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		}
 		private void runtestcode() {
 			setCurrentGrid(new Grid());
-			Player p =new HumanPlayer(Color.blue, null, 4, "fish", this);
-			currentGrid.placeMarker(new Position(15,14), p);
-			try {
-				currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
-				currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));
-				currentGrid.placeRail(new Rail(new Position(1,1),new Position(1,2),p));
-				currentGrid.placeRail(new Rail(new Position(1,1),new Position(2,1),p));
-				currentGrid.placeRail(new Rail(new Position(21,1),new Position(22,1),p));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+//			Player p =new HumanPlayer(Color.blue, null, 4, "fish", this);
+//			currentGrid.placeMarker(new Position(15,14), p);
+//			try {
+//				currentGrid.placeRail(new Rail(new Position(0,0),new Position(0,1),p));
+//				currentGrid.placeRail(new Rail(new Position(0,1),new Position(1,1),p));
+//				currentGrid.placeRail(new Rail(new Position(1,1),new Position(1,2),p));
+//				currentGrid.placeRail(new Rail(new Position(1,1),new Position(2,1),p));
+//				currentGrid.placeRail(new Rail(new Position(21,1),new Position(22,1),p));
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 			Player p2 =new HumanPlayer(Color.red, null, 4, "fish", this);
-			currentGrid.placeMarker(new Position(5,6), p2);
-			try {
-				currentGrid.placeRail(new Rail(new Position(10,0),new Position(10,1),p2));
-				currentGrid.placeRail(new Rail(new Position(10,1),new Position(11,1),p2));
-				currentGrid.placeRail(new Rail(new Position(11,1),new Position(11,2),p2));
-				currentGrid.placeRail(new Rail(new Position(11,1),new Position(12,1),p2));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+//			currentGrid.placeMarker(new Position(5,6), p2);
+//			try {
+//				currentGrid.placeRail(new Rail(new Position(10,0),new Position(10,1),p2));
+//				currentGrid.placeRail(new Rail(new Position(10,1),new Position(11,1),p2));
+//				currentGrid.placeRail(new Rail(new Position(11,1),new Position(11,2),p2));
+//				currentGrid.placeRail(new Rail(new Position(11,1),new Position(12,1),p2));
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 			this.setCurrentPlayer(p2);
 		}
 		
@@ -162,14 +167,16 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 //					g.drawLine(i, j, i, j);
 //				}
 //			}
+			g.setColor(currentPlayer.record.getColor());
 			if(firstturn){
 				g.fillOval((int)(scalefactor[0]*(highlightedmarker.y%2==1?highlightedmarker.x+0.5d:highlightedmarker.x))-markersize/2, siz[1]-scalefactor[1]*(highlightedmarker.y+1)-markersize/2, markersize, markersize);
 				
 			}else{
 				g2d.setStroke(new BasicStroke(8,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-				g.setColor(Color.black);
-				g.drawLine((int)(scalefactor[0]*(highlighted.p1.y%2==1?highlighted.p1.x+0.5d:highlighted.p1.x)), siz[1]-scalefactor[1]*(highlighted.p1.y+1), (int)(scalefactor[0]*(highlighted.p2.y%2==1?highlighted.p2.x+0.5d:highlighted.p2.x)), siz[1]-scalefactor[1]*(highlighted.p2.y+1));
+				if(currentGrid.alllegalrails.contains(highlighted))
+					g.drawLine((int)(scalefactor[0]*(highlighted.p1.y%2==1?highlighted.p1.x+0.5d:highlighted.p1.x)), siz[1]-scalefactor[1]*(highlighted.p1.y+1), (int)(scalefactor[0]*(highlighted.p2.y%2==1?highlighted.p2.x+0.5d:highlighted.p2.x)), siz[1]-scalefactor[1]*(highlighted.p2.y+1));
 			}
+			g.setColor(Color.black);
 			for(Rail r: currentGrid.alllegalrails){
 				g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				g.drawLine((int)(scalefactor[0]*((r.p1.y)%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*((r.p2.y)%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*(r.p2.y+1));
@@ -207,8 +214,35 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 				}
 			}
 			tempothercode();
+//			int sizer = 20;
+//			ArrayList<Rail> ne=new ArrayList<Rail>();
+//			try{
+//				ne = currentGrid.immediateneighbors(nearest);
+//			}catch(Exception E){}
+//			for(int i=0;i<ne.size();i++){
+//				sizer = 20-i*2;
+//				Position p =ne.get(i);
+//				g.fillOval((int)(scalefactor[0]*((p.y)%2==1?p.x+0.5d:p.x))-sizer/2, siz[1]-scalefactor[1]*(p.y+1)-sizer/2, sizer, sizer);
+//			}
+//			Position p =nearest;
+//			g.setColor(Color.red);
+//			g.fillOval((int)(scalefactor[0]*((p.y)%2==1?p.x+0.5d:p.x))-sizer/2, siz[1]-scalefactor[1]*(p.y+1)-sizer/2, sizer, sizer);
 			
+			if(currentPlayer.startMarker!=null){
+				try {
+					ok = currentGrid.checkRail2(currentPlayer);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				for(Rail r : ok){
+					g2d.setStroke(new BasicStroke(2));
+					drawposline(r.p1.x,r.p1.y,r.p2.x,r.p2.y,g);
+				}
+			}
 		}
+		ArrayList<Rail> ok =new ArrayList<Rail>();
+		
 		Rail colortoRail(int one,int x, int y){
 			Rail returnrail=null;
 			Position p1,p2;
@@ -299,8 +333,9 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			if(o!=null){
 				try{
 					Marker m = (Marker) o;
-					
+					currentPlayer.startMarker=m;
 					currentGrid.placeMarker(m.p, currentPlayer);
+					firstturn=false;
 				}catch(Exception E){
 					try{
 						Rail r = (Rail) o;
@@ -311,7 +346,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 				}
 			}
 		}
-		boolean firstturn=false;
+		boolean firstturn=true;
 		Marker placedmarker;
 		Rail placedRail;
 		public void mouseClicked(MouseEvent e) {//when mouse is clicked, converts click (x, y) coordinates to grid coordinates, and then uses the grid validrail method to determine if rail is valid, if it is then add to lastClick, else ignore that it was clicked
