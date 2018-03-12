@@ -147,7 +147,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 ////					} catch (Exception e) {}
 //					int c= colorcode(i,j);
 //					if(c==0){
-//						g.setColor(Color.BLACK);
+//						g.setColor(Color.BLACK);//doesn't work for x=0
 //					}
 //					if(c==1){
 //						g.setColor(Color.yellow);
@@ -200,9 +200,11 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			}
 			
 			
-			for(City c : currentGrid.allcities){
+			for(City[] cer : currentGrid.allcities){
+				for(City c : cer){
 				g.setColor(c.color);
 				g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
+				}
 			}
 			tempothercode();
 			
