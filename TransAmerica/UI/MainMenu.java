@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 
@@ -52,9 +53,9 @@ public class MainMenu extends JPanel implements ActionListener{
 			if(readyPlayers>=2){//starts the game, either human or all ai
 				for(PlayerPanel p: playerPanels){
 					if(p.isHuman()){
-						ArrayList<Player> players = 
-						Game game = new Game(,true);
-						add(new MainGameScreen());
+						ArrayList<Player> players = null;//players go here
+						Game game = new Game(players ,true);
+						add(new MainGameScreen(game));
 					}else{
 						//progress to ai
 					}
