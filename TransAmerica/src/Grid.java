@@ -47,7 +47,7 @@ public class Grid {
 	ArrayList<Marker> markers= new ArrayList<Marker>();
 	Grid(){
 		placemountains();
-		allRails = alllegalrails;
+//		allRails = alllegalrails;
 	}
 	boolean RailExists(Position p1, Position p2){
 		try {
@@ -61,7 +61,7 @@ public class Grid {
 		markers.add(new Marker(p,player));
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		if(alllegalrails.contains(rail))
+		if(checkRail(rail,rail.player)&alllegalrails.contains(rail))
 			allRails.add(rail);
 	}
 	City[] getCities() {
@@ -85,6 +85,7 @@ public class Grid {
 		}
 		return false;
 	}
+	
 	public int getBoardwidth() {
 		return boardwidth;
 	}
@@ -152,13 +153,13 @@ public class Grid {
 			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
 		}catch(Exception e){}
 	}
-	boolean validRailAddition(Rail railtocheck, Player currentPlayer){
-		
-		
-		
-		return false;
-	}
+
 	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
+		if(p==null){
+			return true;
+		}else{
+			
+		}
 		return false;
 	}
 }
