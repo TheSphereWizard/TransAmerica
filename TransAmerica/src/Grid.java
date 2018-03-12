@@ -61,7 +61,7 @@ public class Grid {
 		markers.add(new Marker(p,player));
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		if(checkRail(rail,rail.player)&alllegalrails.contains(rail))
+		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player))
 			allRails.add(rail);
 	}
 	City[][] getCities() {
@@ -153,25 +153,23 @@ public class Grid {
 			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
 		}catch(Exception e){}
 	}
-	ArrayList<Position> immediateneighbors(Position p){
-		ArrayList<Position> ne = new ArrayList<Position>();
-		ne.add(new Position(p.x-1,p.y));
-		ne.add(new Position(p.x+1,p.y));
-		ne.add(new Position(p.x,p.y+1));
-		ne.add(new Position(p.x,p.y-1));
+	ArrayList<Rail> immediateneighbors(Position p) throws Exception{
+		ArrayList<Rail> ne = new ArrayList<Rail>();
+		ne.add(new Rail(p,new Position(p.x-1,p.y)));
+		ne.add(new Rail(p,new Position(p.x+1,p.y)));
+		ne.add(new Rail(p,new Position(p.x,p.y+1)));
+		ne.add(new Rail(p,new Position(p.x,p.y-1)));
 		if(p.y%2==1){
-			ne.add(new Position(p.x-1,p.y+1));
-			ne.add(new Position(p.x-1,p.y-1));
+			ne.add(new Rail(p,new Position(p.x+1,p.y+1)));
+			ne.add(new Rail(p,new Position(p.x+1,p.y-1)));
 		}else{
-			ne.add(new Position(p.x+1,p.y+1));
-			ne.add(new Position(p.x+1,p.y-1));
+			ne.add(new Rail(p,new Position(p.x-1,p.y+1)));
+			ne.add(new Rail(p,new Position(p.x-1,p.y-1)));
 		}
 		for(int i=0;i<ne.size();i++){
-			if(ne.get(i).x<0||ne.get(i).x>boardwidth){
-				if(ne.get(i).y<0||ne.get(i).y>boardheight){
-					ne.remove(i);
-					i--;
-				}
+			if(!alllegalrails.contains(ne.get(i))){
+				ne.remove(i);
+				i--;
 			}
 		}
 		return ne;
@@ -181,12 +179,36 @@ public class Grid {
 		if(p==null){
 			return true;
 		}else{
-			for(Position po : immediateneighbors(p.startMarker)){
-				if(RailExists(po,p.startMarker)){
-					
+			try {
+				return checkRail2(p).contains(r);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+	ArrayList<Rail> checkRail2(Player p) throws Exception{//checks whether the passed rail is on the player's network
+		ArrayList<Rail> allvalid;
+		if(p==null){
+			return null;
+		}else{
+			ArrayList<Rail> corners = immediateneighbors(p.startMarker.p);
+			allvalid = new ArrayList<Rail>();
+			for(int i=0;i<corners.size();i++){
+				Rail po=corners.get(i);
+				if(RailExists(po.p1,po.p2)){
+					for(Rail pr : immediateneighbors(po.p2)){
+						if(!corners.contains(pr)){
+							corners.add(pr);
+						}
+					}
+				}else{
+					try {
+						allvalid.add(new Rail(po.p2,po.p1));
+					} catch (Exception e) {System.out.println("here");}
 				}
 			}
 		}
-		return false;
+		return allvalid;
 	}
 }
