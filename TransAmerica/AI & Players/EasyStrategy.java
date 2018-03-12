@@ -8,7 +8,7 @@ public class EasyStrategy extends ComputerPlayer{
 	}
 
 	Rail runTurn(boolean firstRailPlaced, ReadOnlyGrid grid) {
-		ArrayList<Rail> totalRails = scanRails(getRailsAtPos(startMarker),startMarker, grid);//totalRails contains all the rails to be checked
+		ArrayList<Rail> totalRails = scanRails();//getRailsAtPos(startMarker.p),startMarker.p, grid);//totalRails contains all the rails to be checked
 		if(firstRailPlaced){
 			for(Rail r: totalRails){
 				if(r.size==2){

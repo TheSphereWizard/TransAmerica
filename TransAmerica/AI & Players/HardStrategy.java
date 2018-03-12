@@ -9,7 +9,7 @@ public class HardStrategy extends ComputerPlayer {
 	}
 
 	Rail runTurn(boolean firstRailPlaced, ReadOnlyGrid grid) {
-		ArrayList<Rail> totalRails = scanRails(getRailsAtPos(startMarker),startMarker, grid);
+		ArrayList<Rail> totalRails = scanRails();//getRailsAtPos(startMarker.p),startMarker.p, grid);
 		int minDistance = 100;
 		Rail nextRail = null;
 		for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
