@@ -138,12 +138,14 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private int noPlayers = 6;
 		private boolean player = false;
 		private boolean humanPlayer = false;
+		private JTextField name;
 
 		public PlayerPanel(int playerNum) {
-			this.setBackground(colors[playerNum - 1]);
-			this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-			this.add(new JLabel("Player " + playerNum));
-			
+			setBackground(colors[playerNum - 1]);
+			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+			add(new JLabel("Player " + playerNum));
+			name = new JTextField();
+			name.setText("Player " + playerNum);
 			
 			for(int i = 0; i < options.length; i++) {
 				options[i] = new JRadioButton(optionNames[i]);
@@ -151,7 +153,13 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i].setActionCommand(optionNames[i]);
 				options[i].setBackground(colors[playerNum - 1]);
 				group.add(options[i]);
-				this.add(options[i]);
+				
+				if(i == 1) {
+					add(name);
+					name.setVisible(false);
+				}
+				
+				add(options[i]);
 			}
 			options[0].setSelected(true);
 			
@@ -165,14 +173,17 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			if(e.getActionCommand().equals(optionNames[0])) {
 				player = false;
 				humanPlayer = false;
+				name.setVisible(false);
 			} else if(e.getActionCommand().equals(optionNames[1])) {
 				noPlayers --;
 				player = true;
 				humanPlayer = true;
+				name.setVisible(true);
 			} else if(e.getActionCommand().equals(optionNames[2])) {
 				noPlayers --;
 				player = true;
 				humanPlayer = false;
+				name.setVisible(false);
 			}
 			
 		}
@@ -183,6 +194,10 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		
 		public boolean isHuman(){
 			return humanPlayer;
+		}
+		
+		public String getName() {
+			return name.getText();
 		}
 
 	}
