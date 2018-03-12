@@ -14,8 +14,8 @@ Int[] startMarker;
 Int[] getStartMarker();
 } */
 public abstract class Player {//give players playerrecords
-	boolean placedMarkerAlready;
-	Position startMarker;
+	boolean placedMarkerAlready;//this is never set
+	Marker startMarker;
 	MapofUSA map;
 	PlayerRecord record;
 	
@@ -30,10 +30,12 @@ public abstract class Player {//give players playerrecords
 		record.cities = cities;
 	}
 	
-	Position getStartMarker(){
+	Marker getStartMarker(){
 		return startMarker;
 	}
-	
+	Position getStartPosition(){
+		return startMarker.p;
+	}
 	public PlayerRecord getPlayerRecord() {
 		return record;
 	}
