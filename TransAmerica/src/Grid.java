@@ -181,7 +181,11 @@ public class Grid {
 		if(p==null){
 			return true;
 		}else{
-			
+			for(Position po : immediateneighbors(p.startMarker)){
+				if(RailExists(po,p.startMarker)){
+					
+				}
+			}
 		}
 		return false;
 	}
