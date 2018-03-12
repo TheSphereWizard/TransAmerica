@@ -2,42 +2,42 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class Grid {
-	City[] allcities = new City[]{
-			new City("Red1",new Position(0,0),Color.red),
+	City[][] allcities = new City[][]{
+		{new City("Red1",new Position(0,0),Color.red),
 			new City("Red2",new Position(0,1),Color.red),
 			new City("Red3",new Position(0,2),Color.red),
 			new City("Red4",new Position(0,3),Color.red),
 			new City("Red5",new Position(0,4),Color.red),
 			new City("Red6",new Position(0,5),Color.red),
-			new City("Red7",new Position(0,6),Color.red),
-			new City("green1",new Position(1,0),Color.green),
-			new City("green2",new Position(1,1),Color.green),
-			new City("green3",new Position(1,2),Color.green),
-			new City("green4",new Position(1,3),Color.green),
-			new City("green5",new Position(1,4),Color.green),
-			new City("green6",new Position(1,5),Color.green),
-			new City("green7",new Position(1,6),Color.green),
-			new City("blue1",new Position(2,0),Color.blue),
-			new City("blue2",new Position(2,1),Color.blue),
-			new City("blue3",new Position(2,2),Color.blue),
-			new City("blue4",new Position(2,3),Color.blue),
-			new City("blue5",new Position(2,4),Color.blue),
-			new City("blue6",new Position(2,5),Color.blue),
-			new City("blue7",new Position(2,6),Color.blue),
-			new City("orange1",new Position(3,0),Color.orange),
-			new City("orange2",new Position(3,1),Color.orange),
-			new City("orange3",new Position(3,2),Color.orange),
-			new City("orange4",new Position(3,3),Color.orange),
-			new City("orange5",new Position(3,4),Color.orange),
-			new City("orange6",new Position(3,5),Color.orange),
-			new City("orange7",new Position(3,6),Color.orange),
-			new City("yellow1",new Position(4,0),Color.yellow),
-			new City("yellow2",new Position(4,1),Color.yellow),
-			new City("yellow3",new Position(4,2),Color.yellow),
-			new City("yellow4",new Position(4,3),Color.yellow),
-			new City("yellow5",new Position(4,4),Color.yellow),
-			new City("yellow6",new Position(4,5),Color.yellow),
-			new City("yellow7",new Position(4,6),Color.yellow),
+			new City("Red7",new Position(0,6),Color.red),},
+		{new City("green1",new Position(1,0),Color.green),
+				new City("green2",new Position(1,1),Color.green),
+				new City("green3",new Position(1,2),Color.green),
+				new City("green4",new Position(1,3),Color.green),
+				new City("green5",new Position(1,4),Color.green),
+				new City("green6",new Position(1,5),Color.green),
+				new City("green7",new Position(1,6),Color.green),},
+		{new City("blue1",new Position(2,0),Color.blue),
+					new City("blue2",new Position(2,1),Color.blue),
+					new City("blue3",new Position(2,2),Color.blue),
+					new City("blue4",new Position(2,3),Color.blue),
+					new City("blue5",new Position(2,4),Color.blue),
+					new City("blue6",new Position(2,5),Color.blue),
+					new City("blue7",new Position(2,6),Color.blue),},
+		{new City("orange1",new Position(3,0),Color.orange),
+						new City("orange2",new Position(3,1),Color.orange),
+						new City("orange3",new Position(3,2),Color.orange),
+						new City("orange4",new Position(3,3),Color.orange),
+						new City("orange5",new Position(3,4),Color.orange),
+						new City("orange6",new Position(3,5),Color.orange),
+						new City("orange7",new Position(3,6),Color.orange),},
+		{new City("yellow1",new Position(4,0),Color.yellow),
+							new City("yellow2",new Position(4,1),Color.yellow),
+							new City("yellow3",new Position(4,2),Color.yellow),
+							new City("yellow4",new Position(4,3),Color.yellow),
+							new City("yellow5",new Position(4,4),Color.yellow),
+							new City("yellow6",new Position(4,5),Color.yellow),
+							new City("yellow7",new Position(4,6),Color.yellow),},
 	};
 	
 	Rail[][] railGrid;
@@ -64,7 +64,7 @@ public class Grid {
 		if(checkRail(rail,rail.player)&alllegalrails.contains(rail))
 			allRails.add(rail);
 	}
-	City[] getCities() {
+	City[][] getCities() {
 		return allcities;
 	}
 	static boolean legalRail(Position one, Position two){
@@ -153,7 +153,30 @@ public class Grid {
 			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
 		}catch(Exception e){}
 	}
-
+	ArrayList<Position> immediateneighbors(Position p){
+		ArrayList<Position> ne = new ArrayList<Position>();
+		ne.add(new Position(p.x-1,p.y));
+		ne.add(new Position(p.x+1,p.y));
+		ne.add(new Position(p.x,p.y+1));
+		ne.add(new Position(p.x,p.y-1));
+		if(p.y%2==1){
+			ne.add(new Position(p.x-1,p.y+1));
+			ne.add(new Position(p.x-1,p.y-1));
+		}else{
+			ne.add(new Position(p.x+1,p.y+1));
+			ne.add(new Position(p.x+1,p.y-1));
+		}
+		for(int i=0;i<ne.size();i++){
+			if(ne.get(i).x<0||ne.get(i).x>boardwidth){
+				if(ne.get(i).y<0||ne.get(i).y>boardheight){
+					ne.remove(i);
+					i--;
+				}
+			}
+		}
+		return ne;
+	}
+	
 	boolean checkRail(Rail r, Player p){//checks whether the passed rail is on the player's network
 		if(p==null){
 			return true;
