@@ -46,6 +46,15 @@ public class MainMenu extends JPanel implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Start")) {
+			int readyPlayers = 0;
+			for(PlayerPanel p:playerPanels){
+				if(p.isPlayer()){
+					readyPlayers++;
+				}
+			}
+			if(readyPlayers>=2){
+				
+			}
 			
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
