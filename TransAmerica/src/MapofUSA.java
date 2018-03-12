@@ -125,42 +125,43 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		
 		public void paint(Graphics g){//redraws map with new rail networks
 			Graphics2D g2d = (Graphics2D)g;
+			
 			g.translate(mappos[0], mappos[1]);
 			g.drawRect(0, 0, siz[0], siz[1]);
-			
+			g.drawImage(Map,-50, -30, siz[0]+100, siz[1]+60, null);
 //			g.drawString(dist+"", 0, 10);
-//			g.drawString(nearest.x+" "+nearest.y, 0, 30);
-			g.drawString(((siz[1]-mos[1]-1)/scalefactor[1])%2+"", 0, 50);
+			g.drawString(nearest.x+" "+nearest.y, 0, 30);
+//			g.drawString(((siz[1]-mos[1]-1)/scalefactor[1])%2+"", 0, 50);
 //			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			
 //			g.drawLine(x1, y1, x2, y2);
-			drawposline(4,5,6,7,g);
-			g.drawOval(mos[0]-5, mos[1]-5, 10, 10);
+//			drawposline(4,5,6,7,g);
+//			g.drawOval(mos[0]-5, mos[1]-5, 10, 10);
 			
 			
-			for(int i=0;i<siz[0]/3;i++){
-				for(int j=siz[1]/2;j<siz[1];j++){
-//					try {
-//						Rail r= nearestRail(i,j);
-//						
-//					} catch (Exception e) {}
-					int c= colorcode(i,j);
-					if(c==0){
-						g.setColor(Color.BLACK);
-					}
-					if(c==1){
-						g.setColor(Color.yellow);
-					}
-					if(c==2){
-						g.setColor(Color.BLUE);
-					}
-					if(c==3){
-						g.setColor(Color.green);
-					}
-//					g.fillRect(i, j, 2, 2);
-					g.drawLine(i, j, i, j);
-				}
-			}
+//			for(int i=0;i<siz[0]/3;i++){
+//				for(int j=siz[1]/2;j<siz[1];j++){
+////					try {
+////						Rail r= nearestRail(i,j);
+////						
+////					} catch (Exception e) {}
+//					int c= colorcode(i,j);
+//					if(c==0){
+//						g.setColor(Color.BLACK);
+//					}
+//					if(c==1){
+//						g.setColor(Color.yellow);
+//					}
+//					if(c==2){
+//						g.setColor(Color.BLUE);
+//					}
+//					if(c==3){
+//						g.setColor(Color.green);
+//					}
+////					g.fillRect(i, j, 2, 2);
+//					g.drawLine(i, j, i, j);
+//				}
+//			}
 			if(firstturn){
 				g.fillOval((int)(scalefactor[0]*(highlightedmarker.y%2==1?highlightedmarker.x+0.5d:highlightedmarker.x))-markersize/2, siz[1]-scalefactor[1]*(highlightedmarker.y+1)-markersize/2, markersize, markersize);
 				
@@ -194,10 +195,10 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 			}
 			
 			
-//			for(City c : currentGrid.allcities){
-//				g.setColor(c.color);
-//				g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
-//			}
+			for(City c : currentGrid.allcities){
+				g.setColor(c.color);
+				g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
+			}
 			tempothercode();
 			
 		}
@@ -333,6 +334,7 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 						highlighted = nearestRail(x,y);
 				} catch (Exception e1) {}
 			}
+			nearest=nearestPosition2(x,y);
 		}
 		private Position nearestPosition2(int x, int y) {
 			if(((siz[1]-y-scalefactor[1]/2-1)/scalefactor[1])%2==1)

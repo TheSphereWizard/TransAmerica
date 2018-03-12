@@ -61,7 +61,8 @@ public class Grid {
 		markers.add(new Marker(p,player));
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		allRails.add(rail);
+		if(alllegalrails.contains(rail))
+			allRails.add(rail);
 	}
 	City[] getCities() {
 		return allcities;
@@ -100,15 +101,38 @@ public class Grid {
 		return mountains.contains(new Rail(p1,p2))?2:1;
 	}
 	ArrayList<Rail> alllegalrails=setalllegalrails();
+	
 	private ArrayList<Rail> setalllegalrails() {
+		int[][] alllandpositions=new int[][]{
+			{0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,},
+			{0,1,1,1,1,  1,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,},
+			{0,0,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  0,0,0,0,0,  0,0,0,1,1,},
+			{0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,0,0,  0,1,1,1,0,},
+			{0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,1,0,  0,1,1,1,0,},
+			{1,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,0,1,0,0,  1,1,1,0,0,},
+			{0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,0,0,},
+			{0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,0,0,0,},
+			{0,0,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,0,0,},
+			{0,0,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,0,0,0,},
+			{0,0,0,0,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,0,0,0,0,},
+			{0,0,0,0,0,  0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  0,0,0,0,0,},
+			{0,0,0,0,0,  0,0,0,0,1,  1,1,1,1,1,  1,1,1,1,1,  1,0,0,0,0,},
+			{0,0,0,0,0,  0,0,0,0,1,  1,1,1,1,0,  0,0,0,0,1,  1,0,0,0,0,},
+			{0,0,0,0,0,  0,0,0,0,0,  0,1,1,0,0,  0,0,0,0,0,  1,0,0,0,0,},
+		};
+		/*
+		 * banned: 16,10 17,10
+		 */
 		ArrayList<Rail> all = new ArrayList<Rail>();
 		for(int x =0;x<boardwidth;x++){
 			for(int y =0;y<boardheight;y++){
 				for(int x1 =0;x1<boardwidth;x1++){
 					for(int y1 =0;y1<boardheight;y1++){
-						try {
-							all.add(new Rail(new Position(x,y),new Position(x1,y1)));
-						} catch (Exception e) {}
+						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
+							try {
+								all.add(new Rail(new Position(x,y),new Position(x1,y1)));
+							} catch (Exception e) {}
+						}
 					}
 				}
 			}
