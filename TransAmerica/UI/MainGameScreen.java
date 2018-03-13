@@ -51,7 +51,6 @@ public class MainGameScreen extends JPanel {
 		panes[1].add(new MapofUSA(10,10,400,700));
 	}
 	
-<<<<<<< HEAD
 	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
 		ArrayList<Player> players = new ArrayList<Player>();
 		for(int i = 0; i<playerType.size();i++){
@@ -63,10 +62,6 @@ public class MainGameScreen extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g){
-=======
-	
-	public void paintComponents(Graphics g) {
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		
 	}
 }
