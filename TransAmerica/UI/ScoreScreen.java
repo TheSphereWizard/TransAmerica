@@ -21,7 +21,10 @@ public class ScoreScreen extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
 	
 	private class WinningPlayer extends JPanel {
@@ -33,6 +36,14 @@ public class ScoreScreen extends JPanel implements ActionListener {
 		private class Title extends JPanel{
 			private Title(JLabel text){
 				add(text);
+			}
+		}
+		private class WinnerInfo extends JPanel implements ActionListener{
+			private WinnerInfo(JLabel text){
+				add(text);
+			}
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		}
 	}
