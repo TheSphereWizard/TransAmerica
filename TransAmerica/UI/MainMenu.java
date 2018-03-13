@@ -85,6 +85,7 @@ public class MainMenu extends JPanel implements ActionListener{
 					
 				}else{
 					//progress to ai game
+					something.popup
 				}
 			}
 			
