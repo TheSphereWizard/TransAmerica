@@ -85,15 +85,21 @@ public class MainMenu extends JPanel implements ActionListener{
 					
 				}else{
 					//progress to ai game
+					something.popup
 				}
 			}
 			
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
 	}
-
 	
 private class PlayerPanel extends JPanel implements ActionListener{
+	
+	/* Notes for Jack (all you other clowns can ignore this):
+	 * Create textField for name that only shows up when "Human Player" is selected
+	 * Create combo box to house strategies, only make it visible when computer player is selected
+	 * Create method to return strategy selected in the combo box
+	 */
 		
 		private static final long serialVersionUID = 1L;
 		private ButtonGroup group = new ButtonGroup();
@@ -126,6 +132,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				if(i == 1) {
 					add(name);
 					name.setVisible(true);
+					options[0].doClick();
 				}
 			}
 			options[0].setSelected(true);

@@ -61,7 +61,7 @@ public class MainGameScreen extends JPanel {
 			}else if(playerType.get(i).equals("Easy")){
 				players.add(new EasyStrategy(playerColors.get(i),cities,0,playerNames.get(i),map.currentGrid));
 			}else{
-				players.add(new HardStrategy(playerColors.get(i),cities,0,playernames.get(i),map.currentGrid));
+				players.add(new HardStrategy(playerColors.get(i),cities,0,playerNames.get(i),map.currentGrid));
 			}
 		}
 		currentGame = new Game(players,slowMode);

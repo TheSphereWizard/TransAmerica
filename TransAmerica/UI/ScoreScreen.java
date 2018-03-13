@@ -6,22 +6,19 @@ import javax.swing.*;
 public class ScoreScreen extends JPanel implements ActionListener {
 	
 	private JButton continueButton = new JButton("Continue");
-	private Game currentGame;
 	private boolean gameOver = false;
 	
 	ScoreScreen(ArrayList<Player> players, Game game) {
 		continueButton.addActionListener(this);
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		currentGame = game;
-		Player winner = null;
-		for(Player player: players){
-			if(player.getPlayerRecord().getScore()==5&&winner==null)
-				winner = player;
-		}
+		add.(new WinningPlayer(players.get(game.getWinningPlayer())));
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
 	
 	private class WinningPlayer extends JPanel {
@@ -33,6 +30,14 @@ public class ScoreScreen extends JPanel implements ActionListener {
 		private class Title extends JPanel{
 			private Title(JLabel text){
 				add(text);
+			}
+		}
+		private class WinnerInfo extends JPanel implements ActionListener{
+			private WinnerInfo(JLabel text){
+				add(text);
+			}
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		}
 	}
