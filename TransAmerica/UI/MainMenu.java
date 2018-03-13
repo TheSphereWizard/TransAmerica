@@ -91,6 +91,7 @@ public class MainMenu extends JPanel implements ActionListener{
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
 	}
+
 	
 private class PlayerPanel extends JPanel implements ActionListener{
 		
@@ -120,18 +121,20 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i].setBackground(colors[playerNum - 1]);
 				group.add(options[i]);
 				
+				add(options[i]);
+				
 				if(i == 1) {
 					add(name);
-					name.setVisible(false);
+					name.setVisible(true);
 				}
-				
-				add(options[i]);
 			}
 			options[0].setSelected(true);
 			
 			for(int i = 0; i < strategies.length; i ++) {
 				strategies[i] = new JComboBox(stratNames);
 			}
+			
+			
 		}
 		
 		
