@@ -13,10 +13,10 @@ public class MainGameScreen extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 
-	//Map map;
+	Map map;
 	BufferedImage train , eagle;
 
-	//Game currentGame;
+	Game currentGame;
 	private JPanel[] panes = new JPanel[4];
 	private JLabel[] playerLabels = new JLabel[6];
 	private JLabel[] cityLabels = new JLabel[5];
