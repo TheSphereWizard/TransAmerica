@@ -7,7 +7,6 @@ import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener{
 
-
 	private JPanel[] panes = new JPanel[4];
 	private JButton start = new JButton("Play"), exit = new JButton("Exit");
 	private JButton[] buttons = new JButton[] {start, exit};
@@ -73,11 +72,6 @@ public class MainMenu extends JPanel implements ActionListener{
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
 	}
-<<<<<<< HEAD
-	
-
-=======
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	
 private class PlayerPanel extends JPanel implements ActionListener{
 		
