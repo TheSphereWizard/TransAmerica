@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 public class Popup extends JFrame{
 	private JPanel popUps;
+	private JPanel aiPopup;
 	
 	public Popup(){
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
