@@ -126,6 +126,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				if(i == 1) {
 					add(name);
 					name.setVisible(true);
+					options[0].doClick();
 				}
 			}
 			options[0].setSelected(true);
