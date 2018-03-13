@@ -18,7 +18,11 @@ public class ScoreScreen extends JPanel implements ActionListener {
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+		//new MainGameScreen(currentGame);
+=======
 		new MainGameScreen();
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
 	private class WinningPlayer extends JPanel {
 		private WinningPlayer(Player winner){
