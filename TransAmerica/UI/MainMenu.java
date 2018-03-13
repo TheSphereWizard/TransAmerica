@@ -138,12 +138,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				}
 			}
 			options[0].setSelected(true);
-			
-			for(int i = 0; i < strategies.length; i ++) {
-				strategies[i] = new JComboBox(stratNames);
-			}
-			
-			
 		}
 		
 		
