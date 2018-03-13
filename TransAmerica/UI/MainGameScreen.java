@@ -27,7 +27,6 @@ public class MainGameScreen extends JPanel {
 	
 	MainGameScreen() {
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		currentGame = game;
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
 			this.add(panes[i]);
@@ -48,7 +47,7 @@ public class MainGameScreen extends JPanel {
 		}
 		
 		panes[0].add(transAmericaLabel);
-		panes[1].add(new MapOfUSA(currentGame.getMap()));
+		panes[1].add(new MapofUSA(10,10,400,700));
 	}
 	
 	
