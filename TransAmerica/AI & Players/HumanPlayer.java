@@ -9,8 +9,8 @@ String playerName() {}
 test
  */
 public class HumanPlayer extends Player {
-	HumanPlayer(Color c, ArrayList<City> cities, int score, String name, MapofUSA Map){
-		super(c, cities, score, name);
+	HumanPlayer(Color c, ArrayList<City> cities, String name, MapofUSA Map){
+		super(c, cities, name);
 		map = Map;
 	}
 	Object runTurn(boolean firstPlacedRail, ReadOnlyGrid grid) {
