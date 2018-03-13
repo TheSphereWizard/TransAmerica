@@ -21,10 +21,7 @@ public class ScoreScreen extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
 	
 	private class WinningPlayer extends JPanel {
