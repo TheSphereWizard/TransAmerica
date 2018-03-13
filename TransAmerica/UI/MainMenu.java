@@ -86,7 +86,7 @@ public class MainMenu extends JPanel implements ActionListener{
 				}else{
 					//progress to ai game
 					something.popup
-					ComputerStrategyScreen screen = new ComputerStrategyScreen();
+					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
 					add(screen);
 				}
 			}
