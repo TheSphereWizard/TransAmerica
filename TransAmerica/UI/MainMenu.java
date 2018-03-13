@@ -64,15 +64,38 @@ public class MainMenu extends JPanel implements ActionListener{
 					}
 				}
 				if(humanGame){
-					add(new MainGameScreen());
+					ArrayList<Player> players = new ArrayList<Player>();//need to actually get the players
+					ArrayList<Color> playerColors = new ArrayList<Color>();
+					ArrayList<String> playerNames = new ArrayList<String>();
+					ArrayList<String> playerType = new ArrayList<String>();
+					for(PlayerPanel p : validPanels){
+						if(p.isHuman()){
+							playerColors.add(p.getBackground());
+							playerNames.add(p.getName());
+							playerType.add("Human");
+						}else{
+							playerColors.add(p.getBackground());
+							playerNames.add(p.getName());
+							playerType.add(p.getDifficulty());
+						}
+					}
+					MainGameScreen screen = new MainGameScreen();
+					add(screen);
+					screen.generate(playerColors, playerNames, playerType);
+					
 				}else{
 					//progress to ai game
+					something.popup
 				}
 			}
 			
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	
 private class PlayerPanel extends JPanel implements ActionListener{
 		
@@ -102,18 +125,21 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i].setBackground(colors[playerNum - 1]);
 				group.add(options[i]);
 				
+				add(options[i]);
+				
 				if(i == 1) {
 					add(name);
-					name.setVisible(false);
+					name.setVisible(true);
+					options[0].doClick();
 				}
-				
-				add(options[i]);
 			}
 			options[0].setSelected(true);
 			
 			for(int i = 0; i < strategies.length; i ++) {
 				strategies[i] = new JComboBox(stratNames);
 			}
+			
+			
 		}
 		
 		

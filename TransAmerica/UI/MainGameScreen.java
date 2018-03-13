@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -12,10 +13,10 @@ public class MainGameScreen extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 
-	//Map map;
+	MapofUSA map;
 	BufferedImage train , eagle;
 
-	//Game currentGame;
+	Game currentGame;
 	private JPanel[] panes = new JPanel[4];
 	private JLabel[] playerLabels = new JLabel[6];
 	private JLabel[] cityLabels = new JLabel[5];
@@ -50,8 +51,26 @@ public class MainGameScreen extends JPanel {
 		panes[1].add(new MapofUSA(10,10,400,700));
 	}
 	
-	
-	public void paintComponents(Graphics g) {
+	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
+		ArrayList<Player> players = new ArrayList<Player>();
+		boolean slowMode = false;
+		for(int i = 0; i<playerType.size();i++){
+			if(playerType.get(i).equals("Human")){
+				players.add(new HumanPlayer(playerColors.get(i),cities,0,playerNames.get(i),map));
+				slowMode = true;
+			}else if(playerType.get(i).equals("Easy")){
+				players.add(new EasyStrategy(playerColors.get(i),cities,0,playerNames.get(i),map.currentGrid));
+			}else{
+				players.add(new HardStrategy(playerColors.get(i),cities,0,playerNames.get(i),map.currentGrid));
+			}
+		}
+		currentGame = new Game(players,slowMode);
 		
 	}
+	
+	public void paintComponent(Graphics g){
+		
+	}
+	
+	
 }
