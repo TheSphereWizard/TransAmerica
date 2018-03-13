@@ -11,10 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 import NOTHING.*;
 
-public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionListener{
+public class MapofUSA extends JPanel implements MouseListener, MouseMotionListener{
 		/*
 		rounding error on left side of screen
 		make rails not be placed at all if invalid, 
@@ -30,11 +31,11 @@ public class MapofUSA extends BrianPanel implements MouseListener, MouseMotionLi
 		private int[] mappos;
 		
 		static ArrayList<City> allCities;
-		public static void main(String[] red){
-//			System.out.println(oddmod(16,2));
-			MapofUSA map = new MapofUSA(0,100,1200,600);
-			Screen.makeScreen(map,10);
-		}
+//		public static void main(String[] red){
+////			System.out.println(oddmod(16,2));
+//			MapofUSA map = new MapofUSA(0,100,1200,600);
+//			Screen.makeScreen(map,10);
+//		}
 		private void runtestcode() {
 			setCurrentGrid(new Grid());
 //			Player p =new HumanPlayer(Color.blue, null, 4, "fish", this);
