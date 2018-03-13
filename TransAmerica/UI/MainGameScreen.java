@@ -51,14 +51,20 @@ public class MainGameScreen extends JPanel {
 		panes[1].add(new MapofUSA(10,10,400,700));
 	}
 	
-<<<<<<< HEAD
 	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
 		ArrayList<Player> players = new ArrayList<Player>();
+		boolean slowMode = false;
 		for(int i = 0; i<playerType.size();i++){
 			if(playerType.get(i).equals("Human")){
 				players.add(new HumanPlayer(playerColors.get(i),cities,0,playerNames.get(i),map));
-			}else
+				slowMode = true;
+			}else if(playerType.get(i).equals("Easy")){
+				players.add(new EasyStrategy(playerColors.get(i),cities,0,playerNames.get(i),map.currentGrid));
+			}else{
+				players.add(new HardStrategy(playerColors.get(i),cities,0,playernames.get(i),map.currentGrid));
+			}
 		}
+		currentGame = new Game(players,slowMode);
 		
 	}
 	
