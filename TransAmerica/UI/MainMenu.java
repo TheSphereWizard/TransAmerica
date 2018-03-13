@@ -92,12 +92,14 @@ public class MainMenu extends JPanel implements ActionListener{
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	
 private class PlayerPanel extends JPanel implements ActionListener{
+	
+	/* Notes for Jack (all you other clowns can ignore this):
+	 * Create textField for name that only shows up when "Human Player" is selected
+	 * Create combo box to house strategies, only make it visible when computer player is selected
+	 * Create method to return strategy selected in the combo box
+	 */
 		
 		private static final long serialVersionUID = 1L;
 		private ButtonGroup group = new ButtonGroup();
