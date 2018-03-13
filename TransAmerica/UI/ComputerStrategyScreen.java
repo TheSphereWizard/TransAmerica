@@ -60,7 +60,10 @@ public class ComputerStrategyScreen extends JPanel{
 				add(new JLabel(""));
 			}
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("test");
+				TransAmerica.transamerica.setVisible(false);
+				//TransAmerica.transamerica.remove(0);
+				TransAmerica.transamerica.setContentPane(new MainMenu());
+				TransAmerica.transamerica.setVisible(true);
 			}
 		}
 	}
