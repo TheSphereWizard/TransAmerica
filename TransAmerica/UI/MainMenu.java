@@ -85,9 +85,9 @@ public class MainMenu extends JPanel implements ActionListener{
 					
 				}else{
 					//progress to ai game
-					something.popup
-					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
-					add(screen);
+//					something.popup;
+//					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
+//					add(screen);
 				}
 			}
 			
@@ -108,8 +108,9 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private Color[] colors = new Color[] {new Color(255, 40, 40), Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
 		private String[] optionNames = {"None", "Human Player", "Computer"};
 		private JRadioButton[] options = new JRadioButton[3];
-		private JComboBox<String> strategy = new JComboBox<String>(new String[]{"Easy", "Hard"});
 		private String[] stratNames = {"Easy" , "Hard"};
+		private JComboBox<String> strategy = new JComboBox<String>(stratNames);
+		
 		private int noPlayers = 6;
 		private boolean player = false;
 		private boolean humanPlayer = false;
@@ -118,6 +119,10 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		public void paint(Graphics g){
 			super.paint(g);
 			g.drawRect(-10, -10, 20, 20);
+		}
+		public String getDifficulty() {
+			//Should return selected strategy Name
+			return null;
 		}
 		public PlayerPanel(int playerNum) {
 			
@@ -143,15 +148,12 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				}
 			}
 			options[0].setSelected(true);
-<<<<<<< HEAD
-=======
 			
-			for(int i = 0; i < strategies.length; i ++) {
-				strategies[i] = new JComboBox(stratNames);
-			}
+//			for(int i = 0; i < strategies.length; i ++) {
+//				strategies[i] = new JComboBox(stratNames);
+//			}
 			
 			this.setPreferredSize(new Dimension(400,200));;
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		}
 		
 		
