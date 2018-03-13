@@ -4,9 +4,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 public class ScoreScreen extends JPanel implements ActionListener {
+	
 	private JButton continueButton = new JButton("Continue");
 	private Game currentGame;
 	private boolean gameOver = false;
+	
 	ScoreScreen(ArrayList<Player> players, Game game) {
 		continueButton.addActionListener(this);
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -17,13 +19,11 @@ public class ScoreScreen extends JPanel implements ActionListener {
 				winner = player;
 		}
 	}
+	
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-		//new MainGameScreen(currentGame);
-=======
-		new MainGameScreen();
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+		
 	}
+	
 	private class WinningPlayer extends JPanel {
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
