@@ -106,7 +106,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
 		private String[] optionNames = {"None", "Human Player", "Computer"};
 		private JRadioButton[] options = new JRadioButton[3];
-		private JComboBox[] strategies = new JComboBox[2];
+		private JComboBox<String> strategy = new JComboBox<String>(new String[]{"Easy", "Hard"});
 		private String[] stratNames = {"Easy" , "Hard"};
 		private int noPlayers = 6;
 		private boolean player = false;
@@ -174,6 +174,10 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		
 		public String getName() {
 			return name.getText();
+		}
+		
+		public String getStrategy() {
+			return (String)strategy.getSelectedItem();
 		}
 
 	}
