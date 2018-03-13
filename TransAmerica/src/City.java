@@ -11,7 +11,18 @@ public class City {
 		this.p = pos;
 		this.color = color;
 	}
-	
+	public boolean equals(Object compare){
+		City compare2;
+		try{
+			compare2=(City)compare;
+		}catch(Exception e){
+			return false;
+		}
+		if(name.equals(compare2.name)){
+			return true;
+		}
+		return false;
+	}
 	String getName(){
 		return name;
 	}
