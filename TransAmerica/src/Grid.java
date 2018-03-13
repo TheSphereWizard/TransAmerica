@@ -187,6 +187,26 @@ public class Grid {
 		}
 		return true;
 	}
+	ArrayList<ArrayList<City>> setofgoalCities(int numberofplayers){
+		ArrayList<ArrayList<City>> yo = new ArrayList<ArrayList<City>>();
+		for(int i=0;i<numberofplayers;i++){
+			ArrayList<City> bo = new ArrayList<City>();
+			yo.add(bo);
+			for(int j=0;j<5;j++){
+				int rand = (int)(Math.random()*allcities[j].length);
+				boolean ok = true;
+				for(ArrayList<City> c :yo){
+					if(c.get(j).equals(allcities[j][rand])){
+						ok=false;
+					}
+				}
+				if(ok){
+					bo.add(allcities[j][rand]);
+				}
+			}
+		}		
+		return yo;
+	}
 	ArrayList<Rail> checkRail2(Player p) throws Exception{//checks whether the passed rail is on the player's network
 		ArrayList<Rail> allvalid;
 		if(p==null){
