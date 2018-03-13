@@ -13,7 +13,7 @@ public class MainGameScreen extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 
-	Map map;
+	MapofUSA map;
 	BufferedImage train , eagle;
 
 	Game currentGame;
