@@ -1,31 +1,39 @@
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 public class ScoreScreen extends JPanel implements ActionListener {
-	private JPanel contentPane = new JPanel();
-	private PlayerScorePanel[] playerScorePanels = new PlayerScorePanel[6];
 	private JButton continueButton = new JButton("Continue");
 	private Game currentGame;
 	private boolean gameOver = false;
-	
 	ScoreScreen(ArrayList<Player> players, Game game) {
 		continueButton.addActionListener(this);
-		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.PAGE_AXIS));
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		currentGame = game;
+		Player winner = null;
 		for(Player player: players){
-			
+			if(player.getPlayerRecord().getScore()==5&&winner==null)
+				winner = player;
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(continueButton)) {
-			MainGameScreen a = new MainGameScreen(currentGame);
-		} else {
-			
-		}
+<<<<<<< HEAD
+		//new MainGameScreen(currentGame);
+=======
+		new MainGameScreen();
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
-	
-	private class PlayerScorePanel extends JPanel {
-
+	private class WinningPlayer extends JPanel {
+		private WinningPlayer(Player winner){
+			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
+			setLayout(new GridLayout(2,0,0,0));
+			add(new Title(win));
+		}
+		private class Title extends JPanel{
+			private Title(JLabel text){
+				add(text);
+			}
+		}
 	}
 }
