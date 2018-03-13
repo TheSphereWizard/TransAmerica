@@ -73,11 +73,7 @@ public class MainMenu extends JPanel implements ActionListener{
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
 	}
-<<<<<<< HEAD
-	
 
-=======
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	
 private class PlayerPanel extends JPanel implements ActionListener{
 		
