@@ -7,6 +7,7 @@ import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener{
 
+
 	private JPanel[] panes = new JPanel[4];
 	private JButton start = new JButton("Play"), exit = new JButton("Exit");
 	private JButton[] buttons = new JButton[] {start, exit};
@@ -84,12 +85,17 @@ public class MainMenu extends JPanel implements ActionListener{
 					
 				}else{
 					//progress to ai game
+					something.popup
 				}
 			}
 			
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	
 private class PlayerPanel extends JPanel implements ActionListener{
 		
@@ -119,18 +125,21 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i].setBackground(colors[playerNum - 1]);
 				group.add(options[i]);
 				
+				add(options[i]);
+				
 				if(i == 1) {
 					add(name);
-					name.setVisible(false);
+					name.setVisible(true);
+					options[0].doClick();
 				}
-				
-				add(options[i]);
 			}
 			options[0].setSelected(true);
 			
 			for(int i = 0; i < strategies.length; i ++) {
 				strategies[i] = new JComboBox(stratNames);
 			}
+			
+			
 		}
 		
 		
