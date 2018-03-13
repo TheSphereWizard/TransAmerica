@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class HardStrategy extends ComputerPlayer {
 	int[] allScores;
-	public HardStrategy(Color c, ArrayList<City> cities, int score, int[] allScores, String name) {
-		super(c, cities, score, name);
+	public HardStrategy(Color c, ArrayList<City> cities, int[] allScores, String name) {
+		super(c, cities, name);
 		this.allScores = allScores;
 	}
 

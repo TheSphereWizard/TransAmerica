@@ -19,9 +19,9 @@ public abstract class Player {//give players playerrecords
 	MapofUSA map;
 	PlayerRecord record;
 	
-	Player(Color c, ArrayList<City> cities, int score,String n){
+	Player(Color c, ArrayList<City> cities,String n){
 		placedMarkerAlready = false;
-		record = new PlayerRecord(c, cities, score, n);
+		record = new PlayerRecord(c, cities, n);
 	}
 	//This needs to be an object because on first turn returns marker
 	abstract Object runTurn(boolean firstRailPlaced, ReadOnlyGrid grid);
@@ -51,10 +51,10 @@ public abstract class Player {//give players playerrecords
 		private int score;
 		private String name;
 		
-		public PlayerRecord(Color color, ArrayList<City> cities, int score, String name) {
+		public PlayerRecord(Color color, ArrayList<City> cities, String name) {
 			this.color = color;
 			this.cities = cities;
-			this.score = score;
+			this.score = 12;
 			this.name = name;
 		}
 		

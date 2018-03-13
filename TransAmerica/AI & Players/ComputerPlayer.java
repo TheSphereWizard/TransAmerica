@@ -7,8 +7,8 @@ public abstract class ComputerPlayer extends Player {
 	//Pass in an array of scores, a grid, and a hand to computer players
 	private ReadOnlyGrid grid;
 	
-	public ComputerPlayer(Color c, ArrayList<City> cities, int score, String name) {
-		super(c, cities, score, name);
+	public ComputerPlayer(Color c, ArrayList<City> cities, String name) {
+		super(c, cities, name);
 	}
 
 	abstract Rail runTurn(boolean firstRailPlaced, ReadOnlyGrid grid);
