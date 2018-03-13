@@ -24,8 +24,7 @@ public class MainGameScreen extends JPanel{
 	private JPanel[] panes = new JPanel[4];
 	
 	
-	public MainGameScreen(Game game){
-		currentGame = game;
+	public MainGameScreen(){
 	}
 	
 	public void paintComponent(Graphics g){
