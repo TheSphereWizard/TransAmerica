@@ -2,7 +2,7 @@ import javax.swing.JFrame;
 public class TransAmerica extends JFrame{
 	public TransAmerica() {
 		setTitle("TransAmerica");
-		this.add(new MainMenu());
+		add(new MainMenu());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
