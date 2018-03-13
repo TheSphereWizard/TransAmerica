@@ -115,7 +115,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				strategies[i] = new JComboBox(stratNames);
 			}
 			
-			name.setVisible(false);
+			
 		}
 		
 		
