@@ -18,11 +18,6 @@ public class ScoreScreen extends JPanel implements ActionListener {
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-		//new MainGameScreen(currentGame);
-=======
-		new MainGameScreen();
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	}
 	private class WinningPlayer extends JPanel {
 		private WinningPlayer(Player winner){
@@ -33,6 +28,14 @@ public class ScoreScreen extends JPanel implements ActionListener {
 		private class Title extends JPanel{
 			private Title(JLabel text){
 				add(text);
+			}
+		}
+		private class WinnerInfo extends JPanel implements ActionListener{
+			private WinnerInfo(JLabel text){
+				add(text);
+			}
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		}
 	}
