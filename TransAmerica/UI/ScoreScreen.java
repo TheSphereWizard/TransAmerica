@@ -4,17 +4,24 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 public class ScoreScreen extends JPanel{
-	
-	private JButton continueButton = new JButton("Continue");
 	private boolean gameOver = false;
-	
+	private Game game;
 	ScoreScreen(ArrayList<Player> players, Game game) {
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setLayout(new GridLayout(2,1,0,0));
+		this.game = game;
 		add(new WinningPlayer(players.get(game.getWinningPlayer())));
+	}	
+	private class Losers extends JPanel{
+		private Losers(ArrayList<Player> players){
+			for(int i = 0; i < players.size(); i++)
+				if(players.get(i).equals(players.get(game.getWinningPlayer())))
+					System.out.println();
+		}
 	}
-	
 	private class Loser extends JPanel{
-		
+		private Loser(){
+			
+		}
 	}
 	
 	private class WinningPlayer extends JPanel {
