@@ -235,6 +235,7 @@ public class Grid {
 		return allvalid;
 	}
 	int[] pointslostatendofround(){
-		
+		//throwexception if one is not 0, 
+		//idk return sum of smallest distances from any rail on players network each missing city?
 	}
 }
