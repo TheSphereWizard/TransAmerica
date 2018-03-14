@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.*;
 import javax.swing.*;
 
@@ -115,6 +117,13 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
+		private Timer T=new Timer();
+		
+		public void paint(Graphics g){
+			super.paint(g);
+			g.drawRect(-10, -10, 20, 20);
+		}
+
 		int playernum;
 		public String getDifficulty() {
 			//Should return selected strategy Name
@@ -146,8 +155,10 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				
 				if(i == 1) {
 					add(name);
-					name.setVisible(true);
-					options[0].doClick();
+					name.setVisible(false);
+				} else if(i == 2) {
+					add(strategy);
+					strategy.setVisible(false);
 				}
 			}
 			options[0].setSelected(true);
@@ -155,6 +166,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
+			
 			this.setPreferredSize(new Dimension(400,200));
 		}
 		
@@ -164,18 +176,22 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				player = false;
 				humanPlayer = false;
 				name.setVisible(false);
+				strategy.setVisible(false);
 			} else if(e.getActionCommand().equals(optionNames[1])) {
 				noPlayers --;
 				player = true;
 				humanPlayer = true;
 				name.setVisible(true);
+				strategy.setVisible(false);
 			} else if(e.getActionCommand().equals(optionNames[2])) {
 				noPlayers --;
 				player = true;
 				humanPlayer = false;
 				name.setVisible(false);
+				strategy.setVisible(true);
 			}
-			
+			TransAmerica.transamerica.setSize(0, 0);
+			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		}
 		
 		public boolean isPlayer() {
