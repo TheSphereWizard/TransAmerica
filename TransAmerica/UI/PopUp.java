@@ -10,6 +10,7 @@ public class PopUp extends JPanel{
 	private JLabel question;
 	private JTextField gameNumber;
 	private JButton fast, slow;
+	private int numberOfGivenGames;
 	
 	public PopUp(){
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
@@ -21,8 +22,9 @@ public class PopUp extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				String numOfGames = gameNumber.getText();
+				int number = Integer.parseInt(numOfGames);
+				numberOfGivenGames = number;
 			}
 			
 		});
@@ -54,5 +56,9 @@ public class PopUp extends JPanel{
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+	
+	public int numberOfGamesToBeRun(){
+		return numberOfGivenGames;
 	}
 }

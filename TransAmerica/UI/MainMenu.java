@@ -50,7 +50,7 @@ public class MainMenu extends JPanel implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("Start")) {
+		if(e.getActionCommand().equals("Play")) {
 			int readyPlayers = 0;
 			for(PlayerPanel p:playerPanels){
 				if(p.isPlayer()){
@@ -83,13 +83,22 @@ public class MainMenu extends JPanel implements ActionListener{
 						}else{
 							playerColors.add(p.getBackground());
 							playerNames.add(p.getName());
-							playerType.add(p.getDifficulty());
+							playerType.add(p.getStrategy());
 						}
 					}
 					MainGameScreen screen = new MainGameScreen();
 					add(screen);
+					/*for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerColors.get(i));
+					}
+					for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerNames.get(i));
+					}
+					for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerType.get(i));
+					}*/
 					screen.generate(playerColors, playerNames, playerType);
-					
+					System.out.println("Reached!");
 				}else{
 					//progress to ai game
 //					something.popup;
@@ -123,8 +132,19 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean humanPlayer = false;
 		private JTextField name;
 		private Timer T=new Timer();
+<<<<<<< HEAD
+=======
+		boolean firstAction = true;
+		
+		public void paint(Graphics g){
+			super.paint(g);
+			g.drawRect(-10, -10, 20, 20);
+		}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
 		int playernum;
+
+		
 		public String getDifficulty() {
 			//Should return selected strategy Name
 			return null;
@@ -175,9 +195,11 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				if(i == 1) {
 					add(name);
 					name.setVisible(false);
+					name.setBounds(70, 120, 60, 25);
 				} else if(i == 2) {
 					add(strategy);
 					strategy.setVisible(false);
+					strategy.setBounds(70, 170, 60, 25);
 				}
 			}
 			options[0].setSelected(true);
@@ -187,6 +209,10 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			}
 			
 			this.setPreferredSize(new Dimension(400,200));
+			
+			if(playerNum == 1 || playerNum == 2) {
+				options[1].setSelected(true);;
+			}
 		}
 		
 		
@@ -209,8 +235,11 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(true);
 			}
-			TransAmerica.transamerica.setSize(0, 0);
-			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			if(firstAction) {
+				TransAmerica.transamerica.setSize(1600, 899);
+				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				firstAction = false;
+			}
 		}
 		
 		public boolean isPlayer() {

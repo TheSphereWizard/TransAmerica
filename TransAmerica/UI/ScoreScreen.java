@@ -1,4 +1,3 @@
-//ORDER IN WHICH CITIES WERE CONNECTED
 //POINTS LOST
 //RAILS MISSING
 import java.awt.Color;
@@ -14,7 +13,10 @@ public class ScoreScreen extends JPanel{
 		this.game = game;
 		add(new WinningPlayer(players.get(game.getWinningPlayer())));
 		add(new Losers(players));
-	}	
+	}
+	/**
+	 * Displays the game losers
+	 */
 	private class Losers extends JPanel{
 		private Losers(ArrayList<Player> players){
 			for(int i = 0; i < players.size(); i++)
@@ -25,18 +27,32 @@ public class ScoreScreen extends JPanel{
 	private class Loser extends JPanel{
 		private Loser(Player player){
 			setBackground(player.getPlayerRecord().getColor());
-			JLabel name = new JLabel(player.getPlayerRecord().playerName()), unconnected, railsMissing, pointsLost, score;
+			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
+					unconnected = new JLabel(unconnectedCities(player)), 
+					railsMissing = new JLabel(player.getPlayerRecord().), pointsLost, score;
 			add(name);
-			
+			add(unconnected);
+			add(railsMissing);
+		}
+		private String unconnectedCities(Player player){
+			String content = "";
+			for(int i = 0; i < player.getPlayerRecord().getCities().size(); i++)
+				for(int j = 0; j < player.getPlayerRecord().getCitiesReached().size(); i++)
+					if(player.getPlayerRecord().getCities().get(i).equals(player.getPlayerRecord().getCitiesReached().get(j)))
+						content = content + player.getPlayerRecord().getCities().get(i).getName();
+						return content;
 		}
 	}
-	
+	/**
+	 * Displays the winning player, the order of the cities they connected,
+	 * and the continue button
+	 */
 	private class WinningPlayer extends JPanel {
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
 			String names = "";
 			for(int i = 0; i < 5; i++)
-				names = names+winner.getPlayerRecord().getCities().get(i).getName();
+				names = names+winner.getPlayerRecord().getCitiesReached().get(i).getName();
 			setLayout(new GridLayout(2,0,0,0));
 			add(new Title(win, winner.getPlayerRecord().getColor()));
 			add(new WinnerInfo(new JLabel(names)));
@@ -55,7 +71,7 @@ public class ScoreScreen extends JPanel{
 				add(exit);
 			}
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		}
 	}

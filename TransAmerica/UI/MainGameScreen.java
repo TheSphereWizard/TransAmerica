@@ -30,18 +30,19 @@ public class MainGameScreen extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
+			panes[i] = new JPanel();
 			this.add(panes[i]);
 		}
 		
 		for(int i = 0; i < playerLabels.length; i++) {
-			playerLabels[i].setText("Player " + i+1);
+			playerLabels[i] = new JLabel("Player " + i+1);
 			playerLabels[i].setBackground(playerColors[i]);
 			panes[2].setLayout(new GridLayout(1,6));
 			panes[2].add(playerLabels[i]);
 		}
 		
 		for(int i = 0; i < cityLabels.length; i++) {
-			cityLabels[i].setText("City " + i+1);
+			cityLabels[i] = new JLabel("City " + i+1);
 			cityLabels[i].setBackground(cityColors[i]);
 			panes[3].setLayout(new GridLayout(1,5));
 			panes[3].add(cityLabels[i]);
@@ -76,6 +77,7 @@ public class MainGameScreen extends JPanel {
 	public void paintComponent(Graphics g){
 		
 	}
+	
 	
 	
 }
