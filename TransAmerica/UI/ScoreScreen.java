@@ -10,16 +10,17 @@ public class ScoreScreen extends JPanel{
 		setLayout(new GridLayout(2,1,0,0));
 		this.game = game;
 		add(new WinningPlayer(players.get(game.getWinningPlayer())));
+		add(new Losers(players));
 	}	
 	private class Losers extends JPanel{
 		private Losers(ArrayList<Player> players){
 			for(int i = 0; i < players.size(); i++)
-				if(players.get(i).equals(players.get(game.getWinningPlayer())))
-					System.out.println();
+				if(!players.get(i).equals(players.get(game.getWinningPlayer())))
+					add(new Loser(players.get(i)));
 		}
 	}
 	private class Loser extends JPanel{
-		private Loser(){
+		private Loser(Player player){
 			
 		}
 	}
