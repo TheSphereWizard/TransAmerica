@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.*;
 import javax.swing.*;
 
@@ -76,13 +78,13 @@ public class MainMenu extends JPanel implements ActionListener{
 						}else{
 							playerColors.add(p.getBackground());
 							playerNames.add(p.getName());
-							playerType.add(p.getDifficulty());
+							playerType.add(p.getStrategy());
 						}
 					}
 					MainGameScreen screen = new MainGameScreen();
 					add(screen);
 					screen.generate(playerColors, playerNames, playerType);
-					
+					System.out.println("Reached!");
 				}else{
 					//progress to ai game
 //					something.popup;
@@ -115,7 +117,16 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
+		private Timer T=new Timer();
+		
+		public void paint(Graphics g){
+			super.paint(g);
+			g.drawRect(-10, -10, 20, 20);
+		}
+
 		int playernum;
+
+		
 		public String getDifficulty() {
 			//Should return selected strategy Name
 			return null;
@@ -127,7 +138,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			setLayout(null);
 			JLabel playernumber = new JLabel("Player " + playerNum);
 			playernumber.setFont(new Font("Arial",Font.BOLD,24));
-			playernumber.setLocation(0,0);
+			playernumber.setLocation(50,0);
 			playernumber.setSize(100, 50);
 			add(playernumber);
 			name = new JTextField();
@@ -138,14 +149,20 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i].addActionListener(this);
 				options[i].setActionCommand(optionNames[i]);
 				options[i].setBackground(colors[playerNum - 1]);
+				options[i].setLocation(50,50*(i+1));
+				options[i].setSize(150, 20);
 				group.add(options[i]);
 				
 				add(options[i]);
 				
 				if(i == 1) {
 					add(name);
-					name.setVisible(true);
-					options[0].doClick();
+					name.setVisible(false);
+					name.setBounds(70, 120, 60, 25);
+				} else if(i == 2) {
+					add(strategy);
+					strategy.setVisible(false);
+					strategy.setBounds(70, 170, 60, 25);
 				}
 			}
 			options[0].setSelected(true);
@@ -153,6 +170,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
+			
 			this.setPreferredSize(new Dimension(400,200));
 		}
 		
@@ -162,18 +180,22 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				player = false;
 				humanPlayer = false;
 				name.setVisible(false);
+				strategy.setVisible(false);
 			} else if(e.getActionCommand().equals(optionNames[1])) {
 				noPlayers --;
 				player = true;
 				humanPlayer = true;
 				name.setVisible(true);
+				strategy.setVisible(false);
 			} else if(e.getActionCommand().equals(optionNames[2])) {
 				noPlayers --;
 				player = true;
 				humanPlayer = false;
 				name.setVisible(false);
+				strategy.setVisible(true);
 			}
-			
+			TransAmerica.transamerica.setSize(0, 0);
+			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		}
 		
 		public boolean isPlayer() {
