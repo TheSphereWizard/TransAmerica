@@ -3,21 +3,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
-public class ScoreScreen extends JPanel implements ActionListener {
+public class ScoreScreen extends JPanel{
 	
 	private JButton continueButton = new JButton("Continue");
 	private boolean gameOver = false;
 	
 	ScoreScreen(ArrayList<Player> players, Game game) {
-		continueButton.addActionListener(this);
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		add.(new WinningPlayer(players.get(game.getWinningPlayer())));
+		add(new WinningPlayer(players.get(game.getWinningPlayer())));
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-
+	private class Loser extends JPanel{
+		
 	}
-
 	
 	private class WinningPlayer extends JPanel {
 		private WinningPlayer(Player winner){
@@ -32,7 +30,10 @@ public class ScoreScreen extends JPanel implements ActionListener {
 		}
 		private class WinnerInfo extends JPanel implements ActionListener{
 			private WinnerInfo(JLabel text){
+				JButton exit = new JButton("Continue");
+				exit.addActionListener(this);
 				add(text);
+				add(exit);
 			}
 			public void actionPerformed(ActionEvent e) {
 				
