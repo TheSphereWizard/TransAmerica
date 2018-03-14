@@ -21,7 +21,7 @@ public class PopUp extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				String numOfGames = 
 				
 			}
 			
