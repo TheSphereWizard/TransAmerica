@@ -170,11 +170,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			}
 			
 			this.setPreferredSize(new Dimension(400,200));
-<<<<<<< HEAD
-			
-			this.setPreferredSize(new Dimension(400,200));
-=======
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		}
 		
 		
