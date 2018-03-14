@@ -234,4 +234,7 @@ public class Grid {
 		}
 		return allvalid;
 	}
+	int[] pointslostatendofround(){
+		
+	}
 }
