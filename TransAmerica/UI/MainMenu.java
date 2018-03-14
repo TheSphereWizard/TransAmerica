@@ -117,16 +117,14 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
-<<<<<<< HEAD
 		private Timer T=new Timer();
 		
 		public void paint(Graphics g){
 			super.paint(g);
 			g.drawRect(-10, -10, 20, 20);
 		}
-=======
+
 		int playernum;
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		public String getDifficulty() {
 			//Should return selected strategy Name
 			return null;
@@ -166,13 +164,8 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
-<<<<<<< HEAD
 			
 			this.setPreferredSize(new Dimension(400,200));
-			
-=======
-			this.setPreferredSize(new Dimension(400,200));
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		}
 		
 		
