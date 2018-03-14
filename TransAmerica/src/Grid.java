@@ -63,6 +63,9 @@ public class Grid {
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
 		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player))
 			allRails.add(rail);
+		//IF CITY IS CONNECTED TO THIS RAIL THEN CHANGE ALL PLAYERS CONNECTED TO THIS CITY TO REALIZE THEY ARE CONNECTED
+		
+		//MAKE A METHOD THAT RETURNS AN ARRAY/LIST OF OBJECTS THAT ARE CONNECTED TO A POSITION OF aLL TYPES THAT CAN BE ITERATED OVER BY CLASS
 	}
 	City[][] getCities() {
 		return allcities;
@@ -230,5 +233,8 @@ public class Grid {
 			}
 		}
 		return allvalid;
+	}
+	int[] pointslostatendofround(){
+		
 	}
 }

@@ -1,10 +1,13 @@
+//ORDER IN WHICH CITIES WERE CONNECTED
+//POINTS LOST
+//RAILS MISSING
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 public class ScoreScreen extends JPanel{
-	private boolean gameOver = false;
 	private Game game;
 	ScoreScreen(ArrayList<Player> players, Game game) {
 		setLayout(new GridLayout(2,1,0,0));
@@ -21,6 +24,9 @@ public class ScoreScreen extends JPanel{
 	}
 	private class Loser extends JPanel{
 		private Loser(Player player){
+			setBackground(player.getPlayerRecord().getColor());
+			JLabel name = new JLabel(player.getPlayerRecord().playerName()), unconnected, railsMissing, pointsLost, score;
+			add(name);
 			
 		}
 	}
@@ -28,11 +34,16 @@ public class ScoreScreen extends JPanel{
 	private class WinningPlayer extends JPanel {
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
+			String names = "";
+			for(int i = 0; i < 5; i++)
+				names = names+winner.getPlayerRecord().getCities().get(i).getName();
 			setLayout(new GridLayout(2,0,0,0));
-			add(new Title(win));
+			add(new Title(win, winner.getPlayerRecord().getColor()));
+			add(new WinnerInfo(new JLabel(names)));
 		}
 		private class Title extends JPanel{
-			private Title(JLabel text){
+			private Title(JLabel text, Color background){
+				setBackground(background);
 				add(text);
 			}
 		}
