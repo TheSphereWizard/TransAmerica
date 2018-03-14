@@ -27,7 +27,8 @@ public class ScoreScreen extends JPanel{
 			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
 					unconnected = new JLabel(unconnectedCities(player)), railsMissing, pointsLost, score;
 			add(name);
-
+			add(unconnected);
+			
 		}
 		private String unconnectedCities(Player player){
 			String content = "";
