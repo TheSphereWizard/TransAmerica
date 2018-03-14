@@ -53,7 +53,6 @@ public class MainMenu extends JPanel implements ActionListener{
 				}
 			}
 			if(readyPlayers>=2){//starts the game, either human or all ai
-				System.out.println("Step 1");
 				ArrayList<PlayerPanel> validPanels = new ArrayList<PlayerPanel>();
 				for(PlayerPanel p:playerPanels){
 					if(p.isPlayer()){
@@ -82,9 +81,9 @@ public class MainMenu extends JPanel implements ActionListener{
 							playerType.add(p.getStrategy());
 						}
 					}
-					//MainGameScreen screen = new MainGameScreen();
-					//add(screen);
-					for(int i = 0;i<playerColors.size();i++){
+					MainGameScreen screen = new MainGameScreen();
+					add(screen);
+					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
 					for(int i = 0;i<playerColors.size();i++){
@@ -92,8 +91,8 @@ public class MainMenu extends JPanel implements ActionListener{
 					}
 					for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerType.get(i));
-					}
-					//screen.generate(playerColors, playerNames, playerType);
+					}*/
+					screen.generate(playerColors, playerNames, playerType);
 					System.out.println("Reached!");
 				}else{
 					//progress to ai game
