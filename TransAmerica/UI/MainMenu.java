@@ -97,7 +97,7 @@ public class MainMenu extends JPanel implements ActionListener{
 	
 private class PlayerPanel extends JPanel implements ActionListener{
 	
-	/* Notes for Jack (all you other clowns can ignore this):
+	/* Notes for Jack 
 	 * Create textField for name that only shows up when "Human Player" is selected
 	 * Create combo box to house strategies, only make it visible when computer player is selected
 	 * Create method to return strategy selected in the combo box
