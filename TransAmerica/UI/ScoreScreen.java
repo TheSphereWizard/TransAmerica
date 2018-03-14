@@ -13,7 +13,10 @@ public class ScoreScreen extends JPanel{
 		this.game = game;
 		add(new WinningPlayer(players.get(game.getWinningPlayer())));
 		add(new Losers(players));
-	}	
+	}
+	/**
+	 * Displays the game losers
+	 */
 	private class Losers extends JPanel{
 		private Losers(ArrayList<Player> players){
 			for(int i = 0; i < players.size(); i++)
@@ -25,10 +28,11 @@ public class ScoreScreen extends JPanel{
 		private Loser(Player player){
 			setBackground(player.getPlayerRecord().getColor());
 			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
-					unconnected = new JLabel(unconnectedCities(player)), railsMissing, pointsLost, score;
+					unconnected = new JLabel(unconnectedCities(player)), 
+					railsMissing = new JLabel(player.getPlayerRecord().), pointsLost, score;
 			add(name);
 			add(unconnected);
-			
+			add(railsMissing);
 		}
 		private String unconnectedCities(Player player){
 			String content = "";
@@ -39,7 +43,10 @@ public class ScoreScreen extends JPanel{
 						return content;
 		}
 	}
-
+	/**
+	 * Displays the winning player, the order of the cities they connected,
+	 * and the continue button
+	 */
 	private class WinningPlayer extends JPanel {
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
