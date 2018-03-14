@@ -78,13 +78,13 @@ public class MainMenu extends JPanel implements ActionListener{
 						}else{
 							playerColors.add(p.getBackground());
 							playerNames.add(p.getName());
-							playerType.add(p.getDifficulty());
+							playerType.add(p.getStrategy());
 						}
 					}
 					MainGameScreen screen = new MainGameScreen();
 					add(screen);
 					screen.generate(playerColors, playerNames, playerType);
-					
+					System.out.println("Reached!");
 				}else{
 					//progress to ai game
 //					something.popup;
@@ -125,6 +125,8 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		}
 
 		int playernum;
+
+		
 		public String getDifficulty() {
 			//Should return selected strategy Name
 			return null;
