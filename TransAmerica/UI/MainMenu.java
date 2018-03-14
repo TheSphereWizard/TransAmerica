@@ -45,7 +45,7 @@ public class MainMenu extends JPanel implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("Start")) {
+		if(e.getActionCommand().equals("Play")) {
 			int readyPlayers = 0;
 			for(PlayerPanel p:playerPanels){
 				if(p.isPlayer()){
@@ -83,6 +83,15 @@ public class MainMenu extends JPanel implements ActionListener{
 					}
 					MainGameScreen screen = new MainGameScreen();
 					add(screen);
+					/*for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerColors.get(i));
+					}
+					for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerNames.get(i));
+					}
+					for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerType.get(i));
+					}*/
 					screen.generate(playerColors, playerNames, playerType);
 					System.out.println("Reached!");
 				}else{
@@ -118,6 +127,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean humanPlayer = false;
 		private JTextField name;
 		private Timer T=new Timer();
+		boolean firstAction = true;
 		
 		public void paint(Graphics g){
 			super.paint(g);
@@ -172,6 +182,10 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			}
 			
 			this.setPreferredSize(new Dimension(400,200));
+			
+			if(playerNum == 1 || playerNum == 2) {
+				options[1].setSelected(true);;
+			}
 		}
 		
 		
@@ -194,8 +208,11 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(true);
 			}
-			TransAmerica.transamerica.setSize(0, 0);
-			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			if(firstAction) {
+				TransAmerica.transamerica.setSize(1600, 899);
+				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				firstAction = false;
+			}
 		}
 		
 		public boolean isPlayer() {
