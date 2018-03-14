@@ -44,7 +44,7 @@ public class PopUp extends JFrame implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				String numOfGames = 
 				
 			}
 			
