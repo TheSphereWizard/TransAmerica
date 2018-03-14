@@ -156,6 +156,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				if(i == 1) {
 					add(name);
 					name.setVisible(false);
+					name.setBounds(70, 120, 60, 25);
 				} else if(i == 2) {
 					add(strategy);
 					strategy.setVisible(false);
