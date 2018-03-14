@@ -123,19 +123,14 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			super.paint(g);
 			g.drawRect(-10, -10, 20, 20);
 		}
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		int playernum;
-<<<<<<< HEAD
+
 		
-=======
 		public String getDifficulty() {
 			//Should return selected strategy Name
 			return null;
 		}
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		public PlayerPanel(int playerNum) {
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
