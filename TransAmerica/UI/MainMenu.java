@@ -45,7 +45,7 @@ public class MainMenu extends JPanel implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("Start")) {
+		if(e.getActionCommand().equals("Play")) {
 			int readyPlayers = 0;
 			for(PlayerPanel p:playerPanels){
 				if(p.isPlayer()){
@@ -83,6 +83,15 @@ public class MainMenu extends JPanel implements ActionListener{
 					}
 					MainGameScreen screen = new MainGameScreen();
 					add(screen);
+					/*for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerColors.get(i));
+					}
+					for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerNames.get(i));
+					}
+					for(int i = 0;i<playerColors.size();i++){
+						System.out.println(playerType.get(i));
+					}*/
 					screen.generate(playerColors, playerNames, playerType);
 					System.out.println("Reached!");
 				}else{
