@@ -123,8 +123,19 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			super.paint(g);
 			g.drawRect(-10, -10, 20, 20);
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		int playernum;
+<<<<<<< HEAD
 		
+=======
+		public String getDifficulty() {
+			//Should return selected strategy Name
+			return null;
+		}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		public PlayerPanel(int playerNum) {
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
@@ -132,7 +143,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			setLayout(null);
 			JLabel playernumber = new JLabel("Player " + playerNum);
 			playernumber.setFont(new Font("Arial",Font.BOLD,24));
-			playernumber.setLocation(0,0);
+			playernumber.setLocation(50,0);
 			playernumber.setSize(100, 50);
 			add(playernumber);
 			name = new JTextField();
@@ -143,6 +154,8 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i].addActionListener(this);
 				options[i].setActionCommand(optionNames[i]);
 				options[i].setBackground(colors[playerNum - 1]);
+				options[i].setLocation(50,50*(i+1));
+				options[i].setSize(150, 20);
 				group.add(options[i]);
 				
 				add(options[i]);
@@ -162,8 +175,11 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			}
 			
 			this.setPreferredSize(new Dimension(400,200));
+<<<<<<< HEAD
 			
 			this.setPreferredSize(new Dimension(400,200));
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		}
 		
 		
