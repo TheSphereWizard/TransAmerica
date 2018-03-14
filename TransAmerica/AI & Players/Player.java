@@ -47,6 +47,7 @@ public abstract class Player {//give players playerrecords
 		private Color color;
 		//The cities the player needs/have to connect
 		private ArrayList<City> cities;
+		private ArrayList<City> citiesReached;
 		//# of cities player has connected
 		private int score;
 		private String name;
@@ -68,6 +69,18 @@ public abstract class Player {//give players playerrecords
 		
 		public ArrayList<City> getCities() {
 			return cities;
+		}
+		
+		public void setCities(ArrayList<City> cities){
+			this.cities = cities;
+		}
+		
+		public ArrayList<City> getCitiesReached(){
+			return citiesReached;
+		}
+		
+		public void setCitiesReached(ArrayList<City> citiesReached){
+			this.citiesReached = citiesReached;
 		}
 		
 		public int getScore() {

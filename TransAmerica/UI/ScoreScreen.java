@@ -1,3 +1,6 @@
+//ORDER IN WHICH CITIES WERE CONNECTED
+//POINTS LOST
+//RAILS MISSING
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -5,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 public class ScoreScreen extends JPanel{
-	private boolean gameOver = false;
 	private Game game;
 	ScoreScreen(ArrayList<Player> players, Game game) {
 		setLayout(new GridLayout(2,1,0,0));
