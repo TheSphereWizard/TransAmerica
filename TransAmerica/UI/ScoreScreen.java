@@ -1,4 +1,3 @@
-//ORDER IN WHICH CITIES WERE CONNECTED
 //POINTS LOST
 //RAILS MISSING
 import java.awt.Color;
@@ -25,18 +24,27 @@ public class ScoreScreen extends JPanel{
 	private class Loser extends JPanel{
 		private Loser(Player player){
 			setBackground(player.getPlayerRecord().getColor());
-			JLabel name = new JLabel(player.getPlayerRecord().playerName()), unconnected, railsMissing, pointsLost, score;
+			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
+					unconnected = new JLabel(unconnectedCities(player)), railsMissing, pointsLost, score;
 			add(name);
-			
+
+		}
+		private String unconnectedCities(Player player){
+			String content = "";
+			for(int i = 0; i < player.getPlayerRecord().getCities().size(); i++)
+				for(int j = 0; j < player.getPlayerRecord().getCitiesReached().size(); i++)
+					if(player.getPlayerRecord().getCities().get(i).equals(player.getPlayerRecord().getCitiesReached().get(j)))
+						content = content + player.getPlayerRecord().getCities().get(i).getName();
+						return content;
 		}
 	}
-	
+
 	private class WinningPlayer extends JPanel {
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
 			String names = "";
 			for(int i = 0; i < 5; i++)
-				names = names+winner.getPlayerRecord().getCities().get(i).getName();
+				names = names+winner.getPlayerRecord().getCitiesReached().get(i).getName();
 			setLayout(new GridLayout(2,0,0,0));
 			add(new Title(win, winner.getPlayerRecord().getColor()));
 			add(new WinnerInfo(new JLabel(names)));
@@ -55,7 +63,7 @@ public class ScoreScreen extends JPanel{
 				add(exit);
 			}
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		}
 	}
