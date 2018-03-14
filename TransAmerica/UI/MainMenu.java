@@ -162,6 +162,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				} else if(i == 2) {
 					add(strategy);
 					strategy.setVisible(false);
+					strategy.setBounds(70, 170, 60, 25);
 				}
 			}
 			options[0].setSelected(true);
