@@ -107,7 +107,8 @@ public class MainMenu extends JPanel implements ActionListener{
 							playerType.add(p.getStrategy());
 						}
 					}
-					MainGameScreen screen = new MainGameScreen();
+					Grid bigGrid = new Grid();
+					MainGameScreen screen = new MainGameScreen(bigGrid);
 					add(screen);
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
