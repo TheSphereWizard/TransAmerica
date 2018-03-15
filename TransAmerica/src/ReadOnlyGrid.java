@@ -9,6 +9,9 @@ public class ReadOnlyGrid {
 		return grid.checkRail(r, p);
 //		return false;
 	}
+	int[] railsMissing(){
+		return grid.railsMissing();
+	}
 	ArrayList<Rail> immediateneighbors(Position p){
 		try {
 			return grid.immediateneighbors(p);
