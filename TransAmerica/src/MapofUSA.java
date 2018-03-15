@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import NOTHING.*;
-
 public class MapofUSA extends JPanel implements MouseListener, MouseMotionListener{
+	
+	private static final long serialVersionUID = 1L;
+
 		/*
 		rounding error on left side of screen
 		make rails not be placed at all if invalid, 
@@ -63,8 +64,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		}*/
 		
 
-		MapofUSA(int x, int y, int width, int height, Grid grid){
-			currentGrid = grid;
+		MapofUSA(int x, int y, int width, int height,Grid grid){
+			currentGrid=grid;
 
 			try {
 				Map=ImageIO.read(new File("Pix\\mapofusa.png"));

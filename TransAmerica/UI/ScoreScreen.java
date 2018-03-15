@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 public class ScoreScreen extends JPanel{
 	private Game game;
-	ScoreScreen(ArrayList<Player> players, Game game) {
+	ScoreScreen(ArrayList<Player> players, Game game){
 		setLayout(new GridLayout(2,1,0,0));
 		this.game = game;
 		add(new WinningPlayer(players.get(game.getWinningPlayer())));
@@ -24,6 +24,9 @@ public class ScoreScreen extends JPanel{
 					add(new Loser(players.get(i)));
 		}
 	}
+	/**
+	 * An individual loser
+	 */
 	private class Loser extends JPanel{
 		private Loser(Player player){
 			setBackground(player.getPlayerRecord().getColor());
@@ -55,7 +58,7 @@ public class ScoreScreen extends JPanel{
 	 * Displays the winning player, the order of the cities they connected,
 	 * and the continue button
 	 */
-	private class WinningPlayer extends JPanel {
+	private class WinningPlayer extends JPanel{
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
 			String names = "";
@@ -78,7 +81,7 @@ public class ScoreScreen extends JPanel{
 				add(text);
 				add(exit);
 			}
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e){
 				
 			}
 		}
