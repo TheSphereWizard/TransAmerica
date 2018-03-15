@@ -27,15 +27,11 @@ public class MainGameScreen extends JPanel {
 
 	private JLabel transAmericaLabel;
 	
-<<<<<<< HEAD
-	MainGameScreen() {
-=======
 	MainGameScreen(Grid grid) {
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
 		this.grid = grid;
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
