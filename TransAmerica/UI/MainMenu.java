@@ -1,10 +1,15 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener{
@@ -127,12 +132,15 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean humanPlayer = false;
 		private JTextField name;
 		private Timer T=new Timer();
+<<<<<<< HEAD
+=======
 		boolean firstAction = true;
 		
 		public void paint(Graphics g){
 			super.paint(g);
 			g.drawRect(-10, -10, 20, 20);
 		}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
 		int playernum;
 
@@ -141,7 +149,26 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			//Should return selected strategy Name
 			return null;
 		}
+		public void paint(Graphics g){
+			for(int i=0;i<this.getComponentCount();i++){
+				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
+				g.drawImage(buttonImage, -20, -20, this.getComponent(i).getWidth()+40, this.getComponent(i).getHeight()+40, null);
+				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
+			}
+		}
+		BufferedImage buttonImage;
 		public PlayerPanel(int playerNum) {
+//			T.schedule(new TimerTask(){
+//				public void run() {
+//					TransAmerica.transamerica.repaint();
+//				}
+//			}, 0,10);
+			try {
+				buttonImage=ImageIO.read(new File("Pix\\button.png"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
 //			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
