@@ -145,6 +145,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			super.paint(g);
 			g.drawRect(-10, -10, 20, 20);
 		}
+
 		int playernum;
 
 		

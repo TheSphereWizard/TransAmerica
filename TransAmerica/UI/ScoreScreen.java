@@ -24,6 +24,9 @@ public class ScoreScreen extends JPanel{
 					add(new Loser(players.get(i)));
 		}
 	}
+	/**
+	 * An individual loser
+	 */
 	private class Loser extends JPanel{
 		private Loser(Player player){
 			setBackground(player.getPlayerRecord().getColor());
