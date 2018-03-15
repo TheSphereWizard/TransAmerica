@@ -32,12 +32,12 @@ public class ScoreScreen extends JPanel{
 			setBackground(player.getPlayerRecord().getColor());
 			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
 					unconnected = new JLabel(unconnectedCities(player)), 
-					//railsMissing = new JLabel(player.getPlayerRecord()),
+					railsMissing = new JLabel(player.getPlayerRecord()),
 					pointsLost = new JLabel(),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
-			//add(railsMissing);
+			add(railsMissing);
 			add(pointsLost);
 			add(score);
 		}
