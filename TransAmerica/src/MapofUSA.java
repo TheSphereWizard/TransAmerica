@@ -62,8 +62,13 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			this.setCurrentPlayer(p2);
 		}*/
 		
+<<<<<<< HEAD
 		MapofUSA(int x, int y, int width, int height, Grid grid){
 			currentGrid = grid;
+=======
+		MapofUSA(int x, int y, int width, int height,Grid grid){
+			currentGrid=grid;
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 			try {
 				Map=ImageIO.read(new File("Pix\\mapofusa.png"));
 			} catch (IOException e1) {

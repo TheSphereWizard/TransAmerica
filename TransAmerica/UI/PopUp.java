@@ -1,51 +1,30 @@
-
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-
-public class PopUp extends JFrame implements ActionListener {
-
-
+public class PopUp extends JPanel{
 	private JPanel popUps;
 	private JPanel aiPopup;
 	private JFrame frame;
 	private JLabel question;
 	private JTextField gameNumber;
 	private JButton fast, slow;
-
-	private JTextField numberofGames = new JTextField();
-	private JPanel contentPane = new JPanel();
-	private JLabel label = new JLabel("How many games are to be played ?");
-	private JRadioButton fast = new JRadioButton("Fast") , slow = new JRadioButton("Slow");
-	private JPanel[] panes = new JPanel[3];
+	private int numberOfGivenGames;
 	
-	
-	 PopUp() {
-		 
-		 contentPane.setLayout(new GridLayout(3,1));
-		 
-		 for(int i = 0; i < panes.length; i ++) {
-			 panes[i]= new JPanel();
-			 contentPane.add(panes[i]);
-		 }
-
-	
-	
-	public static void main(String args[] ) {
-		new PopUp();
-
+	public PopUp(){
+		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+		question = new JLabel("How many games are to be played?");
+		this.add(question);
+		
 		gameNumber = new JTextField();
 		gameNumber.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String numOfGames = 
-				
+				String numOfGames = gameNumber.getText();
+				int number = Integer.parseInt(numOfGames);
+				numberOfGivenGames = number;
 			}
 			
 		});
@@ -54,6 +33,11 @@ public class PopUp extends JFrame implements ActionListener {
 		fast = new JButton("Fast Mode");
 		fast.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
 			
 		});
 		this.add(fast);
@@ -61,6 +45,11 @@ public class PopUp extends JFrame implements ActionListener {
 		slow = new JButton("Slow Mode");
 		slow.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
 			
 		});
 		this.add(slow);
@@ -68,5 +57,8 @@ public class PopUp extends JFrame implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
-
+	
+	public int numberOfGamesToBeRun(){
+		return numberOfGivenGames;
+	}
 }
