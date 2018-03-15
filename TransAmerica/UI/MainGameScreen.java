@@ -80,10 +80,12 @@ public class MainGameScreen extends JPanel {
 		
 	}
 	
+
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setContentPane(new MainGameScreen(new Grid()));
 		frame.setVisible(true);
 	}
+
 	
 }
