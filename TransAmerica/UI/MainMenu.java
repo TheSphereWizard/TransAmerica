@@ -138,7 +138,14 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean humanPlayer = false;
 		private JTextField name;
 		private Timer T=new Timer();
+
 		boolean firstAction = true;
+		
+		public void paintComponent(Graphics g){
+			super.paint(g);
+			g.drawRect(-10, -10, 20, 20);
+		}
+
 		int playernum;
 
 		
