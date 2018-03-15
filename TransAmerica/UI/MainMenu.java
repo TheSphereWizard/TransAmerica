@@ -49,7 +49,7 @@ public class MainMenu extends JPanel implements ActionListener{
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
 			buttons[i].setSize(100,50);
-			buttons[i].setLocation((int) (800-200*(i-.5))-50,750-25);
+			buttons[i].setLocation((int) (800+200*(i-.5))-50,750-25);
 			this.add(buttons[i]);
 		}
 		try{
@@ -107,7 +107,8 @@ public class MainMenu extends JPanel implements ActionListener{
 							playerType.add(p.getStrategy());
 						}
 					}
-					MainGameScreen screen = new MainGameScreen();
+					Grid bigGrid = new Grid();
+					MainGameScreen screen = new MainGameScreen(bigGrid);
 					add(screen);
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
@@ -152,9 +153,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
-		private Timer T=new Timer();
-
-		boolean firstAction = true;
 		
 		public void paintComponent(Graphics g){
 			super.paint(g);
@@ -169,6 +167,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			return null;
 		}
 		public void paint(Graphics g){
+			g.setColor(this.colors[playernum]);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			for(int i=0;i<this.getComponentCount();i++){
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
@@ -255,11 +254,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				humanPlayer = false;
 				name.setVisible(false);
 				strategy.setVisible(true);
-			}
-			if(firstAction) {
-				TransAmerica.transamerica.setSize(1600, 899);
-				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				firstAction = false;
 			}
 		}
 		
