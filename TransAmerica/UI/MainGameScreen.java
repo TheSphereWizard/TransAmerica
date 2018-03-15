@@ -80,13 +80,12 @@ public class MainGameScreen extends JPanel {
 		
 	}
 	
-<<<<<<< HEAD
-=======
+
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setContentPane(new MainGameScreen(new Grid()));
 		frame.setVisible(true);
 	}
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+
 	
 }
