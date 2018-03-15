@@ -27,8 +27,8 @@ public class MainGameScreen extends JPanel {
 
 	private JLabel transAmericaLabel;
 	
-	MainGameScreen(Grid grid) {
-		this.grid = grid;
+	MainGameScreen(MapofUSA bigMap) {
+		this.map = bigMap;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
@@ -51,7 +51,7 @@ public class MainGameScreen extends JPanel {
 		}
 		
 		panes[0].add(transAmericaLabel);
-		panes[1].add(new MapofUSA(10,10,400,700,grid));
+		panes[1].add(bigMap);
 	}
 	
 	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
@@ -83,7 +83,7 @@ public class MainGameScreen extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		frame.setContentPane(new MainGameScreen(new Grid()));
+		//frame.setContentPane(new MainGameScreen());
 		frame.setVisible(true);
 	}
 
