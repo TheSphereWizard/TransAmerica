@@ -23,6 +23,9 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		make markers be placed in valid position	
 	
 		*/
+	
+	
+		//Need to Make turns not skipped and make sure turns work properly
 		BufferedImage Map;
 		
 		Player currentPlayer;

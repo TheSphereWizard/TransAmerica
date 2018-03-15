@@ -158,8 +158,10 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			for(int i=0;i<this.getComponentCount();i++){
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
-				g.drawImage(buttonImage, -10, -10, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+20, null);
-				this.getComponent(i).paint(g);//needs to be specialized
+				if(this.getComponent(i).isVisible()){
+					g.drawImage(buttonImage, -10, -10, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+20, null);
+					this.getComponent(i).paint(g);//needs to be specialized
+				}
 				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
 			}
 		}
@@ -194,15 +196,15 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				
 				add(options[i]);
 				
-				if(i == 1) {
-					add(name);
-					name.setVisible(false);
-					name.setBounds(70, 120, 60, 25);
-				} else if(i == 2) {
-					add(strategy);
-					strategy.setVisible(false);
-					strategy.setBounds(70, 170, 60, 25);
-				}
+//				if(i == 1) {NO THIS DOES NOT WORK USE METHODS, THIS CODE BREAKS EVERYTHING
+//					add(name);
+//					name.setVisible(false);
+//					name.setBounds(70, 120, 60, 25);
+//				} else if(i == 2) {
+//					add(strategy);
+//					strategy.setVisible(false);
+//					strategy.setBounds(70, 170, 60, 25);
+//				}
 			}
 			options[0].setSelected(true);
 			

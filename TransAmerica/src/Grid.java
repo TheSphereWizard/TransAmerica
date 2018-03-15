@@ -58,11 +58,13 @@ public class Grid {
 		return false;
 	}
 	void placeMarker(Position p,Player player){//places markers
-		markers.add(new Marker(p,player));
+		markers.add(new Marker(p,player));//THIS NEEDS TO THROW EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
 		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player))
 			allRails.add(rail);
+		//THIS NEEDS TO THROW AN EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN WITHOUT ENDING TURN
+		
 		//IF CITY IS CONNECTED TO THIS RAIL THEN CHANGE ALL PLAYERS CONNECTED TO THIS CITY TO REALIZE THEY ARE CONNECTED
 		
 		//MAKE A METHOD THAT RETURNS AN ARRAY/LIST OF OBJECTS THAT ARE CONNECTED TO A POSITION OF aLL TYPES THAT CAN BE ITERATED OVER BY CLASS
