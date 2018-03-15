@@ -64,6 +64,7 @@ public class MainMenu extends JPanel implements ActionListener{
 				}
 			}
 			if(readyPlayers>=2){//starts the game, either human or all ai
+
 				ArrayList<PlayerPanel> validPanels = new ArrayList<PlayerPanel>();
 				for(PlayerPanel p:playerPanels){
 					if(p.isPlayer()){
@@ -138,7 +139,14 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean humanPlayer = false;
 		private JTextField name;
 		private Timer T=new Timer();
+
 		boolean firstAction = true;
+		
+		public void paintComponent(Graphics g){
+			super.paint(g);
+			g.drawRect(-10, -10, 20, 20);
+		}
+
 		int playernum;
 
 		
