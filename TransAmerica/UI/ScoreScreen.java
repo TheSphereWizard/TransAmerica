@@ -58,7 +58,7 @@ public class ScoreScreen extends JPanel{
 	 * Displays the winning player, the order of the cities they connected,
 	 * and the continue button
 	 */
-	private class WinningPlayer extends JPanel {
+	private class WinningPlayer extends JPanel{
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
 			String names = "";
@@ -81,7 +81,7 @@ public class ScoreScreen extends JPanel{
 				add(text);
 				add(exit);
 			}
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e){
 				
 			}
 		}
