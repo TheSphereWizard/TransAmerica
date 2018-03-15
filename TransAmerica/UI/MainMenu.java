@@ -196,15 +196,15 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				
 				add(options[i]);
 				
-//				if(i == 1) {NO THIS DOES NOT WORK USE METHODS, THIS CODE BREAKS EVERYTHING
-//					add(name);
-//					name.setVisible(false);
-//					name.setBounds(70, 120, 60, 25);
-//				} else if(i == 2) {
-//					add(strategy);
-//					strategy.setVisible(false);
-//					strategy.setBounds(70, 170, 60, 25);
-//				}
+				if(i == 1) {
+					add(name);
+					name.setVisible(false);
+					name.setBounds(70, 120, 60, 25);
+				} else if(i == 2) {
+					add(strategy);
+					strategy.setVisible(false);
+					strategy.setBounds(70, 170, 60, 25);
+				}
 			}
 			options[0].setSelected(true);
 			
@@ -214,9 +214,9 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			
 			this.setPreferredSize(new Dimension(400,200));
 			
-			if(playerNum == 1 || playerNum == 2) {
-				options[1].setSelected(true);
-			}
+//			if(playerNum == 1 || playerNum == 2) {THIS ALSO BREAKS EVERYTHING
+//				options[1].setSelected(true);
+//			}
 		}
 		
 		
@@ -232,6 +232,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				humanPlayer = true;
 				name.setVisible(true);
 				strategy.setVisible(false);
+				TransAmerica.transamerica.repaint();
 			} else if(e.getActionCommand().equals(optionNames[2])) {
 				noPlayers --;
 				player = true;
