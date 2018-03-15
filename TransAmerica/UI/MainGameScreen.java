@@ -15,6 +15,7 @@ public class MainGameScreen extends JPanel {
 
 	MapofUSA map;
 	BufferedImage train , eagle;
+	Grid grid;
 
 	Game currentGame;
 	private JPanel[] panes = new JPanel[4];
@@ -49,7 +50,7 @@ public class MainGameScreen extends JPanel {
 		}
 		
 		panes[0].add(transAmericaLabel);
-		panes[1].add(new MapofUSA(10,10,400,700));
+		panes[1].add(new MapofUSA(10,10,400,700,grid));
 	}
 	
 	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
