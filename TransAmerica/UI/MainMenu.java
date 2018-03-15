@@ -134,11 +134,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private Timer T=new Timer();
 
 		boolean firstAction = true;
-		
-		public void paint(Graphics g){
-			super.paint(g);
-			g.drawRect(-10, -10, 20, 20);
-		}
 
 		int playernum;
 
