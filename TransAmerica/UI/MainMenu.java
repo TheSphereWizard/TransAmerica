@@ -33,15 +33,15 @@ public class MainMenu extends JPanel implements ActionListener{
 
 		for(int i = 0; i <= 2; i++) {
 			playerPanels[i] = new PlayerPanel(i + 1);
-			playerPanels[i].setSize(350, 200);
-			playerPanels[i].setLocation(800+(400*(i-1))-175,250-100);
+			playerPanels[i].setSize(350, 300);
+			playerPanels[i].setLocation(800+(450*(i-1))-175,200-100);
 			this.add(playerPanels[i]);
 		}
 
 		for(int i = 3; i <= 5; i++) {
 			playerPanels[i] = new PlayerPanel(i + 1);
 			playerPanels[i].setSize(350, 200);
-			playerPanels[i].setLocation(800+(400*(i-4))-175,550-100);
+			playerPanels[i].setLocation(800+(450*(i-4))-175,550-100);
 			this.add(playerPanels[i]);
 		}
 		for(int i = 0; i < buttons.length; i++) {
@@ -107,7 +107,7 @@ public class MainMenu extends JPanel implements ActionListener{
 					}
 					Grid grid = new Grid();
 					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
-					MainGameScreen screen = new MainGameScreen(bigMap);
+					MainGameScreen screen = new MainGameScreen(grid);
 					add(screen);
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
@@ -159,7 +159,8 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			for(int i=0;i<this.getComponentCount();i++){
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
 				if(this.getComponent(i).isVisible()){
-					g.drawImage(buttonImage, -10, -10, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+20, null);
+//					if(i!=0)
+						g.drawImage(buttonImage, -10, -10, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+20, null);
 					this.getComponent(i).paint(g);//needs to be specialized
 				}
 				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
@@ -179,7 +180,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			setLayout(null);
 			JLabel playernumber = new JLabel("Player " + playerNum);
 			playernumber.setFont(new Font("Arial",Font.BOLD,24));
-			playernumber.setLocation(50,0);
+			playernumber.setLocation(25,15);
 			playernumber.setSize(100, 50);
 			add(playernumber);
 			name = new JTextField();
@@ -190,7 +191,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i].addActionListener(this);
 				options[i].setActionCommand(optionNames[i]);
 				options[i].setBackground(new Color(0,0,0,0));
-				options[i].setLocation(100,(int) (50*(i+0.5)));
+				options[i].setLocation(70,85+(int) (70*(i)));
 				options[i].setSize(150, 20);
 				group.add(options[i]);
 				
@@ -199,11 +200,11 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				if(i == 1) {
 					add(name);
 					name.setVisible(false);
-					name.setBounds(70, 120, 60, 25);
+					name.setBounds(90, 185, 60, 25);
 				} else if(i == 2) {
 					add(strategy);
 					strategy.setVisible(false);
-					strategy.setBounds(70, 170, 60, 25);
+					strategy.setBounds(90, 255, 60, 25);
 				}
 			}
 			options[0].setSelected(true);
