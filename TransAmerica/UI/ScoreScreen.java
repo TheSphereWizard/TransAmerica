@@ -29,11 +29,19 @@ public class ScoreScreen extends JPanel{
 			setBackground(player.getPlayerRecord().getColor());
 			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
 					unconnected = new JLabel(unconnectedCities(player)), 
-					railsMissing = new JLabel(player.getPlayerRecord().), pointsLost, score;
+					//railsMissing = new JLabel(player.getPlayerRecord()),
+					pointsLost = new JLabel(),
+					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
-			add(railsMissing);
+			//add(railsMissing);
+			add(pointsLost);
+			add(score);
 		}
+		/**
+		 * @param player
+		 * @return a String containing players unconnected cities
+		 */
 		private String unconnectedCities(Player player){
 			String content = "";
 			for(int i = 0; i < player.getPlayerRecord().getCities().size(); i++)
@@ -71,7 +79,7 @@ public class ScoreScreen extends JPanel{
 				add(exit);
 			}
 			public void actionPerformed(ActionEvent e) {
-
+				
 			}
 		}
 	}
