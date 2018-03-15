@@ -44,7 +44,6 @@ public class MainMenu extends JPanel implements ActionListener{
 			playerPanels[i].setLocation(800+(400*(i-4))-175,550-100);
 			this.add(playerPanels[i]);
 		}
-
 		for(int i = 0; i < buttons.length; i++) {
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
@@ -59,7 +58,6 @@ public class MainMenu extends JPanel implements ActionListener{
 	}
 	BufferedImage backg;
 	public void paint(Graphics g){
-		
 		g.drawImage(backg, 0, 0, 1600, 900, null);
 		for(int i=0;i<this.getComponentCount();i++){
 			g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
@@ -147,11 +145,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
-		
-		public void paintComponent(Graphics g){
-			super.paint(g);
-			g.drawRect(-10, -10, 20, 20);
-		}
 
 		int playernum;
 
