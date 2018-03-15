@@ -15,46 +15,60 @@ import javax.swing.*;
 public class MainMenu extends JPanel implements ActionListener{
 
 
-	private JPanel[] panes = new JPanel[4];
+//	private JPanel[] panes = new JPanel[4];
 	private JButton start = new JButton("Play"), exit = new JButton("Exit");
 	private JButton[] buttons = new JButton[] {start, exit};
 	private PlayerPanel[] playerPanels = new PlayerPanel[6];
 
 	MainMenu() {
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));		
+		this.setLayout(null);		
 
-		for(int i = 0; i < panes.length; i++) {
-			panes[i] = new JPanel();
-			panes[i].setBackground(Color.WHITE);
-			this.add(panes[i]);
+//		for(int i = 0; i < panes.length; i++) {
+//			panes[i] = new JPanel();
+//			panes[i].setBackground(Color.WHITE);
+//			this.add(panes[i]);
+//		}
+		JLabel Title =new JLabel("TransAmerica");
+		this.add(Title);
+
+		for(int i = 0; i <= 2; i++) {
+			playerPanels[i] = new PlayerPanel(i + 1);
+			playerPanels[i].setSize(350, 200);
+			playerPanels[i].setLocation(800+(400*(i-1))-175,250-100);
+			this.add(playerPanels[i]);
 		}
 
-		panes[0].add(new JLabel("TransAmerica"));
-
-		for(int i = 0; i < playerPanels.length - 3; i++) {
+		for(int i = 3; i <= 5; i++) {
 			playerPanels[i] = new PlayerPanel(i + 1);
-			panes[1].add(playerPanels[i]);
-		}
-
-		for(int i = 3; i < playerPanels.length; i++) {
-			playerPanels[i] = new PlayerPanel(i + 1);
-			panes[2].add(playerPanels[i]);
+			playerPanels[i].setSize(350, 200);
+			playerPanels[i].setLocation(800+(400*(i-4))-175,550-100);
+			this.add(playerPanels[i]);
 		}
 
 		for(int i = 0; i < buttons.length; i++) {
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
-			panes[3].add(buttons[i]);
+			buttons[i].setSize(100,50);
+			buttons[i].setLocation((int) (800-200*(i-.5))-50,750-25);
+			this.add(buttons[i]);
 		}
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
+		
 	}
 	BufferedImage backg;
 	public void paint(Graphics g){
 		
+		g.drawImage(backg, 0, 0, 1600, 900, null);
+		for(int i=0;i<this.getComponentCount();i++){
+			g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
+			this.getComponent(i).paint(g);
+			g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
+		}
+		
 	}
-
+//	Timer t= new Timer();
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Play")) {
 			int readyPlayers = 0;
@@ -147,9 +161,11 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			return null;
 		}
 		public void paint(Graphics g){
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			for(int i=0;i<this.getComponentCount();i++){
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
-				g.drawImage(buttonImage, -20, -20, this.getComponent(i).getWidth()+40, this.getComponent(i).getHeight()+40, null);
+				g.drawImage(buttonImage, -10, -10, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+20, null);
+				this.getComponent(i).paint(g);
 				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
 			}
 		}
