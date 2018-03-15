@@ -187,7 +187,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i] = new JRadioButton(optionNames[i]);
 				options[i].addActionListener(this);
 				options[i].setActionCommand(optionNames[i]);
-				options[i].setBackground(colors[playerNum - 1]);
+				options[i].setBackground(new Color(0,0,0,0));
 				options[i].setLocation(100,(int) (50*(i+0.5)));
 				options[i].setSize(150, 20);
 				group.add(options[i]);
