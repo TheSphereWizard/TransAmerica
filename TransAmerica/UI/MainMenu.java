@@ -46,7 +46,13 @@ public class MainMenu extends JPanel implements ActionListener{
 			buttons[i].setActionCommand(buttons[i].getText());
 			panes[3].add(buttons[i]);
 		}
-
+		try{
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+		}catch(Exception E){}
+	}
+	BufferedImage backg;
+	public void paint(Graphics g){
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -132,6 +138,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean humanPlayer = false;
 		private JTextField name;
 		private Timer T=new Timer();
+<<<<<<< HEAD
 
 		boolean firstAction = true;
 		
@@ -139,7 +146,14 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			super.paint(g);
 			g.drawRect(-10, -10, 20, 20);
 		}
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
+		boolean firstAction = true;
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		int playernum;
 
 		
@@ -209,7 +223,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			this.setPreferredSize(new Dimension(400,200));
 			
 			if(playerNum == 1 || playerNum == 2) {
-				options[1].setSelected(true);;
+				options[1].setSelected(true);
 			}
 		}
 		
