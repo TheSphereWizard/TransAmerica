@@ -64,8 +64,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		}*/
 		
 
-		MapofUSA(int x, int y, int width, int height, Grid grid){
-			currentGrid = grid;
+		MapofUSA(int x, int y, int width, int height,Grid grid){
+			currentGrid=grid;
 
 			try {
 				Map=ImageIO.read(new File("Pix\\mapofusa.png"));
