@@ -1,18 +1,30 @@
 //POINTS LOST
 //RAILS MISSING
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 public class ScoreScreen extends JPanel{
 	private Game game;
+	private BufferedImage backg;
 	ScoreScreen(ArrayList<Player> players, Game game){
+		try{
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+		}catch(Exception E){}
 		setLayout(new GridLayout(2,1,0,0));
 		this.game = game;
 		add(new WinningPlayer(players.get(game.getWinningPlayer())));
 		add(new Losers(players));
+	}
+	public void paint(Graphics g){
+		g.drawImage(backg, 0, 0, 1600, 900, null);
 	}
 	/**
 	 * Displays the game losers

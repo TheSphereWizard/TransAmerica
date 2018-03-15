@@ -44,12 +44,11 @@ public class MainMenu extends JPanel implements ActionListener{
 			playerPanels[i].setLocation(800+(400*(i-4))-175,550-100);
 			this.add(playerPanels[i]);
 		}
-
 		for(int i = 0; i < buttons.length; i++) {
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
 			buttons[i].setSize(100,50);
-			buttons[i].setLocation((int) (800-200*(i-.5))-50,750-25);
+			buttons[i].setLocation((int) (800+200*(i-.5))-50,750-25);
 			this.add(buttons[i]);
 		}
 		try{
@@ -59,7 +58,6 @@ public class MainMenu extends JPanel implements ActionListener{
 	}
 	BufferedImage backg;
 	public void paint(Graphics g){
-		
 		g.drawImage(backg, 0, 0, 1600, 900, null);
 		for(int i=0;i<this.getComponentCount();i++){
 			g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
@@ -135,12 +133,6 @@ public class MainMenu extends JPanel implements ActionListener{
 	}
 	
 private class PlayerPanel extends JPanel implements ActionListener{
-	
-	/* Notes for Jack 
-	 * Create textField for name that only shows up when "Human Player" is selected
-	 * Create combo box to house strategies, only make it visible when computer player is selected
-	 * Create method to return strategy selected in the combo box
-	 */
 		
 		private static final long serialVersionUID = 1L;
 		private ButtonGroup group = new ButtonGroup();
@@ -154,35 +146,25 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
-		
-		public void paintComponent(Graphics g){
-			super.paint(g);
-			g.drawRect(-10, -10, 20, 20);
-		}
 
 		int playernum;
 
-		
 		public String getDifficulty() {
 			//Should return selected strategy Name
 			return null;
 		}
 		public void paint(Graphics g){
+			g.setColor(this.colors[playernum]);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			for(int i=0;i<this.getComponentCount();i++){
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
 				g.drawImage(buttonImage, -10, -10, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+20, null);
-				this.getComponent(i).paint(g);
+				this.getComponent(i).paint(g);//needs to be specialized
 				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
 			}
 		}
 		BufferedImage buttonImage;
 		public PlayerPanel(int playerNum) {
-//			T.schedule(new TimerTask(){
-//				public void run() {
-//					TransAmerica.transamerica.repaint();
-//				}
-//			}, 0,10);
 			try {
 				buttonImage=ImageIO.read(new File("Pix\\button.png"));
 			} catch (IOException e1) {
@@ -206,7 +188,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i].addActionListener(this);
 				options[i].setActionCommand(optionNames[i]);
 				options[i].setBackground(colors[playerNum - 1]);
-				options[i].setLocation(50,50*(i+1));
+				options[i].setLocation(100,(int) (50*(i+0.5)));
 				options[i].setSize(150, 20);
 				group.add(options[i]);
 				
