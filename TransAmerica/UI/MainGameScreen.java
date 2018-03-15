@@ -2,17 +2,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainGameScreen extends JPanel {
-	
-	private static final long serialVersionUID = 1L;
-
+	private BufferedImage backg;
 	MapofUSA map;
 	BufferedImage train , eagle;
 	Grid grid;
@@ -28,6 +28,9 @@ public class MainGameScreen extends JPanel {
 	private JLabel transAmericaLabel;
 	
 	MainGameScreen(Grid grid) {
+		try{
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+		}catch(Exception E){}
 		this.grid = grid;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
@@ -77,7 +80,7 @@ public class MainGameScreen extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g){
-		
+		g.drawImage(backg, 0, 0, 1600, 900, null);
 	}
 	
 	public static void main(String[] args) {
