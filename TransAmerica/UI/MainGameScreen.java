@@ -27,7 +27,8 @@ public class MainGameScreen extends JPanel {
 
 	private JLabel transAmericaLabel;
 	
-	MainGameScreen() {
+	MainGameScreen(Grid grid) {
+		this.grid = grid;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
@@ -79,5 +80,13 @@ public class MainGameScreen extends JPanel {
 		
 	}
 	
+<<<<<<< HEAD
+=======
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		frame.setContentPane(new MainGameScreen(new Grid()));
+		frame.setVisible(true);
+	}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 	
 }

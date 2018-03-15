@@ -32,12 +32,12 @@ public class ScoreScreen extends JPanel{
 			setBackground(player.getPlayerRecord().getColor());
 			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
 					unconnected = new JLabel(unconnectedCities(player)), 
-					//railsMissing = new JLabel(player.getPlayerRecord()),
+					railsMissing = new JLabel(player.getPlayerRecord()),
 					pointsLost = new JLabel(),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
-			//add(railsMissing);
+			add(railsMissing);
 			add(pointsLost);
 			add(score);
 		}
@@ -58,7 +58,7 @@ public class ScoreScreen extends JPanel{
 	 * Displays the winning player, the order of the cities they connected,
 	 * and the continue button
 	 */
-	private class WinningPlayer extends JPanel {
+	private class WinningPlayer extends JPanel{
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
 			String names = "";
@@ -81,7 +81,7 @@ public class ScoreScreen extends JPanel{
 				add(text);
 				add(exit);
 			}
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e){
 				
 			}
 		}
