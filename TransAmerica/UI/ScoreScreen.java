@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 public class ScoreScreen extends JPanel{
 	private Game game;
-	ScoreScreen(ArrayList<Player> players, Game game) {
+	ScoreScreen(ArrayList<Player> players, Game game){
 		setLayout(new GridLayout(2,1,0,0));
 		this.game = game;
 		add(new WinningPlayer(players.get(game.getWinningPlayer())));
