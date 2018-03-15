@@ -49,7 +49,7 @@ public class MainMenu extends JPanel implements ActionListener{
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
 			buttons[i].setSize(100,50);
-			buttons[i].setLocation((int) (800-200*(i-.5))-50,750-25);
+			buttons[i].setLocation((int) (800+200*(i-.5))-50,750-25);
 			this.add(buttons[i]);
 		}
 		try{
@@ -169,6 +169,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			return null;
 		}
 		public void paint(Graphics g){
+			g.setColor(this.colors[playernum]);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			for(int i=0;i<this.getComponentCount();i++){
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
