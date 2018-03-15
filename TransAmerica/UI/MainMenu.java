@@ -46,7 +46,13 @@ public class MainMenu extends JPanel implements ActionListener{
 			buttons[i].setActionCommand(buttons[i].getText());
 			panes[3].add(buttons[i]);
 		}
-
+		try{
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+		}catch(Exception E){}
+	}
+	BufferedImage backg;
+	public void paint(Graphics g){
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -132,9 +138,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean humanPlayer = false;
 		private JTextField name;
 		private Timer T=new Timer();
-
 		boolean firstAction = true;
-
 		int playernum;
 
 		
