@@ -153,9 +153,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
-		private Timer T=new Timer();
-
-		boolean firstAction = true;
 		
 		public void paintComponent(Graphics g){
 			super.paint(g);
@@ -256,11 +253,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				humanPlayer = false;
 				name.setVisible(false);
 				strategy.setVisible(true);
-			}
-			if(firstAction) {
-				TransAmerica.transamerica.setSize(1600, 899);
-				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				firstAction = false;
 			}
 		}
 		
