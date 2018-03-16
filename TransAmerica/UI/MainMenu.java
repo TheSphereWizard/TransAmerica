@@ -108,8 +108,14 @@ public class MainMenu extends JPanel implements ActionListener{
 					Grid grid = new Grid();
 					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
 					MainGameScreen screen = new MainGameScreen(bigMap);
+					screen.generate(playerColors, playerNames, playerType);
 					add(screen);
+<<<<<<< HEAD
+					TransAmerica.transamerica.remove(0);
+					TransAmerica.transamerica.repaint();
+=======
 					System.out.println(TransAmerica.transamerica.getComponentCount());
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
@@ -119,7 +125,6 @@ public class MainMenu extends JPanel implements ActionListener{
 					for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerType.get(i));
 					}*/
-					screen.generate(playerColors, playerNames, playerType);
 					System.out.println("Reached!");
 				}else{
 					//progress to ai game
@@ -152,11 +157,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private JTextField name;
 
 		int playernum;
-
-		public String getDifficulty() {
-			//Should return selected strategy Name
-			return null;
-		}
 		public void paint(Graphics g){
 			g.setColor(this.colors[playernum]);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
