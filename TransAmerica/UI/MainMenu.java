@@ -48,7 +48,7 @@ public class MainMenu extends JPanel implements ActionListener{
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
 			buttons[i].setSize(100,50);
-			buttons[i].setLocation((int) (800+200*(i-.5))-50,750-25);
+			buttons[i].setLocation((int) (800+200*(i-.5))-50,760);
 			this.add(buttons[i]);
 		}
 		try{
@@ -223,7 +223,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 					strategy.setBounds(90, 255, 60, 25);
 				}
 			}
-			options[0].setSelected(true);
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
@@ -248,7 +247,14 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(true);
 				strategy.setSelectedIndex(1);
+			} else {
+				options[0].setSelected(true);
+				player = false;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(false);
 			}
+				
 		}
 		
 		
