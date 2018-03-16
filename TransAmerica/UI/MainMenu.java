@@ -146,7 +146,10 @@ public class MainMenu extends JPanel implements ActionListener{
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+=======
 >>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					TransAmerica.transamerica.remove(0);
 					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
@@ -162,11 +165,16 @@ public class MainMenu extends JPanel implements ActionListener{
 				
 =======
 					
+<<<<<<< HEAD
 
 
 >>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					System.out.println(TransAmerica.transamerica.getComponentCount());
-
+					TransAmerica.transamerica.remove(0);
+					System.out.println(TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.add(screen);
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
@@ -318,7 +326,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(true);
 			}
-			System.out.println(noPlayers);
+//			System.out.println(noPlayers);
 		}
 		
 		public boolean isPlayer() {
