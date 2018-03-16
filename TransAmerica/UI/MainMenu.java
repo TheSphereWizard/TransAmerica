@@ -48,7 +48,7 @@ public class MainMenu extends JPanel implements ActionListener{
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
 			buttons[i].setSize(100,50);
-			buttons[i].setLocation((int) (800+200*(i-.5))-50,750-25);
+			buttons[i].setLocation((int) (800+200*(i-.5))-50,760);
 			this.add(buttons[i]);
 		}
 		try{
