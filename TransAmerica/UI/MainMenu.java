@@ -151,7 +151,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private String[] stratNames = {"Easy" , "Hard"};
 		private JComboBox<String> strategy = new JComboBox<String>(stratNames);
 		
-		private int noPlayers = 6, playerNum;
+		private int noPlayers = 6;
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
@@ -178,7 +178,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			this.playerNum = playerNum;
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
 //			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -222,6 +221,22 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			if(playerNum == 1 || playerNum == 2) {THIS ALSO BREAKS EVERYTHING
 //				options[1].setSelected(true);
 //			}
+			
+			if(playerNum == 1) {
+				options[1].setSelected(true);
+				noPlayers --;
+				player = true;
+				humanPlayer = true;
+				name.setVisible(true);
+				strategy.setVisible(false);
+			} else if(playerNum >= 2 && playerNum <= 4) {
+				options[2].setSelected(true);
+				player = true;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(true);
+				strategy.setSelectedIndex(1);
+			}
 		}
 		
 		
