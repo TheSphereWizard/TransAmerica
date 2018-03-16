@@ -109,6 +109,7 @@ public class MainMenu extends JPanel implements ActionListener{
 					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
 					MainGameScreen screen = new MainGameScreen(bigMap);
 					add(screen);
+					System.out.println(TransAmerica.transamerica.getComponentCount());
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
@@ -228,19 +229,20 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(false);
 			} else if(e.getActionCommand().equals(optionNames[1])) {
-				noPlayers --;
+//				noPlayers --;
 				player = true;
 				humanPlayer = true;
 				name.setVisible(true);
 				strategy.setVisible(false);
 				TransAmerica.transamerica.repaint();
 			} else if(e.getActionCommand().equals(optionNames[2])) {
-				noPlayers --;
+//				noPlayers --;
 				player = true;
 				humanPlayer = false;
 				name.setVisible(false);
 				strategy.setVisible(true);
 			}
+			System.out.println(noPlayers);
 		}
 		
 		public boolean isPlayer() {
