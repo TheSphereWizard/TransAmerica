@@ -25,7 +25,7 @@ public class ReadOnlyGrid {
 	}
 	ArrayList<Rail> checkRail2(Player p){
 		try{
-			return grid.checkRail2(p);
+			return grid.allValidMovesForPlayer(p);
 		}catch(Exception E){return null;}
 	}
 	boolean RailExists(Position p1, Position p2) {

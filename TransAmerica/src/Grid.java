@@ -41,7 +41,13 @@ public class Grid {
 	};
 	
 	Rail[][] railGrid;
-	private int boardwidth=25,boardheight=15;
+	int boardwidth=25,boardheight=15;
+	public int getBoardwidth() {
+		return boardwidth;
+	}
+	public int getBoardheight() {
+		return boardheight;
+	}
 	int[][] grid=new int[getBoardwidth()][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	ArrayList<Marker> markers= new ArrayList<Marker>();
@@ -91,18 +97,6 @@ public class Grid {
 		return false;
 	}
 	
-	public int getBoardwidth() {
-		return boardwidth;
-	}
-	public void setBoardwidth(int boardwidth) {
-		this.boardwidth = boardwidth;
-	}
-	public int getBoardheight() {
-		return boardheight;
-	}
-	public void setBoardheight(int boardheight) {
-		this.boardheight = boardheight;
-	}
 	public static int checkiflargeornot(Position p1, Position p2) throws Exception {
 		return mountains.contains(new Rail(p1,p2))?2:1;
 	}
@@ -149,15 +143,6 @@ public class Grid {
 		return Math.abs(p1.x-p2.x)+Math.abs(p1.y-p2.y);
 	}
 	
-	//TODO below:
-	static ArrayList<Rail> mountains = new ArrayList<Rail>();
-	private void placemountains() {
-		try{
-			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
-			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
-			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
-		}catch(Exception e){}
-	}
 	ArrayList<Rail> immediateneighbors(Position p) throws Exception{
 		ArrayList<Rail> ne = new ArrayList<Rail>();
 		ne.add(new Rail(p,new Position(p.x-1,p.y)));
@@ -185,13 +170,14 @@ public class Grid {
 			return true;
 		}else{
 			try {
-				return checkRail2(p).contains(r);
+				return allValidMovesForPlayer(p).contains(r);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return true;
 	}
+	
 	ArrayList<ArrayList<City>> setofgoalCities(int numberofplayers){
 		ArrayList<ArrayList<City>> yo = new ArrayList<ArrayList<City>>();
 		for(int i=0;i<numberofplayers;i++){
@@ -212,7 +198,18 @@ public class Grid {
 		}		
 		return yo;
 	}
-	ArrayList<Rail> checkRail2(Player p) throws Exception{//checks whether the passed rail is on the player's network
+	
+	//TODO below:
+	static ArrayList<Rail> mountains = new ArrayList<Rail>();
+	private void placemountains() {
+		try{
+			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
+			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
+			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
+		}catch(Exception e){}
+	}
+
+	ArrayList<Rail> allValidMovesForPlayer(Player p) throws Exception{//returns all Rails on Players Network
 		ArrayList<Rail> allvalid;
 		if(p==null){
 			return null;

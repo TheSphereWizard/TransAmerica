@@ -26,6 +26,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 	
 	
 		//Need to Make turns not skipped and make sure turns work properly
+	//ALSO NEEDS TO DRAW MOUNTAINS SOMEHOW: BIGGER SIZE RAIL?
 		BufferedImage Map;
 		
 		Player currentPlayer;
@@ -238,7 +239,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			
 			if(currentPlayer.startMarker!=null){
 				try {
-					ok = currentGrid.checkRail2(currentPlayer);
+					ok = currentGrid.allValidMovesForPlayer(currentPlayer);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
