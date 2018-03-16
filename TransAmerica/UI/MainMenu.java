@@ -40,7 +40,7 @@ public class MainMenu extends JPanel implements ActionListener{
 
 		for(int i = 3; i <= 5; i++) {
 			playerPanels[i] = new PlayerPanel(i + 1);
-			playerPanels[i].setSize(350, 200);
+			playerPanels[i].setSize(350, 300);
 			playerPanels[i].setLocation(800+(450*(i-4))-175,550-100);
 			this.add(playerPanels[i]);
 		}
