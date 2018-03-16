@@ -109,13 +109,14 @@ public class MainMenu extends JPanel implements ActionListener{
 					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
 					MainGameScreen screen = new MainGameScreen(bigMap);
 					screen.generate(playerColors, playerNames, playerType);
-					add(screen);
-<<<<<<< HEAD
+					System.out.println("1 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.remove(0);
+					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.add(screen);
+					System.out.println("3 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.repaint();
-=======
-					System.out.println(TransAmerica.transamerica.getComponentCount());
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+					System.out.println("4 "+TransAmerica.transamerica.getComponentCount());
+					
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
