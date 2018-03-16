@@ -28,7 +28,10 @@ public class MainGameScreen extends JPanel {
 	private JLabel transAmericaLabel;
 	
 	MainGameScreen(MapofUSA bigMap) {
-		map = bigMap;
+		this.map = bigMap;
+	}
+	
+	MainGameScreen(Grid grid) {
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
