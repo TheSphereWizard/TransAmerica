@@ -128,6 +128,9 @@ public class MainMenu extends JPanel implements ActionListener{
 //					add(screen);
 				}
 			}
+			else{//not enough players
+				ErrorMessage error = new ErrorMessage();
+			}
 			
 		} else if(e.getActionCommand().equals("Exit"))
 			System.exit(0);
