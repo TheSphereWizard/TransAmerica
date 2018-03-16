@@ -233,9 +233,33 @@ public class Grid {
 		}
 		return allvalid;
 	}
-	int[] railsMissing(){
+	int railsMissing(Player p){
 		//throwexception if one is not 0, 
 		//idk return sum of smallest distances from any rail on players network each missing city?
-		return new int[6];
+		
+		ArrayList<Rail> fred = new ArrayList<Rail>();
+		//May need to make whole new Grids to test different cases.
+		
+		
+		
+		
+		/*
+		 * I think the general algorithum will go as follows;
+		 * for each city: 
+		 * 	Add to a grid all possible rails that go together with the smallest possible route
+		 * 	
+		 */
+		
+		
+		
+		int totaldist=0;
+		for(City c :p.record.getCities()){
+			if(!p.record.getCitiesReached().contains(c)){
+				int max ;
+			}
+		}
+		
+		
+		return totaldist;
 	}
 }
