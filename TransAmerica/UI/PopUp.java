@@ -53,6 +53,9 @@ public class PopUp extends JPanel{
 			
 		});
 		this.add(slow);
+		frame = new JFrame("Strategy Analysis Mode");
+		frame.setSize(300, 100);
+		frame.setResizable(false);
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
