@@ -27,16 +27,15 @@ public class MainGameScreen extends JPanel {
 
 	private JLabel transAmericaLabel;
 	
-<<<<<<< HEAD
 	MainGameScreen(MapofUSA bigMap) {
 		this.map = bigMap;
-=======
+	}
+	
 	MainGameScreen(Grid grid) {
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
 		this.grid = grid;
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
@@ -59,7 +58,7 @@ public class MainGameScreen extends JPanel {
 		}
 		
 		panes[0].add(transAmericaLabel);
-		panes[1].add(bigMap);
+		panes[1].add(map);
 	}
 	
 	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
