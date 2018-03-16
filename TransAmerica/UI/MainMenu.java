@@ -110,8 +110,12 @@ public class MainMenu extends JPanel implements ActionListener{
 					MainGameScreen screen = new MainGameScreen(bigMap);
 					screen.generate(playerColors, playerNames, playerType);
 					add(screen);
+<<<<<<< HEAD
 					TransAmerica.transamerica.remove(0);
 					TransAmerica.transamerica.repaint();
+=======
+					System.out.println(TransAmerica.transamerica.getComponentCount());
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
@@ -228,19 +232,20 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(false);
 			} else if(e.getActionCommand().equals(optionNames[1])) {
-				noPlayers --;
+//				noPlayers --;
 				player = true;
 				humanPlayer = true;
 				name.setVisible(true);
 				strategy.setVisible(false);
 				TransAmerica.transamerica.repaint();
 			} else if(e.getActionCommand().equals(optionNames[2])) {
-				noPlayers --;
+//				noPlayers --;
 				player = true;
 				humanPlayer = false;
 				name.setVisible(false);
 				strategy.setVisible(true);
 			}
+			System.out.println(noPlayers);
 		}
 		
 		public boolean isPlayer() {
