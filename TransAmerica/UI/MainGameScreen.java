@@ -26,8 +26,8 @@ public class MainGameScreen extends JPanel {
 
 	private JLabel transAmericaLabel;
 	
-	MainGameScreen(Grid grid) {
-		
+	MainGameScreen(Game game) {
+		//NEEDS WORK
 		this.map = new MapofUSA(0,200,1000,500,grid);
 		map.currentPlayer = 
 		try{
