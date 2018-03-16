@@ -109,14 +109,25 @@ public class MainMenu extends JPanel implements ActionListener{
 					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
 					MainGameScreen screen = new MainGameScreen(bigMap);
 					screen.generate(playerColors, playerNames, playerType);
+<<<<<<< HEAD
 					System.out.println("1 "+TransAmerica.transamerica.getComponentCount());
+=======
+					add(screen);
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					TransAmerica.transamerica.remove(0);
 					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.add(screen);
 					System.out.println("3 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.repaint();
+<<<<<<< HEAD
 					System.out.println("4 "+TransAmerica.transamerica.getComponentCount());
 					
+=======
+
+					System.out.println(TransAmerica.transamerica.getComponentCount());
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
@@ -152,7 +163,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private String[] stratNames = {"Easy" , "Hard"};
 		private JComboBox<String> strategy = new JComboBox<String>(stratNames);
 		
-		private int noPlayers = 6;
+		private int noPlayers = 6, playerNum;
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
@@ -179,6 +190,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			this.playerNum = playerNum;
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
 //			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -213,7 +225,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				}
 			}
 			options[0].setSelected(true);
-			
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
