@@ -29,12 +29,9 @@ public class MainGameScreen extends JPanel {
 	
 	MainGameScreen(MapofUSA bigMap) {
 		this.map = bigMap;
-<<<<<<< HEAD
-		MainGameScreen(Grid grid) {
-=======
 	}
+	
 	MainGameScreen(Grid grid) {
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
