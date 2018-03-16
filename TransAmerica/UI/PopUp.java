@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class PopUp extends JPanel{
-	private JPanel popUps;
-	private JPanel aiPopup;
+	//private JPanel popUps;
+	//private JPanel aiPopup;
 	private JFrame frame;
 	private JLabel question;
 	private JTextField gameNumber;
@@ -35,7 +35,9 @@ public class PopUp extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				if(gameNumber.getText() == null){
+					ErrorMessage error = new ErrorMessage();
+				}
 				
 			}
 			
@@ -47,14 +49,16 @@ public class PopUp extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				if(gameNumber.getText() == null){
+					ErrorMessage error = new ErrorMessage();
+				}
 				
 			}
 			
 		});
 		this.add(slow);
 		frame = new JFrame("Strategy Analysis Mode");
-		frame.setSize(300, 100);
+		frame.setSize(300, 150);
 		frame.setResizable(false);
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

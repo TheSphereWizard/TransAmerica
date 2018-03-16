@@ -38,8 +38,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		static ArrayList<City> allCities;
 		public static void main(String[] red){
 //			System.out.println(oddmod(16,2));
-			MapofUSA map = new MapofUSA(0,100,1200,600);
-			Screen.makeScreen(map,10);
+			//MapofUSA map = new MapofUSA(0,100,1200,600);
+			//Screen.makeScreen(map,10);
 		}
 		private void runtestcode() {
 			setCurrentGrid(new Grid());

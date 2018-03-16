@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -28,7 +27,9 @@ public class MainGameScreen extends JPanel {
 	private JLabel transAmericaLabel;
 	
 	MainGameScreen(MapofUSA bigMap) {
+		
 		this.map = bigMap;
+
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
@@ -87,7 +88,7 @@ public class MainGameScreen extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		frame.setContentPane(new MainGameScreen());
+		//frame.setContentPane(new MainGameScreen());
 		frame.setVisible(true);
 	}
 	
