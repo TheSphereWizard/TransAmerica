@@ -142,6 +142,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //					something.popup;
 //					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
 //					add(screen);
+					PopUp aiGamePopUp = new PopUp();
 				}
 			}
 			else{//not enough players
@@ -222,7 +223,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 					strategy.setBounds(90, 255, 60, 25);
 				}
 			}
-			options[0].setSelected(true);
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
@@ -247,7 +247,14 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(true);
 				strategy.setSelectedIndex(1);
+			} else {
+				options[0].setSelected(true);
+				player = false;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(false);
 			}
+				
 		}
 		
 		
