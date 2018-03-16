@@ -20,11 +20,9 @@ public class HardStrategy extends ComputerPlayer {
 					nextRail = r;
 				}
 			}
-			
 		}
 		return nextRail;
 	}
-	
 	public int distanceToCity(Rail rail, City city, ReadOnlyGrid grid) {
 		//returns distance from rail to city
 		int distance = 0;
