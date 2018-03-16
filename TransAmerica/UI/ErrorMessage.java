@@ -21,7 +21,6 @@ public class ErrorMessage extends JFrame implements ActionListener {
 		
 		this.add(contentPane);
 		this.setLocation(650,375);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(300, 150);
 		this.setResizable(false);
 		this.setVisible(true);

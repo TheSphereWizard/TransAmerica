@@ -186,7 +186,8 @@ public class Grid {
 			for(int j=0;j<5;j++){
 				int rand = (int)(Math.random()*allcities[j].length);
 				boolean ok = true;
-				for(ArrayList<City> c :yo){
+				for(int k=0;k<yo.size()-1;k++){
+					ArrayList<City> c = yo.get(k);
 					if(c.get(j).equals(allcities[j][rand])){
 						ok=false;
 					}
