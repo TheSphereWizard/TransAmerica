@@ -110,8 +110,17 @@ public class MainMenu extends JPanel implements ActionListener{
 					MainGameScreen screen = new MainGameScreen(bigMap);
 					screen.generate(playerColors, playerNames, playerType);
 
-//					TransAmerica.transamerica.remove(0);
-//					TransAmerica.transamerica.repaint();
+					System.out.println("1 "+TransAmerica.transamerica.getComponentCount());
+
+					add(screen);
+
+					TransAmerica.transamerica.remove(0);
+					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.add(screen);
+					System.out.println("3 "+TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.repaint();
+
+					System.out.println("4 "+TransAmerica.transamerica.getComponentCount());
 					
 					System.out.println(TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.remove(0);
@@ -152,7 +161,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private String[] stratNames = {"Easy" , "Hard"};
 		private JComboBox<String> strategy = new JComboBox<String>(stratNames);
 		
-		private int noPlayers = 6, playerNum;
+		private int noPlayers = 6;
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
@@ -179,7 +188,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			this.playerNum = playerNum;
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
 //			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -223,6 +231,22 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			if(playerNum == 1 || playerNum == 2) {THIS ALSO BREAKS EVERYTHING
 //				options[1].setSelected(true);
 //			}
+			
+			if(playerNum == 1) {
+				options[1].setSelected(true);
+				noPlayers --;
+				player = true;
+				humanPlayer = true;
+				name.setVisible(true);
+				strategy.setVisible(false);
+			} else if(playerNum >= 2 && playerNum <= 4) {
+				options[2].setSelected(true);
+				player = true;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(true);
+				strategy.setSelectedIndex(1);
+			}
 		}
 		
 		

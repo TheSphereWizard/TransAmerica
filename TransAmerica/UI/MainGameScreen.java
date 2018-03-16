@@ -29,9 +29,6 @@ public class MainGameScreen extends JPanel {
 	
 	MainGameScreen(MapofUSA bigMap) {
 		this.map = bigMap;
-	}
-	
-	MainGameScreen(Grid grid) {
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
@@ -90,7 +87,7 @@ public class MainGameScreen extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		//frame.setContentPane(new MainGameScreen());
+		frame.setContentPane(new MainGameScreen());
 		frame.setVisible(true);
 	}
 	
