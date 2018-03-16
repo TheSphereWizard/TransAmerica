@@ -15,7 +15,6 @@ public class MainGameScreen extends JPanel {
 	private BufferedImage backg;
 	MapofUSA map;
 	BufferedImage train , eagle;
-	Grid grid;
 
 	Game currentGame;
 	private JPanel[] panes = new JPanel[4];
@@ -27,12 +26,13 @@ public class MainGameScreen extends JPanel {
 
 	private JLabel transAmericaLabel;
 	
-	MainGameScreen(MapofUSA bigMap) {
-		this.map = bigMap;
+	MainGameScreen(Grid grid) {
+		
+		this.map = new MapofUSA(0,200,1000,500,grid);
+		map.currentPlayer = 
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
-		this.grid = grid;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
@@ -58,27 +58,7 @@ public class MainGameScreen extends JPanel {
 		panes[1].add(map);
 	}
 	
-	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
-		ArrayList<Player> players = new ArrayList<Player>();
-		ArrayList<ArrayList<City>> cities = map.currentGrid.setofgoalCities(playerType.size());
-		boolean slowMode = false;
-		for(int i = 0; i<playerType.size();i++){
-			if(playerType.get(i).equals("Human")){
-				players.add(new HumanPlayer(playerColors.get(i),cities.get(i),playerNames.get(i),map));
-				slowMode = true;
-			}else if(playerType.get(i).equals("Easy")){
-				players.add(new EasyStrategy(playerColors.get(i),cities.get(i),playerNames.get(i)));
-			}else{
-				int[] playerScores = new int[players.size()];
-				for(int j = 0;j<playerScores.length;j++){
-					playerScores[j] = 12;
-				}
-				players.add(new HardStrategy(playerColors.get(i),cities.get(i),playerScores, playerNames.get(i)));
-			}
-		}
-		currentGame = new Game(players,slowMode);
-		
-	}
+
 	
 	public void paintComponent(Graphics g){
 		g.drawImage(backg, 0, 0, 1600, 900, null);
@@ -88,6 +68,7 @@ public class MainGameScreen extends JPanel {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setContentPane(new MainGameScreen());
+		Map
 		frame.setVisible(true);
 	}
 	

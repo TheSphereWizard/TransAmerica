@@ -66,6 +66,28 @@ public class MainMenu extends JPanel implements ActionListener{
 		}
 		
 	}
+	
+	public Game generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType,MapofUSA map){
+		ArrayList<Player> players = new ArrayList<Player>();
+		ArrayList<ArrayList<City>> cities = map.currentGrid.setofgoalCities(playerType.size());
+		boolean slowMode = false;
+		for(int i = 0; i<playerType.size();i++){
+			if(playerType.get(i).equals("Human")){
+				players.add(new HumanPlayer(playerColors.get(i),cities.get(i),playerNames.get(i),map));
+				slowMode = true;
+			}else if(playerType.get(i).equals("Easy")){
+				players.add(new EasyStrategy(playerColors.get(i),cities.get(i),playerNames.get(i)));
+			}else{
+				int[] playerScores = new int[players.size()];
+				for(int j = 0;j<playerScores.length;j++){
+					playerScores[j] = 12;
+				}
+				players.add(new HardStrategy(playerColors.get(i),cities.get(i),playerScores, playerNames.get(i)));
+			}
+		}
+		return new Game(players,slowMode);
+		
+	}
 //	Timer t= new Timer();
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Play")) {
@@ -106,27 +128,53 @@ public class MainMenu extends JPanel implements ActionListener{
 						}
 					}
 					Grid grid = new Grid();
+<<<<<<< HEAD
+					MainGameScreen screen = new MainGameScreen(grid);
+					generate(playerColors, playerNames, playerType);
+=======
 					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
 					MainGameScreen screen = new MainGameScreen(bigMap);
 					screen.generate(playerColors, playerNames, playerType);
 
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					System.out.println("1 "+TransAmerica.transamerica.getComponentCount());
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					add(screen);
+<<<<<<< HEAD
+=======
 
+<<<<<<< HEAD
 
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					TransAmerica.transamerica.remove(0);
 					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.add(screen);
 					System.out.println("3 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.repaint();
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					System.out.println("4 "+TransAmerica.transamerica.getComponentCount());
+<<<<<<< HEAD
+				
+=======
 					
+<<<<<<< HEAD
 
 
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+=======
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					System.out.println(TransAmerica.transamerica.getComponentCount());
-
+					TransAmerica.transamerica.remove(0);
+					System.out.println(TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.add(screen);
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
@@ -278,7 +326,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(true);
 			}
-			System.out.println(noPlayers);
+//			System.out.println(noPlayers);
 		}
 		
 		public boolean isPlayer() {
