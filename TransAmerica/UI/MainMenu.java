@@ -108,7 +108,10 @@ public class MainMenu extends JPanel implements ActionListener{
 					Grid grid = new Grid();
 					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
 					MainGameScreen screen = new MainGameScreen(bigMap);
-					System.out.println(TransAmerica.transamerica.getComponentCount());
+					screen.generate(playerColors, playerNames, playerType);
+
+//					TransAmerica.transamerica.remove(0);
+//					TransAmerica.transamerica.repaint();
 					
 					System.out.println(TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.remove(0);
@@ -123,7 +126,6 @@ public class MainMenu extends JPanel implements ActionListener{
 					for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerType.get(i));
 					}*/
-					screen.generate(playerColors, playerNames, playerType);
 					System.out.println("Reached!");
 				}else{
 					//progress to ai game
@@ -150,17 +152,12 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private String[] stratNames = {"Easy" , "Hard"};
 		private JComboBox<String> strategy = new JComboBox<String>(stratNames);
 		
-		private int noPlayers = 6;
+		private int noPlayers = 6, playerNum;
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
 
 		int playernum;
-
-		public String getDifficulty() {
-			//Should return selected strategy Name
-			return null;
-		}
 		public void paint(Graphics g){
 			g.setColor(this.colors[playernum]);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -182,6 +179,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			this.playerNum = playerNum;
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
 //			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -216,7 +214,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				}
 			}
 			options[0].setSelected(true);
-			
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
