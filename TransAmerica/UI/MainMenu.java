@@ -108,8 +108,25 @@ public class MainMenu extends JPanel implements ActionListener{
 					Grid grid = new Grid();
 					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
 					MainGameScreen screen = new MainGameScreen(bigMap);
+					screen.generate(playerColors, playerNames, playerType);
+
+					System.out.println("1 "+TransAmerica.transamerica.getComponentCount());
+
 					add(screen);
+
+
+					TransAmerica.transamerica.remove(0);
+					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.add(screen);
+					System.out.println("3 "+TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.repaint();
+
+					System.out.println("4 "+TransAmerica.transamerica.getComponentCount());
+					
+
+
 					System.out.println(TransAmerica.transamerica.getComponentCount());
+
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
@@ -119,7 +136,6 @@ public class MainMenu extends JPanel implements ActionListener{
 					for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerType.get(i));
 					}*/
-					screen.generate(playerColors, playerNames, playerType);
 					System.out.println("Reached!");
 				}else{
 					//progress to ai game
@@ -153,11 +169,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private JTextField name;
 
 		int playernum;
-
-		public String getDifficulty() {
-			//Should return selected strategy Name
-			return null;
-		}
 		public void paint(Graphics g){
 			g.setColor(this.colors[playernum]);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -213,7 +224,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				}
 			}
 			options[0].setSelected(true);
-			
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
@@ -223,6 +233,22 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			if(playerNum == 1 || playerNum == 2) {THIS ALSO BREAKS EVERYTHING
 //				options[1].setSelected(true);
 //			}
+			
+			if(playerNum == 1) {
+				options[1].setSelected(true);
+				noPlayers --;
+				player = true;
+				humanPlayer = true;
+				name.setVisible(true);
+				strategy.setVisible(false);
+			} else if(playerNum >= 2 && playerNum <= 4) {
+				options[2].setSelected(true);
+				player = true;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(true);
+				strategy.setSelectedIndex(1);
+			}
 		}
 		
 		
