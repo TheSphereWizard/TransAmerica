@@ -43,8 +43,8 @@ public class ScoreScreen extends JPanel{
 		private Loser(Player player){
 			setBackground(player.getPlayerRecord().getColor());
 			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
-					unconnected = new JLabel(unconnectedCities(player)), 
-					railsMissing = new JLabel(player.getPlayerRecord()),
+					unconnected = new JLabel(unconnectedCities(player)),
+					railsMissing = new JLabel(),
 					pointsLost = new JLabel(),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);

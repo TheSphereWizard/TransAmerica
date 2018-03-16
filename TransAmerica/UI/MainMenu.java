@@ -48,7 +48,7 @@ public class MainMenu extends JPanel implements ActionListener{
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
 			buttons[i].setSize(100,50);
-			buttons[i].setLocation((int) (800+200*(i-.5))-50,750-25);
+			buttons[i].setLocation((int) (800+200*(i-.5))-50,760);
 			this.add(buttons[i]);
 		}
 		try{
@@ -128,17 +128,43 @@ public class MainMenu extends JPanel implements ActionListener{
 						}
 					}
 					Grid grid = new Grid();
+<<<<<<< HEAD
 					MainGameScreen screen = new MainGameScreen(grid);
 					generate(playerColors, playerNames, playerType);
+=======
+					MapofUSA bigMap = new MapofUSA(0,200,1000,500,grid);
+					MainGameScreen screen = new MainGameScreen(bigMap);
+					screen.generate(playerColors, playerNames, playerType);
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					System.out.println("1 "+TransAmerica.transamerica.getComponentCount());
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					add(screen);
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					TransAmerica.transamerica.remove(0);
 					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.add(screen);
 					System.out.println("3 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.repaint();
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					System.out.println("4 "+TransAmerica.transamerica.getComponentCount());
+<<<<<<< HEAD
 				
+=======
+					
+
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 					System.out.println(TransAmerica.transamerica.getComponentCount());
 
 					/*for(int i = 0;i<playerColors.size();i++){
@@ -156,6 +182,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //					something.popup;
 //					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
 //					add(screen);
+					PopUp aiGamePopUp = new PopUp();
 				}
 			}
 			else{//not enough players
@@ -176,7 +203,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private String[] stratNames = {"Easy" , "Hard"};
 		private JComboBox<String> strategy = new JComboBox<String>(stratNames);
 		
-		private int noPlayers = 6, playerNum;
+		private int noPlayers = 6;
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
@@ -203,7 +230,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			this.playerNum = playerNum;
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
 //			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -237,7 +263,6 @@ private class PlayerPanel extends JPanel implements ActionListener{
 					strategy.setBounds(90, 255, 60, 25);
 				}
 			}
-			options[0].setSelected(true);
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
@@ -247,6 +272,29 @@ private class PlayerPanel extends JPanel implements ActionListener{
 //			if(playerNum == 1 || playerNum == 2) {THIS ALSO BREAKS EVERYTHING
 //				options[1].setSelected(true);
 //			}
+			
+			if(playerNum == 1) {
+				options[1].setSelected(true);
+				noPlayers --;
+				player = true;
+				humanPlayer = true;
+				name.setVisible(true);
+				strategy.setVisible(false);
+			} else if(playerNum >= 2 && playerNum <= 4) {
+				options[2].setSelected(true);
+				player = true;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(true);
+				strategy.setSelectedIndex(1);
+			} else {
+				options[0].setSelected(true);
+				player = false;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(false);
+			}
+				
 		}
 		
 		
