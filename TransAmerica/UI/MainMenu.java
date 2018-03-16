@@ -142,6 +142,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //					something.popup;
 //					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
 //					add(screen);
+					PopUp aiGamePopUp = new PopUp();
 				}
 			}
 			else{//not enough players
