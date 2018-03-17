@@ -362,8 +362,9 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		Marker placedmarker;
 		Rail placedRail;
 		public void mouseClicked(MouseEvent e) {//when mouse is clicked, converts click (x, y) coordinates to grid coordinates, and then uses the grid validrail method to determine if rail is valid, if it is then add to lastClick, else ignore that it was clicked
-			int x = e.getX()-mappos[0];
-			int y = e.getY()-mappos[1];
+			System.out.println("hello");
+			int x = e.getX();//-mappos[0];
+			int y = e.getY();//-mappos[1];
 			if(firstturn){
 				placedmarker=new Marker(nearestPosition2(x,y),currentPlayer);
 //				firstturn=false;
@@ -376,8 +377,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //			System.out.println(mos[0]+" "+mos[1]);
 		}
 		public void mouseMoved(MouseEvent e) {//updates highlighting of rail lines
-			int x = e.getX()-mappos[0];
-			int y = e.getY()-mappos[1];
+			int x = e.getX();//-mappos[0];
+			int y = e.getY();//-mappos[1];
 //			mos=new int[]{(int) (x+oddmod(y,scalefactor[1])/2),y};
 			mos=new int[]{x,(int) (y-oddmod(x,scalefactor[0]/2)/2)};
 			if(firstturn){

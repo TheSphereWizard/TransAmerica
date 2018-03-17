@@ -1,5 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -7,7 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MainGameScreen extends JPanel {
+public class MainGameScreen extends JPanel implements MouseListener, MouseMotionListener{
 	private BufferedImage backg;
 	MapofUSA map;
 	BufferedImage train , eagle;
@@ -20,10 +23,17 @@ public class MainGameScreen extends JPanel {
 	private Color[] cityColors = new Color[] {Color.red, Color.blue, Color.yellow, Color.green, Color.orange};
 	
 	MainGameScreen(Game game) {
+//		game.Round();
 		map = new MapofUSA(0,100,1000,500,grid);//game may want map to alter players
 		//on weekend need to get game to use map
 		map.currentPlayer = game.players.get(0);
+		if(map.currentPlayer==null){
+			System.out.println("player is null");
+		}
 		map.currentGrid=game.grid;
+		if(map.currentGrid==null){
+			System.out.println("grid is null");
+		}
 		this.add(map);
 		System.out.println(map.getY());
 		//THIS IS TEMPORARILY REWRITTEN TO SCALE ON 1368/768 screen as This is my screen resolution:
@@ -97,5 +107,26 @@ public class MainGameScreen extends JPanel {
 			this.getComponent(i).paint(g);
 			g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
 		}
-	}	
+	}
+	public void mouseMoved(MouseEvent e) {
+		
+		if(e.getX()>=map.getX()&e.getX()<=map.getX()+map.getWidth()){
+			if(e.getY()>=map.getY()&e.getY()<=map.getY()+map.getHeight()){
+				map.mouseMoved(e);
+			}
+		}
+	}
+	public void mouseClicked(MouseEvent e) {
+		System.out.println("a");
+		if(e.getX()>=map.getX()&e.getX()<=map.getX()+map.getWidth()){
+			if(e.getY()>=map.getY()&e.getY()<=map.getY()+map.getHeight()){
+				map.mouseClicked(new MouseEvent(null,0,0 ,0,e.getX(),e.getY()-200,0,false,0));
+			}
+		}
+	}
+	public void mouseEntered(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {}
+	public void mouseDragged(MouseEvent arg0) {}
 }

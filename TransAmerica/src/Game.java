@@ -25,7 +25,7 @@ Int[] playerNumber, winningPlayer, currentScore, scores;
 public class Game {
 	public static final int ROUND = 0;
 	// ^shows the types of specific game states^
-	
+	Grid grid;
 	ArrayList<Player> players;
 	/**
 	 * determines if is AI game and slow mode
@@ -33,6 +33,7 @@ public class Game {
 	 * @param slowMode if false run a fast game
 	 */
 	Game(ArrayList<Player> players, boolean slowMode){
+		grid = new Grid();
 		this.players = players;
 		this.slowMode = slowMode;
 		if(!slowMode){
@@ -74,14 +75,8 @@ public class Game {
 		return currentScore;
 	}
 	
-	
-
-
-	Grid grid;
-
-	void Round(ArrayList<Player> P) {
+	void Round() {
 		grid = new Grid();
-		players = P;
 		for (Player p : players) {
 			p.clearForNewRound(p.getPlayerRecord().getCities());
 		}

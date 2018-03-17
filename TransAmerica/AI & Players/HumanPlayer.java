@@ -17,12 +17,16 @@ public class HumanPlayer extends Player {
 		try {
 			map = (MapofUSA)map2;
 		}catch(Exception e){
-			
+			System.out.println("Not a Map");
 		}
 		//accesses lastClick to map until it isn't null
 		Object nextRail = null;
 		while(nextRail == null){
-			nextRail = map.returnPlacedRail();
+			try{
+				nextRail = map.returnPlacedRail();
+			}catch(Exception E){
+//				System.out.println(map==null);
+			}
 		}
 		return nextRail;
 	}
