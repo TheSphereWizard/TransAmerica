@@ -1,6 +1,11 @@
 import java.awt.Color;
 import java.util.ArrayList;
-
+/**
+ * To create new strategy: extend ComputerPlayer and have its
+ * constructor call the superclass with a color, cities, and a
+ * name. The subclass you create will implement the method runTurn.
+ * The computer player is informed of the hand, state of board, 
+ */
 public abstract class ComputerPlayer extends Player {
 	
 	//Computer player should get copy of game state (but should not have access to other player’s hands)
@@ -11,7 +16,7 @@ public abstract class ComputerPlayer extends Player {
 		super(c, cities, name);
 	}
 
-	abstract Rail runTurn(boolean firstRailPlaced, ReadOnlyGrid grid);
+	abstract Rail runTurn(boolean firstRailPlaced, Object grid);
 	
 	public ArrayList<Rail> scanRails(){
 //		//returns an arraylist of all possible rails to be placed

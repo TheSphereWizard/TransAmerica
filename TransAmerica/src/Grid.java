@@ -41,7 +41,13 @@ public class Grid {
 	};
 	
 	Rail[][] railGrid;
-	private int boardwidth=25,boardheight=15;
+	int boardwidth=25,boardheight=15;
+	public int getBoardwidth() {
+		return boardwidth;
+	}
+	public int getBoardheight() {
+		return boardheight;
+	}
 	int[][] grid=new int[getBoardwidth()][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	ArrayList<Marker> markers= new ArrayList<Marker>();
@@ -58,11 +64,13 @@ public class Grid {
 		return false;
 	}
 	void placeMarker(Position p,Player player){//places markers
-		markers.add(new Marker(p,player));
+		markers.add(new Marker(p,player));//THIS NEEDS TO THROW EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
 		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player))
 			allRails.add(rail);
+		//THIS NEEDS TO THROW AN EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN WITHOUT ENDING TURN
+		
 		//IF CITY IS CONNECTED TO THIS RAIL THEN CHANGE ALL PLAYERS CONNECTED TO THIS CITY TO REALIZE THEY ARE CONNECTED
 		
 		//MAKE A METHOD THAT RETURNS AN ARRAY/LIST OF OBJECTS THAT ARE CONNECTED TO A POSITION OF aLL TYPES THAT CAN BE ITERATED OVER BY CLASS
@@ -89,18 +97,6 @@ public class Grid {
 		return false;
 	}
 	
-	public int getBoardwidth() {
-		return boardwidth;
-	}
-	public void setBoardwidth(int boardwidth) {
-		this.boardwidth = boardwidth;
-	}
-	public int getBoardheight() {
-		return boardheight;
-	}
-	public void setBoardheight(int boardheight) {
-		this.boardheight = boardheight;
-	}
 	public static int checkiflargeornot(Position p1, Position p2) throws Exception {
 		return mountains.contains(new Rail(p1,p2))?2:1;
 	}
@@ -147,15 +143,6 @@ public class Grid {
 		return Math.abs(p1.x-p2.x)+Math.abs(p1.y-p2.y);
 	}
 	
-	//TODO below:
-	static ArrayList<Rail> mountains = new ArrayList<Rail>();
-	private void placemountains() {
-		try{
-			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
-			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
-			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
-		}catch(Exception e){}
-	}
 	ArrayList<Rail> immediateneighbors(Position p) throws Exception{
 		ArrayList<Rail> ne = new ArrayList<Rail>();
 		ne.add(new Rail(p,new Position(p.x-1,p.y)));
@@ -183,13 +170,14 @@ public class Grid {
 			return true;
 		}else{
 			try {
-				return checkRail2(p).contains(r);
+				return allValidMovesForPlayer(p).contains(r);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return true;
 	}
+	
 	ArrayList<ArrayList<City>> setofgoalCities(int numberofplayers){
 		ArrayList<ArrayList<City>> yo = new ArrayList<ArrayList<City>>();
 		for(int i=0;i<numberofplayers;i++){
@@ -198,7 +186,8 @@ public class Grid {
 			for(int j=0;j<5;j++){
 				int rand = (int)(Math.random()*allcities[j].length);
 				boolean ok = true;
-				for(ArrayList<City> c :yo){
+				for(int k=0;k<yo.size()-1;k++){
+					ArrayList<City> c = yo.get(k);
 					if(c.get(j).equals(allcities[j][rand])){
 						ok=false;
 					}
@@ -210,7 +199,18 @@ public class Grid {
 		}		
 		return yo;
 	}
-	ArrayList<Rail> checkRail2(Player p) throws Exception{//checks whether the passed rail is on the player's network
+	
+	//TODO below:
+	static ArrayList<Rail> mountains = new ArrayList<Rail>();
+	private void placemountains() {
+		try{
+			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
+			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
+			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
+		}catch(Exception e){}
+	}
+
+	ArrayList<Rail> allValidMovesForPlayer(Player p) throws Exception{//returns all Rails on Players Network
 		ArrayList<Rail> allvalid;
 		if(p==null){
 			return null;
@@ -234,9 +234,33 @@ public class Grid {
 		}
 		return allvalid;
 	}
-	int[] railsMissing(){
+	int railsMissing(Player p){
 		//throwexception if one is not 0, 
 		//idk return sum of smallest distances from any rail on players network each missing city?
-		return new int[6];
+		
+		ArrayList<Rail> fred = new ArrayList<Rail>();
+		//May need to make whole new Grids to test different cases.
+		
+		
+		
+		
+		/*
+		 * I think the general algorithum will go as follows;
+		 * for each city: 
+		 * 	Add to a grid all possible rails that go together with the smallest possible route
+		 * 	
+		 */
+		
+		
+		
+		int totaldist=0;
+		for(City c :p.record.getCities()){
+			if(!p.record.getCitiesReached().contains(c)){
+				int max ;
+			}
+		}
+		
+		
+		return totaldist;
 	}
 }

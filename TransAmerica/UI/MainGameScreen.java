@@ -2,19 +2,19 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
-
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainGameScreen extends JPanel {
-	
-	private static final long serialVersionUID = 1L;
-
+	private BufferedImage backg;
 	MapofUSA map;
 	BufferedImage train , eagle;
+	Grid grid;
 
 	Game currentGame;
 	private JPanel[] panes = new JPanel[4];
@@ -26,7 +26,21 @@ public class MainGameScreen extends JPanel {
 
 	private JLabel transAmericaLabel;
 	
-	MainGameScreen() {
+<<<<<<< HEAD
+	MainGameScreen(Game game) {
+		//NEEDS WORK
+		this.map = new MapofUSA(0,200,1000,500,grid);
+		map.currentPlayer = 
+=======
+	MainGameScreen(MapofUSA bigMap) {
+		
+		this.map = bigMap;
+
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+		try{
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+		}catch(Exception E){}
+		this.grid = grid;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
@@ -49,7 +63,7 @@ public class MainGameScreen extends JPanel {
 		}
 		
 		panes[0].add(transAmericaLabel);
-		panes[1].add(new MapofUSA(10,10,400,700));
+		panes[1].add(map);
 	}
 	
 	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
@@ -75,9 +89,14 @@ public class MainGameScreen extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g){
-		
+		g.drawImage(backg, 0, 0, 1600, 900, null);
 	}
 	
-	
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		//frame.setContentPane(new MainGameScreen());
+		frame.setVisible(true);
+	}
 	
 }

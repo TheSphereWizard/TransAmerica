@@ -1,17 +1,29 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 //1600x900
 public class ComputerStrategyScreen extends JPanel{
 	private JPanel players = new JPanel();
+	private BufferedImage backg;
 	public ComputerStrategyScreen(int gamesPlayed, int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage) {
+		try{
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+		}catch(Exception E){}
 		add(new GeneralInfo(gamesPlayed));
 		players.setLayout(new GridLayout(2,3,10,10));
 		setPlayers(gamesWon, gamesLost, rank, winPercentage);
 		add(players);
 		setLayout(new GridLayout(2,1,0,0));
+	}
+	public void paint(Graphics g){
+		g.drawImage(backg, 0, 0, 1600, 900, null);
 	}
 	private void setPlayers(int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage){
 		Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};

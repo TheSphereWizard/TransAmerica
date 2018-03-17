@@ -15,40 +15,81 @@ import javax.swing.*;
 public class MainMenu extends JPanel implements ActionListener{
 
 
-	private JPanel[] panes = new JPanel[4];
+//	private JPanel[] panes = new JPanel[4];
 	private JButton start = new JButton("Play"), exit = new JButton("Exit");
 	private JButton[] buttons = new JButton[] {start, exit};
 	private PlayerPanel[] playerPanels = new PlayerPanel[6];
 
 	MainMenu() {
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));		
+		this.setLayout(null);		
 
-		for(int i = 0; i < panes.length; i++) {
-			panes[i] = new JPanel();
-			panes[i].setBackground(Color.WHITE);
-			this.add(panes[i]);
-		}
+//		for(int i = 0; i < panes.length; i++) {
+//			panes[i] = new JPanel();
+//			panes[i].setBackground(Color.WHITE);
+//			this.add(panes[i]);
+//		}
+		JLabel Title =new JLabel("TransAmerica");
+		this.add(Title);
 
-		panes[0].add(new JLabel("TransAmerica"));
-
-		for(int i = 0; i < playerPanels.length - 3; i++) {
+		for(int i = 0; i <= 2; i++) {
 			playerPanels[i] = new PlayerPanel(i + 1);
-			panes[1].add(playerPanels[i]);
+			playerPanels[i].setSize(350, 300);
+			playerPanels[i].setLocation(800+(450*(i-1))-175,200-100);
+			this.add(playerPanels[i]);
 		}
 
-		for(int i = 3; i < playerPanels.length; i++) {
+		for(int i = 3; i <= 5; i++) {
 			playerPanels[i] = new PlayerPanel(i + 1);
-			panes[2].add(playerPanels[i]);
+			playerPanels[i].setSize(350, 300);
+			playerPanels[i].setLocation(800+(450*(i-4))-175,550-100);
+			this.add(playerPanels[i]);
 		}
-
 		for(int i = 0; i < buttons.length; i++) {
 			buttons[i].addActionListener(this);
 			buttons[i].setActionCommand(buttons[i].getText());
-			panes[3].add(buttons[i]);
+			buttons[i].setSize(100,50);
+			buttons[i].setLocation((int) (800+200*(i-.5))-50,760);
+			this.add(buttons[i]);
 		}
-
+		try{
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+		}catch(Exception E){}
+		
 	}
-
+	BufferedImage backg;
+	public void paint(Graphics g){
+		g.drawImage(backg, 0, 0, 1600, 900, null);
+		for(int i=0;i<this.getComponentCount();i++){
+			g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
+			this.getComponent(i).paint(g);
+			g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
+		}
+		
+	}
+	
+	public Game generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
+		ArrayList<Player> players = new ArrayList<Player>();
+		Grid currentGrid = new Grid();
+		ArrayList<ArrayList<City>> cities = currentGrid.setofgoalCities(playerType.size());
+		boolean slowMode = false;
+		for(int i = 0; i<playerType.size();i++){
+			if(playerType.get(i).equals("Human")){
+				players.add(new HumanPlayer(playerColors.get(i),cities.get(i),playerNames.get(i)));
+				slowMode = true;
+			}else if(playerType.get(i).equals("Easy")){
+				players.add(new EasyStrategy(playerColors.get(i),cities.get(i),playerNames.get(i)));
+			}else{
+				int[] playerScores = new int[players.size()];
+				for(int j = 0;j<playerScores.length;j++){
+					playerScores[j] = 12;
+				}
+				players.add(new HardStrategy(playerColors.get(i),cities.get(i),playerScores, playerNames.get(i)));
+			}
+		}
+		return new Game(players,slowMode);
+		
+	}
+//	Timer t= new Timer();
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Play")) {
 			int readyPlayers = 0;
@@ -58,6 +99,7 @@ public class MainMenu extends JPanel implements ActionListener{
 				}
 			}
 			if(readyPlayers>=2){//starts the game, either human or all ai
+
 				ArrayList<PlayerPanel> validPanels = new ArrayList<PlayerPanel>();
 				for(PlayerPanel p:playerPanels){
 					if(p.isPlayer()){
@@ -86,8 +128,24 @@ public class MainMenu extends JPanel implements ActionListener{
 							playerType.add(p.getStrategy());
 						}
 					}
-					MainGameScreen screen = new MainGameScreen();
+					MainGameScreen screen = new MainGameScreen(generate(playerColors, playerNames, playerType));
+
+					System.out.println("1 "+TransAmerica.transamerica.getComponentCount());
+
 					add(screen);
+
+					TransAmerica.transamerica.remove(0);
+					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.add(screen);
+					System.out.println("3 "+TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.repaint();
+
+					System.out.println("4 "+TransAmerica.transamerica.getComponentCount());
+	
+					System.out.println(TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.remove(0);
+					System.out.println(TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.add(screen);
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}
@@ -97,14 +155,17 @@ public class MainMenu extends JPanel implements ActionListener{
 					for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerType.get(i));
 					}*/
-					screen.generate(playerColors, playerNames, playerType);
 					System.out.println("Reached!");
 				}else{
 					//progress to ai game
 //					something.popup;
 //					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
 //					add(screen);
+					PopUp aiGamePopUp = new PopUp();
 				}
+			}
+			else{//not enough players
+				ErrorMessage error = new ErrorMessage();
 			}
 			
 		} else if(e.getActionCommand().equals("Exit"))
@@ -112,12 +173,6 @@ public class MainMenu extends JPanel implements ActionListener{
 	}
 	
 private class PlayerPanel extends JPanel implements ActionListener{
-	
-	/* Notes for Jack 
-	 * Create textField for name that only shows up when "Human Player" is selected
-	 * Create combo box to house strategies, only make it visible when computer player is selected
-	 * Create method to return strategy selected in the combo box
-	 */
 		
 		private static final long serialVersionUID = 1L;
 		private ButtonGroup group = new ButtonGroup();
@@ -131,38 +186,23 @@ private class PlayerPanel extends JPanel implements ActionListener{
 		private boolean player = false;
 		private boolean humanPlayer = false;
 		private JTextField name;
-		private Timer T=new Timer();
-<<<<<<< HEAD
-=======
-		boolean firstAction = true;
-		
-		public void paint(Graphics g){
-			super.paint(g);
-			g.drawRect(-10, -10, 20, 20);
-		}
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 
 		int playernum;
-
-		
-		public String getDifficulty() {
-			//Should return selected strategy Name
-			return null;
-		}
 		public void paint(Graphics g){
+			g.setColor(this.colors[playernum]);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			for(int i=0;i<this.getComponentCount();i++){
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
-				g.drawImage(buttonImage, -20, -20, this.getComponent(i).getWidth()+40, this.getComponent(i).getHeight()+40, null);
+				if(this.getComponent(i).isVisible()){
+//					if(i!=0)
+						g.drawImage(buttonImage, -10, -10, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+20, null);
+					this.getComponent(i).paint(g);//needs to be specialized
+				}
 				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
 			}
 		}
 		BufferedImage buttonImage;
 		public PlayerPanel(int playerNum) {
-//			T.schedule(new TimerTask(){
-//				public void run() {
-//					TransAmerica.transamerica.repaint();
-//				}
-//			}, 0,10);
 			try {
 				buttonImage=ImageIO.read(new File("Pix\\button.png"));
 			} catch (IOException e1) {
@@ -175,7 +215,7 @@ private class PlayerPanel extends JPanel implements ActionListener{
 			setLayout(null);
 			JLabel playernumber = new JLabel("Player " + playerNum);
 			playernumber.setFont(new Font("Arial",Font.BOLD,24));
-			playernumber.setLocation(50,0);
+			playernumber.setLocation(25,15);
 			playernumber.setSize(100, 50);
 			add(playernumber);
 			name = new JTextField();
@@ -185,8 +225,8 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				options[i] = new JRadioButton(optionNames[i]);
 				options[i].addActionListener(this);
 				options[i].setActionCommand(optionNames[i]);
-				options[i].setBackground(colors[playerNum - 1]);
-				options[i].setLocation(50,50*(i+1));
+				options[i].setBackground(new Color(0,0,0,0));
+				options[i].setLocation(70,85+(int) (70*(i)));
 				options[i].setSize(150, 20);
 				group.add(options[i]);
 				
@@ -195,24 +235,45 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				if(i == 1) {
 					add(name);
 					name.setVisible(false);
-					name.setBounds(70, 120, 60, 25);
+					name.setBounds(90, 185, 60, 25);
 				} else if(i == 2) {
 					add(strategy);
 					strategy.setVisible(false);
-					strategy.setBounds(70, 170, 60, 25);
+					strategy.setBounds(90, 255, 60, 25);
 				}
 			}
-			options[0].setSelected(true);
-			
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
 			
 			this.setPreferredSize(new Dimension(400,200));
 			
-			if(playerNum == 1 || playerNum == 2) {
-				options[1].setSelected(true);;
+//			if(playerNum == 1 || playerNum == 2) {THIS ALSO BREAKS EVERYTHING
+//				options[1].setSelected(true);
+//			}
+			
+			if(playerNum == 1) {
+				options[1].setSelected(true);
+				noPlayers --;
+				player = true;
+				humanPlayer = true;
+				name.setVisible(true);
+				strategy.setVisible(false);
+			} else if(playerNum >= 2 && playerNum <= 4) {
+				options[2].setSelected(true);
+				player = true;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(true);
+				strategy.setSelectedIndex(1);
+			} else {
+				options[0].setSelected(true);
+				player = false;
+				humanPlayer = false;
+				name.setVisible(false);
+				strategy.setVisible(false);
 			}
+				
 		}
 		
 		
@@ -223,23 +284,20 @@ private class PlayerPanel extends JPanel implements ActionListener{
 				name.setVisible(false);
 				strategy.setVisible(false);
 			} else if(e.getActionCommand().equals(optionNames[1])) {
-				noPlayers --;
+//				noPlayers --;
 				player = true;
 				humanPlayer = true;
 				name.setVisible(true);
 				strategy.setVisible(false);
+				TransAmerica.transamerica.repaint();
 			} else if(e.getActionCommand().equals(optionNames[2])) {
-				noPlayers --;
+//				noPlayers --;
 				player = true;
 				humanPlayer = false;
 				name.setVisible(false);
 				strategy.setVisible(true);
 			}
-			if(firstAction) {
-				TransAmerica.transamerica.setSize(1600, 899);
-				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				firstAction = false;
-			}
+//			System.out.println(noPlayers);
 		}
 		
 		public boolean isPlayer() {

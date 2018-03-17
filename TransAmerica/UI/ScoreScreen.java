@@ -1,18 +1,30 @@
 //POINTS LOST
 //RAILS MISSING
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 public class ScoreScreen extends JPanel{
 	private Game game;
-	ScoreScreen(ArrayList<Player> players, Game game) {
+	private BufferedImage backg;
+	ScoreScreen(ArrayList<Player> players, Game game){
+		try{
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+		}catch(Exception E){}
 		setLayout(new GridLayout(2,1,0,0));
 		this.game = game;
 		add(new WinningPlayer(players.get(game.getWinningPlayer())));
 		add(new Losers(players));
+	}
+	public void paint(Graphics g){
+		g.drawImage(backg, 0, 0, 1600, 900, null);
 	}
 	/**
 	 * Displays the game losers
@@ -24,16 +36,27 @@ public class ScoreScreen extends JPanel{
 					add(new Loser(players.get(i)));
 		}
 	}
+	/**
+	 * An individual loser
+	 */
 	private class Loser extends JPanel{
 		private Loser(Player player){
 			setBackground(player.getPlayerRecord().getColor());
 			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
-					unconnected = new JLabel(unconnectedCities(player)), 
-					railsMissing = new JLabel(player.getPlayerRecord().), pointsLost, score;
+					unconnected = new JLabel(unconnectedCities(player)),
+					railsMissing = new JLabel(),
+					pointsLost = new JLabel(),
+					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
 			add(railsMissing);
+			add(pointsLost);
+			add(score);
 		}
+		/**
+		 * @param player
+		 * @return a String containing players unconnected cities
+		 */
 		private String unconnectedCities(Player player){
 			String content = "";
 			for(int i = 0; i < player.getPlayerRecord().getCities().size(); i++)
@@ -47,7 +70,7 @@ public class ScoreScreen extends JPanel{
 	 * Displays the winning player, the order of the cities they connected,
 	 * and the continue button
 	 */
-	private class WinningPlayer extends JPanel {
+	private class WinningPlayer extends JPanel{
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
 			String names = "";
@@ -70,8 +93,8 @@ public class ScoreScreen extends JPanel{
 				add(text);
 				add(exit);
 			}
-			public void actionPerformed(ActionEvent e) {
-
+			public void actionPerformed(ActionEvent e){
+				
 			}
 		}
 	}

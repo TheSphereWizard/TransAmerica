@@ -13,15 +13,20 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import NOTHING.*;
-
 public class MapofUSA extends JPanel implements MouseListener, MouseMotionListener{
+	
+	private static final long serialVersionUID = 1L;
+
 		/*
 		rounding error on left side of screen
 		make rails not be placed at all if invalid, 
 		make markers be placed in valid position	
 	
 		*/
+	
+	
+		//Need to Make turns not skipped and make sure turns work properly
+		//ALSO NEEDS TO DRAW MOUNTAINS SOMEHOW: BIGGER SIZE RAIL?
 		BufferedImage Map;
 		
 		Player currentPlayer;
@@ -31,12 +36,12 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		private int[] mappos;
 		
 		static ArrayList<City> allCities;
-//		public static void main(String[] red){
-////			System.out.println(oddmod(16,2));
-//			MapofUSA map = new MapofUSA(0,100,1200,600);
-//			Screen.makeScreen(map,10);
-//		}
-		/*private void runtestcode() {
+		public static void main(String[] red){
+//			System.out.println(oddmod(16,2));
+			//MapofUSA map = new MapofUSA(0,100,1200,600);
+			//Screen.makeScreen(map,10);
+		}
+		private void runtestcode() {
 			setCurrentGrid(new Grid());
 //			Player p =new HumanPlayer(Color.blue, null, 4, "fish", this);
 //			currentGrid.placeMarker(new Position(15,14), p);
@@ -49,7 +54,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //			} catch (Exception e) {
 //				e.printStackTrace();
 //			}
-			Player p2 =new HumanPlayer(Color.red, null, 4, "fish", this);
+			ArrayList<City> pi = new ArrayList<City>();
+			Player p2 =new HumanPlayer(Color.red, pi, "fish", this);
 //			currentGrid.placeMarker(new Position(5,6), p2);
 //			try {
 //				currentGrid.placeRail(new Rail(new Position(10,0),new Position(10,1),p2));
@@ -60,9 +66,12 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //				e.printStackTrace();
 //			}
 			this.setCurrentPlayer(p2);
-		}*/
+		}
 		
-		MapofUSA(int x, int y, int width, int height){
+
+		MapofUSA(int x, int y, int width, int height,Grid grid){
+			currentGrid=grid;
+
 			try {
 				Map=ImageIO.read(new File("Pix\\mapofusa.png"));
 			} catch (IOException e1) {
@@ -231,7 +240,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			
 			if(currentPlayer.startMarker!=null){
 				try {
-					ok = currentGrid.checkRail2(currentPlayer);
+					ok = currentGrid.allValidMovesForPlayer(currentPlayer);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

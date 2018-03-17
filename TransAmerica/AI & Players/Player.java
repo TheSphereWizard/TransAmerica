@@ -16,7 +16,6 @@ Int[] getStartMarker();
 public abstract class Player {//give players playerrecords
 	boolean placedMarkerAlready;//this is never set
 	Marker startMarker;
-	MapofUSA map;
 	PlayerRecord record;
 	
 	Player(Color c, ArrayList<City> cities,String n){
@@ -24,12 +23,11 @@ public abstract class Player {//give players playerrecords
 		record = new PlayerRecord(c, cities, n);
 	}
 	//This needs to be an object because on first turn returns marker
-	abstract Object runTurn(boolean firstRailPlaced, ReadOnlyGrid grid);
+	abstract Object runTurn(boolean firstRailPlaced, Object gridormap);
 	void clearForNewRound(ArrayList<City> cities){
 		placedMarkerAlready = false;
 		record.cities = cities;
 	}
-	
 	Marker getStartMarker(){
 		return startMarker;
 	}
@@ -39,8 +37,6 @@ public abstract class Player {//give players playerrecords
 	public PlayerRecord getPlayerRecord() {
 		return record;
 	}
-	
-	
 	public class PlayerRecord {
 		//Should store player's color, cities, score, and other information as needed.
 		//The players color
@@ -58,38 +54,29 @@ public abstract class Player {//give players playerrecords
 			this.score = 12;
 			this.name = name;
 		}
-		
 		String playerName(){
 			return name;
 		}
-		
 		public Color getColor() {
 			return color;
 		}
-		
 		public ArrayList<City> getCities() {
 			return cities;
 		}
-		
 		public void setCities(ArrayList<City> cities){
 			this.cities = cities;
 		}
-		
 		public ArrayList<City> getCitiesReached(){
 			return citiesReached;
 		}
-		
 		public void setCitiesReached(ArrayList<City> citiesReached){
 			this.citiesReached = citiesReached;
 		}
-		
 		public int getScore() {
 			return score;
-		}
-		
+		}	
 		public void setScore(int newScore) {
 			score = newScore;
 		}
 	}
-
 }
