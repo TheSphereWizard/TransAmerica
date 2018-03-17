@@ -1,12 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -15,50 +12,60 @@ public class MainGameScreen extends JPanel {
 	MapofUSA map;
 	BufferedImage train , eagle;
 	Grid grid;
-
 	Game currentGame;
-	private JPanel[] panes = new JPanel[4];
+
 	private JLabel[] playerLabels = new JLabel[6];
 	private JLabel[] cityLabels = new JLabel[5];
 	private Color[] playerColors = new Color[] {Color.red, Color.yellow, Color.green, Color.blue, new Color(139,69,19),Color.white};
 	private Color[] cityColors = new Color[] {Color.red, Color.blue, Color.yellow, Color.green, Color.orange};
-	private JFrame frame;
-
-	private JLabel transAmericaLabel;
 	
 	MainGameScreen(Game game) {
-		//NEEDS WORK
-		this.map = new MapofUSA(0,200,1000,500,grid);//game may want map to alter players
+		map = new MapofUSA(0,100,1000,500,grid);//game may want map to alter players
 		//on weekend need to get game to use map
 		map.currentPlayer = game.players.get(0);
-
+		map.currentGrid=game.grid;
+		this.add(map);
+		System.out.println(map.getY());
+		//THIS IS TEMPORARILY REWRITTEN TO SCALE ON 1368/768 screen as This is my screen resolution:
+		//-BRIAN
+		
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
-//		this.grid = grid;
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		transAmericaLabel = new JLabel("TransAmerica");
-		for(int i = 0; i < panes.length; i++) {
-			panes[i] = new JPanel();
-			this.add(panes[i]);
-		}
-		
+
+		this.setLayout(null);
+		//THings needs on this Screen:
+		/* 
+			players, and their cities below:
+			boxes that get hidden and closed
+			
+			the train scores at top
+			
+			the moves left on Right
+			
+			the map... and double check it works
+			
+			and also technically making sure going to scorescreen works
+		*/
 		for(int i = 0; i < playerLabels.length; i++) {
+			System.out.println(i);
 			playerLabels[i] = new JLabel("Player " + i+1);
-			playerLabels[i].setBackground(playerColors[i]);
-			panes[2].setLayout(new GridLayout(1,6));
-			panes[2].add(playerLabels[i]);
+//			playerLabels[i].setBackground(playerColors[i]);
+			playerLabels[i].setSize(100,50);
+			playerLabels[i].setLocation(100+100*i,600);
+//			panes[2].setLayout(new GridLayout(1,6));
+			this.add(playerLabels[i]);
 		}
-		
+		System.out.println(TransAmerica.transamerica.getComponentCount());
 		for(int i = 0; i < cityLabels.length; i++) {
 			cityLabels[i] = new JLabel("City " + i+1);
-			cityLabels[i].setBackground(cityColors[i]);
-			panes[3].setLayout(new GridLayout(1,5));
-			panes[3].add(cityLabels[i]);
+//			cityLabels[i].setBackground(cityColors[i]);
+			cityLabels[i].setSize(100,50);
+			cityLabels[i].setLocation(100+100*i,700);
+//			panes[3].setLayout(new GridLayout(1,5));
+			this.add(cityLabels[i]);
 		}
-		
-		panes[0].add(transAmericaLabel);
-		panes[1].add(map);
+		TransAmerica.transamerica.repaint();
 	}
 	
 	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
@@ -83,15 +90,12 @@ public class MainGameScreen extends JPanel {
 		
 	}
 	
-	public void paintComponent(Graphics g){
+	public void paint(Graphics g){
 		g.drawImage(backg, 0, 0, 1600, 900, null);
-	}
-	
-
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		//frame.setContentPane(new MainGameScreen());
-		frame.setVisible(true);
-	}
-	
+		for(int i=0;i<this.getComponentCount();i++){
+			g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
+			this.getComponent(i).paint(g);
+			g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
+		}
+	}	
 }
