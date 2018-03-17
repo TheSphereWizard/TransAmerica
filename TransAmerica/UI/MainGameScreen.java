@@ -1,9 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -12,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class MainGameScreen extends JPanel implements MouseListener, MouseMotionListener{
+public class MainGameScreen extends JPanel{
 	private BufferedImage backg;
 	MapofUSA map;
 	BufferedImage train , eagle;
@@ -22,7 +19,7 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 	private JLabel[] playerLabels = new JLabel[6];
 	private JLabel[] cityLabels = new JLabel[5];
 	private Color[] playerColors = new Color[] {Color.red, Color.yellow, Color.green, Color.blue, new Color(139,69,19),Color.white};
-	private Color[] cityColors = new Color[] {Color.red, Color.blue, Color.yellow, Color.green, Color.orange};
+	private Color[] cityColors = new Color[] {Color.red, Color.blue, Color.yellow, Color.green, new Color(255,128,0)};
 	
 	MainGameScreen(Game game) {
 //		game.Round();
@@ -76,9 +73,10 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 			cityLabels[i].setFont(fontf);
 			cityLabels[i].setLocation(70+200*i,725);
 			this.add(cityLabels[i]);
-//			System.out.println(this.getComponentCount());
+			System.out.println(this.getComponentCount());
 		}
 		TransAmerica.transamerica.repaint();
+		game.Round();
 	}
 	
 	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
@@ -106,16 +104,21 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 	public void paint(Graphics g){
 		g.drawImage(backg, 0, 0, 1600, 900, null);
 		for(int i = 0; i < cityLabels.length; i++) {
-			JLabel l;
+			JLabel l=null;
 			try{
 				 l =(JLabel)this.getComponents()[7+i];
 				 l.setText(map.currentPlayer.record.getCities().get(i).getName());
 				 l.setHorizontalAlignment(SwingConstants.CENTER);
 				 g.setColor(map.currentPlayer.record.getCities().get(i).color);
 				 g.fillRect(l.getX(),l.getY(),l.getWidth(),l.getHeight());
+				
 			}catch(Exception e){
-				System.out.println("WRONG COMPONENT");
+				System.out.println("WRONG COMPONENT"+(7+i));
 			}
+			 if(map.currentPlayer.record.getCitiesReached().contains(new City(map.currentPlayer.record.getCities().get(i).getName(),new Position(0,0),Color.black))){
+				 g.setColor(Color.green);
+				 g.drawRect(l.getX()+l.getWidth(),l.getY(), 15, 15);
+			 }
 		}
 		for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest
 			g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
@@ -128,25 +131,25 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 		g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
 		
 	}
-	public void mouseMoved(MouseEvent e) {
-		
-		if(e.getX()>=map.getX()&e.getX()<=map.getX()+map.getWidth()){
-			if(e.getY()>=map.getY()&e.getY()<=map.getY()+map.getHeight()){
-				map.mouseMoved(e);
-			}
-		}
-	}
-	public void mouseClicked(MouseEvent e) {
-		System.out.println("a");
-		if(e.getX()>=map.getX()&e.getX()<=map.getX()+map.getWidth()){
-			if(e.getY()>=map.getY()&e.getY()<=map.getY()+map.getHeight()){
-				map.mouseClicked(new MouseEvent(null,0,0 ,0,e.getX(),e.getY()-200,0,false,0));
-			}
-		}
-	}
-	public void mouseEntered(MouseEvent e) {}
-	public void mouseExited(MouseEvent e) {}
-	public void mousePressed(MouseEvent e) {}
-	public void mouseReleased(MouseEvent e) {}
-	public void mouseDragged(MouseEvent arg0) {}
+//	public void mouseMoved(MouseEvent e) {
+//		
+//		if(e.getX()>=map.getX()&e.getX()<=map.getX()+map.getWidth()){
+//			if(e.getY()>=map.getY()&e.getY()<=map.getY()+map.getHeight()){
+//				map.mouseMoved(e);
+//			}
+//		}
+//	}
+//	public void mouseClicked(MouseEvent e) {
+////		System.out.println("a");
+////		if(e.getX()>=map.getX()&e.getX()<=map.getX()+map.getWidth()){
+////			if(e.getY()>=map.getY()&e.getY()<=map.getY()+map.getHeight()){
+////				map.mouseClicked(new MouseEvent(null,0,0 ,0,e.getX(),e.getY()-200,0,false,0));
+////			}
+////		}
+//	}
+//	public void mouseEntered(MouseEvent e) {}
+//	public void mouseExited(MouseEvent e) {}
+//	public void mousePressed(MouseEvent e) {}
+//	public void mouseReleased(MouseEvent e) {}
+//	public void mouseDragged(MouseEvent arg0) {}
 }
