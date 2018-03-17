@@ -22,10 +22,11 @@ public class HumanPlayer extends Player {
 		//accesses lastClick to map until it isn't null
 		Object nextRail = null;
 		while(nextRail == null){
+			System.out.println("stuck here?");//AMAZING, DO NOT REMOVE THIS PRINT STATEMENT, DOING SO WILL BREAK EVERYTHING
 			try{
 				nextRail = map.returnPlacedRail();
 			}catch(Exception E){
-//				System.out.println(map==null);
+				System.out.println(map==null);
 			}
 		}
 		return nextRail;
