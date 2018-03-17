@@ -141,7 +141,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		public void paint(Graphics g){//redraws map with new rail networks
 			Graphics2D g2d = (Graphics2D)g;
 			
-			g.translate(mappos[0], mappos[1]);
+//			g.translate(mappos[0], mappos[1]);
 			g.drawRect(0, 0, siz[0], siz[1]);
 			g.drawImage(Map,-50, -30, siz[0]+100, siz[1]+60, null);
 //			g.drawString(dist+"", 0, 10);
