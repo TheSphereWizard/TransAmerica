@@ -130,22 +130,22 @@ public class MainMenu extends JPanel implements ActionListener{
 					}
 					MainGameScreen screen = new MainGameScreen(generate(playerColors, playerNames, playerType));
 
-					System.out.println("1 "+TransAmerica.transamerica.getComponentCount());
-
-					add(screen);
-
-					TransAmerica.transamerica.remove(0);
-					System.out.println("2 "+TransAmerica.transamerica.getComponentCount());
 					TransAmerica.transamerica.add(screen);
-					System.out.println("3 "+TransAmerica.transamerica.getComponentCount());
+					TransAmerica.transamerica.remove(0);
+					TransAmerica.transamerica.dispose();
+					JFrame f = new JFrame();
+					f.add(screen);
+					TransAmerica.transamerica = f;
+					TransAmerica.transamerica.setTitle("TransAmerica");
+					TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					TransAmerica.transamerica.dispose();
+					TransAmerica.transamerica.setUndecorated(true);
+					TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					TransAmerica.transamerica.setVisible(true);
 					TransAmerica.transamerica.repaint();
+					
+					//HEY THIS WORKS BUT IS TERRIBLE
 
-					System.out.println("4 "+TransAmerica.transamerica.getComponentCount());
-	
-					System.out.println(TransAmerica.transamerica.getComponentCount());
-					TransAmerica.transamerica.remove(0);
-					System.out.println(TransAmerica.transamerica.getComponentCount());
-					TransAmerica.transamerica.add(screen);
 					/*for(int i = 0;i<playerColors.size();i++){
 						System.out.println(playerColors.get(i));
 					}

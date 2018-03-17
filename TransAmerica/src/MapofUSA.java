@@ -177,6 +177,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //					g.drawLine(i, j, i, j);
 //				}
 //			}
+			if(currentGrid!=null&currentPlayer!=null){
 			g.setColor(currentPlayer.record.getColor());
 			if(firstturn){
 				g.fillOval((int)(scalefactor[0]*(highlightedmarker.y%2==1?highlightedmarker.x+0.5d:highlightedmarker.x))-markersize/2, siz[1]-scalefactor[1]*(highlightedmarker.y+1)-markersize/2, markersize, markersize);
@@ -249,6 +250,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 					g2d.setStroke(new BasicStroke(2));
 					drawposline(r.p1.x,r.p1.y,r.p2.x,r.p2.y,g);
 				}
+			}
 			}
 		}
 		ArrayList<Rail> ok =new ArrayList<Rail>();
