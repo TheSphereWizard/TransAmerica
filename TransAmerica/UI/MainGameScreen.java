@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,7 +25,8 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 	
 	MainGameScreen(Game game) {
 //		game.Round();
-		map = new MapofUSA(0,100,1000,500,grid);//game may want map to alter players
+		currentGame=game;
+		map = new MapofUSA(25,125,1100,550,grid);//game may want map to alter players
 		//on weekend need to get game to use map
 		map.currentPlayer = game.players.get(0);
 		if(map.currentPlayer==null){
@@ -62,7 +64,7 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 			playerLabels[i] = new JLabel("Player " + i+1);
 //			playerLabels[i].setBackground(playerColors[i]);
 			playerLabels[i].setSize(100,50);
-			playerLabels[i].setLocation(100+100*i,600);
+			playerLabels[i].setLocation(70+150*i,675);
 //			panes[2].setLayout(new GridLayout(1,6));
 			this.add(playerLabels[i]);
 		}
@@ -71,7 +73,7 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 			cityLabels[i] = new JLabel("City " + i+1);
 //			cityLabels[i].setBackground(cityColors[i]);
 			cityLabels[i].setSize(100,50);
-			cityLabels[i].setLocation(100+100*i,700);
+			cityLabels[i].setLocation(70+200*i,725);
 //			panes[3].setLayout(new GridLayout(1,5));
 			this.add(cityLabels[i]);
 		}
@@ -107,6 +109,10 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 			this.getComponent(i).paint(g);
 			g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
 		}
+		g.fillRect(map.getX()+map.getWidth()+50,map.getY()+50, 150, 150);//change to be button image
+		g.setColor(Color.white);
+		g.setFont(new Font("Arial",1,172));
+		g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
 	}
 	public void mouseMoved(MouseEvent e) {
 		

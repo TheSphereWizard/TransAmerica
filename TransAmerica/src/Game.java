@@ -52,6 +52,7 @@ public class Game {
 		return false;
 	}
 	int[] playerNumber, winningPlayer, currentScore, scores;
+	public int placesleft=2;
 	public int getNumberOfPlayers(){
 		int numOfPlayers = 0;
 		for(numOfPlayers = 0; numOfPlayers < playerNumber.length; numOfPlayers++){
