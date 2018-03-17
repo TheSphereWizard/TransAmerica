@@ -45,7 +45,7 @@ public class Grid {
 	};
 	
 	Rail[][] railGrid;
-	static int boardwidth=35, boardheight=25;
+	static int boardwidth=31, boardheight=21;//BOTH OF THESE VALUES MUST BE ODD
 	int[][] grid=new int[boardwidth][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	ArrayList<Marker> markers= new ArrayList<Marker>();
@@ -64,9 +64,24 @@ public class Grid {
 	void placeMarker(Position p,Player player){//places markers
 		markers.add(new Marker(p,player));//THIS NEEDS TO THROW EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN
 	}
+	private City adjtoCity(Rail r){
+		for(City[] car:allcities){
+			for(City c : car){
+				if(c.p.equals(r.p1)||c.p.equals(r.p2)){
+					return c;
+				}
+			}
+		}
+		return null;
+	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player))
+		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player)){
 			allRails.add(rail);
+			City c =adjtoCity(rail);
+			if(c!=null&!PlayerRecord.citiesReached.contains(c)){
+				PlayerRecord.citiesReached.add(c);
+			}
+		}
 		//THIS NEEDS TO THROW AN EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN WITHOUT ENDING TURN
 		
 		//IF CITY IS CONNECTED TO THIS RAIL THEN CHANGE ALL PLAYERS CONNECTED TO THIS CITY TO REALIZE THEY ARE CONNECTED
@@ -133,11 +148,11 @@ public class Grid {
 			for(int y =0;y<boardheight;y++){
 				for(int x1 =0;x1<boardwidth;x1++){
 					for(int y1 =0;y1<boardheight;y1++){
-						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
+//						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
 							try {
 								all.add(new Rail(new Position(x,y),new Position(x1,y1)));
 							} catch (Exception e) {}
-						}
+//						}
 					}
 				}
 			}

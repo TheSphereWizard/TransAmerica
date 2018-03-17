@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /*
  * Game{//stores series of rounds
@@ -34,6 +36,7 @@ public class Game {
 	 */
 	Game(ArrayList<Player> players, boolean slowMode){
 		grid = new Grid();
+		MapofUSA.currentGrid=grid;//technically should not do this but idk right now
 		this.players = players;
 		this.slowMode = slowMode;
 		if(!slowMode){
@@ -75,23 +78,76 @@ public class Game {
 	public int[] getCurrentScore(){
 		return currentScore;
 	}
-	
+	Timer gametimer = new Timer();
 	void Round() {
-		grid = new Grid();
-		for (Player p : players) {
-			p.clearForNewRound(p.getPlayerRecord().getCities());
-		}
-		startCompRound();
-	}
-
-	void startCompRound() {
-		ReadOnlyGrid readGrid = null;
-		for (Player p : players) {
-			Rail[] r = (Rail[]) p.runTurn(false,readGrid);
-			for (int i = 0; i < r.length; i++) {
-				grid.placeRail(r[i]);
+		
+		// ONLY DOES HUMAN ROUNDS RIGHT NOW
+		
+		gametimer.schedule(new TimerTask(){
+			public void run() {
+				grid = new Grid();
+				for (Player p : players) {
+					p.clearForNewRound(p.getPlayerRecord().getCities());
+				}
+				startHumanRound();
 			}
 			
+		}, 0);
+		
+	}
+	
+	boolean gameOver(){
+		boolean over=false;
+		for (Player p : players) {
+			boolean all=true;
+			for(City c : p.record.getCities()){
+				if(!p.record.getCitiesReached().contains(c)){
+					all=false;
+				}
+			}
+			if(all){
+				over=true;
+			}
+		}
+		return over;
+	}
+	void startHumanRound() {
+		ReadOnlyGrid readGrid = null;
+//		boolean FirstTurn =true;
+		System.out.println(grid==MapofUSA.currentGrid);
+		MapofUSA.currentGrid=grid;
+		while(!gameOver()){
+			System.out.println(grid==MapofUSA.currentGrid);
+			for (Player p : players) {
+				try{
+					HumanPlayer h = (HumanPlayer)p;
+					Object o = h.runTurn(false,MainGameScreen.map);
+					if(o!=null){
+						try{
+							Marker m = (Marker) o;
+							h.startMarker=m;
+							grid.placeMarker(m.p, h);
+//							System.out.println(grid==MapofUSA.currentGrid);
+						}catch(Exception E){
+							try{
+								Rail r = (Rail) o;
+								grid.placeRail(r);
+							}catch(Exception er){
+								er.printStackTrace();
+							}
+						}
+					}
+					System.out.println("once");
+				}catch(Exception E){
+					try{
+						ComputerPlayer c = (ComputerPlayer)p;
+					}catch(Exception Ee){
+						
+					}
+				}
+			}
+//			FirstTurn=false;
+			MapofUSA.firstturn=false;
 		}
 	}
 

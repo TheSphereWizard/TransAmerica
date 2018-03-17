@@ -11,7 +11,7 @@ import javax.swing.SwingConstants;
 
 public class MainGameScreen extends JPanel{
 	private BufferedImage backg;
-	MapofUSA map;
+	static MapofUSA map;
 	BufferedImage train , eagle;
 	Grid grid;
 	Game currentGame;
@@ -73,7 +73,7 @@ public class MainGameScreen extends JPanel{
 			cityLabels[i].setFont(fontf);
 			cityLabels[i].setLocation(70+200*i,725);
 			this.add(cityLabels[i]);
-			System.out.println(this.getComponentCount());
+//			System.out.println(this.getComponentCount());
 		}
 		TransAmerica.transamerica.repaint();
 		game.Round();
