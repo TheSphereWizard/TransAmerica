@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class MainGameScreen extends JPanel implements MouseListener, MouseMotionListener{
 	private BufferedImage backg;
@@ -37,7 +38,7 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 			System.out.println("grid is null");
 		}
 		this.add(map);
-		System.out.println(map.getY());
+//		System.out.println(map.getY());
 		//THIS IS TEMPORARILY REWRITTEN TO SCALE ON 1368/768 screen as This is my screen resolution:
 		//-BRIAN
 		
@@ -59,23 +60,23 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 			
 			and also technically making sure going to scorescreen works
 		*/
+		Font fontf = new Font("Arial",1,25);
 		for(int i = 0; i < playerLabels.length; i++) {
-			System.out.println(i);
-			playerLabels[i] = new JLabel("Player " + i+1);
-//			playerLabels[i].setBackground(playerColors[i]);
+//			System.out.println(i);
+			playerLabels[i] = new JLabel("Player " + (i+1));
 			playerLabels[i].setSize(100,50);
+			playerLabels[i].setFont(fontf);
 			playerLabels[i].setLocation(70+150*i,675);
-//			panes[2].setLayout(new GridLayout(1,6));
 			this.add(playerLabels[i]);
 		}
-		System.out.println(TransAmerica.transamerica.getComponentCount());
+//		System.out.println(TransAmerica.transamerica.getComponentCount());
 		for(int i = 0; i < cityLabels.length; i++) {
-			cityLabels[i] = new JLabel("City " + i+1);
-//			cityLabels[i].setBackground(cityColors[i]);
+			cityLabels[i] = new JLabel("City " + (i+1));
 			cityLabels[i].setSize(100,50);
+			cityLabels[i].setFont(fontf);
 			cityLabels[i].setLocation(70+200*i,725);
-//			panes[3].setLayout(new GridLayout(1,5));
 			this.add(cityLabels[i]);
+//			System.out.println(this.getComponentCount());
 		}
 		TransAmerica.transamerica.repaint();
 	}
@@ -104,6 +105,18 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 	
 	public void paint(Graphics g){
 		g.drawImage(backg, 0, 0, 1600, 900, null);
+		for(int i = 0; i < cityLabels.length; i++) {
+			JLabel l;
+			try{
+				 l =(JLabel)this.getComponents()[7+i];
+				 l.setText(map.currentPlayer.record.getCities().get(i).getName());
+				 l.setHorizontalAlignment(SwingConstants.CENTER);
+				 g.setColor(map.currentPlayer.record.getCities().get(i).color);
+				 g.fillRect(l.getX(),l.getY(),l.getWidth(),l.getHeight());
+			}catch(Exception e){
+				System.out.println("WRONG COMPONENT");
+			}
+		}
 		for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest
 			g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
 			this.getComponent(i).paint(g);
@@ -113,6 +126,7 @@ public class MainGameScreen extends JPanel implements MouseListener, MouseMotion
 		g.setColor(Color.white);
 		g.setFont(new Font("Arial",1,172));
 		g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
+		
 	}
 	public void mouseMoved(MouseEvent e) {
 		
