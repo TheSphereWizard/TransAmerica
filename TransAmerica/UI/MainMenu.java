@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -29,18 +28,20 @@ public class MainMenu extends JPanel implements ActionListener{
 //			this.add(panes[i]);
 //		}
 		JLabel Title =new JLabel("TransAmerica");
+		Title.setFont(new Font("Arail", 1, 100));
+		Title.setSize(700, 75);
+		Title.setLocation(800-350, 50);
 		this.add(Title);
-
 		for(int i = 0; i <= 2; i++) {
 			playerPanels[i] = new PlayerPanel(i + 1);
-			playerPanels[i].setSize(350, 300);
-			playerPanels[i].setLocation(800+(450*(i-1))-175,200-100);
+			playerPanels[i].setSize(350, 290);
+			playerPanels[i].setLocation(800+(450*(i-1))-175,250-100);
 			this.add(playerPanels[i]);
 		}
 
 		for(int i = 3; i <= 5; i++) {
 			playerPanels[i] = new PlayerPanel(i + 1);
-			playerPanels[i].setSize(350, 300);
+			playerPanels[i].setSize(350, 290);
 			playerPanels[i].setLocation(800+(450*(i-4))-175,550-100);
 			this.add(playerPanels[i]);
 		}
