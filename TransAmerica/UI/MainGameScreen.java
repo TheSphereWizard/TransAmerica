@@ -26,21 +26,16 @@ public class MainGameScreen extends JPanel {
 
 	private JLabel transAmericaLabel;
 	
-<<<<<<< HEAD
 	MainGameScreen(Game game) {
 		//NEEDS WORK
-		this.map = new MapofUSA(0,200,1000,500,grid);
-		map.currentPlayer = 
-=======
-	MainGameScreen(MapofUSA bigMap) {
-		
-		this.map = bigMap;
+		this.map = new MapofUSA(0,200,1000,500,grid);//game may want map to alter players
+		//on weekend need to get game to use map
+		map.currentPlayer = game.players.get(0);
 
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
-		this.grid = grid;
+//		this.grid = grid;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		transAmericaLabel = new JLabel("TransAmerica");
 		for(int i = 0; i < panes.length; i++) {
@@ -72,7 +67,7 @@ public class MainGameScreen extends JPanel {
 		boolean slowMode = false;
 		for(int i = 0; i<playerType.size();i++){
 			if(playerType.get(i).equals("Human")){
-				players.add(new HumanPlayer(playerColors.get(i),cities.get(i),playerNames.get(i),map));
+				players.add(new HumanPlayer(playerColors.get(i),cities.get(i),playerNames.get(i)));
 				slowMode = true;
 			}else if(playerType.get(i).equals("Easy")){
 				players.add(new EasyStrategy(playerColors.get(i),cities.get(i),playerNames.get(i)));

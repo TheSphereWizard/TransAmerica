@@ -41,14 +41,8 @@ public class Grid {
 	};
 	
 	Rail[][] railGrid;
-	int boardwidth=25,boardheight=15;
-	public int getBoardwidth() {
-		return boardwidth;
-	}
-	public int getBoardheight() {
-		return boardheight;
-	}
-	int[][] grid=new int[getBoardwidth()][];
+	static int boardwidth=25, boardheight=15;
+	int[][] grid=new int[boardwidth][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	ArrayList<Marker> markers= new ArrayList<Marker>();
 	Grid(){
@@ -186,7 +180,7 @@ public class Grid {
 			for(int j=0;j<5;j++){
 				int rand = (int)(Math.random()*allcities[j].length);
 				boolean ok = true;
-				for(int k=0;k<yo.size()-1;k++){
+				for(int k=0;k<yo.size()-2;k++){
 					ArrayList<City> c = yo.get(k);
 					if(c.get(j).equals(allcities[j][rand])){
 						ok=false;
@@ -234,10 +228,13 @@ public class Grid {
 		}
 		return allvalid;
 	}
-	int railsMissing(Player p){
+	int[] railsMissing(){
 		//throwexception if one is not 0, 
 		//idk return sum of smallest distances from any rail on players network each missing city?
 		
+		
+		//temporarlily just try to minimize by adding shortest path to each city, then checking next city from new path arangement
+		//not perfect but good enough
 		ArrayList<Rail> fred = new ArrayList<Rail>();
 		//May need to make whole new Grids to test different cases.
 		
@@ -253,14 +250,12 @@ public class Grid {
 		
 		
 		
-		int totaldist=0;
-		for(City c :p.record.getCities()){
-			if(!p.record.getCitiesReached().contains(c)){
-				int max ;
-			}
-		}
-		
-		
-		return totaldist;
+//		int totaldist=0;
+//		for(City c :p.record.getCities()){
+//			if(!p.record.getCitiesReached().contains(c)){
+//				int max ;
+//			}
+//		}
+		return null;
 	}
 }

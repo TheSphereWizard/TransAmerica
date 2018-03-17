@@ -55,7 +55,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //				e.printStackTrace();
 //			}
 			ArrayList<City> pi = new ArrayList<City>();
-			Player p2 =new HumanPlayer(Color.red, pi, "fish", this);
+			Player p2 =new HumanPlayer(Color.red, pi, "fish");
 //			currentGrid.placeMarker(new Position(5,6), p2);
 //			try {
 //				currentGrid.placeRail(new Rail(new Position(10,0),new Position(10,1),p2));
@@ -82,7 +82,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			siz=new int[]{width,height};
 			this.setBounds(x, y, width, height);
 			//runtestcode();
-			scalefactor = new int[]{siz[0]/currentGrid.getBoardwidth(),siz[1]/currentGrid.getBoardheight()};
+			scalefactor = new int[]{siz[0]/Grid.boardwidth,siz[1]/Grid.boardheight};
 			try {
 				highlighted=new Rail(new Position(0,0),new Position(0,1));
 			} catch (Exception e) {
