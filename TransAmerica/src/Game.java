@@ -139,6 +139,7 @@ public class Game {
 					}
 //					System.out.println("once");
 				}catch(Exception E){
+					System.out.println(p.record.playerName());
 					try{
 						ComputerPlayer c = (ComputerPlayer)p;
 						Object o = c.runTurn(FirstTurn,false,new ReadOnlyGrid(grid));

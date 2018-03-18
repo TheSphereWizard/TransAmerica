@@ -259,8 +259,6 @@ public class Grid {
 		ArrayList<Rail> fred = new ArrayList<Rail>();
 		
 		
-		
-		
 		//BREADTH FIRST BACK FROM EACH CITY GOAL, WHEN IT HITS OTHER CITY, MERGES,ELSE USES PATH WHEN IT HITS THE RAIL NETWORK
 		
 

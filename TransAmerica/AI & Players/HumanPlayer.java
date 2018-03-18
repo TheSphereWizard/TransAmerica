@@ -46,13 +46,11 @@ public class HumanPlayer extends Player {
 					if(r!=null&map.currentGrid.checkRail(r, this)){
 						ok=false;
 					}
-//					System.out.println("ok "+ok);
 				}catch(Exception er){
 					
 				}
 			}
 		}
-		System.out.println("ok "+ok);
 		return nextRail;
 	}
 	
