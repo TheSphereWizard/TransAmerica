@@ -169,7 +169,7 @@ public class Game {
 						Ee.printStackTrace();
 					}
 					try {
-						Thread.sleep(50);
+						Thread.sleep(250);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

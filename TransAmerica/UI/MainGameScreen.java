@@ -58,7 +58,7 @@ public class MainGameScreen extends JPanel{
 			and also technically making sure going to scorescreen works
 		*/
 		Font fontf = new Font("Arial",1,25);
-		for(int i = 0; i < playerLabels.length; i++) {
+		for(int i = 0; i < currentGame.players.size(); i++) {
 //			System.out.println(i);
 			playerLabels[i] = new JLabel("Player " + (i+1));
 			playerLabels[i].setSize(100,50);
@@ -103,10 +103,23 @@ public class MainGameScreen extends JPanel{
 	
 	public void paint(Graphics g){
 		g.drawImage(backg, 0, 0, 1600, 900, null);
+		for(int i = 0; i < currentGame.players.size(); i++) {
+			JLabel l=null;
+			try{
+				 l =(JLabel)this.getComponents()[1+i];
+				 l.setText(currentGame.players.get(i).record.playerName());
+				 l.setHorizontalAlignment(SwingConstants.CENTER);
+				 g.setColor(currentGame.players.get(i).record.getColor());
+				 g.fillRect(l.getX(),l.getY(),l.getWidth(),l.getHeight());
+				
+			}catch(Exception e){
+				System.out.println("WRONG COMPONENT"+(1+i));
+			}
+		}
 		for(int i = 0; i < cityLabels.length; i++) {
 			JLabel l=null;
 			try{
-				 l =(JLabel)this.getComponents()[7+i];
+				 l =(JLabel)this.getComponents()[1+currentGame.players.size()+i];
 				 l.setText(map.currentPlayer.record.getCities().get(i).getName());
 				 l.setHorizontalAlignment(SwingConstants.CENTER);
 				 g.setColor(map.currentPlayer.record.getCities().get(i).color);
@@ -117,7 +130,7 @@ public class MainGameScreen extends JPanel{
 			}
 			 if(map.currentPlayer.record.getCitiesReached().contains(new City(map.currentPlayer.record.getCities().get(i).getName(),new Position(0,0),Color.black))){
 				 g.setColor(Color.green);
-				 g.drawRect(l.getX()+l.getWidth(),l.getY(), 15, 15);
+				 g.fillRect(l.getX()+l.getWidth()+5,l.getY()+5, 15, 15);
 			 }
 		}
 		for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest
@@ -136,7 +149,9 @@ public class MainGameScreen extends JPanel{
 		g.setColor(Color.black);
 		for(int j=0;j<currentGame.players.size();j++){
 			Player p=currentGame.players.get(j);
+			g.setColor(p.record.getColor());
 			g.drawString(p.record.playerName(), map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*(-1));
+			g.setColor(Color.BLACK);
 			for(int i=0;i<5;i++){
 				g.drawString(p.record.cities.get(i).getName(), map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*i);
 			}
