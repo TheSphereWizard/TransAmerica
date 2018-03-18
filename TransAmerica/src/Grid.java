@@ -49,10 +49,6 @@ public class Grid {
 	int[][] grid=new int[boardwidth][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	ArrayList<Marker> markers= new ArrayList<Marker>();
-	Grid(){
-		placemountains();
-//		allRails = alllegalrails;
-	}
 	boolean RailExists(Position p1, Position p2){
 		try {
 			return allRails.contains(new Rail(p1,p2));
@@ -68,20 +64,9 @@ public class Grid {
 			player.record.citiesReached.add(c);
 		}
 	}
-	private City adjtoCity(Rail r){
-		for(City[] car:allcities){
-			for(City c : car){
-				if(c.p.equals(r.p1)||c.p.equals(r.p2)){
-					return c;
-				}
-			}
-		}
-		return null;
-	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
 		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player)){
 			allRails.add(rail);
-//			City c =adjtoCity(rail);
 			connectCities(rail.player);
 			//This will only update at end of a players turn, if connecting another players turn, it should end imediately
 			//AKA NEEDS TO UPDATE ALL PLAYERS CONNECTED CITES
@@ -110,7 +95,10 @@ public class Grid {
 	}
 	
 	public static int checkiflargeornot(Position p1, Position p2) throws Exception {
-		return mountains.contains(new Rail(p1,p2))?2:1;
+//		if(){
+//			
+//		}
+		return 1;
 	}
 	ArrayList<Rail> alllegalrails=setalllegalrails();
 	
@@ -223,16 +211,6 @@ public class Grid {
 		}		
 		return yo;
 	}
-	
-	//TODO below:
-	static ArrayList<Rail> mountains = new ArrayList<Rail>();
-	private void placemountains() {
-		try{
-			mountains.add(new Rail(new Position(2,3),new Position(2,2)));
-			mountains.add(new Rail(new Position(3,2),new Position(3,3)));
-			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
-		}catch(Exception e){}
-	}
 	City CityatPos(Position p){
 		for(City[] car:allcities){
 			for(City c:car){
@@ -244,7 +222,6 @@ public class Grid {
 		return null;
 	}
 	void connectCities(Player p){
-//		ArrayList<City> cities = new ArrayList<City>();
 		if(p==null){
 			
 		}else{
@@ -268,7 +245,6 @@ public class Grid {
 				}
 			}
 		}
-//		return cities;
 	}
 	
 	ArrayList<Rail> allValidMovesForPlayer(Player p){//returns all Rails on Players Network

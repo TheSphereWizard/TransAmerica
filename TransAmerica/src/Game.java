@@ -117,7 +117,7 @@ public class Game {
 		while(!gameOver()){
 			for (Player p : players) {
 				int railsleft=2;
-				
+				placesleft=railsleft;
 				try{
 					HumanPlayer h = (HumanPlayer)p;
 					if(!gameOver()){
@@ -128,12 +128,12 @@ public class Game {
 									Marker m = (Marker) o;
 									h.startMarker=m;
 									grid.placeMarker(m.p, h);
-		//							System.out.println(grid==MapofUSA.currentGrid);
 								}catch(Exception E){
 									try{
 										Rail r = (Rail) o;
-										grid.placeRail(r);//place multiple rails, impliment mountains
+										grid.placeRail(r);
 										railsleft-=r.size;
+										placesleft=railsleft;
 									}catch(Exception er){
 										er.printStackTrace();
 									}
@@ -157,6 +157,7 @@ public class Game {
 											Rail r = (Rail) o;
 											grid.placeRail(r);
 											railsleft-=r.size;
+											placesleft=railsleft;
 										}catch(Exception er){
 											er.printStackTrace();
 										}

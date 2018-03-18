@@ -25,8 +25,6 @@ public class HumanPlayer extends Player {
 		boolean ok = true;
 		while(nextRail == null||ok){
 			ok=true;
-//			System.out.println("stuck here?");//AMAZING, DO NOT REMOVE THIS PRINT STATEMENT, DOING SO WILL BREAK EVERYTHING
-			//ok fine maybe just need to add a sleep statement instead...
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {

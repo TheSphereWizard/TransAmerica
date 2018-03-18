@@ -7,6 +7,7 @@ public class Rail {
 		if(Grid.legalRail(P1,P2)){
 			p1 = P1;
 			p2 = P2;
+			size = Grid.checkiflargeornot(P1,P2);
 		}else{
 			throw new Exception();
 		}
