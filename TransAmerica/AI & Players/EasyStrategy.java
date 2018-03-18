@@ -7,7 +7,7 @@ public class EasyStrategy extends ComputerPlayer{
 		super(c, cities, name);
 	}
 
-	Rail runTurn(boolean firstRailPlaced, Object grid2) {
+	Rail runTurn(boolean firstturn,boolean firstRailPlaced, Object grid2) {
 		ReadOnlyGrid grid = null;
 		try{
 			grid = (ReadOnlyGrid) grid2;

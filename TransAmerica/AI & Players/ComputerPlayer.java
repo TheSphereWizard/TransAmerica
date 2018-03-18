@@ -16,7 +16,7 @@ public abstract class ComputerPlayer extends Player {
 		super(c, cities, name);
 	}
 
-	abstract Rail runTurn(boolean firstRailPlaced, Object grid);
+	abstract Rail runTurn(boolean firstturn,boolean firstRailPlaced, Object grid);
 	
 	public ArrayList<Rail> scanRails(){
 //		//returns an arraylist of all possible rails to be placed

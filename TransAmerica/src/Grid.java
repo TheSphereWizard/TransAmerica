@@ -45,7 +45,7 @@ public class Grid {
 	};
 	
 	Rail[][] railGrid;
-	static int boardwidth=31, boardheight=21;//BOTH OF THESE VALUES MUST BE ODD
+	static int boardwidth=30, boardheight=20;//BOTH OF THESE VALUES MUST BE ODD
 	int[][] grid=new int[boardwidth][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	ArrayList<Marker> markers= new ArrayList<Marker>();
@@ -78,9 +78,9 @@ public class Grid {
 		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player)){
 			allRails.add(rail);
 			City c =adjtoCity(rail);
-			if(c!=null&!PlayerRecord.citiesReached.contains(c)){
-				PlayerRecord.citiesReached.add(c);
-			}
+//			if(c!=null&!PlayerRecord.citiesReached.contains(c)){
+//				PlayerRecord.citiesReached.add(c);
+//			}//The cities Reached can't be static because not all sections are connected
 		}
 		//THIS NEEDS TO THROW AN EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN WITHOUT ENDING TURN
 		

@@ -6,7 +6,7 @@ public class HardStrategy extends ComputerPlayer {
 		super(c, cities, name);
 		this.allScores = allScores;
 	}
-	Rail runTurn(boolean firstRailPlaced, Object grid2) {
+	Rail runTurn(boolean firstturn,boolean firstRailPlaced, Object grid2) {
 		ReadOnlyGrid grid = null;
 		try{
 			grid = (ReadOnlyGrid) grid2;

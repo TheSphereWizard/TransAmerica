@@ -12,7 +12,7 @@ public class HumanPlayer extends Player {
 	HumanPlayer(Color c, ArrayList<City> cities, String name){
 		super(c, cities, name);
 	}
-	Object runTurn(boolean firstPlacedRail, Object map2) {
+	Object runTurn(boolean firstturn,boolean firstPlacedRail, Object map2) {
 		MapofUSA map = null;
 		try {
 			map = (MapofUSA)map2;
@@ -21,6 +21,7 @@ public class HumanPlayer extends Player {
 		}
 		//accesses lastClick to map until it isn't null
 		Object nextRail = null;
+		map.currentPlayer=this;
 		while(nextRail == null){
 //			System.out.println("stuck here?");//AMAZING, DO NOT REMOVE THIS PRINT STATEMENT, DOING SO WILL BREAK EVERYTHING
 			//ok fine maybe just need to add a sleep statement instead...

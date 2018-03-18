@@ -113,7 +113,7 @@ public class Game {
 	}
 	void startHumanRound() {
 		ReadOnlyGrid readGrid = null;
-//		boolean FirstTurn =true;
+		boolean FirstTurn =true;
 		System.out.println(grid==MapofUSA.currentGrid);
 		MapofUSA.currentGrid=grid;
 		while(!gameOver()){
@@ -121,7 +121,7 @@ public class Game {
 			for (Player p : players) {
 				try{
 					HumanPlayer h = (HumanPlayer)p;
-					Object o = h.runTurn(false,MainGameScreen.map);
+					Object o = h.runTurn(FirstTurn,false,MainGameScreen.map);
 					if(o!=null){
 						try{
 							Marker m = (Marker) o;
@@ -131,7 +131,7 @@ public class Game {
 						}catch(Exception E){
 							try{
 								Rail r = (Rail) o;
-								grid.placeRail(r);
+								grid.placeRail(r);//place multiple rails, impliment mountains
 							}catch(Exception er){
 								er.printStackTrace();
 							}
@@ -141,12 +141,28 @@ public class Game {
 				}catch(Exception E){
 					try{
 						ComputerPlayer c = (ComputerPlayer)p;
+						Object o = c.runTurn(FirstTurn,false,new ReadOnlyGrid(grid));
+						if(o!=null){
+							try{
+								Marker m = (Marker) o;
+								c.startMarker=m;
+								grid.placeMarker(m.p, c);
+//								System.out.println(grid==MapofUSA.currentGrid);
+							}catch(Exception Eer){
+								try{
+									Rail r = (Rail) o;
+									grid.placeRail(r);//place multiple rails, impliment mountains
+								}catch(Exception er){
+									er.printStackTrace();
+								}
+							}
+						}
 					}catch(Exception Ee){
-						
+						System.out.println("WHAT IS PLAYING TRANSAMERICA?");
 					}
 				}
 			}
-//			FirstTurn=false;
+			FirstTurn=false;
 			MapofUSA.firstturn=false;
 		}
 	}

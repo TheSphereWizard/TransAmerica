@@ -7,7 +7,7 @@ public class PlayerRecord {
 		private Color color;
 		//The cities the player needs/have to connect
 		ArrayList<City> cities;
-		static ArrayList<City> citiesReached=new ArrayList<City>();
+		ArrayList<City> citiesReached=new ArrayList<City>();
 		//# of cities player has connected
 		private int score;
 		private String name;

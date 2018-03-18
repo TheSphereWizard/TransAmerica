@@ -24,7 +24,7 @@ public class MainGameScreen extends JPanel{
 	MainGameScreen(Game game) {
 //		game.Round();
 		currentGame=game;
-		map = new MapofUSA(25,125,1100,550,grid);//game may want map to alter players
+		map = new MapofUSA(25,125,1080,1080/2,grid);//pls don't change dimensions of the Map without Asking
 		//on weekend need to get game to use map
 		map.currentPlayer = game.players.get(0);
 		if(map.currentPlayer==null){

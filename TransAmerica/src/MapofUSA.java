@@ -83,6 +83,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			this.setBounds(x, y, width, height);
 			//runtestcode();
 			scalefactor = new int[]{siz[0]/Grid.boardwidth,siz[1]/Grid.boardheight};
+			scalefactord = new double[]{((double)siz[0])/Grid.boardwidth,((double)siz[1])/Grid.boardheight};
+			System.out.println(scalefactord[0]+" "+scalefactord[1]);
 			try {
 				highlighted=new Rail(new Position(0,0),new Position(0,1));
 			} catch (Exception e) {
@@ -132,6 +134,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		Rail highlighted;
 		Position highlightedmarker=new Position(0,0);
 		int[] scalefactor;
+		double[] scalefactord;
 		int[] mos=new int[]{0,0};
 		int[] mos2=new int[]{0,0};
 		int markersize=26;
@@ -161,8 +164,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //			g.drawOval(mos[0]-5, mos[1]-5, 10, 10);
 			
 			
-//			for(int i=0;i<siz[0]/3;i++){
-//				for(int j=siz[1]/2;j<siz[1];j++){
+//			for(int i=siz[0]/3;i<siz[0];i++){
+//				for(int j=3*siz[1]/4;j<siz[1];j++){
 ////					try {
 ////						Rail r= nearestRail(i,j);
 ////						
@@ -211,7 +214,6 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 				}
 				
 				g.drawLine((int)(scalefactor[0]*((r.p1.y)%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*((r.p2.y)%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*(r.p2.y+1));
-				//g.drawLine((int)(scalefactor[0]*(r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*(r.p2.x)), siz[1]-scalefactor[1]*(r.p1.y+1));
 			}
 			
 			for(Marker r: currentGrid.markers){
@@ -233,11 +235,10 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 					g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
 				}
 			}
-			for(int i=0;i<PlayerRecord.citiesReached.size();i++){
+			for(int i=0;i<currentPlayer.record.citiesReached.size();i++){
 				g.setColor(Color.black);
-				g.drawString(PlayerRecord.citiesReached.get(i).getName(), 0, -10-10*i);
+				g.drawString(currentPlayer.record.citiesReached.get(i).getName(), 0, -10-10*i);
 			}
-//			tempothercode();
 //			int sizer = 20;
 //			ArrayList<Rail> ne=new ArrayList<Rail>();
 //			try{
@@ -320,25 +321,25 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			if(((siz[1]-y-scalefactor[1]/2-1)/scalefactor[1])%2==1){
 				x-=scalefactor[0]/2;
 			}
-			if(y%scalefactor[1]<oddmod(x,scalefactor[0]/2)/2){
+			if(y%scalefactor[1]<oddmod(x,scalefactord[0]/2)/2){
 				return 2;
 			}
 			y=siz[1]-y;
-			if(y%scalefactor[1]<oddmod(x,scalefactor[0]/2)/2){
+			if(y%scalefactor[1]<oddmod(x,scalefactord[0]/2)/2){
 				return 2;
 			}
 			x=init[0];
-			if(x%scalefactor[0]<scalefactor[0]/2){
+			if(x%scalefactord[0]<scalefactord[0]/2){
 				if(((siz[1]-y-1)/scalefactor[1])%2==1){
-					return 1;
+					return 3;
 				}
-				return 3;
+				return 1;
 				
 			}
 			if(((siz[1]-y-1)/scalefactor[1])%2==1){
-				return 3;
+				return 1;
 			}
-			return 1;
+			return 3;
 		}
 		Rail nearestRail(int x, int y) throws Exception{
 			int c = colorcode(x,y);
@@ -352,24 +353,6 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 				return ee;
 			}
 			return er-ee%er;
-		}
-		private void tempothercode() {
-			Object o = returnPlacedRail();
-			if(o!=null){
-				try{
-					Marker m = (Marker) o;
-					currentPlayer.startMarker=m;
-					currentGrid.placeMarker(m.p, currentPlayer);
-					firstturn=false;
-				}catch(Exception E){
-					try{
-						Rail r = (Rail) o;
-						currentGrid.placeRail(r);
-					}catch(Exception er){
-						er.printStackTrace();
-					}
-				}
-			}
 		}
 		static boolean firstturn=true;
 		static Marker placedmarker;
