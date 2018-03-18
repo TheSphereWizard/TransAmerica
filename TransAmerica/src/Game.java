@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JFrame;
+
 /*
  * Game{//stores series of rounds
 	ArrayList<Round> rounds
@@ -181,6 +183,21 @@ public class Game {
 			MapofUSA.firstturn=false;
 		}
 		showScoreScreen=true;
+		ScoreScreen screen = new ScoreScreen(players, this);
+
+		TransAmerica.transamerica.add(screen);
+		TransAmerica.transamerica.remove(0);
+		TransAmerica.transamerica.dispose();
+		JFrame f = new JFrame();
+		f.add(screen);
+		TransAmerica.transamerica = f;
+		TransAmerica.transamerica.setTitle("TransAmerica");
+		TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		TransAmerica.transamerica.dispose();
+		TransAmerica.transamerica.setUndecorated(true);
+		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		TransAmerica.transamerica.setVisible(true);
+		TransAmerica.transamerica.repaint();
 	}
 
 	int[] returnScoreChange() {

@@ -18,13 +18,14 @@ public class ScoreScreen extends JPanel{
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
-		setLayout(new GridLayout(2,1,0,0));
+		setLayout(null);
 		this.game = game;
-		add(new WinningPlayer(players.get(game.getWinningPlayer())));
-		add(new Losers(players));
+//		add(new WinningPlayer(players.get(game.getWinningPlayer())));
+//		add(new Losers(players));
 	}
 	public void paint(Graphics g){
 		g.drawImage(backg, 0, 0, 1600, 900, null);
+		g.drawString("Score Screen other stuff disabled because it crashes", 400, 400);
 	}
 	/**
 	 * Displays the game losers
