@@ -148,21 +148,10 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		
 		public void paint(Graphics g){//redraws map with new rail networks
 			Graphics2D g2d = (Graphics2D)g;
-			
-//			g.translate(mappos[0], mappos[1]);
 			g.setColor(Color.gray);
 			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-			g.drawRect(0, 0, siz[0], siz[1]);
-			g.drawImage(Map,-50, -30, siz[0]+100, siz[1]+60, null);
-//			g.drawString(dist+"", 0, 10);
-//			g.drawString(nearest.x+" "+nearest.y, 0, 30);
-//			g.drawString(((siz[1]-mos[1]-1)/scalefactor[1])%2+"", 0, 50);
-//			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-			
-//			g.drawLine(x1, y1, x2, y2);
-//			drawposline(4,5,6,7,g);
-//			g.drawOval(mos[0]-5, mos[1]-5, 10, 10);
-			
+			g.drawRect(0, 0, (int) ((Grid.boardwidth-0.5d)*scalefactor[0]), (Grid.boardheight-1)*scalefactor[1]);
+			g.drawImage(Map,-50, -30, siz[0]+70, siz[1]+30, null);
 			
 //			for(int i=siz[0]/3;i<siz[0];i++){
 //				for(int j=3*siz[1]/4;j<siz[1];j++){
@@ -200,7 +189,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			g.drawString(highlightedmarker.x+" "+highlightedmarker.y, 0, 50);
 			g.setColor(Color.black);
 			for(Rail r: currentGrid.alllegalrails){
-				g2d.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+				g2d.setStroke(new BasicStroke(1+r.size*2,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				g.drawLine((int)(scalefactor[0]*((r.p1.y)%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*((r.p2.y)%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*(r.p2.y+1));
 				//g.drawLine((int)(scalefactor[0]*(r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*(r.p2.x)), siz[1]-scalefactor[1]*(r.p1.y+1));
 			}
@@ -208,7 +197,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 				Rail r = currentGrid.allRails.get(i);
 				if(r.player!=null){
 					g.setColor(r.player.record.getColor());
-					g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+					g2d.setStroke(new BasicStroke(6+r.size*2,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}else{
 					g.setColor(Color.black);
 					g2d.setStroke(new BasicStroke(10,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
@@ -254,18 +243,18 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //			g.setColor(Color.red);
 //			g.fillOval((int)(scalefactor[0]*((p.y)%2==1?p.x+0.5d:p.x))-sizer/2, siz[1]-scalefactor[1]*(p.y+1)-sizer/2, sizer, sizer);
 			
-			if(currentPlayer.startMarker!=null){
-				try {
-					ok = currentGrid.allValidMovesForPlayer(currentPlayer);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				for(Rail r : ok){
-					g2d.setStroke(new BasicStroke(2));
-					drawposline(r.p1.x,r.p1.y,r.p2.x,r.p2.y,g);
-				}
-			}
+//			if(currentPlayer.startMarker!=null){
+//				try {
+//					ok = currentGrid.allValidMovesForPlayer(currentPlayer);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				for(Rail r : ok){
+//					g2d.setStroke(new BasicStroke(2));
+//					drawposline(r.p1.x,r.p1.y,r.p2.x,r.p2.y,g);
+//				}
+//			}
 			}
 		}
 		ArrayList<Rail> ok =new ArrayList<Rail>();

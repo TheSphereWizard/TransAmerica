@@ -112,51 +112,57 @@ public class Game {
 		return over;
 	}
 	void startHumanRound() {
-		ReadOnlyGrid readGrid = null;
 		boolean FirstTurn =true;
-//		System.out.println(grid==MapofUSA.currentGrid);
 		MapofUSA.currentGrid=grid;
 		while(!gameOver()){
-//			System.out.println(grid==MapofUSA.currentGrid);
 			for (Player p : players) {
+				int railsleft=2;
+				
 				try{
 					HumanPlayer h = (HumanPlayer)p;
-					Object o = h.runTurn(FirstTurn,false,MainGameScreen.map);
-					if(o!=null){
-						try{
-							Marker m = (Marker) o;
-							h.startMarker=m;
-							grid.placeMarker(m.p, h);
-//							System.out.println(grid==MapofUSA.currentGrid);
-						}catch(Exception E){
-							try{
-								Rail r = (Rail) o;
-								grid.placeRail(r);//place multiple rails, impliment mountains
-							}catch(Exception er){
-								er.printStackTrace();
-							}
-						}
-					}
-//					System.out.println("once");
-				}catch(Exception E){
-//					System.out.println(p.record.playerName());
-					try{
-						ComputerPlayer c = (ComputerPlayer)p;
-						Object o = c.runTurn(FirstTurn,false,new ReadOnlyGrid(grid));
-						if(o!=null){
-							try{
-								Marker m = (Marker) o;
-								c.startMarker=m;
-								grid.placeMarker(m.p, c);
-//								System.out.println(grid==MapofUSA.currentGrid);
-							}catch(Exception Eer){
+					if(!gameOver()){
+						do{
+							Object o = h.runTurn(FirstTurn,!(railsleft==2),MainGameScreen.map);
+							if(o!=null){
 								try{
-									Rail r = (Rail) o;
-									grid.placeRail(r);//place multiple rails, impliment mountains
-								}catch(Exception er){
-									er.printStackTrace();
+									Marker m = (Marker) o;
+									h.startMarker=m;
+									grid.placeMarker(m.p, h);
+		//							System.out.println(grid==MapofUSA.currentGrid);
+								}catch(Exception E){
+									try{
+										Rail r = (Rail) o;
+										grid.placeRail(r);//place multiple rails, impliment mountains
+										railsleft-=r.size;
+									}catch(Exception er){
+										er.printStackTrace();
+									}
 								}
 							}
+						}while(railsleft>0&!FirstTurn);
+					}
+				}catch(Exception E){
+					try{
+						ComputerPlayer c = (ComputerPlayer)p;
+						if(!gameOver()){
+							do{
+								Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+								if(o!=null){
+									try{
+										Marker m = (Marker) o;
+										c.startMarker=m;
+										grid.placeMarker(m.p, c);
+									}catch(Exception Eer){
+										try{
+											Rail r = (Rail) o;
+											grid.placeRail(r);
+											railsleft-=r.size;
+										}catch(Exception er){
+											er.printStackTrace();
+										}
+									}
+								}
+							}while(railsleft>0&!FirstTurn);
 						}
 					}catch(Exception Ee){
 						Ee.printStackTrace();
@@ -168,10 +174,12 @@ public class Game {
 						e.printStackTrace();
 					}
 				}
+				
 			}
 			FirstTurn=false;
 			MapofUSA.firstturn=false;
 		}
+		showScoreScreen=true;
 	}
 
 	int[] returnScoreChange() {

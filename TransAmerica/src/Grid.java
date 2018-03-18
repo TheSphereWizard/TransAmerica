@@ -63,6 +63,10 @@ public class Grid {
 	}
 	void placeMarker(Position p,Player player){//places markers
 		markers.add(new Marker(p,player));//THIS NEEDS TO THROW EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN
+		City c=CityatPos(p);
+		if (c!=null){
+			player.record.citiesReached.add(c);
+		}
 	}
 	private City adjtoCity(Rail r){
 		for(City[] car:allcities){
@@ -77,8 +81,8 @@ public class Grid {
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
 		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player)){
 			allRails.add(rail);
-			City c =adjtoCity(rail);
-			rail.player.record.citiesReached=connectedCities(rail.player);
+//			City c =adjtoCity(rail);
+			connectCities(rail.player);
 			//This will only update at end of a players turn, if connecting another players turn, it should end imediately
 			//AKA NEEDS TO UPDATE ALL PLAYERS CONNECTED CITES
 		}
@@ -239,10 +243,10 @@ public class Grid {
 		}
 		return null;
 	}
-	ArrayList<City> connectedCities(Player p){
-		ArrayList<City> cities = new ArrayList<City>();
+	void connectCities(Player p){
+//		ArrayList<City> cities = new ArrayList<City>();
 		if(p==null){
-			return null;
+			
 		}else{
 			ArrayList<Rail> corners = immediateneighbors(p.startMarker.p);
 			for(int i=0;i<corners.size();i++){
@@ -264,7 +268,7 @@ public class Grid {
 				}
 			}
 		}
-		return cities;
+//		return cities;
 	}
 	
 	ArrayList<Rail> allValidMovesForPlayer(Player p){//returns all Rails on Players Network
@@ -284,7 +288,7 @@ public class Grid {
 					}
 				}else{
 					try {
-						allvalid.add(new Rail(po.p2,po.p1));
+						allvalid.add(new Rail(po.p2,po.p1,p));
 					} catch (Exception e) {System.out.println("here");}
 				}
 			}
