@@ -139,7 +139,7 @@ public class Game {
 					}
 //					System.out.println("once");
 				}catch(Exception E){
-					System.out.println(p.record.playerName());
+//					System.out.println(p.record.playerName());
 					try{
 						ComputerPlayer c = (ComputerPlayer)p;
 						Object o = c.runTurn(FirstTurn,false,new ReadOnlyGrid(grid));
@@ -160,6 +160,12 @@ public class Game {
 						}
 					}catch(Exception Ee){
 						Ee.printStackTrace();
+					}
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 			}

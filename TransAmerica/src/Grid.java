@@ -78,15 +78,10 @@ public class Grid {
 		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player)){
 			allRails.add(rail);
 			City c =adjtoCity(rail);
-//			if(c!=null&!PlayerRecord.citiesReached.contains(c)){
-//				PlayerRecord.citiesReached.add(c);
-//			}//The cities Reached can't be static because not all sections are connected
+			rail.player.record.citiesReached=connectedCities(rail.player);
+			//This will only update at end of a players turn, if connecting another players turn, it should end imediately
+			//AKA NEEDS TO UPDATE ALL PLAYERS CONNECTED CITES
 		}
-		//THIS NEEDS TO THROW AN EXCEPTION IF INVALID SO IT CAN BE PLACED AGAIN WITHOUT ENDING TURN
-		
-		//IF CITY IS CONNECTED TO THIS RAIL THEN CHANGE ALL PLAYERS CONNECTED TO THIS CITY TO REALIZE THEY ARE CONNECTED
-		
-		//MAKE A METHOD THAT RETURNS AN ARRAY/LIST OF OBJECTS THAT ARE CONNECTED TO A POSITION OF aLL TYPES THAT CAN BE ITERATED OVER BY CLASS
 	}
 	City[][] getCities() {
 		return allcities;
@@ -163,19 +158,22 @@ public class Grid {
 		return Math.abs(p1.x-p2.x)+Math.abs(p1.y-p2.y);
 	}
 	
-	ArrayList<Rail> immediateneighbors(Position p) throws Exception{
+	ArrayList<Rail> immediateneighbors(Position p){
 		ArrayList<Rail> ne = new ArrayList<Rail>();
-		ne.add(new Rail(p,new Position(p.x-1,p.y)));
-		ne.add(new Rail(p,new Position(p.x+1,p.y)));
-		ne.add(new Rail(p,new Position(p.x,p.y+1)));
-		ne.add(new Rail(p,new Position(p.x,p.y-1)));
-		if(p.y%2==1){
-			ne.add(new Rail(p,new Position(p.x+1,p.y+1)));
-			ne.add(new Rail(p,new Position(p.x+1,p.y-1)));
-		}else{
-			ne.add(new Rail(p,new Position(p.x-1,p.y+1)));
-			ne.add(new Rail(p,new Position(p.x-1,p.y-1)));
-		}
+		try {
+			ne.add(new Rail(p,new Position(p.x-1,p.y)));
+			ne.add(new Rail(p,new Position(p.x+1,p.y)));
+			ne.add(new Rail(p,new Position(p.x,p.y+1)));
+			ne.add(new Rail(p,new Position(p.x,p.y-1)));
+		
+			if(p.y%2==1){
+				ne.add(new Rail(p,new Position(p.x+1,p.y+1)));
+				ne.add(new Rail(p,new Position(p.x+1,p.y-1)));
+			}else{
+				ne.add(new Rail(p,new Position(p.x-1,p.y+1)));
+				ne.add(new Rail(p,new Position(p.x-1,p.y-1)));
+			}
+		} catch (Exception e) {}
 		for(int i=0;i<ne.size();i++){
 			if(!alllegalrails.contains(ne.get(i))){
 				ne.remove(i);
@@ -204,16 +202,18 @@ public class Grid {
 			ArrayList<City> bo = new ArrayList<City>();
 			yo.add(bo);
 			for(int j=0;j<5;j++){
-				int rand = (int)(Math.random()*allcities[j].length);
-				boolean ok = true;
-				for(int k=0;k<yo.size()-2;k++){
-					ArrayList<City> c = yo.get(k);
-					if(c.get(j).equals(allcities[j][rand])){
-						ok=false;
+				while(bo.size()==j){
+					int rand = (int)(Math.random()*allcities[j].length);
+					boolean ok = true;
+					for(int k=0;k<yo.size()-1;k++){
+						ArrayList<City> c = yo.get(k);
+						if(c.get(j).equals(allcities[j][rand])){
+							ok=false;
+						}
 					}
-				}
-				if(ok){
-					bo.add(allcities[j][rand]);
+					if(ok){
+						bo.add(allcities[j][rand]);
+					}
 				}
 			}
 		}		
@@ -229,8 +229,45 @@ public class Grid {
 			mountains.add(new Rail(new Position(3,3),new Position(3,4)));
 		}catch(Exception e){}
 	}
-
-	ArrayList<Rail> allValidMovesForPlayer(Player p) throws Exception{//returns all Rails on Players Network
+	City CityatPos(Position p){
+		for(City[] car:allcities){
+			for(City c:car){
+				if(c.p.equals(p)){
+					return c;
+				}
+			}
+		}
+		return null;
+	}
+	ArrayList<City> connectedCities(Player p){
+		ArrayList<City> cities = new ArrayList<City>();
+		if(p==null){
+			return null;
+		}else{
+			ArrayList<Rail> corners = immediateneighbors(p.startMarker.p);
+			for(int i=0;i<corners.size();i++){
+				Rail po=corners.get(i);
+				if(RailExists(po.p1,po.p2)){
+					for(Rail pr : immediateneighbors(po.p2)){
+						if(!corners.contains(pr)){
+							corners.add(pr);
+							City c1=CityatPos(pr.p1);
+							if(c1!=null&&!p.record.citiesReached.contains(c1)){
+								p.record.citiesReached.add(c1);
+							}
+							City c2=CityatPos(pr.p1);
+							if(c2!=null&&!p.record.citiesReached.contains(c2)){
+								p.record.citiesReached.add(c2);
+							}
+						}
+					}
+				}
+			}
+		}
+		return cities;
+	}
+	
+	ArrayList<Rail> allValidMovesForPlayer(Player p){//returns all Rails on Players Network
 		ArrayList<Rail> allvalid;
 		if(p==null){
 			return null;

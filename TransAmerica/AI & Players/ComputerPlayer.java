@@ -14,17 +14,14 @@ public abstract class ComputerPlayer extends Player {
 		super(c, cities, name);
 	}
 
-	abstract Rail runTurn(boolean firstturn,boolean firstRailPlaced, Object grid);
+	abstract Object runTurn(boolean firstturn,boolean firstRailPlaced, Object grid);
 	
-	public ArrayList<Rail> scanRails(){
-		return getGrid().checkRail2(this);
-	}
+//	public ArrayList<Rail> scanRails(){
+//		return grid.allValidMovesforPlayer(this);
+//	}
 	public ArrayList<Rail> getRailsAtPos(Position pos) {
-		return getGrid().immediateneighbors(pos);
+		return grid.immediateneighbors(pos);
 	}
 	
-	public ReadOnlyGrid getGrid() {
-		return grid;
-	}
 
 }

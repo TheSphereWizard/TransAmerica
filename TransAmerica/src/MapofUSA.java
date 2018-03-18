@@ -204,7 +204,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 				g.drawLine((int)(scalefactor[0]*((r.p1.y)%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*((r.p2.y)%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*(r.p2.y+1));
 				//g.drawLine((int)(scalefactor[0]*(r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*(r.p2.x)), siz[1]-scalefactor[1]*(r.p1.y+1));
 			}
-			for(Rail r: currentGrid.allRails){
+			for(int i=0;i<currentGrid.allRails.size();i++){
+				Rail r = currentGrid.allRails.get(i);
 				if(r.player!=null){
 					g.setColor(r.player.record.getColor());
 					g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
@@ -364,7 +365,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			if(firstturn){
 				placedmarker=new Marker(nearestPosition2(x,y),currentPlayer);
 //				firstturn=false;
-				System.out.println("Re");
+//				System.out.println("Re");
 			}else{
 				try {
 					if(nearestRail(x,y)!=null)

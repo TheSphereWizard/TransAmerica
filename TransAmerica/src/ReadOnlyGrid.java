@@ -12,17 +12,12 @@ public class ReadOnlyGrid {
 		return grid.railsMissing();
 	}
 	ArrayList<Rail> immediateneighbors(Position p){
-		try {
-			return grid.immediateneighbors(p);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		return grid.immediateneighbors(p);
 	}
 	int distbetweenpoints(Position p1, Position p2){
 		return grid.distbetweenpoints(p1, p2);
 	}
-	ArrayList<Rail> checkRail2(Player p){
+	ArrayList<Rail> allValidMovesforPlayer(Player p){
 		try{
 			return grid.allValidMovesForPlayer(p);//Why doesn't this work for comp players
 		}catch(Exception E){return null;}

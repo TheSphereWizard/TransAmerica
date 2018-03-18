@@ -130,26 +130,17 @@ public class MainGameScreen extends JPanel{
 		g.setFont(new Font("Arial",1,172));
 		g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
 		
+		
+		//Below is Debug info:
+		g.setFont(new Font("Arial",0,13));
+		g.setColor(Color.black);
+		for(int j=0;j<currentGame.players.size();j++){
+			Player p=currentGame.players.get(j);
+			g.drawString(p.record.playerName(), map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*(-1));
+			for(int i=0;i<5;i++){
+				g.drawString(p.record.cities.get(i).getName(), map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*i);
+			}
+		}
+		
 	}
-//	public void mouseMoved(MouseEvent e) {
-//		
-//		if(e.getX()>=map.getX()&e.getX()<=map.getX()+map.getWidth()){
-//			if(e.getY()>=map.getY()&e.getY()<=map.getY()+map.getHeight()){
-//				map.mouseMoved(e);
-//			}
-//		}
-//	}
-//	public void mouseClicked(MouseEvent e) {
-////		System.out.println("a");
-////		if(e.getX()>=map.getX()&e.getX()<=map.getX()+map.getWidth()){
-////			if(e.getY()>=map.getY()&e.getY()<=map.getY()+map.getHeight()){
-////				map.mouseClicked(new MouseEvent(null,0,0 ,0,e.getX(),e.getY()-200,0,false,0));
-////			}
-////		}
-//	}
-//	public void mouseEntered(MouseEvent e) {}
-//	public void mouseExited(MouseEvent e) {}
-//	public void mousePressed(MouseEvent e) {}
-//	public void mouseReleased(MouseEvent e) {}
-//	public void mouseDragged(MouseEvent arg0) {}
 }
