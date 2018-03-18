@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class PopUp extends JPanel{
+public class PopUp extends JPanel implements ActionListener{
 	//private JPanel popUps;
 	//private JPanel aiPopup;
 	private JFrame frame;
@@ -31,32 +31,13 @@ public class PopUp extends JPanel{
 		this.add(gameNumber);
 		
 		fast = new JButton("Fast Mode");
-		fast.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(gameNumber.getText() == null){
-					ErrorMessage error = new ErrorMessage();
-				}
-				
-			}
-			
-		});
+		fast.addActionListener(this);
 		this.add(fast);
 		
 		slow = new JButton("Slow Mode");
-		slow.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(gameNumber.getText() == null){
-					ErrorMessage error = new ErrorMessage();
-				}
-				
-			}
-			
-		});
+		slow.addActionListener(this);
 		this.add(slow);
+		
 		frame = new JFrame("Strategy Analysis Mode");
 		frame.setSize(300, 150);
 		frame.setResizable(false);
@@ -68,4 +49,22 @@ public class PopUp extends JPanel{
 	public int numberOfGamesToBeRun(){
 		return numberOfGivenGames;
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+			try {
+			     Integer.parseInt(gameNumber.getText());
+			}
+			catch (NumberFormatException num) {
+			    ErrorMessage error = new ErrorMessage();
+			    return;
+			}
+		if(e.getSource().equals(fast)){
+			
+		}else if(e.getSource().equals(slow)){
+			
+		}
+		
+	}
+	
 }
