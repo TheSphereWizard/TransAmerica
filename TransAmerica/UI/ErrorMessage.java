@@ -11,6 +11,7 @@ public class ErrorMessage extends JFrame implements ActionListener {
 	private JButton button = new JButton("Exit");
 	private JLabel error = new JLabel("Error: Not enough players.");
 	
+	
 	ErrorMessage() {
 		this.setTitle("Error");
 		button.addActionListener(this);
@@ -18,6 +19,8 @@ public class ErrorMessage extends JFrame implements ActionListener {
 		contentPane.setLayout(new GridLayout(1,2));
 		contentPane.add(error);
 		contentPane.add(button);
+		
+		
 		
 		this.add(contentPane);
 		this.setLocation(650,375);
