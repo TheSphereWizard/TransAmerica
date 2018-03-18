@@ -8,8 +8,8 @@ public class ReadOnlyGrid {
 	boolean checkRail(Rail r, Player p){
 		return grid.checkRail(r, p);
 	}
-	int[] railsMissing(){
-		return grid.railsMissing();
+	int[] railsMissing(ArrayList<Player> players){
+		return grid.railsMissing(players);
 	}
 	ArrayList<Rail> immediateneighbors(Position p){
 		return grid.immediateneighbors(p);
