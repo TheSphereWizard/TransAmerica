@@ -7,7 +7,6 @@ public class ReadOnlyGrid {
 	}
 	boolean checkRail(Rail r, Player p){
 		return grid.checkRail(r, p);
-//		return false;
 	}
 	int[] railsMissing(){
 		return grid.railsMissing();
@@ -25,7 +24,7 @@ public class ReadOnlyGrid {
 	}
 	ArrayList<Rail> checkRail2(Player p){
 		try{
-			return grid.allValidMovesForPlayer(p);
+			return grid.allValidMovesForPlayer(p);//Why doesn't this work for comp players
 		}catch(Exception E){return null;}
 	}
 	boolean RailExists(Position p1, Position p2) {

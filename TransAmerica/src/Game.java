@@ -114,10 +114,10 @@ public class Game {
 	void startHumanRound() {
 		ReadOnlyGrid readGrid = null;
 		boolean FirstTurn =true;
-		System.out.println(grid==MapofUSA.currentGrid);
+//		System.out.println(grid==MapofUSA.currentGrid);
 		MapofUSA.currentGrid=grid;
 		while(!gameOver()){
-			System.out.println(grid==MapofUSA.currentGrid);
+//			System.out.println(grid==MapofUSA.currentGrid);
 			for (Player p : players) {
 				try{
 					HumanPlayer h = (HumanPlayer)p;
@@ -137,7 +137,7 @@ public class Game {
 							}
 						}
 					}
-					System.out.println("once");
+//					System.out.println("once");
 				}catch(Exception E){
 					try{
 						ComputerPlayer c = (ComputerPlayer)p;
@@ -158,7 +158,7 @@ public class Game {
 							}
 						}
 					}catch(Exception Ee){
-						System.out.println("WHAT IS PLAYING TRANSAMERICA?");
+						Ee.printStackTrace();
 					}
 				}
 			}

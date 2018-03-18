@@ -45,7 +45,7 @@ public class Grid {
 	};
 	
 	Rail[][] railGrid;
-	static int boardwidth=30, boardheight=20;//BOTH OF THESE VALUES MUST BE ODD
+	static int boardwidth=30, boardheight=20;
 	int[][] grid=new int[boardwidth][];
 	ArrayList<Rail> allRails = new ArrayList<Rail>();
 	ArrayList<Marker> markers= new ArrayList<Marker>();
@@ -256,32 +256,14 @@ public class Grid {
 	}
 	int[] railsMissing(){
 		//throwexception if one is not 0, 
-		//idk return sum of smallest distances from any rail on players network each missing city?
-		
-		
-		//temporarlily just try to minimize by adding shortest path to each city, then checking next city from new path arangement
-		//not perfect but good enough
 		ArrayList<Rail> fred = new ArrayList<Rail>();
-		//May need to make whole new Grids to test different cases.
 		
 		
 		
 		
-		/*
-		 * I think the general algorithum will go as follows;
-		 * for each city: 
-		 * 	Add to a grid all possible rails that go together with the smallest possible route
-		 * 	
-		 */
+		//BREADTH FIRST BACK FROM EACH CITY GOAL, WHEN IT HITS OTHER CITY, MERGES,ELSE USES PATH WHEN IT HITS THE RAIL NETWORK
 		
-		
-		
-//		int totaldist=0;
-//		for(City c :p.record.getCities()){
-//			if(!p.record.getCitiesReached().contains(c)){
-//				int max ;
-//			}
-//		}
+
 		return null;
 	}
 }

@@ -22,7 +22,9 @@ public class HumanPlayer extends Player {
 		//accesses lastClick to map until it isn't null
 		Object nextRail = null;
 		map.currentPlayer=this;
-		while(nextRail == null){
+		boolean ok = true;
+		while(nextRail == null||ok){
+			ok=true;
 //			System.out.println("stuck here?");//AMAZING, DO NOT REMOVE THIS PRINT STATEMENT, DOING SO WILL BREAK EVERYTHING
 			//ok fine maybe just need to add a sleep statement instead...
 			try {
@@ -35,7 +37,22 @@ public class HumanPlayer extends Player {
 			}catch(Exception E){
 				System.out.println(map==null);
 			}
+			try{
+				Marker m = (Marker) nextRail;
+				ok=false;
+			}catch(Exception E){
+				try{
+					Rail r = (Rail) nextRail;
+					if(r!=null&map.currentGrid.checkRail(r, this)){
+						ok=false;
+					}
+//					System.out.println("ok "+ok);
+				}catch(Exception er){
+					
+				}
+			}
 		}
+		System.out.println("ok "+ok);
 		return nextRail;
 	}
 	
