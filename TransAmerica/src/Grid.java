@@ -247,7 +247,7 @@ public class Grid {
 		}
 	}
 	
-	ArrayList<Rail> allValidMovesForPlayer(Player p){//returns all Rails on Players Network
+	ArrayList<Rail> allValidMovesForPlayer(Player p){//returns all validmoves
 		ArrayList<Rail> allvalid;
 		if(p==null){
 			return null;
@@ -271,14 +271,50 @@ public class Grid {
 		}
 		return allvalid;
 	}
-	int[] railsMissing(){
-		//throwexception if one is not 0, 
-		ArrayList<Rail> fred = new ArrayList<Rail>();
+	ArrayList<Rail> allRailsonPlayersNetwork(Player p){//returns all rails on players network
+		ArrayList<Rail> corners;
+		if(p==null){
+			return null;
+		}else{
+			corners = immediateneighbors(p.startMarker.p);
+			for(int i=0;i<corners.size();i++){
+				Rail po=corners.get(i);
+				if(RailExists(po.p1,po.p2)){
+					for(Rail pr : immediateneighbors(po.p2)){
+						if(!corners.contains(pr)){
+							corners.add(pr);
+						}
+					}
+				}
+			}
+		}
+		return corners;
+	}
+	int[] railsMissing(ArrayList<Player> players){
+		int[] loss = new int[players.size()];
+		//Below is Temporary as it will not always work.
+		for(int i=0;i<players.size();i++){
+			Player p=players.get(i);
+			int totaldist =0;
+			for(City c : p.record.cities){
+				int currdist=Integer.MAX_VALUE;
+				if(!p.record.citiesReached.contains(c)){
+					for(Rail r :allRailsonPlayersNetwork(p)){
+						currdist=Math.min(currdist,distbetweenpoints(r.p1,c.p));
+						currdist=Math.min(currdist,distbetweenpoints(r.p2,c.p));
+					}
+				}
+				totaldist+=currdist;
+			}
+			loss[i]=totaldist;
+		}
 		
 		
+		
+		//How actual one should work
 		//BREADTH FIRST BACK FROM EACH CITY GOAL, WHEN IT HITS OTHER CITY, MERGES,ELSE USES PATH WHEN IT HITS THE RAIL NETWORK
 		
-
-		return null;
+		//idk throwexception if one is not 0? 
+		return loss;
 	}
 }
