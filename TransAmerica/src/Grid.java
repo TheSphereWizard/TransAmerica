@@ -133,8 +133,8 @@ public class Grid {
 		ArrayList<Rail> all = new ArrayList<Rail>();
 		for(int x =0;x<boardwidth;x++){
 			for(int y =0;y<boardheight;y++){
-				for(int x1 =0;x1<boardwidth;x1++){
-					for(int y1 =0;y1<boardheight;y1++){
+				for(int x1 =x-1<0?0:x-1;x1<((x+2>boardwidth)?boardwidth:x+2);x1++){
+					for(int y1 =y-1<0?0:y-1;y1<((y+2>boardheight)?boardheight:y+2);y1++){
 						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
 							try {
 								all.add(new Rail(new Position(x,y),new Position(x1,y1)));
