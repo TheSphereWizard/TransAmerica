@@ -88,20 +88,22 @@ public class PopUp extends JPanel implements ActionListener{
 						playerType.add(p.getStrategy());
 					}
 				}
-				MainGameScreen screen = new MainGameScreen(main.generate(playerColors,playerNames,playerType));
-				TransAmerica.transamerica.add(screen);
-				TransAmerica.transamerica.remove(0);
-				TransAmerica.transamerica.dispose();
-				JFrame f = new JFrame();
-				f.add(screen);
-				TransAmerica.transamerica = f;
-				TransAmerica.transamerica.setTitle("TransAmerica");
-				TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				TransAmerica.transamerica.dispose();
-				TransAmerica.transamerica.setUndecorated(true);
-				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				TransAmerica.transamerica.setVisible(true);
-				TransAmerica.transamerica.repaint();
+				for(int i=0;i<games;i++){
+					MainGameScreen screen = new MainGameScreen(main.generate(playerColors,playerNames,playerType));
+					TransAmerica.transamerica.add(screen);
+					TransAmerica.transamerica.remove(0);
+					TransAmerica.transamerica.dispose();
+					JFrame f = new JFrame();
+					f.add(screen);
+					TransAmerica.transamerica = f;
+					TransAmerica.transamerica.setTitle("TransAmerica");
+					TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					TransAmerica.transamerica.dispose();
+					TransAmerica.transamerica.setUndecorated(true);
+					TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					TransAmerica.transamerica.setVisible(true);
+					TransAmerica.transamerica.repaint();
+				}
 			}
 		}	
 	}
