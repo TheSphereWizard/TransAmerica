@@ -79,28 +79,6 @@ public class MainGameScreen extends JPanel{
 		game.Round();
 	}
 	
-	public void generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
-		ArrayList<Player> players = new ArrayList<Player>();
-		ArrayList<ArrayList<City>> cities = map.currentGrid.setofgoalCities(playerType.size());
-		boolean slowMode = false;
-		for(int i = 0; i<playerType.size();i++){
-			if(playerType.get(i).equals("Human")){
-				players.add(new HumanPlayer(playerColors.get(i),cities.get(i),playerNames.get(i)));
-				slowMode = true;
-			}else if(playerType.get(i).equals("Easy")){
-				players.add(new EasyStrategy(playerColors.get(i),cities.get(i),playerNames.get(i)));
-			}else{
-				int[] playerScores = new int[players.size()];
-				for(int j = 0;j<playerScores.length;j++){
-					playerScores[j] = 12;
-				}
-				players.add(new HardStrategy(playerColors.get(i),cities.get(i),playerScores, playerNames.get(i)));
-			}
-		}
-		currentGame = new Game(players,slowMode);
-		
-	}
-	
 	public void paint(Graphics g){
 		g.drawImage(backg, 0, 0, 1600, 900, null);
 		for(int i = 0; i < currentGame.players.size(); i++) {

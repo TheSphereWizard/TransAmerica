@@ -135,11 +135,11 @@ public class Grid {
 			for(int y =0;y<boardheight;y++){
 				for(int x1 =0;x1<boardwidth;x1++){
 					for(int y1 =0;y1<boardheight;y1++){
-//						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
+						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
 							try {
 								all.add(new Rail(new Position(x,y),new Position(x1,y1)));
 							} catch (Exception e) {}
-//						}
+						}
 					}
 				}
 			}
