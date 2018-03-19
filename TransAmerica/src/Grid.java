@@ -16,8 +16,8 @@ public class Grid {
 			new City("San Francisco",new Position(1,9),Color.green),
 			new City("Sacramento",new Position(1,11),Color.green),
 			new City("Portland",new Position(2,16),Color.green),
-			new City("Medford",new Position(6,10),Color.green),
-			new City("Los Angeles",new Position(14,7),Color.green),},
+			new City("Medford",new Position(2,14),Color.green),
+			new City("Los Angeles",new Position(2,8),Color.green),},
 		{
 			new City("Duluth",new Position(11,3),Color.blue),
 			new City("Buffalo",new Position(6,4),Color.blue),
