@@ -17,7 +17,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //	private JPanel[] panes = new JPanel[4];
 	private JButton start = new JButton("Play"), exit = new JButton("Exit");
 	private JButton[] buttons = new JButton[] {start, exit};
-	private PlayerPanel[] playerPanels = new PlayerPanel[6];
+	PlayerPanel[] playerPanels = new PlayerPanel[6];
 
 	MainMenu() {
 		this.setLayout(null);		
@@ -162,7 +162,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //					something.popup;
 //					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
 //					add(screen);
-					PopUp aiGamePopUp = new PopUp();
+					PopUp aiGamePopUp = new PopUp(this);
 				}
 			}
 			else{//not enough players
@@ -173,7 +173,7 @@ public class MainMenu extends JPanel implements ActionListener{
 			System.exit(0);
 	}
 	
-private class PlayerPanel extends JPanel implements ActionListener{
+class PlayerPanel extends JPanel implements ActionListener{
 		
 		private static final long serialVersionUID = 1L;
 		private ButtonGroup group = new ButtonGroup();
