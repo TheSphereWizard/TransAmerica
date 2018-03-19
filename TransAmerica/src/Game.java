@@ -171,7 +171,7 @@ public class Game {
 						Ee.printStackTrace();
 					}
 					try {
-						Thread.sleep(250);
+						Thread.sleep(350);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -183,6 +183,13 @@ public class Game {
 			MapofUSA.firstturn=false;
 		}
 		showScoreScreen=true;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ScoreScreen screen = new ScoreScreen(players, this);
 
 		TransAmerica.transamerica.add(screen);
