@@ -3,45 +3,45 @@ import java.util.ArrayList;
 
 public class Grid {
 	City[][] allcities = new City[][]{
-		{new City("Red1",new Position(3,12),Color.red),
-			new City("Red2",new Position(1,11),Color.red),
-			new City("Red3",new Position(0,9),Color.red),
-			new City("Red4",new Position(1,7),Color.red),
-			new City("Red5",new Position(3,5),Color.red),
-			new City("Red6",new Position(3,7),Color.red),
-			new City("Red7",new Position(2,9),Color.red),},
+		{new City("Houston",new Position(3,12),Color.red),
+			new City("Atlanta",new Position(1,11),Color.red),
+			new City("Dallas",new Position(0,9),Color.red),
+			new City("El Paso",new Position(1,7),Color.red),
+			new City("Memphis",new Position(3,5),Color.red),
+			new City("New Orleans",new Position(3,7),Color.red),
+			new City("Phoenix",new Position(2,9),Color.red),},
 		{
-			new City("green1",new Position(13,11),Color.green),
-			new City("green2",new Position(8,8),Color.green),
-			new City("green3",new Position(9,11),Color.green),
-			new City("green4",new Position(11,8),Color.green),
-			new City("green5",new Position(17,11),Color.green),
-			new City("green6",new Position(6,10),Color.green),
-			new City("green7",new Position(14,7),Color.green),},
+			new City("Seattle",new Position(13,11),Color.green),
+			new City("San Diego",new Position(8,8),Color.green),
+			new City("San Francisco",new Position(9,11),Color.green),
+			new City("Sacramento",new Position(11,8),Color.green),
+			new City("Portland",new Position(17,11),Color.green),
+			new City("Medford",new Position(6,10),Color.green),
+			new City("Los Angeles",new Position(14,7),Color.green),},
 		{
-			new City("blue1",new Position(11,3),Color.blue),
-			new City("blue2",new Position(6,4),Color.blue),
-			new City("blue3",new Position(7,6),Color.blue),
-			new City("blue4",new Position(10,2),Color.blue),
-			new City("Austin",new Position(13,1),Color.blue),
-			new City("blue6",new Position(13,3),Color.blue),
-			new City("blue7",new Position(11,6),Color.blue),},
+			new City("Duluth",new Position(11,3),Color.blue),
+			new City("Buffalo",new Position(6,4),Color.blue),
+			new City("Bismark",new Position(7,6),Color.blue),
+			new City("Chicago",new Position(10,2),Color.blue),
+			new City("Cincinnati",new Position(13,1),Color.blue),
+			new City("Helena",new Position(13,3),Color.blue),
+			new City("Minneapolis",new Position(11,6),Color.blue),},
 		{	
-			new City("orange1",new Position(18,5),new Color(255,128,0)),
-			new City("orange2",new Position(24,12),new Color(255,128,0)),
-			new City("orange3",new Position(21,10),new Color(255,128,0)),
-			new City("orange4",new Position(21,7),new Color(255,128,0)),
-			new City("orange5",new Position(22,6),new Color(255,128,0)),
-			new City("orange6",new Position(19,8),new Color(255,128,0)),
-			new City("orange7",new Position(18,6),new Color(255,128,0)),},
+			new City("Boston",new Position(18,5),new Color(255,128,0)),
+			new City("Richmond",new Position(24,12),new Color(255,128,0)),
+			new City("Washington",new Position(21,10),new Color(255,128,0)),
+			new City("Winston",new Position(21,7),new Color(255,128,0)),
+			new City("Charleston",new Position(22,6),new Color(255,128,0)),
+			new City("Jacksonville",new Position(19,8),new Color(255,128,0)),
+			new City("New York",new Position(18,6),new Color(255,128,0)),},
 		{					
-			new City("yellow1",new Position(15,2),Color.yellow),
-			new City("yellow2",new Position(20,1),Color.yellow),
-			new City("yellow3",new Position(19,3),Color.yellow),
-			new City("yellow4",new Position(20,5),Color.yellow),
-			new City("yellow5",new Position(17,4),Color.yellow),
-			new City("yellow6",new Position(16,6),Color.yellow),
-			new City("yellow7",new Position(17,2),Color.yellow),},
+			new City("Denver",new Position(15,2),Color.yellow),
+			new City("Kansas City",new Position(20,1),Color.yellow),
+			new City("Oklahoma City",new Position(19,3),Color.yellow),
+			new City("Omaha",new Position(20,5),Color.yellow),
+			new City("Salt Lake City",new Position(17,4),Color.yellow),
+			new City("Santa Fe",new Position(16,6),Color.yellow),
+			new City("Saint Louis",new Position(17,2),Color.yellow),},
 	};
 	
 	Rail[][] railGrid;
@@ -135,11 +135,11 @@ public class Grid {
 			for(int y =0;y<boardheight;y++){
 				for(int x1 =0;x1<boardwidth;x1++){
 					for(int y1 =0;y1<boardheight;y1++){
-//						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
+						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
 							try {
 								all.add(new Rail(new Position(x,y),new Position(x1,y1)));
 							} catch (Exception e) {}
-//						}
+						}
 					}
 				}
 			}
