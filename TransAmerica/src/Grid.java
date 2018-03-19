@@ -3,19 +3,19 @@ import java.util.ArrayList;
 
 public class Grid {
 	City[][] allcities = new City[][]{
-		{new City("Houston",new Position(3,12),Color.red),
-			new City("Atlanta",new Position(1,11),Color.red),
-			new City("Dallas",new Position(0,9),Color.red),
-			new City("El Paso",new Position(1,7),Color.red),
-			new City("Memphis",new Position(3,5),Color.red),
-			new City("New Orleans",new Position(3,7),Color.red),
-			new City("Phoenix",new Position(2,9),Color.red),},
+		{new City("Houston",new Position(15,3),Color.red),
+			new City("Atlanta",new Position(22,6),Color.red),
+			new City("Dallas",new Position(14,5),Color.red),
+			new City("El Paso",new Position(8,5),Color.red),
+			new City("Memphis",new Position(18,7),Color.red),
+			new City("New Orleans",new Position(18,3),Color.red),
+			new City("Phoenix",new Position(6,6),Color.red),},
 		{
-			new City("Seattle",new Position(13,11),Color.green),
-			new City("San Diego",new Position(8,8),Color.green),
-			new City("San Francisco",new Position(9,11),Color.green),
-			new City("Sacramento",new Position(11,8),Color.green),
-			new City("Portland",new Position(17,11),Color.green),
+			new City("Seattle",new Position(2,18),Color.green),
+			new City("San Diego",new Position(3,6),Color.green),
+			new City("San Francisco",new Position(1,9),Color.green),
+			new City("Sacramento",new Position(1,11),Color.green),
+			new City("Portland",new Position(2,16),Color.green),
 			new City("Medford",new Position(6,10),Color.green),
 			new City("Los Angeles",new Position(14,7),Color.green),},
 		{
@@ -31,7 +31,7 @@ public class Grid {
 			new City("Richmond",new Position(24,12),new Color(255,128,0)),
 			new City("Washington",new Position(21,10),new Color(255,128,0)),
 			new City("Winston",new Position(21,7),new Color(255,128,0)),
-			new City("Charleston",new Position(22,6),new Color(255,128,0)),
+			new City("Charleston",new Position(22,7),new Color(255,128,0)),
 			new City("Jacksonville",new Position(19,8),new Color(255,128,0)),
 			new City("New York",new Position(18,6),new Color(255,128,0)),},
 		{					
