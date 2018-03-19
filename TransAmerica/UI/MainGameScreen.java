@@ -126,8 +126,8 @@ public class MainGameScreen extends JPanel{
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.black);
 		g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-		g2d.drawLine(30, 100, 1090, 100);
-		g2d.drawLine(30, 50, 1090, 50);
+		g2d.drawLine(20, 100, 1100, 100);
+		g2d.drawLine(20, 50, 1100, 50);
 		int increment = 10;
 		for(int i = 0; i < 12; i++){
 			g2d.drawLine(50 + increment, 40, 50 + increment, 110);
