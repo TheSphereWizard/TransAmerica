@@ -196,7 +196,7 @@ class PlayerPanel extends JPanel implements ActionListener{
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
 				if(this.getComponent(i).isVisible()){
 //					if(i!=0)
-						g.drawImage(buttonImage, -10, -10, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+20, null);
+						g.drawImage(buttonImage, -10, -8, this.getComponent(i).getWidth()+20, this.getComponent(i).getHeight()+16, null);
 					this.getComponent(i).paint(g);//needs to be specialized
 				}
 				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
@@ -205,7 +205,7 @@ class PlayerPanel extends JPanel implements ActionListener{
 		BufferedImage buttonImage;
 		public PlayerPanel(int playerNum) {
 			try {
-				buttonImage=ImageIO.read(new File("Pix\\button.png"));
+				buttonImage=ImageIO.read(new File("Pix\\button-design3.png"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -217,7 +217,7 @@ class PlayerPanel extends JPanel implements ActionListener{
 			JLabel playernumber = new JLabel("Player " + playerNum);
 			playernumber.setFont(new Font("Arial",Font.BOLD,24));
 			playernumber.setLocation(25,15);
-			playernumber.setSize(100, 50);
+			playernumber.setSize(100, 30);
 			add(playernumber);
 			name = new JTextField();
 			name.setText("Player " + playerNum);
@@ -227,7 +227,7 @@ class PlayerPanel extends JPanel implements ActionListener{
 				options[i].addActionListener(this);
 				options[i].setActionCommand(optionNames[i]);
 				options[i].setBackground(new Color(0,0,0,0));
-				options[i].setLocation(70,85+(int) (70*(i)));
+				options[i].setLocation(70,65+(int) (75*(i)));
 				options[i].setSize(150, 20);
 				group.add(options[i]);
 				
@@ -236,23 +236,20 @@ class PlayerPanel extends JPanel implements ActionListener{
 				if(i == 1) {
 					add(name);
 					name.setVisible(false);
-					name.setBounds(90, 185, 60, 25);
+					name.setBounds(90, 175, 60, 25);
 				} else if(i == 2) {
 					add(strategy);
 					strategy.setVisible(false);
-					strategy.setBounds(90, 255, 60, 25);
+					strategy.setBounds(90, 252, 60, 25);
 				}
 			}
 //			for(int i = 0; i < strategies.length; i ++) {
 //				strategies[i] = new JComboBox(stratNames);
 //			}
-			
 			this.setPreferredSize(new Dimension(400,200));
-			
 //			if(playerNum == 1 || playerNum == 2) {THIS ALSO BREAKS EVERYTHING
 //				options[1].setSelected(true);
 //			}
-			
 			if(playerNum == 1) {
 				options[1].setSelected(true);
 				noPlayers --;

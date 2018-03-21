@@ -173,7 +173,7 @@ public class Game {
 		}
 		showScoreScreen=true;
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -203,13 +203,13 @@ public class Game {
 		return currentScore;
 	}
 	public int getWinningPlayerforRound(){
-		int winningplayer =-2;
 		for (int i=0;i<players.size();i++){
-			if(winningplayer!=-1&&(winningplayer==-2||currentScore[i]>currentScore[winningplayer])){
-				winningplayer=i;
+			if(players.get(i).record.citiesReached.size()==5){
+				return i;//DOES NOT DEAL WITH TIES
 			}
 		}
-		return winningplayer;//if no winning player
+		System.out.println("um game not over?");
+		return -5;//if no winning player
 	}
 	public int getWinningPlayerforGame(){//This doesn't work idk why but check it
 		int winningplayer =-2;
