@@ -9,8 +9,8 @@ String playerName() {}
 test
  */
 public class HumanPlayer extends Player {
-	HumanPlayer(Color c, ArrayList<City> cities, String name){
-		super(c, cities, name);
+	HumanPlayer(Color c, String name){
+		super(c, name);
 	}
 	Object runTurn(boolean firstturn,boolean firstPlacedRail, Object map2) {
 		MapofUSA map = null;
@@ -29,6 +29,7 @@ public class HumanPlayer extends Player {
 //				return null;
 //			}
 //		}
+
 		Object nextRail = null;
 		map.currentPlayer=this;
 		boolean ok = true;

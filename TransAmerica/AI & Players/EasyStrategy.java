@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class EasyStrategy extends ComputerPlayer{
-	public EasyStrategy(Color c, ArrayList<City> cities, String name) {
-		super(c, cities, name);
+	public EasyStrategy(Color c, String name) {
+		super(c,  name);
 	}
 
 	Object runTurn(boolean firstturn,boolean firstRailPlaced, Object grid2) {

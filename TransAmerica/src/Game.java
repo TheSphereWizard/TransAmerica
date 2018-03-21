@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,25 +32,29 @@ public class Game {
 	// ^shows the types of specific game states^
 	Grid grid;
 	ArrayList<Player> players;
-	int[] playerNumber, winningPlayer, scores;
 	Game(ArrayList<Player> players, boolean slowMode){
-		grid = new Grid();
-		MapofUSA.currentGrid=grid;//technically should not do this but idk right now
 		this.players = players;
 		this.slowMode = slowMode;
-		if(!slowMode){
+		setcitiestoplayers();
+		
+		if(slowMode){
+			MapofUSA.currentGrid=grid;
+		}else{
 			
 		}
-		scores=new int[players.size()];
-		playerNumber=new int[players.size()];
-		winningPlayer=new int[players.size()];
 	}
-	
+	void setcitiestoplayers(){
+		grid = new Grid();
+		ArrayList<ArrayList<City>> cr = grid.setofgoalCities(players.size());
+		for(int i=0;i<players.size();i++){
+			players.get(i).record.setCities(new ArrayList<City>(cr.get(i)));
+		}
+	}
 	boolean showScoreScreen;
 	boolean isAIGame;
 	boolean slowMode;
 	public boolean getShowScoreScreen(){
-		//called by MainGamePanel to determine when to change
+		//called by MainGamePanel to determine when to change, maybe
 		if(showScoreScreen){
 			return true;
 		}
@@ -58,11 +63,7 @@ public class Game {
 	
 	public int placesleft=2;
 	public int getNumberOfPlayers(){
-		int numOfPlayers = 0;
-		for(numOfPlayers = 0; numOfPlayers < playerNumber.length; numOfPlayers++){
-			numOfPlayers++;
-		}
-		return numOfPlayers;
+		return players.size();
 	}
 
 	
@@ -197,10 +198,34 @@ public class Game {
 //		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //		TransAmerica.transamerica.setVisible(true);
 //		TransAmerica.transamerica.repaint();
-		System.out.println("calculating score");
 		int[] p =returnScoreChange();
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
+		}
+		boolean again=true;
+		for(int i=0;i<players.size();i++){
+			if(players.get(i).getPlayerRecord().score<=0){
+				again=false;
+			}
+		}
+		if(again){
+			setcitiestoplayers();
+			MapofUSA.currentGrid=grid;
+			MainGameScreen screen = new MainGameScreen(this);
+
+//			TransAmerica.transamerica.add(screen);
+//			TransAmerica.transamerica.remove(0);
+			TransAmerica.transamerica.dispose();
+			JFrame f = new JFrame();
+			f.add(screen);
+			TransAmerica.transamerica = f;
+			TransAmerica.transamerica.setTitle("TransAmerica");
+			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			TransAmerica.transamerica.dispose();
+			TransAmerica.transamerica.setUndecorated(true);
+			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			TransAmerica.transamerica.setVisible(true);
+			TransAmerica.transamerica.repaint();
 		}
 	}
 	public int[] getCurrentScore(){

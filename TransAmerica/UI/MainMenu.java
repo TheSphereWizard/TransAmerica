@@ -70,21 +70,19 @@ public class MainMenu extends JPanel implements ActionListener{
 	
 	public Game generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
 		ArrayList<Player> players = new ArrayList<Player>();
-		Grid currentGrid = new Grid();
-		ArrayList<ArrayList<City>> cities = currentGrid.setofgoalCities(playerType.size());
 		boolean slowMode = false;
 		for(int i = 0; i<playerType.size();i++){
 			if(playerType.get(i).equals("Human")){
-				players.add(new HumanPlayer(playerColors.get(i),cities.get(i),playerNames.get(i)));
+				players.add(new HumanPlayer(playerColors.get(i),playerNames.get(i)));
 				slowMode = true;
 			}else if(playerType.get(i).equals("Easy")){
-				players.add(new EasyStrategy(playerColors.get(i),cities.get(i),playerNames.get(i)));
+				players.add(new EasyStrategy(playerColors.get(i),playerNames.get(i)));
 			}else{
 				int[] playerScores = new int[players.size()];
 				for(int j = 0;j<playerScores.length;j++){
 					playerScores[j] = 12;
 				}
-				players.add(new HardStrategy(playerColors.get(i),cities.get(i),playerScores, playerNames.get(i)));
+				players.add(new HardStrategy(playerColors.get(i),playerScores, playerNames.get(i)));
 			}
 		}
 		return new Game(players,slowMode);
@@ -206,10 +204,7 @@ class PlayerPanel extends JPanel implements ActionListener{
 		public PlayerPanel(int playerNum) {
 			try {
 				buttonImage=ImageIO.read(new File("Pix\\button-design3.png"));
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			} catch (IOException e1) {}
 			playernum=playerNum-1;
 			setBackground(colors[playerNum - 1]);
 //			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));

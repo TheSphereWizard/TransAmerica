@@ -2,8 +2,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 public class HardStrategy extends ComputerPlayer {
 	int[] allScores;
-	public HardStrategy(Color c, ArrayList<City> cities, int[] allScores, String name) {
-		super(c, cities, name);
+	public HardStrategy(Color c, int[] allScores, String name) {
+		super(c, name);
 		this.allScores = allScores;
 	}
 	Object runTurn(boolean firstturn,boolean firstRailPlaced, Object grid2) {

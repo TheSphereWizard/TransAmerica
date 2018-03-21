@@ -18,15 +18,21 @@ public abstract class Player {//give players playerrecords
 	Marker startMarker;
 	PlayerRecord record;
 	
-	Player(Color c, ArrayList<City> cities,String n){
+	String name;
+	Color color;
+	
+	Player(Color c, String n){
 		placedMarkerAlready = false;
-		record = new PlayerRecord(c, cities, n);
+		this.name = n;
+		this.color = c;
+		record = new PlayerRecord(c,null, n);
 	}
 	//This needs to be an object because on first turn returns marker
 	abstract Object runTurn(boolean firstturn, boolean firstRailPlaced, Object gridormap);
 	void clearForNewRound(ArrayList<City> cities){
 		placedMarkerAlready = false;
 		record.cities = cities;
+		record.citiesReached=new ArrayList<City>();
 	}
 	Marker getStartMarker(){
 		return startMarker;
@@ -36,6 +42,9 @@ public abstract class Player {//give players playerrecords
 	}
 	public PlayerRecord getPlayerRecord() {
 		return record;
+	}
+	public Color getColor() {
+		return color;
 	}
 	
 }

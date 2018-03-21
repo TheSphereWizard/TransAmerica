@@ -103,6 +103,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			g.drawRect(0, 0, (int) ((Grid.boardwidth-0.5d)*scalefactor[0]), (Grid.boardheight-1)*scalefactor[1]);
 			g.drawImage(Map,-50, -30, siz[0]+70, siz[1]+30, null);
+			if(currentGrid==null||currentPlayer==null)
+				return;
 //			for(int i=siz[0]/3;i<siz[0];i++){
 //				for(int j=3*siz[1]/4;j<siz[1];j++){
 ////					try {
@@ -137,7 +139,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //			g.drawString(currentGrid.distbetweenpoints(zero, one)+"", 800, -80);
 //			g.drawString(currentGrid.distbetweenpoints2(zero, one)[0]+" "+currentGrid.distbetweenpoints2(zero, one)[1], 900, -80);
 			
-			g.setColor(currentPlayer.record.getColor());
+			g.setColor(currentPlayer.getColor());
 			if(firstturn){
 				g.fillOval((int)(scalefactor[0]*(highlightedmarker.y%2==1?highlightedmarker.x+0.5d:highlightedmarker.x))-markersize/2, siz[1]-scalefactor[1]*(highlightedmarker.y+1)-markersize/2, markersize, markersize);
 				
@@ -155,7 +157,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			for(int i=0;i<currentGrid.allRails.size();i++){
 				Rail r = currentGrid.allRails.get(i);
 				if(r.player!=null){
-					g.setColor(r.player.record.getColor());
+					g.setColor(r.player.getColor());
 					g2d.setStroke(new BasicStroke(6+r.size*2,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}else{
 					g.setColor(Color.black);
@@ -166,7 +168,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			
 			for(Marker r: currentGrid.markers){
 				if(r.player!=null){
-					g.setColor(r.player.record.getColor());
+					g.setColor(r.player.getColor());
 					g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}else{
 					g.setColor(Color.black);
