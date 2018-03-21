@@ -36,14 +36,10 @@ public class ScoreScreen extends JPanel{
 			for(int i = 0; i < 5; i++)
 				names = names+" "+winner.getPlayerRecord().getCitiesReached().get(i).getName();
 			setLayout(null);
-//			Title t =new Title(win, winner.getPlayerRecord().getColor());
-//			t.setLocation(0, 100);
-//			t.setSize(300,100);
-//			add(t);
-//			WinnerInfo w =new WinnerInfo(new JLabel(names));
-//			w.setLocation(0, 200);
-//			w.setSize(300, 100);
-//			add(w);
+			WinnerInfo w =new WinnerInfo(new JLabel(names));
+			w.setLocation(0, 200);
+			w.setSize(300, 100);
+			add(w);
 		}
 		public void paint(Graphics g){
 			for(int i=0;i<this.getComponentCount();i++){
@@ -52,19 +48,19 @@ public class ScoreScreen extends JPanel{
 				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
 			}
 		}
-//		private class WinnerInfo extends JPanel implements ActionListener{
-//			private WinnerInfo(JLabel text){
-//				JButton exit = new JButton("Continue");
-//				exit.setLocation(800, 200);
-//				exit.setSize(100, 100);
-//				exit.addActionListener(this);
-//				add(text);
-//				add(exit);
-//			}
-//			public void actionPerformed(ActionEvent e){
-//				
-//			}
-//		}
+		private class WinnerInfo extends JPanel implements ActionListener{
+			private WinnerInfo(JLabel text){
+				JButton exit = new JButton("Continue");
+				exit.setLocation(800, 200);
+				exit.setSize(100, 100);
+				exit.addActionListener(this);
+				add(text);
+				add(exit);
+			}
+			public void actionPerformed(ActionEvent e){
+				
+			}
+		}
 	}
 	public void paint(Graphics g){
 		g.drawImage(backg, 0, 0, 1600, 900, null);
