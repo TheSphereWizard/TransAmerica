@@ -339,6 +339,7 @@ public class Grid {
 	}
 	ArrayList<Rail> allRailsonPlayersNetwork(Player p){//returns all rails on players network
 		ArrayList<Rail> corners;
+		ArrayList<Rail> network=new ArrayList<Rail>();
 		if(p==null){
 			return null;
 		}else{
@@ -346,6 +347,7 @@ public class Grid {
 			for(int i=0;i<corners.size();i++){
 				Rail po=corners.get(i);
 				if(RailExists(po.p1,po.p2)){
+					network.add(po);
 					for(Rail pr : immediateneighbors(po.p2)){
 						if(!corners.contains(pr)){
 							corners.add(pr);
@@ -354,14 +356,14 @@ public class Grid {
 				}
 			}
 		}
-		return corners;
+		return network;
 	}
 	int[] railsMissing(ArrayList<Player> players){
 		int[] loss = new int[players.size()];
-		//Below is Temporary as it will not always work.
+		//Below is Temporary as it will not always work. Should almost always though
 		for(int i=0;i<players.size();i++){
-			Player p=players.get(i);
-			int totaldist =0;
+			Player p = players.get(i);
+			int totaldist = 0;
 			for(City c : p.record.cities){
 				int currdist=Integer.MAX_VALUE;
 				if(!p.record.citiesReached.contains(c)){

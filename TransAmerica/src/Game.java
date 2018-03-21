@@ -197,6 +197,7 @@ public class Game {
 //		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //		TransAmerica.transamerica.setVisible(true);
 //		TransAmerica.transamerica.repaint();
+		System.out.println("calculating score");
 		int[] p =returnScoreChange();
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
