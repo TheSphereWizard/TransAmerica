@@ -9,7 +9,7 @@ public class PlayerRecord {
 		ArrayList<City> cities;
 		ArrayList<City> citiesReached=new ArrayList<City>();
 		//# of cities player has connected
-		private int score;
+		int score;
 		private String name;
 		
 		public PlayerRecord(Color color, ArrayList<City> cities, String name) {

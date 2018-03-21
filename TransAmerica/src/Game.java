@@ -31,7 +31,7 @@ public class Game {
 	// ^shows the types of specific game states^
 	Grid grid;
 	ArrayList<Player> players;
-	int[] playerNumber, winningPlayer, currentScore, scores;
+	int[] playerNumber, winningPlayer, scores;
 	Game(ArrayList<Player> players, boolean slowMode){
 		grid = new Grid();
 		MapofUSA.currentGrid=grid;//technically should not do this but idk right now
@@ -43,7 +43,6 @@ public class Game {
 		scores=new int[players.size()];
 		playerNumber=new int[players.size()];
 		winningPlayer=new int[players.size()];
-		currentScore=new int[players.size()];
 	}
 	
 	boolean showScoreScreen;
@@ -183,23 +182,31 @@ public class Game {
 		//runs a new game between those players who tied in first
 		
 		//What do we do if there is a tie?
-		ScoreScreen screen = new ScoreScreen(this);
-
-		TransAmerica.transamerica.add(screen);
-		TransAmerica.transamerica.remove(0);
-		TransAmerica.transamerica.dispose();
-		JFrame f = new JFrame();
-		f.add(screen);
-		TransAmerica.transamerica = f;
-		TransAmerica.transamerica.setTitle("TransAmerica");
-		TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TransAmerica.transamerica.dispose();
-		TransAmerica.transamerica.setUndecorated(true);
-		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		TransAmerica.transamerica.setVisible(true);
-		TransAmerica.transamerica.repaint();
+//		ScoreScreen screen = new ScoreScreen(this);
+//
+//		TransAmerica.transamerica.add(screen);
+//		TransAmerica.transamerica.remove(0);
+//		TransAmerica.transamerica.dispose();
+//		JFrame f = new JFrame();
+//		f.add(screen);
+//		TransAmerica.transamerica = f;
+//		TransAmerica.transamerica.setTitle("TransAmerica");
+//		TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		TransAmerica.transamerica.dispose();
+//		TransAmerica.transamerica.setUndecorated(true);
+//		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		TransAmerica.transamerica.setVisible(true);
+//		TransAmerica.transamerica.repaint();
+		int[] p =returnScoreChange();
+		for(int i=0;i<players.size();i++){
+			players.get(i).getPlayerRecord().score-=p[i];
+		}
 	}
 	public int[] getCurrentScore(){
+		int[] currentScore =new int[players.size()];
+		for(int i=0;i<players.size();i++){
+			currentScore[i]=players.get(i).record.score;
+		}
 		return currentScore;
 	}
 	public int getWinningPlayerforRound(){
@@ -214,14 +221,14 @@ public class Game {
 	public int getWinningPlayerforGame(){//This doesn't work idk why but check it
 		int winningplayer =-2;
 		for (int i=0;i<players.size();i++){
-			if(winningplayer!=-1&&(winningplayer==-2||currentScore[i]>currentScore[winningplayer])){
+			if(winningplayer!=-1&&(winningplayer==-2||getCurrentScore()[i]>getCurrentScore()[winningplayer])){
 				winningplayer=i;
 			}
 		}
 		return winningplayer;//if no winning player
 	}
 	int[] returnScoreChange() {
-		int[] scoreChange = new int[players.size()];
+		int[] scoreChange = grid.railsMissing(players);
 		return scoreChange;
 	}
 }

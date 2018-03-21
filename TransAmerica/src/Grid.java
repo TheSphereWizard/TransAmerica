@@ -223,23 +223,23 @@ public class Grid {
 	}
 	void connectCities(Player p){
 		if(p==null){
-			
+			System.out.println("what \"Grid\"");
 		}else{
 			ArrayList<Rail> corners = immediateneighbors(p.startMarker.p);
 			for(int i=0;i<corners.size();i++){
 				Rail po=corners.get(i);
 				if(RailExists(po.p1,po.p2)){
+					City c1=CityatPos(po.p1);
+					if(c1!=null&&p.record.cities.contains(c1)&&!p.record.citiesReached.contains(c1)){
+						p.record.citiesReached.add(c1);
+					}
+					City c2=CityatPos(po.p2);
+					if(c2!=null&&p.record.cities.contains(c2)&&!p.record.citiesReached.contains(c2)){
+						p.record.citiesReached.add(c2);
+					}
 					for(Rail pr : immediateneighbors(po.p2)){
 						if(!corners.contains(pr)){
 							corners.add(pr);
-							City c1=CityatPos(pr.p1);
-							if(c1!=null&&p.record.cities.contains(c1)&&!p.record.citiesReached.contains(c1)){
-								p.record.citiesReached.add(c1);
-							}
-							City c2=CityatPos(pr.p2);
-							if(c2!=null&&p.record.cities.contains(c2)&&!p.record.citiesReached.contains(c2)){
-								p.record.citiesReached.add(c2);
-							}
 						}
 					}
 				}
@@ -304,7 +304,8 @@ public class Grid {
 						currdist=Math.min(currdist,distbetweenpoints(r.p2,c.p));
 					}
 				}
-				totaldist+=currdist;
+				if(currdist!=Integer.MAX_VALUE)
+					totaldist+=currdist;
 			}
 			loss[i]=totaldist;
 		}
