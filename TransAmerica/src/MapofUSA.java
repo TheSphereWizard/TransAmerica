@@ -1,5 +1,6 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -125,7 +126,17 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 //					g.drawLine(i, j, i, j);
 //				}
 //			}
-			drawposline(zero.x,zero.y,one.x,one.y,g);
+//			drawposline(zero.x,zero.y,one.x,one.y,g);
+//			g.setColor(Color.black);
+//			g.fillOval((int)(scalefactor[0]*(zero.y%2==1?zero.x+0.5d:zero.x))-markersize/2, siz[1]-scalefactor[1]*(zero.y+1)-markersize/2, markersize, markersize);
+//			g.setColor(Color.white);
+//			g.fillOval((int)(scalefactor[0]*(one.y%2==1?one.x+0.5d:one.x))-markersize/2, siz[1]-scalefactor[1]*(one.y+1)-markersize/2, markersize, markersize);
+//			
+//			g.setFont(new Font("Arial",1,34));
+//			g.setColor(Color.black);
+//			g.drawString(currentGrid.distbetweenpoints(zero, one)+"", 800, -80);
+//			g.drawString(currentGrid.distbetweenpoints2(zero, one)[0]+" "+currentGrid.distbetweenpoints2(zero, one)[1], 900, -80);
+			
 			g.setColor(currentPlayer.record.getColor());
 			if(firstturn){
 				g.fillOval((int)(scalefactor[0]*(highlightedmarker.y%2==1?highlightedmarker.x+0.5d:highlightedmarker.x))-markersize/2, siz[1]-scalefactor[1]*(highlightedmarker.y+1)-markersize/2, markersize, markersize);
@@ -163,10 +174,11 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 				}
 				g.fillOval((int)(scalefactor[0]*((r.p.y)%2==1?r.p.x+0.5d:r.p.x))-markersize/2, siz[1]-scalefactor[1]*(r.p.y+1)-markersize/2, markersize, markersize);
 			}
+			g.setFont(new Font("Arial",1,14));
 			for(City[] cer : currentGrid.allcities){
 				for(City c : cer){
 					g.setColor(c.color);
-					g.drawString(c.getName(), (int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2);
+					g.drawString(c.getName(), -25+(int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2);
 					g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
 				}
 			}
@@ -265,8 +277,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		static boolean firstturn=true;
 		static Marker placedmarker;
 		Rail placedRail;
-		int mod2=0;
-		Position zero=new Position(0,0),one=new Position(0,0);
+//		Position zero=new Position(0,0),one=new Position(0,1);
 		public void mouseClicked(MouseEvent e) {//when mouse is clicked, converts click (x, y) coordinates to grid coordinates, and then uses the grid validrail method to determine if rail is valid, if it is then add to lastClick, else ignore that it was clicked;
 			int x = e.getX();
 			int y = e.getY();
@@ -278,13 +289,11 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 						placedRail = nearestRail(x,y);
 				} catch (Exception e1) {}
 			}
-			mod2++;
-			mod2%=2;
-			if(mod2==0){
-				zero=nearestPosition2(x,y);
-			}else{
-				one=nearestPosition2(x,y);
-			}
+//			if(e.getButton()==e.BUTTON1){
+//				zero=nearestPosition2(x,y);
+//			}else{
+//				one=nearestPosition2(x,y);
+//			}
 		}
 		public void mouseMoved(MouseEvent e) {
 			int x = e.getX();

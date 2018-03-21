@@ -177,7 +177,7 @@ class PlayerPanel extends JPanel implements ActionListener{
 		
 		private static final long serialVersionUID = 1L;
 		private ButtonGroup group = new ButtonGroup();
-		private Color[] colors = new Color[] {new Color(255, 40, 40), Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
+		private Color[] colors = new Color[] {new Color(255, 40, 40), Color.YELLOW, new Color(0, 204, 0), Color.BLUE , new Color(139,69,19), Color.white};
 		private String[] optionNames = {"None", "Human Player", "Computer"};
 		private JRadioButton[] options = new JRadioButton[3];
 		private String[] stratNames = {"Easy" , "Hard"};

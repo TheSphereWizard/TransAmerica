@@ -11,13 +11,13 @@ public class Grid {
 			new City("New Orleans",new Position(18,3),Color.red),
 			new City("Phoenix",new Position(6,6),Color.red),},
 		{
-			new City("Seattle",new Position(2,18),Color.green),
-			new City("San Diego",new Position(3,6),Color.green),
-			new City("San Francisco",new Position(1,9),Color.green),
-			new City("Sacramento",new Position(1,11),Color.green),
-			new City("Portland",new Position(2,16),Color.green),
-			new City("Medford",new Position(2,14),Color.green),
-			new City("Los Angeles",new Position(2,8),Color.green),},
+			new City("Seattle",new Position(2,18),new Color(0, 204, 0)),
+			new City("San Diego",new Position(3,6),new Color(0, 204, 0)),
+			new City("San Francisco",new Position(1,9),new Color(0, 204, 0)),
+			new City("Sacramento",new Position(1,11),new Color(0, 204, 0)),
+			new City("Portland",new Position(2,16),new Color(0, 204, 0)),
+			new City("Medford",new Position(2,14),new Color(0, 204, 0)),
+			new City("Los Angeles",new Position(2,8),new Color(0, 204, 0)),},
 		{
 			new City("Duluth",new Position(17,15),Color.blue),
 			new City("Buffalo",new Position(21,12),Color.blue),
@@ -35,13 +35,13 @@ public class Grid {
 			new City("Jacksonville",new Position(23,3),new Color(255,128,0)),
 			new City("New York",new Position(26,13),new Color(255,128,0)),},
 		{					
-			new City("Denver",new Position(16,10),Color.yellow),
-			new City("Kansas City",new Position(15,10),Color.yellow),
-			new City("Oklahoma City",new Position(14,8),Color.yellow),
-			new City("Omaha",new Position(15,12),Color.yellow),
-			new City("Salt Lake City",new Position(6,11),Color.yellow),
-			new City("Santa Fe",new Position(10,8),Color.yellow),
-			new City("Saint Louis",new Position(18,10),Color.yellow),},
+			new City("Denver",new Position(16,10),new Color(255, 0, 128)),
+			new City("Kansas City",new Position(15,10),new Color(255, 0, 128)),
+			new City("Oklahoma City",new Position(14,8),new Color(255, 0, 128)),
+			new City("Omaha",new Position(15,12),new Color(255, 0, 128)),
+			new City("Salt Lake City",new Position(6,11),new Color(255, 0, 128)),
+			new City("Santa Fe",new Position(10,8),new Color(255, 0, 128)),
+			new City("Saint Louis",new Position(18,10),new Color(255, 0, 128)),},
 	};
 	
 	Rail[][] railGrid;
@@ -147,9 +147,75 @@ public class Grid {
 		return all;
 	}
 	int distbetweenpoints(Position p1,Position p2){
-		return Math.abs(p1.x-p2.x)+Math.abs(p1.y-p2.y);
+		if(p1.equals(p2)){
+			return 0;
+		}
+		if(immediateneighbors2(p1).contains(p2)){
+			return 1;
+		}
+		else{
+			if(Math.abs(p1.x-p2.x)<=Math.abs(p1.y-p2.y)){
+				if(p2.y%2==0){
+					if(p1.y-p2.y>0){
+						if(p1.x-p2.x>=0){//-1,0
+							return 1+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
+						}
+						else{
+							return 1+distbetweenpoints(p1,new Position(p2.x-1,p2.y+1));
+						}
+					}
+					if(p1.y-p2.y<0){
+						if(p1.x-p2.x>=0){//-1,0
+							return 1+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
+						}
+						else{
+							return 1+distbetweenpoints(p1,new Position(p2.x-1,p2.y-1));
+						}
+					}
+					System.out.println("THIS SHOULD NOT HAPPEN");
+					return -7;
+				}
+				if(p1.y-p2.y>0){
+					if(p1.x-p2.x>0){//1,0
+						return 1+distbetweenpoints(p1,new Position(p2.x+1,p2.y+1));
+					}
+					else{
+						return 1+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
+					}
+				}
+				if(p1.y-p2.y<0){
+					if(p1.x-p2.x>0){//1,0
+						return 1+distbetweenpoints(p1,new Position(p2.x+1,p2.y-1));
+					}
+					else{
+						return 1+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
+					}
+				}
+				System.out.println("THIS SHOULD NOT HAPPEN");
+				return -7;
+			}else{
+				return 1+distbetweenpoints(p1,new Position(p2.x+Math.signum(p1.x-p2.x),p2.y));
+			}
+		}
 	}
-	
+	ArrayList<Position> immediateneighbors2(Position p){
+		ArrayList<Position> ne = new ArrayList<Position>();
+		try {
+			ne.add(new Position(p.x-1,p.y));
+			ne.add(new Position(p.x+1,p.y));
+			ne.add(new Position(p.x,p.y+1));
+			ne.add(new Position(p.x,p.y-1));
+		
+			if(p.y%2==1){
+				ne.add(new Position(p.x+1,p.y+1));
+				ne.add(new Position(p.x+1,p.y-1));
+			}else{
+				ne.add(new Position(p.x-1,p.y+1));
+				ne.add(new Position(p.x-1,p.y-1));
+			}
+		} catch (Exception e) {}
+		return ne;
+	}
 	ArrayList<Rail> immediateneighbors(Position p){
 		ArrayList<Rail> ne = new ArrayList<Rail>();
 		try {

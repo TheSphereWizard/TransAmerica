@@ -71,7 +71,7 @@ public class MainGameScreen extends JPanel{
 //		System.out.println(TransAmerica.transamerica.getComponentCount());
 		for(int i = 0; i < cityLabels.length; i++) {
 			cityLabels[i] = new JLabel("City " + (i+1));
-			cityLabels[i].setSize(100,50);
+			cityLabels[i].setSize(175,50);
 			cityLabels[i].setFont(fontf);
 			cityLabels[i].setLocation(70+200*i,725);
 			this.add(cityLabels[i]);
