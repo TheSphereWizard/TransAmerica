@@ -20,36 +20,45 @@ public class HumanPlayer extends Player {
 			System.out.println("Not a Map");
 		}
 		//accesses lastClick to map until it isn't null
-		Object nextRail = null;
-		map.currentPlayer=this;
-		boolean ok = true;
-		while(nextRail == null||ok){
-			ok=true;
+		if(firstturn){
+			return new Marker(new Position(0,0),this);
+		}else{
 			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			try{
-				nextRail = map.returnPlacedRail();
-			}catch(Exception E){
-				System.out.println(map==null);
-			}
-			try{
-				Marker m = (Marker) nextRail;
-				ok=false;
-			}catch(Exception E){
-				try{
-					Rail r = (Rail) nextRail;
-					if(r!=null&map.currentGrid.checkRail(r, this)){
-						ok=false;
-					}
-				}catch(Exception er){
-					
-				}
+				return new Rail(new Position(0,0),new Position(0,1),this);
+			} catch (Exception e) {
+				return null;
 			}
 		}
-		return nextRail;
+//		Object nextRail = null;
+//		map.currentPlayer=this;
+//		boolean ok = true;
+//		while(nextRail == null||ok){
+//			ok=true;
+//			try {
+//				Thread.sleep(10);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			try{
+//				nextRail = map.returnPlacedRail();
+//			}catch(Exception E){
+//				System.out.println(map==null);
+//			}
+//			try{
+//				Marker m = (Marker) nextRail;
+//				ok=false;
+//			}catch(Exception E){
+//				try{
+//					Rail r = (Rail) nextRail;
+//					if(r!=null&map.currentGrid.checkRail(r, this)){
+//						ok=false;
+//					}
+//				}catch(Exception er){
+//					
+//				}
+//			}
+//		}
+//		return nextRail;
 	}
 	
 //	Position getStartMarker() {

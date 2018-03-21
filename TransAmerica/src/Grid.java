@@ -135,11 +135,11 @@ public class Grid {
 			for(int y =0;y<boardheight;y++){
 				for(int x1 =x-1<0?0:x-1;x1<((x+2>boardwidth)?boardwidth:x+2);x1++){
 					for(int y1 =y-1<0?0:y-1;y1<((y+2>boardheight)?boardheight:y+2);y1++){
-						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
+//						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
 							try {
 								all.add(new Rail(new Position(x,y),new Position(x1,y1)));
 							} catch (Exception e) {}
-						}
+//						}
 					}
 				}
 			}
@@ -233,11 +233,11 @@ public class Grid {
 						if(!corners.contains(pr)){
 							corners.add(pr);
 							City c1=CityatPos(pr.p1);
-							if(c1!=null&&!p.record.citiesReached.contains(c1)){
+							if(c1!=null&&p.record.cities.contains(c1)&&!p.record.citiesReached.contains(c1)){
 								p.record.citiesReached.add(c1);
 							}
-							City c2=CityatPos(pr.p1);
-							if(c2!=null&&!p.record.citiesReached.contains(c2)){
+							City c2=CityatPos(pr.p2);
+							if(c2!=null&&p.record.cities.contains(c2)&&!p.record.citiesReached.contains(c2)){
 								p.record.citiesReached.add(c2);
 							}
 						}

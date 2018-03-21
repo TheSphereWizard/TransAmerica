@@ -14,69 +14,22 @@ import javax.swing.*;
 public class ScoreScreen extends JPanel{
 	private Game game;
 	private BufferedImage backg;
-	ScoreScreen(ArrayList<Player> players, Game game){
+	ScoreScreen(Game game){
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
 		setLayout(null);
 		this.game = game;
-//		add(new WinningPlayer(players.get(game.getWinningPlayer())));
-//		add(new Losers(players));
+		add(new WinningPlayer(game.players.get(game.getWinningPlayer())));
+		add(new Losers(game.players));
 	}
-	public void paint(Graphics g){
-		g.drawImage(backg, 0, 0, 1600, 900, null);
-		g.drawString("Score Screen other stuff disabled because it crashes", 400, 400);
-	}
-	/**
-	 * Displays the game losers
-	 */
-	private class Losers extends JPanel{
-		private Losers(ArrayList<Player> players){
-			for(int i = 0; i < players.size(); i++)
-				if(!players.get(i).equals(players.get(game.getWinningPlayer())))
-					add(new Loser(players.get(i)));
-		}
-	}
-	/**
-	 * An individual loser
-	 */
-	private class Loser extends JPanel{
-		private Loser(Player player){
-			setBackground(player.getPlayerRecord().getColor());
-			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
-					unconnected = new JLabel(unconnectedCities(player)),
-					railsMissing = new JLabel(),
-					pointsLost = new JLabel(),
-					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
-			add(name);
-			add(unconnected);
-			add(railsMissing);
-			add(pointsLost);
-			add(score);
-		}
-		/**
-		 * @param player
-		 * @return a String containing players unconnected cities
-		 */
-		private String unconnectedCities(Player player){
-			String content = "";
-			for(int i = 0; i < player.getPlayerRecord().getCities().size(); i++)
-				for(int j = 0; j < player.getPlayerRecord().getCitiesReached().size(); i++)
-					if(player.getPlayerRecord().getCities().get(i).equals(player.getPlayerRecord().getCitiesReached().get(j)))
-						content = content + player.getPlayerRecord().getCities().get(i).getName();
-						return content;
-		}
-	}
-	/**
-	 * Displays the winning player, the order of the cities they connected,
-	 * and the continue button
-	 */
 	private class WinningPlayer extends JPanel{
 		private WinningPlayer(Player winner){
 			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
 			String names = "";
+			System.out.println("hi "+winner.getPlayerRecord().getCitiesReached().size());
 			for(int i = 0; i < 5; i++)
-				names = names+winner.getPlayerRecord().getCitiesReached().get(i).getName();
+				names = names+" "+winner.getPlayerRecord().getCitiesReached().get(i).getName();
 			setLayout(new GridLayout(2,0,0,0));
 			add(new Title(win, winner.getPlayerRecord().getColor()));
 			add(new WinnerInfo(new JLabel(names)));
@@ -99,4 +52,58 @@ public class ScoreScreen extends JPanel{
 			}
 		}
 	}
+	public void paint(Graphics g){
+		g.drawImage(backg, 0, 0, 1600, 900, null);
+		g.drawString("Score Screen other stuff disabled because it crashes", 400, 400);
+	}
+	/**
+	 * Displays the game losers
+	 */
+	private class Losers extends JPanel{
+		private Losers(ArrayList<Player> players){
+			for(int i = 0; i < players.size(); i++)
+				if(!players.get(i).equals(players.get(game.getWinningPlayer()))){
+					Loser l =new Loser(players.get(i));
+					l.setLocation(100*(i+1), 200);
+					add(l);
+				}
+		}
+	}
+	/**
+	 * An individual loser
+	 */
+	private class Loser extends JPanel{
+		private Loser(Player player){
+			this.setSize(100, 100);
+			setBackground(player.getPlayerRecord().getColor());
+			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
+					unconnected = new JLabel(unconnectedCities(player)),
+					railsMissing = new JLabel(),
+					pointsLost = new JLabel(),
+					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
+			add(name);
+			add(unconnected);
+			add(railsMissing);
+			add(pointsLost);
+			add(score);
+		}
+		/**
+		 * @param player
+		 * @return a String containing players unconnected cities
+		 */
+		private String unconnectedCities(Player player){
+			String content = "";
+			for(City c : player.record.cities){
+				if(!player.record.citiesReached.contains(c)){
+					content+=" "+c.getName();
+				}
+			}
+			return content;
+		}
+	}
+	/**
+	 * Displays the winning player, the order of the cities they connected,
+	 * and the continue button
+	 */
+	
 }

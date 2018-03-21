@@ -17,7 +17,12 @@ public class HardStrategy extends ComputerPlayer {
 		}else{
 			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this);//getRailsAtPos(startMarker.p),startMarker.p, grid);
 			int minDistance = 100000;
-			Rail nextRail = null;
+			Rail nextRail;
+			try {
+				nextRail = new Rail(new Position(0,0),new Position(0,1));
+			} catch (Exception e) {
+				nextRail=null;
+			}
 			for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
 				for(City c: this.record.getCities()){
 					if(!record.citiesReached.contains(c)){

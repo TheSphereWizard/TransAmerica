@@ -31,11 +31,7 @@ public class Game {
 	// ^shows the types of specific game states^
 	Grid grid;
 	ArrayList<Player> players;
-	/**
-	 * determines if is AI game and slow mode
-	 * @param players the types and amounts of players
-	 * @param slowMode if false run a fast game
-	 */
+	int[] playerNumber, winningPlayer, currentScore, scores;
 	Game(ArrayList<Player> players, boolean slowMode){
 		grid = new Grid();
 		MapofUSA.currentGrid=grid;//technically should not do this but idk right now
@@ -44,6 +40,10 @@ public class Game {
 		if(!slowMode){
 			
 		}
+		scores=new int[players.size()];
+		playerNumber=new int[players.size()];
+		winningPlayer=new int[players.size()];
+		currentScore=new int[players.size()];
 	}
 	
 	boolean showScoreScreen;
@@ -56,7 +56,7 @@ public class Game {
 		}
 		return false;
 	}
-	int[] playerNumber, winningPlayer, currentScore, scores;
+	
 	public int placesleft=2;
 	public int getNumberOfPlayers(){
 		int numOfPlayers = 0;
@@ -65,21 +65,9 @@ public class Game {
 		}
 		return numOfPlayers;
 	}
-	/**
-	 * @return the position of the player who won in the ArrayList players (0-5)
-	 */
-	public int getWinningPlayer(){
-		int maxScore = 0;
-		for(int i = 0; i < scores.length; i++){
-			if(maxScore < scores[i]){
-				maxScore = scores[i];
-			}
-		}
-		return maxScore;
-	}
-	public int[] getCurrentScore(){
-		return currentScore;
-	}
+
+	
+	
 	Timer gametimer = new Timer();
 	void Round() {
 		
@@ -171,7 +159,8 @@ public class Game {
 						Ee.printStackTrace();
 					}
 					try {
-						Thread.sleep(350);
+						//Thread.sleep(350);
+						Thread.sleep(5);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -190,7 +179,11 @@ public class Game {
 			e.printStackTrace();
 		}
 		
-		ScoreScreen screen = new ScoreScreen(players, this);
+		//needs to run again until one player is at <0 score, then if a tie
+		//runs a new game between those players who tied in first
+		
+		//What do we do if there is a tie?
+		ScoreScreen screen = new ScoreScreen(this);
 
 		TransAmerica.transamerica.add(screen);
 		TransAmerica.transamerica.remove(0);
@@ -206,9 +199,29 @@ public class Game {
 		TransAmerica.transamerica.setVisible(true);
 		TransAmerica.transamerica.repaint();
 	}
-
+	public int[] getCurrentScore(){
+		return currentScore;
+	}
+	public int getWinningPlayerforRound(){
+		int winningplayer =-2;
+		for (int i=0;i<players.size();i++){
+			if(winningplayer!=-1&&(winningplayer==-2||currentScore[i]>currentScore[winningplayer])){
+				winningplayer=i;
+			}
+		}
+		return winningplayer;//if no winning player
+	}
+	public int getWinningPlayerforGame(){//This doesn't work idk why but check it
+		int winningplayer =-2;
+		for (int i=0;i<players.size();i++){
+			if(winningplayer!=-1&&(winningplayer==-2||currentScore[i]>currentScore[winningplayer])){
+				winningplayer=i;
+			}
+		}
+		return winningplayer;//if no winning player
+	}
 	int[] returnScoreChange() {
-		int[] scoreChange = { 0 };
+		int[] scoreChange = new int[players.size()];
 		return scoreChange;
 	}
 }
