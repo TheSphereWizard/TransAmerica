@@ -26,8 +26,7 @@ public class HardStrategy extends ComputerPlayer {
 			for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
 				for(City c: this.record.getCities()){
 					if(!record.citiesReached.contains(c)){
-						int distance = distanceToCity(r,c, grid);//DONT TRUST THIS VALUE<
-						//THIS VALUE APPEARS TO SOMETIMES BE WRONG, NEEDS TO BE TESTED AND FIXED
+						int distance = distanceToCity(r,c, grid);
 						if(distance<minDistance){
 							minDistance = distance;
 							nextRail = r;
