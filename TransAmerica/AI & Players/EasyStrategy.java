@@ -27,7 +27,7 @@ public class EasyStrategy extends ComputerPlayer{
 				}
 			}
 			Random rand = new Random();
-			int pos = rand.nextInt(totalRails.size()+1);
+			int pos = rand.nextInt(totalRails.size());
 			return totalRails.get(pos);
 		}
 	}

@@ -358,6 +358,10 @@ public class Grid {
 		}
 		return network;
 	}
+	int[] railsMissing2(ArrayList<Player> players){
+		
+		return null;
+	}
 	int[] railsMissing(ArrayList<Player> players){
 		int[] loss = new int[players.size()];
 		//Below is Temporary as it will not always work. Should almost always though
@@ -382,8 +386,6 @@ public class Grid {
 		
 		//How actual one should work
 		//BREADTH FIRST BACK FROM EACH CITY GOAL, WHEN IT HITS OTHER CITY, MERGES,ELSE USES PATH WHEN IT HITS THE RAIL NETWORK
-		
-		//idk throwexception if one is not 0? 
 		return loss;
 	}
 }

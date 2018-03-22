@@ -210,13 +210,11 @@ public class Game {
 			}
 		}
 		if(again){
-			setcitiestoplayers();
-			MapofUSA.currentGrid=grid;
 			MainGameScreen screen = new MainGameScreen(this);
 
 //			TransAmerica.transamerica.add(screen);
 //			TransAmerica.transamerica.remove(0);
-			TransAmerica.transamerica.dispose();
+//			TransAmerica.transamerica.dispose();
 			JFrame f = new JFrame();
 			f.add(screen);
 			TransAmerica.transamerica = f;
@@ -227,6 +225,9 @@ public class Game {
 			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			TransAmerica.transamerica.setVisible(true);
 			TransAmerica.transamerica.repaint();
+			setcitiestoplayers();
+			MapofUSA.currentGrid=grid;
+			
 		}
 	}
 	public int[] getCurrentScore(){
