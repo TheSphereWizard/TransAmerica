@@ -29,6 +29,10 @@ public class AAAMessageFromBrianForTheWeekend {
 	 * - We need a third strategy, not essential but a better version can be done using Dijkstra's pathfinding algoritum
 	 * 		-if no one knows how to do this I might attempt it over the weekend
 	 * 
+	 * However the main thing I am going to attempt over the weekend is to fix the Score lost at end of round
+	 * function in grid, currently there is an ok method, but it is very wrong when strategies do poorly, aka with
+	 * the Easy strategy involved.
+	 * 
 	 * Basically everything needs to be nearly done by Monday as it is due on Tues or Wed, we can't have half of everything
 	 *  (aka the computer portion) still not functioning
 	 */
