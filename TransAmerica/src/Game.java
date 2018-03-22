@@ -103,6 +103,7 @@ public class Game {
 	}
 	void startHumanRound() {
 		boolean FirstTurn =true;
+		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
 		while(!gameOver()){
 			for (Player p : players) {
