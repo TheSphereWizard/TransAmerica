@@ -10,8 +10,8 @@ public abstract class ComputerPlayer extends Player {
 	
 	private ReadOnlyGrid grid;
 	
-	public ComputerPlayer(Color c, ArrayList<City> cities, String name) {
-		super(c, cities, name);
+	public ComputerPlayer(Color c, String name) {
+		super(c, name);
 	}
 
 	abstract Object runTurn(boolean firstturn,boolean firstRailPlaced, Object grid);

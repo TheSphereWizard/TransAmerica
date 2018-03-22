@@ -9,8 +9,8 @@ String playerName() {}
 test
  */
 public class HumanPlayer extends Player {
-	HumanPlayer(Color c, ArrayList<City> cities, String name){
-		super(c, cities, name);
+	HumanPlayer(Color c, String name){
+		super(c, name);
 	}
 	Object runTurn(boolean firstturn,boolean firstPlacedRail, Object map2) {
 		MapofUSA map = null;
@@ -20,6 +20,16 @@ public class HumanPlayer extends Player {
 			System.out.println("Not a Map");
 		}
 		//accesses lastClick to map until it isn't null
+//		if(firstturn){
+//			return new Marker(new Position(0,0),this);
+//		}else{
+//			try {
+//				return new Rail(new Position(0,0),new Position(0,1),this);
+//			} catch (Exception e) {
+//				return null;
+//			}
+//		}
+
 		Object nextRail = null;
 		map.currentPlayer=this;
 		boolean ok = true;

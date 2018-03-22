@@ -2,8 +2,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 public class HardStrategy extends ComputerPlayer {
 	int[] allScores;
-	public HardStrategy(Color c, ArrayList<City> cities, int[] allScores, String name) {
-		super(c, cities, name);
+	public HardStrategy(Color c, int[] allScores, String name) {
+		super(c, name);
 		this.allScores = allScores;
 	}
 	Object runTurn(boolean firstturn,boolean firstRailPlaced, Object grid2) {
@@ -17,12 +17,16 @@ public class HardStrategy extends ComputerPlayer {
 		}else{
 			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this);//getRailsAtPos(startMarker.p),startMarker.p, grid);
 			int minDistance = 100000;
-			Rail nextRail = null;
+			Rail nextRail;
+			try {
+				nextRail = new Rail(new Position(0,0),new Position(0,1));
+			} catch (Exception e) {
+				nextRail=null;
+			}
 			for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
 				for(City c: this.record.getCities()){
 					if(!record.citiesReached.contains(c)){
-						int distance = distanceToCity(r,c, grid);//DONT TRUST THIS VALUE<
-						//THIS VALUE APPEARS TO SOMETIMES BE WRONG, NEEDS TO BE TESTED AND FIXED
+						int distance = distanceToCity(r,c, grid);
 						if(distance<minDistance){
 							minDistance = distance;
 							nextRail = r;

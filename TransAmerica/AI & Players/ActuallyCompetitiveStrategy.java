@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class ActuallyCompetitiveStrategy extends ComputerPlayer{
 
 		int[] allScores;
-		public ActuallyCompetitiveStrategy(Color c, ArrayList<City> cities, int[] allScores, String name) {
-			super(c, cities, name);
+		public ActuallyCompetitiveStrategy(Color c, int[] allScores, String name) {
+			super(c,  name);
 			this.allScores = allScores;
 		}
 		Object runTurn(boolean firstturn,boolean firstRailPlaced, Object grid2) {

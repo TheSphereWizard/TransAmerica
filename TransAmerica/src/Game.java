@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,55 +32,42 @@ public class Game {
 	// ^shows the types of specific game states^
 	Grid grid;
 	ArrayList<Player> players;
-	/**
-	 * determines if is AI game and slow mode
-	 * @param players the types and amounts of players
-	 * @param slowMode if false run a fast game
-	 */
 	Game(ArrayList<Player> players, boolean slowMode){
-		grid = new Grid();
-		MapofUSA.currentGrid=grid;//technically should not do this but idk right now
 		this.players = players;
 		this.slowMode = slowMode;
-		if(!slowMode){
+		setcitiestoplayers();
+		
+		if(slowMode){
+			MapofUSA.currentGrid=grid;
+		}else{
 			
 		}
 	}
-	
+	void setcitiestoplayers(){
+		grid = new Grid();
+		ArrayList<ArrayList<City>> cr = grid.setofgoalCities(players.size());
+		for(int i=0;i<players.size();i++){
+			players.get(i).record.setCities(new ArrayList<City>(cr.get(i)));
+		}
+	}
 	boolean showScoreScreen;
 	boolean isAIGame;
 	boolean slowMode;
 	public boolean getShowScoreScreen(){
-		//called by MainGamePanel to determine when to change
+		//called by MainGamePanel to determine when to change, maybe
 		if(showScoreScreen){
 			return true;
 		}
 		return false;
 	}
-	int[] playerNumber, winningPlayer, currentScore, scores;
+	
 	public int placesleft=2;
 	public int getNumberOfPlayers(){
-		int numOfPlayers = 0;
-		for(numOfPlayers = 0; numOfPlayers < playerNumber.length; numOfPlayers++){
-			numOfPlayers++;
-		}
-		return numOfPlayers;
+		return players.size();
 	}
-	/**
-	 * @return the position of the player who won in the ArrayList players (0-5)
-	 */
-	public int getWinningPlayer(){
-		int maxScore = 0;
-		for(int i = 0; i < scores.length; i++){
-			if(maxScore < scores[i]){
-				maxScore = scores[i];
-			}
-		}
-		return maxScore;
-	}
-	public int[] getCurrentScore(){
-		return currentScore;
-	}
+
+	
+	
 	Timer gametimer = new Timer();
 	void Round() {
 		
@@ -115,6 +103,7 @@ public class Game {
 	}
 	void startHumanRound() {
 		boolean FirstTurn =true;
+		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
 		while(!gameOver()){
 			for (Player p : players) {
@@ -171,7 +160,8 @@ public class Game {
 						Ee.printStackTrace();
 					}
 					try {
-						Thread.sleep(350);
+						//Thread.sleep(350);
+						Thread.sleep(5);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -184,31 +174,88 @@ public class Game {
 		}
 		showScoreScreen=true;
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		ScoreScreen screen = new ScoreScreen(players, this);
+		//needs to run again until one player is at <0 score, then if a tie
+		//runs a new game between those players who tied in first
+		
+		//What do we do if there is a tie?
+//		ScoreScreen screen = new ScoreScreen(this);
+//
+//		TransAmerica.transamerica.add(screen);
+//		TransAmerica.transamerica.remove(0);
+//		TransAmerica.transamerica.dispose();
+//		JFrame f = new JFrame();
+//		f.add(screen);
+//		TransAmerica.transamerica = f;
+//		TransAmerica.transamerica.setTitle("TransAmerica");
+//		TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		TransAmerica.transamerica.dispose();
+//		TransAmerica.transamerica.setUndecorated(true);
+//		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		TransAmerica.transamerica.setVisible(true);
+//		TransAmerica.transamerica.repaint();
+		int[] p =returnScoreChange();
+		for(int i=0;i<players.size();i++){
+			players.get(i).getPlayerRecord().score-=p[i];
+		}
+		boolean again=true;
+		for(int i=0;i<players.size();i++){
+			if(players.get(i).getPlayerRecord().score<=0){
+				again=false;
+			}
+		}
+		if(again){
+			setcitiestoplayers();
+			MapofUSA.currentGrid=grid;
+			MainGameScreen screen = new MainGameScreen(this);
 
-		TransAmerica.transamerica.add(screen);
-		TransAmerica.transamerica.remove(0);
-		TransAmerica.transamerica.dispose();
-		JFrame f = new JFrame();
-		f.add(screen);
-		TransAmerica.transamerica = f;
-		TransAmerica.transamerica.setTitle("TransAmerica");
-		TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TransAmerica.transamerica.dispose();
-		TransAmerica.transamerica.setUndecorated(true);
-		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		TransAmerica.transamerica.setVisible(true);
-		TransAmerica.transamerica.repaint();
+//			TransAmerica.transamerica.add(screen);
+//			TransAmerica.transamerica.remove(0);
+			TransAmerica.transamerica.dispose();
+			JFrame f = new JFrame();
+			f.add(screen);
+			TransAmerica.transamerica = f;
+			TransAmerica.transamerica.setTitle("TransAmerica");
+			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			TransAmerica.transamerica.dispose();
+			TransAmerica.transamerica.setUndecorated(true);
+			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			TransAmerica.transamerica.setVisible(true);
+			TransAmerica.transamerica.repaint();
+		}
 	}
-
+	public int[] getCurrentScore(){
+		int[] currentScore =new int[players.size()];
+		for(int i=0;i<players.size();i++){
+			currentScore[i]=players.get(i).record.score;
+		}
+		return currentScore;
+	}
+	public int getWinningPlayerforRound(){
+		for (int i=0;i<players.size();i++){
+			if(players.get(i).record.citiesReached.size()==5){
+				return i;//DOES NOT DEAL WITH TIES
+			}
+		}
+		System.out.println("um game not over?");
+		return -5;//if no winning player
+	}
+	public int getWinningPlayerforGame(){//This doesn't work idk why but check it
+		int winningplayer =-2;
+		for (int i=0;i<players.size();i++){
+			if(winningplayer!=-1&&(winningplayer==-2||getCurrentScore()[i]>getCurrentScore()[winningplayer])){
+				winningplayer=i;
+			}
+		}
+		return winningplayer;//if no winning player
+	}
 	int[] returnScoreChange() {
-		int[] scoreChange = { 0 };
+		int[] scoreChange = grid.railsMissing(players);
 		return scoreChange;
 	}
 }

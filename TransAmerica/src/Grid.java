@@ -11,13 +11,13 @@ public class Grid {
 			new City("New Orleans",new Position(18,3),Color.red),
 			new City("Phoenix",new Position(6,6),Color.red),},
 		{
-			new City("Seattle",new Position(2,18),Color.green),
-			new City("San Diego",new Position(3,6),Color.green),
-			new City("San Francisco",new Position(1,9),Color.green),
-			new City("Sacramento",new Position(1,11),Color.green),
-			new City("Portland",new Position(2,16),Color.green),
-			new City("Medford",new Position(2,14),Color.green),
-			new City("Los Angeles",new Position(2,8),Color.green),},
+			new City("Seattle",new Position(2,18),new Color(0, 204, 0)),
+			new City("San Diego",new Position(3,6),new Color(0, 204, 0)),
+			new City("San Francisco",new Position(1,9),new Color(0, 204, 0)),
+			new City("Sacramento",new Position(1,11),new Color(0, 204, 0)),
+			new City("Portland",new Position(2,16),new Color(0, 204, 0)),
+			new City("Medford",new Position(2,14),new Color(0, 204, 0)),
+			new City("Los Angeles",new Position(2,8),new Color(0, 204, 0)),},
 		{
 			new City("Duluth",new Position(17,15),Color.blue),
 			new City("Buffalo",new Position(21,12),Color.blue),
@@ -35,13 +35,13 @@ public class Grid {
 			new City("Jacksonville",new Position(23,3),new Color(255,128,0)),
 			new City("New York",new Position(26,13),new Color(255,128,0)),},
 		{					
-			new City("Denver",new Position(16,10),Color.yellow),
-			new City("Kansas City",new Position(15,10),Color.yellow),
-			new City("Oklahoma City",new Position(14,8),Color.yellow),
-			new City("Omaha",new Position(15,12),Color.yellow),
-			new City("Salt Lake City",new Position(6,11),Color.yellow),
-			new City("Santa Fe",new Position(10,8),Color.yellow),
-			new City("Saint Louis",new Position(18,10),Color.yellow),},
+			new City("Denver",new Position(16,10),new Color(255, 0, 128)),
+			new City("Kansas City",new Position(15,10),new Color(255, 0, 128)),
+			new City("Oklahoma City",new Position(14,8),new Color(255, 0, 128)),
+			new City("Omaha",new Position(15,12),new Color(255, 0, 128)),
+			new City("Salt Lake City",new Position(6,11),new Color(255, 0, 128)),
+			new City("Santa Fe",new Position(10,8),new Color(255, 0, 128)),
+			new City("Saint Louis",new Position(18,10),new Color(255, 0, 128)),},
 	};
 	
 	Rail[][] railGrid;
@@ -135,11 +135,11 @@ public class Grid {
 			for(int y =0;y<boardheight;y++){
 				for(int x1 =x-1<0?0:x-1;x1<((x+2>boardwidth)?boardwidth:x+2);x1++){
 					for(int y1 =y-1<0?0:y-1;y1<((y+2>boardheight)?boardheight:y+2);y1++){
-						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
+//						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
 							try {
 								all.add(new Rail(new Position(x,y),new Position(x1,y1)));
 							} catch (Exception e) {}
-						}
+//						}
 					}
 				}
 			}
@@ -147,9 +147,75 @@ public class Grid {
 		return all;
 	}
 	int distbetweenpoints(Position p1,Position p2){
-		return Math.abs(p1.x-p2.x)+Math.abs(p1.y-p2.y);
+		if(p1.equals(p2)){
+			return 0;
+		}
+		if(immediateneighbors2(p1).contains(p2)){
+			return 1;
+		}
+		else{
+			if(Math.abs(p1.x-p2.x)<=Math.abs(p1.y-p2.y)){
+				if(p2.y%2==0){
+					if(p1.y-p2.y>0){
+						if(p1.x-p2.x>=0){//-1,0
+							return 1+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
+						}
+						else{
+							return 1+distbetweenpoints(p1,new Position(p2.x-1,p2.y+1));
+						}
+					}
+					if(p1.y-p2.y<0){
+						if(p1.x-p2.x>=0){//-1,0
+							return 1+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
+						}
+						else{
+							return 1+distbetweenpoints(p1,new Position(p2.x-1,p2.y-1));
+						}
+					}
+					System.out.println("THIS SHOULD NOT HAPPEN");
+					return -7;
+				}
+				if(p1.y-p2.y>0){
+					if(p1.x-p2.x>0){//1,0
+						return 1+distbetweenpoints(p1,new Position(p2.x+1,p2.y+1));
+					}
+					else{
+						return 1+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
+					}
+				}
+				if(p1.y-p2.y<0){
+					if(p1.x-p2.x>0){//1,0
+						return 1+distbetweenpoints(p1,new Position(p2.x+1,p2.y-1));
+					}
+					else{
+						return 1+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
+					}
+				}
+				System.out.println("THIS SHOULD NOT HAPPEN");
+				return -7;
+			}else{
+				return 1+distbetweenpoints(p1,new Position(p2.x+Math.signum(p1.x-p2.x),p2.y));
+			}
+		}
 	}
-	
+	ArrayList<Position> immediateneighbors2(Position p){
+		ArrayList<Position> ne = new ArrayList<Position>();
+		try {
+			ne.add(new Position(p.x-1,p.y));
+			ne.add(new Position(p.x+1,p.y));
+			ne.add(new Position(p.x,p.y+1));
+			ne.add(new Position(p.x,p.y-1));
+		
+			if(p.y%2==1){
+				ne.add(new Position(p.x+1,p.y+1));
+				ne.add(new Position(p.x+1,p.y-1));
+			}else{
+				ne.add(new Position(p.x-1,p.y+1));
+				ne.add(new Position(p.x-1,p.y-1));
+			}
+		} catch (Exception e) {}
+		return ne;
+	}
 	ArrayList<Rail> immediateneighbors(Position p){
 		ArrayList<Rail> ne = new ArrayList<Rail>();
 		try {
@@ -223,23 +289,23 @@ public class Grid {
 	}
 	void connectCities(Player p){
 		if(p==null){
-			
+			System.out.println("what \"Grid\"");
 		}else{
 			ArrayList<Rail> corners = immediateneighbors(p.startMarker.p);
 			for(int i=0;i<corners.size();i++){
 				Rail po=corners.get(i);
 				if(RailExists(po.p1,po.p2)){
+					City c1=CityatPos(po.p1);
+					if(c1!=null&&p.record.cities.contains(c1)&&!p.record.citiesReached.contains(c1)){
+						p.record.citiesReached.add(c1);
+					}
+					City c2=CityatPos(po.p2);
+					if(c2!=null&&p.record.cities.contains(c2)&&!p.record.citiesReached.contains(c2)){
+						p.record.citiesReached.add(c2);
+					}
 					for(Rail pr : immediateneighbors(po.p2)){
 						if(!corners.contains(pr)){
 							corners.add(pr);
-							City c1=CityatPos(pr.p1);
-							if(c1!=null&&!p.record.citiesReached.contains(c1)){
-								p.record.citiesReached.add(c1);
-							}
-							City c2=CityatPos(pr.p1);
-							if(c2!=null&&!p.record.citiesReached.contains(c2)){
-								p.record.citiesReached.add(c2);
-							}
 						}
 					}
 				}
@@ -273,6 +339,7 @@ public class Grid {
 	}
 	ArrayList<Rail> allRailsonPlayersNetwork(Player p){//returns all rails on players network
 		ArrayList<Rail> corners;
+		ArrayList<Rail> network=new ArrayList<Rail>();
 		if(p==null){
 			return null;
 		}else{
@@ -280,6 +347,7 @@ public class Grid {
 			for(int i=0;i<corners.size();i++){
 				Rail po=corners.get(i);
 				if(RailExists(po.p1,po.p2)){
+					network.add(po);
 					for(Rail pr : immediateneighbors(po.p2)){
 						if(!corners.contains(pr)){
 							corners.add(pr);
@@ -288,14 +356,14 @@ public class Grid {
 				}
 			}
 		}
-		return corners;
+		return network;
 	}
 	int[] railsMissing(ArrayList<Player> players){
 		int[] loss = new int[players.size()];
-		//Below is Temporary as it will not always work.
+		//Below is Temporary as it will not always work. Should almost always though
 		for(int i=0;i<players.size();i++){
-			Player p=players.get(i);
-			int totaldist =0;
+			Player p = players.get(i);
+			int totaldist = 0;
 			for(City c : p.record.cities){
 				int currdist=Integer.MAX_VALUE;
 				if(!p.record.citiesReached.contains(c)){
@@ -304,7 +372,8 @@ public class Grid {
 						currdist=Math.min(currdist,distbetweenpoints(r.p2,c.p));
 					}
 				}
-				totaldist+=currdist;
+				if(currdist!=Integer.MAX_VALUE)
+					totaldist+=currdist;
 			}
 			loss[i]=totaldist;
 		}
