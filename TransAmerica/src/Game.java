@@ -80,6 +80,7 @@ public class Game {
 					p.clearForNewRound(p.getPlayerRecord().getCities());
 				}
 				startHumanRound();
+				System.out.println("hit");
 			}
 			
 		}, 0);
