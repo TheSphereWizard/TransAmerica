@@ -68,6 +68,7 @@ public class MainGameScreen extends JPanel{
 		}
 		TransAmerica.transamerica.repaint();
 		game.Round();
+		System.out.println("hit");
 	}
 	
 	public void paint(Graphics g){
