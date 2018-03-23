@@ -214,7 +214,7 @@ public class Game {
 
 //			TransAmerica.transamerica.add(screen);
 //			TransAmerica.transamerica.remove(0);
-//			TransAmerica.transamerica.dispose();
+			TransAmerica.transamerica.dispose();
 			JFrame f = new JFrame();
 			f.add(screen);
 			TransAmerica.transamerica = f;
