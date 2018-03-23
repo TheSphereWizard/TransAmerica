@@ -34,6 +34,9 @@ public abstract class Player {//give players playerrecords
 		record.cities = cities;
 		record.citiesReached=new ArrayList<City>();
 	}
+	String getName(){
+		return name;
+	}
 	Marker getStartMarker(){
 		return startMarker;
 	}

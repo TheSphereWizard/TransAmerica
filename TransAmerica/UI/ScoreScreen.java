@@ -28,7 +28,7 @@ public class ScoreScreen extends JPanel{
 	private class WinningPlayer extends JPanel{
 		private WinningPlayer(Player winner){
 			
-			JLabel win = new JLabel(winner.getPlayerRecord().playerName()+" Connected All Their Cities", SwingConstants.CENTER);
+			JLabel win = new JLabel(winner.getName()+" Connected All Their Cities", SwingConstants.CENTER);
 			win.setLocation(500, 0);
 			win.setSize(300, 100);
 			add(win);
@@ -89,8 +89,8 @@ public class ScoreScreen extends JPanel{
 	private class Loser extends JPanel{
 		private Loser(Player player){
 			this.setSize(100, 100);
-			setBackground(player.getPlayerRecord().getColor());
-			JLabel name = new JLabel(player.getPlayerRecord().playerName()), 
+			setBackground(player.getColor());
+			JLabel name = new JLabel(player.getName()), 
 					unconnected = new JLabel(unconnectedCities(player)),
 					railsMissing = new JLabel(),
 					pointsLost = new JLabel(),
