@@ -28,14 +28,14 @@ public class Grid {
 			new City("Minneapolis",new Position(16,16),Color.blue),},
 		{	
 			new City("Boston",new Position(27,14),new Color(255,128,0)),
-			new City("Richmond",new Position(25,9),new Color(255,128,0)),
-			new City("Washington",new Position(25,10),new Color(255,128,0)),
+			new City("Richmond",new Position(25,10),new Color(255,128,0)),
+			new City("Washington",new Position(24,11),new Color(255,128,0)),
 			new City("Winston",new Position(21,7),new Color(255,128,0)),
 			new City("Charleston",new Position(24,6),new Color(255,128,0)),
 			new City("Jacksonville",new Position(23,3),new Color(255,128,0)),
 			new City("New York",new Position(26,13),new Color(255,128,0)),},
 		{					
-			new City("Denver",new Position(16,10),new Color(255, 0, 128)),
+			new City("Denver",new Position(10,10),new Color(255, 0, 128)),
 			new City("Kansas City",new Position(15,10),new Color(255, 0, 128)),
 			new City("Oklahoma City",new Position(14,8),new Color(255, 0, 128)),
 			new City("Omaha",new Position(15,12),new Color(255, 0, 128)),
