@@ -26,7 +26,7 @@ public class AAAMessageFromBrianForTheWeekend {
 	 * MainMenu
 	 * 
 	 * Other things:
-	 * - We need a third strategy, not essential but a better version can be done using Dijkstra's pathfinding algoritum
+	 * - We need a third strategy, not essential but a better version can be done using Dijkstra's pathfinding algoritim
 	 * 		-if no one knows how to do this I might attempt it over the weekend
 	 * 
 	 * However the main thing I am going to attempt over the weekend is to fix the Score lost at end of round
