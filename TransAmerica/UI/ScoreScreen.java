@@ -114,10 +114,5 @@ public class ScoreScreen extends JPanel{
 			}
 			return content;
 		}
-	}
-	/**
-	 * Displays the winning player, the order of the cities they connected,
-	 * and the continue button
-	 */
-	
+	}	
 }
