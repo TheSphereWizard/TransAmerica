@@ -80,11 +80,11 @@ public class Game {
 					p.clearForNewRound(p.getPlayerRecord().getCities());
 				}
 				startHumanRound();
-				System.out.println("hit");
+//				System.out.println("hit");
 			}
 			
 		}, 0);
-		System.out.println("Round over");
+//		System.out.println("Round over");
 	}
 	
 	boolean gameOver(){
@@ -107,6 +107,7 @@ public class Game {
 		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
 		while(!gameOver()){
+			
 			for (Player p : players) {
 				int railsleft=2;
 				placesleft=railsleft;
@@ -204,32 +205,32 @@ public class Game {
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
 		}
-		boolean again=true;
-		for(int i=0;i<players.size();i++){
-			if(players.get(i).getPlayerRecord().score<=0){
-				again=false;
-			}
-		}
-		if(again){
-			MainGameScreen screen = new MainGameScreen(this);
-
-//			TransAmerica.transamerica.add(screen);
-//			TransAmerica.transamerica.remove(0);
-			TransAmerica.transamerica.dispose();
-			JFrame f = new JFrame();
-			f.add(screen);
-			TransAmerica.transamerica = f;
-			TransAmerica.transamerica.setTitle("TransAmerica");
-			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			TransAmerica.transamerica.dispose();
-			TransAmerica.transamerica.setUndecorated(true);
-			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			TransAmerica.transamerica.setVisible(true);
-			TransAmerica.transamerica.repaint();
-			setcitiestoplayers();
-			MapofUSA.currentGrid=grid;
-			
-		}
+//		boolean again=true;
+//		for(int i=0;i<players.size();i++){
+//			if(players.get(i).getPlayerRecord().score<=0){
+//				again=false;
+//			}
+//		}
+//		if(again){
+//			MainGameScreen screen = new MainGameScreen(this);
+//
+////			TransAmerica.transamerica.add(screen);
+////			TransAmerica.transamerica.remove(0);
+//			TransAmerica.transamerica.dispose();
+//			JFrame f = new JFrame();
+//			f.add(screen);
+//			TransAmerica.transamerica = f;
+//			TransAmerica.transamerica.setTitle("TransAmerica");
+//			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			TransAmerica.transamerica.dispose();
+//			TransAmerica.transamerica.setUndecorated(true);
+//			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//			TransAmerica.transamerica.setVisible(true);
+//			TransAmerica.transamerica.repaint();
+//			setcitiestoplayers();
+//			MapofUSA.currentGrid=grid;
+//			
+//		}
 	}
 	public int[] getCurrentScore(){
 		int[] currentScore =new int[players.size()];

@@ -68,8 +68,8 @@ public class MainGameScreen extends JPanel{
 		}
 		TransAmerica.transamerica.repaint();
 		game.Round();
-		while(!game.showScoreScreen){
-		}
+//		while(!game.showScoreScreen){//Needs to Be a Timer
+//		}
 		
 	}
 	
