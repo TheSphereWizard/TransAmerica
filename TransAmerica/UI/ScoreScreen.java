@@ -24,6 +24,22 @@ public class ScoreScreen extends JPanel{
 		wp.setSize(1600, 900);
 		add(wp);
 		add(new Losers(game.players));
+		
+		/*
+		 * 
+		 * PLEASE whoever is making this, if you can't figure out how to get this to come up properly, 
+		 * Just feed it custom data, and make sure it displays, I can get it to come up but I don't want to
+		 * display it.
+		 * -Brian
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		
+		
+		
+		
 	}
 	private class WinningPlayer extends JPanel{
 		private WinningPlayer(Player winner){
