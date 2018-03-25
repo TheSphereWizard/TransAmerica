@@ -65,7 +65,9 @@ public class PopUp extends JPanel implements ActionListener{
 		}
 		if(games>0){
 			if(e.getSource().equals(fast)){
-				
+				for(int i = 0; i < games; i++){
+					
+				}
 			}else if(e.getSource().equals(slow)){
 				ArrayList<Player> players = new ArrayList<Player>();//need to actually get the players
 				ArrayList<Color> playerColors = new ArrayList<Color>();
