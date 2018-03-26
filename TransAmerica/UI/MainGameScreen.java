@@ -143,12 +143,14 @@ public class MainGameScreen extends JPanel{
 		
 		//if(currentGame.players.contains())
 		
-		g2d.drawImage(redTrain, 1500, 40, -30, 30, null);
-		g2d.drawImage(yellowTrain, 1500, 50, -30, 30, null);
-		g2d.drawImage(greenTrain, 1500, 60, -30, 30, null);
-		g2d.drawImage(blueTrain, 1400, 70, -90, 90, null);
-		g2d.drawImage(brownTrain, 1500, 80, -30, 30, null);
-		g2d.drawImage(whiteTrain, 1500, 90, -30, 30, null);
+		currentGame.players.get(increment).getPlayerRecord();
+		
+		g2d.drawImage(redTrain, 1525, 20, -30, 30, null);
+		g2d.drawImage(yellowTrain, 1540, 30, -30, 30, null);
+		g2d.drawImage(greenTrain, 1555, 40, -30, 30, null);
+		g2d.drawImage(blueTrain, 1570, 50, -30, 30, null);
+		g2d.drawImage(brownTrain, 1585, 60, -30, 30, null);
+		g2d.drawImage(whiteTrain, 1600, 70, -30, 30, null);
 		
 		
 		
