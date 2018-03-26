@@ -262,18 +262,18 @@ public class Game {
 		System.out.println("um game not over?");
 		return -5;//if no winning player
 	}
-	public ArrayList<Integer> getWinningPlayerforGame(){//This doesn't work idk why but check it
+	public ArrayList<Player> getWinningPlayerforGame(){//This doesn't work idk why but check it
 		int winningplayerscore =0;
-		ArrayList<Integer> winningplayers=new ArrayList<Integer>();
+		ArrayList<Player> winningplayers=new ArrayList<Player>();
 		for (int i=0;i<players.size();i++){
 			if(players.get(i).record.score>winningplayerscore){
 				winningplayers.clear();
 				winningplayerscore=players.get(i).record.score;
-				winningplayers.add(i);
+				winningplayers.add(players.get(i));
 			}
 			else{
 				if(players.get(i).record.score==winningplayerscore&winningplayerscore>0){
-					winningplayers.add(i);
+					winningplayers.add(players.get(i));
 				}
 			}
 		}
