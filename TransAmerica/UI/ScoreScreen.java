@@ -130,5 +130,5 @@ public class ScoreScreen extends JPanel{
 			}
 			return content;
 		}
-	}	
+	}
 }
