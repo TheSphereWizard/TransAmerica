@@ -43,7 +43,7 @@ public class MainGameScreen extends JPanel{
 		//-BRIAN
 		
 		try{
-			backg= ImageIO.read(new File("Pix/TransAmerica Background.gif"));
+			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 			blueTrain = ImageIO.read(new File("Pix/Blue Train.gif"));
 			redTrain = ImageIO.read(new File("Pix/Red Train.gif"));
 			yellowTrain = ImageIO.read(new File("Pix/Yellow Train.gif"));
