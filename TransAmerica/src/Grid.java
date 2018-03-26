@@ -104,11 +104,7 @@ public class Grid {
 	ArrayList<Rail> alllegalrails=setalllegalrails();
 	
 	private ArrayList<Rail> setalllegalrails() {
-<<<<<<< HEAD
-		int[][] allandpositions =new int[][]{
-=======
 		int[][] alllandpositions=new int[][]{
->>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
 			{0,0,1,1,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,},
 			{0,0,1,1,1,  1,1,1,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,1,0,  0,0,0,0,0,},
 			{0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,0,0,0,  0,0,0,0,0,  0,0,1,1,0,  0,0,0,0,0,},
