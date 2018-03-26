@@ -133,7 +133,10 @@ public class MainGameScreen extends JPanel{
 			g.drawString(currentGame.players.get(i).record.score+" ", 50*i, 20);
 		}
 		
-		g.drawImage(train, 1500, 50, 30, 30, null);
+		//g.drawImage(train, 1500, 50, 30, 30, null);
+		g2d.drawImage(train, 1500, 50, -30, 30, null);
+		
+		
 		
 		//Below is Debug info:
 		g.setFont(new Font("Arial",0,13));
