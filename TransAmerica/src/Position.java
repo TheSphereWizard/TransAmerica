@@ -19,7 +19,9 @@ public class Position {
 	public int getY() {
 		return y;
 	}
-	
+	public String toString(){
+		return x+" "+y;
+	}
 	public boolean equals(Object c) {
 		try{
 			Position compare = (Position)c;
