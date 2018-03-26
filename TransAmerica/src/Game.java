@@ -69,6 +69,18 @@ public class Game {
 	
 	
 	Timer gametimer = new Timer();
+	void runGame(){
+		boolean goAgain = true;
+		while(goAgain){
+			this.Round();
+			for(Player p: players){
+				if(p.record.getScore()<=0){
+					goAgain = false;
+				}
+			}
+		}
+	}
+	
 	void Round() {
 		
 		// ONLY DOES HUMAN ROUNDS RIGHT NOW
