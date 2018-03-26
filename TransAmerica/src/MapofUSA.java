@@ -165,8 +165,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 				}
 				g.drawLine((int)(scalefactor[0]*((r.p1.y)%2==1?r.p1.x+0.5d:r.p1.x)), siz[1]-scalefactor[1]*(r.p1.y+1), (int)(scalefactor[0]*((r.p2.y)%2==1?r.p2.x+0.5d:r.p2.x)), siz[1]-scalefactor[1]*(r.p2.y+1));
 			}
-			
-			for(Marker r: currentGrid.markers){
+			for(int i = 0;i<currentGrid.markers.size();i++) {
+				Marker r = currentGrid.markers.get(i);
 				if(r.player!=null){
 					g.setColor(r.player.getColor());
 					g2d.setStroke(new BasicStroke(4,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
