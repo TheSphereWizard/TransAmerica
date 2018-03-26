@@ -65,8 +65,22 @@ public class PopUp extends JPanel implements ActionListener{
 		}
 		if(games>0){
 			if(e.getSource().equals(fast)){
+				ArrayList<Player> players = new ArrayList<Player>();
 				for(int i = 0; i < games; i++){
-					
+					StrategyAnalyzer analyzer = new StrategyAnalyzer(players);
+					TransAmerica.transamerica.add(analyzer);
+					TransAmerica.transamerica.remove(this);
+					TransAmerica.transamerica.dispose();
+					JFrame f = new JFrame();
+					f.add(analyzer);
+					TransAmerica.transamerica = f;
+					TransAmerica.transamerica.setTitle("TransAmerica");
+					TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					TransAmerica.transamerica.dispose();
+					TransAmerica.transamerica.setUndecorated(true);
+					TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					TransAmerica.transamerica.setVisible(true);
+					TransAmerica.transamerica.repaint();
 				}
 			}else if(e.getSource().equals(slow)){
 				ArrayList<Player> players = new ArrayList<Player>();//need to actually get the players
