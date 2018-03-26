@@ -54,7 +54,7 @@ public class StrategyAnalyzer{
 	 */
 	private void calculateResults(int games, Game game){
 		//The position of the winning player
-		int winner = game.getWinningPlayerforGame();
+		ArrayList<Player> winner = game.getWinningPlayerforGame();
 		for(int i = 0; i < players; i++){
 			if(i == winner)
 				gamesWon[winner]++;
