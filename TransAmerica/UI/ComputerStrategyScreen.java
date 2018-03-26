@@ -12,7 +12,7 @@ import javax.swing.*;
 public class ComputerStrategyScreen extends JPanel{
 	private JPanel players = new JPanel();
 	private BufferedImage backg;
-	public ComputerStrategyScreen(int gamesPlayed, double[] gamesWon, double[] gamesLost, double[] rank, double[] winPercentage) {
+	public ComputerStrategyScreen(int gamesPlayed, int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage) {
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}

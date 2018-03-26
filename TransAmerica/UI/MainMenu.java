@@ -68,7 +68,7 @@ public class MainMenu extends JPanel implements ActionListener{
 		
 	}
 	
-	public Game generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
+	public ArrayList<Player> generate(ArrayList<Color> playerColors, ArrayList<String> playerNames, ArrayList<String> playerType){
 		ArrayList<Player> players = new ArrayList<Player>();
 		boolean slowMode = false;
 		for(int i = 0; i<playerType.size();i++){
@@ -85,7 +85,7 @@ public class MainMenu extends JPanel implements ActionListener{
 				players.add(new HardStrategy(playerColors.get(i),playerScores, playerNames.get(i)));
 			}
 		}
-		return new Game(players,slowMode);
+		return players;
 		
 	}
 //	Timer t= new Timer();
@@ -111,23 +111,25 @@ public class MainMenu extends JPanel implements ActionListener{
 						humanGame = true;
 					}
 				}
-				if(humanGame){
-					ArrayList<Player> players = new ArrayList<Player>();//need to actually get the players
-					ArrayList<Color> playerColors = new ArrayList<Color>();
-					ArrayList<String> playerNames = new ArrayList<String>();
-					ArrayList<String> playerType = new ArrayList<String>();
-					for(PlayerPanel p : validPanels){
-						if(p.isHuman()){
-							playerColors.add(p.getBackground());
-							playerNames.add(p.getName());
-							playerType.add("Human");
-						}else{
-							playerColors.add(p.getBackground());
-							playerNames.add(p.getName());
-							playerType.add(p.getStrategy());
-						}
+				ArrayList<Player> players = new ArrayList<Player>();//need to actually get the players
+				ArrayList<Color> playerColors = new ArrayList<Color>();
+				ArrayList<String> playerNames = new ArrayList<String>();
+				ArrayList<String> playerType = new ArrayList<String>();
+				for(PlayerPanel p : validPanels){
+					if(p.isHuman()){
+						playerColors.add(p.getBackground());
+						playerNames.add(p.getName());
+						playerType.add("Human");
+					}else{
+						playerColors.add(p.getBackground());
+						playerNames.add(p.getName());
+						playerType.add(p.getStrategy());
 					}
-					MainGameScreen screen = new MainGameScreen(generate(playerColors, playerNames, playerType));
+				}
+				players = generate(playerColors, playerNames, playerType);
+				if(humanGame){
+					
+					MainGameScreen screen = new MainGameScreen(new Game(players,true));
 
 					TransAmerica.transamerica.add(screen);
 					TransAmerica.transamerica.remove(0);
@@ -160,7 +162,7 @@ public class MainMenu extends JPanel implements ActionListener{
 //					something.popup;
 //					ComputerStrategyScreen screen = new ComputerStrategyScreen();//pass this all the info from popup
 //					add(screen);
-					PopUp aiGamePopUp = new PopUp(this);
+					PopUp aiGamePopUp = new PopUp(this,players);
 				}
 			}
 			else{//not enough players
