@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -69,9 +70,13 @@ public class MainGameScreen extends JPanel{
 		}
 		TransAmerica.transamerica.repaint();
 		game.Round();
+//		while(!game.showScoreScreen){//Needs to Be a Timer
+//		}
+		
 	}
 	
 	public void paint(Graphics g){
+		if(!currentGame.showScoreScreen) {
 		g.drawImage(backg, 0, 0, 1600, 900, null);
 		for(int i = 0; i < currentGame.players.size(); i++) {
 			JLabel l=null;
@@ -142,6 +147,22 @@ public class MainGameScreen extends JPanel{
 				g.drawString(p.record.cities.get(i).getName(), map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*i);
 			}
 		}
-		
+		}
+		else {
+			ScoreScreen screen = new ScoreScreen(currentGame);
+			TransAmerica.transamerica.add(screen);
+			TransAmerica.transamerica.remove(this);
+			TransAmerica.transamerica.dispose();
+			JFrame f = new JFrame();
+			f.add(screen);
+			TransAmerica.transamerica = f;
+			TransAmerica.transamerica.setTitle("TransAmerica");
+			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			TransAmerica.transamerica.dispose();
+			TransAmerica.transamerica.setUndecorated(true);
+			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			TransAmerica.transamerica.setVisible(true);
+			TransAmerica.transamerica.repaint();
+		}
 	}
 }
