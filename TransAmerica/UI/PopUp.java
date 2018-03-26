@@ -53,7 +53,14 @@ public class PopUp extends JPanel implements ActionListener{
 	public int numberOfGamesToBeRun(){
 		return numberOfGivenGames;
 	}
-
+	public int[][] runGames(int games, ArrayList<Player> players){
+		Player,games won, games lost, rank, win Percentage
+		for(;games>0;games--){
+			Game game = new Game(players, false);
+			game.Round();
+			game.getWinningPlayerforGame()
+		}
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int games;
@@ -66,7 +73,8 @@ public class PopUp extends JPanel implements ActionListener{
 		if(games>0){
 			if(e.getSource().equals(fast)){
 				ArrayList<Player> players = new ArrayList<Player>();
-				for(int i = 0; i < games; i++){
+				runGames(games);
+				ComputerStrategyScreen screen = new ComputerStrategyScreen(games,);
 					StrategyAnalyzer analyzer = new StrategyAnalyzer(players);
 					TransAmerica.transamerica.add(analyzer);
 					TransAmerica.transamerica.remove(this);
@@ -81,7 +89,7 @@ public class PopUp extends JPanel implements ActionListener{
 					TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					TransAmerica.transamerica.setVisible(true);
 					TransAmerica.transamerica.repaint();
-				}
+				
 			}else if(e.getSource().equals(slow)){
 				ArrayList<Player> players = new ArrayList<Player>();//need to actually get the players
 				ArrayList<Color> playerColors = new ArrayList<Color>();
