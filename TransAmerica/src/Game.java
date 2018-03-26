@@ -69,6 +69,18 @@ public class Game {
 	
 	
 	Timer gametimer = new Timer();
+	void runGame(){
+		boolean goAgain = true;
+		while(goAgain){
+			this.Round();
+			for(Player p: players){
+				if(p.record.getScore()<=0){
+					goAgain = false;
+				}
+			}
+		}
+	}
+	
 	void Round() {
 		
 		// ONLY DOES HUMAN ROUNDS RIGHT NOW
@@ -124,9 +136,11 @@ public class Game {
 								}catch(Exception E){
 									try{
 										Rail r = (Rail) o;
-										grid.placeRail(r);
-										railsleft-=r.size;
-										placesleft=railsleft;
+										if(r.size<=railsleft){
+											grid.placeRail(r);
+											railsleft-=r.size;
+											placesleft=railsleft;
+										}
 									}catch(Exception er){
 										er.printStackTrace();
 									}
