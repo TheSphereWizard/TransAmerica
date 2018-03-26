@@ -359,7 +359,15 @@ public class Grid {
 		return network;
 	}
 	int[] railsMissing2(ArrayList<Player> players){
+		//For each player
+			//Breadthfirst in parrellel from all missing cities
+			//IF HITS network, then that city done
+			//else if hits other city: cities not done but starts another check from the intersection
+			//if that intersection hits city then Ends both other citys.
 		
+		
+		//Don't be shy to make other data types for just this method
+		//Also ha lol need to do A*, but prob not happening as due tommorow.
 		return null;
 	}
 	int[] railsMissing(ArrayList<Player> players){
