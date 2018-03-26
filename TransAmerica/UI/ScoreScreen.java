@@ -55,6 +55,7 @@ public class ScoreScreen extends JPanel{
 			WinnerInfo w =new WinnerInfo(new JLabel(names));
 			w.setLocation(0, 200);
 			w.setSize(300, 100);
+		
 			add(w);
 		}
 		public void paint(Graphics g){
@@ -91,6 +92,8 @@ public class ScoreScreen extends JPanel{
 	 */
 	private class Losers extends JPanel{
 		private Losers(ArrayList<Player> players){
+			setBounds(100, 100, 1000, 500);
+			
 			for(int i = 0; i < players.size(); i++)
 				if(!players.get(i).equals(players.get(game.getWinningPlayerforRound()))){
 					Loser l =new Loser(players.get(i));
@@ -99,12 +102,17 @@ public class ScoreScreen extends JPanel{
 				}
 		}
 	}
+	
+	public ScoreScreen getScoreScreen() {
+		return this;
+	}
 	/**
 	 * An individual loser
 	 */
 	private class Loser extends JPanel{
-		private Loser(Player player){
-			this.setSize(100, 100);
+		
+		public Loser(Player player){
+			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			setBackground(player.getColor());
 			JLabel name = new JLabel(player.getName()), 
 					unconnected = new JLabel(unconnectedCities(player)),
