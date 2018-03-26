@@ -103,8 +103,9 @@ public class Grid {
 	}
 	ArrayList<Rail> alllegalrails=setalllegalrails();
 	
+	int[][] alllandpositions;
 	private ArrayList<Rail> setalllegalrails() {
-		int[][] alllandpositions=new int[][]{
+		alllandpositions=new int[][]{
 			{0,0,1,1,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,},
 			{0,0,1,1,1,  1,1,1,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,1,0,  0,0,0,0,0,},
 			{0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,0,0,0,  0,0,0,0,0,  0,0,1,1,0,  0,0,0,0,0,},
