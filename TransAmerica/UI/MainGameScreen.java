@@ -15,7 +15,8 @@ import javax.swing.SwingConstants;
 public class MainGameScreen extends JPanel{
 	private BufferedImage backg;
 	static MapofUSA map;
-	BufferedImage train , eagle;
+	BufferedImage blueTrain, redTrain, yellowTrain, greenTrain, whiteTrain, brownTrain;
+	BufferedImage eagle;
 	Grid grid;
 	Game currentGame;
 
@@ -43,6 +44,12 @@ public class MainGameScreen extends JPanel{
 		
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
+			blueTrain = ImageIO.read(new File("Pix/Blue Train.jpg"));
+			redTrain = ImageIO.read(new File("Pix/Red Train.jpg"));
+			yellowTrain = ImageIO.read(new File("Pix/Yellow Train.jpg"));
+			greenTrain = ImageIO.read(new File("Pix/Green Train.jpg"));
+			brownTrain = ImageIO.read(new File("Pix/Brown Train.jpg"));
+			whiteTrain = ImageIO.read(new File("Pix/White Train.jpg"));
 		}catch(Exception E){}
 
 		this.setLayout(null);
@@ -120,17 +127,31 @@ public class MainGameScreen extends JPanel{
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.black);
 		g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-		g2d.drawLine(20, 100, 1100, 100);
-		g2d.drawLine(20, 50, 1100, 50);
-		int increment = 10;
+		g2d.drawLine(0, 100, 1600, 100);
+		g2d.drawLine(0, 50, 1600, 50);
+		int increment = 50;
 		for(int i = 0; i < 12; i++){
 			g2d.drawLine(50 + increment, 40, 50 + increment, 110);
-			increment += 90;
+			increment += 140;
 		}
 		g.setFont(new Font("Arial",1,16));
 		for(int i=0;i<currentGame.players.size();i++){
 			g.drawString(currentGame.players.get(i).record.score+" ", 50*i, 20);
 		}
+		
+		//g.drawImage(train, 1500, 50, 30, 30, null);
+		
+		//if(currentGame.players.contains())
+		
+		g2d.drawImage(redTrain, 1500, 40, -30, 30, null);
+		g2d.drawImage(yellowTrain, 1500, 50, -30, 30, null);
+		g2d.drawImage(greenTrain, 1500, 60, -30, 30, null);
+		g2d.drawImage(blueTrain, 1500, 70, -30, 30, null);
+		g2d.drawImage(brownTrain, 1500, 80, -30, 30, null);
+		g2d.drawImage(whiteTrain, 1500, 90, -30, 30, null);
+		
+		
+		
 		
 		//Below is Debug info:
 		g.setFont(new Font("Arial",0,13));

@@ -55,6 +55,7 @@ public class ScoreScreen extends JPanel{
 			WinnerInfo w =new WinnerInfo(new JLabel(names));
 			w.setLocation(0, 200);
 			w.setSize(300, 100);
+		
 			add(w);
 		}
 		public void paint(Graphics g){
@@ -91,31 +92,39 @@ public class ScoreScreen extends JPanel{
 	 */
 	private class Losers extends JPanel{
 		private Losers(ArrayList<Player> players){
-			for(int i = 0; i < players.size(); i++)
+			setBounds(100, 100, 1300, 500);
+			
+			for(int i = 0; i < players.size(); i++) {
 				if(!players.get(i).equals(players.get(game.getWinningPlayerforRound()))){
 					Loser l =new Loser(players.get(i));
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
+			}
+			
 		}
+	}
+	
+	public ScoreScreen getScoreScreen() {
+		return this;
 	}
 	/**
 	 * An individual loser
 	 */
 	private class Loser extends JPanel{
-		private Loser(Player player){
-			this.setSize(100, 100);
+		
+		public Loser(Player player){
+			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			setBackground(player.getColor());
 			JLabel name = new JLabel(player.getName()), 
 					unconnected = new JLabel(unconnectedCities(player)),
-					railsMissing = new JLabel(),
-					pointsLost = new JLabel(),
+					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
-			add(railsMissing);
 			add(pointsLost);
 			add(score);
+			setSize(300, 300);
 		}
 		/**
 		 * @param player
@@ -130,5 +139,5 @@ public class ScoreScreen extends JPanel{
 			}
 			return content;
 		}
-	}	
+	}
 }

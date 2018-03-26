@@ -22,6 +22,4 @@ public abstract class ComputerPlayer extends Player {
 	public ArrayList<Rail> getRailsAtPos(Position pos) {
 		return grid.immediateneighbors(pos);
 	}
-	
-
 }

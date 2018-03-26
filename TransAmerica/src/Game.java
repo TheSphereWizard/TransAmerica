@@ -69,6 +69,18 @@ public class Game {
 	
 	
 	Timer gametimer = new Timer();
+	void runGame(){
+		boolean goAgain = true;
+		while(goAgain){
+			this.Round();
+			for(Player p: players){
+				if(p.record.getScore()<=0){
+					goAgain = false;
+				}
+			}
+		}
+	}
+	
 	void Round() {
 		
 		// ONLY DOES HUMAN ROUNDS RIGHT NOW
@@ -107,32 +119,39 @@ public class Game {
 		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
 		while(!gameOver()){
-			
 			for (Player p : players) {
 				int railsleft=2;
 				placesleft=railsleft;
 				try{
 					HumanPlayer h = (HumanPlayer)p;
 					if(!gameOver()){
+						boolean markerplaced=false;
 						do{
 							Object o = h.runTurn(FirstTurn,!(railsleft==2),MainGameScreen.map);
 							if(o!=null){
 								try{
 									Marker m = (Marker) o;
-									h.startMarker=m;
-									grid.placeMarker(m.p, h);
+									try{
+										if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
+											h.startMarker=m;
+											grid.placeMarker(m.p, h);
+											markerplaced=true;
+										}
+									}catch(Exception E){}
 								}catch(Exception E){
 									try{
 										Rail r = (Rail) o;
-										grid.placeRail(r);
-										railsleft-=r.size;
-										placesleft=railsleft;
+										if(r.size<=railsleft){//Ehhe
+											grid.placeRail(r);
+											railsleft-=r.size;
+											placesleft=railsleft;
+										}
 									}catch(Exception er){
 										er.printStackTrace();
 									}
 								}
 							}
-						}while(railsleft>0&!FirstTurn);
+						}while(railsleft>0&(FirstTurn&!markerplaced));
 					}
 				}catch(Exception E){
 					try{
@@ -143,14 +162,18 @@ public class Game {
 								if(o!=null){
 									try{
 										Marker m = (Marker) o;
-										c.startMarker=m;
-										grid.placeMarker(m.p, c);
+										if(grid.alllandpositions[m.p.x][m.p.y]==1){
+											c.startMarker=m;
+											grid.placeMarker(m.p, c);
+										}
 									}catch(Exception Eer){
 										try{
 											Rail r = (Rail) o;
-											grid.placeRail(r);
-											railsleft-=r.size;
-											placesleft=railsleft;
+											if(r.size<=railsleft){
+												grid.placeRail(r);
+												railsleft-=r.size;
+												placesleft=railsleft;
+											}
 										}catch(Exception er){
 											er.printStackTrace();
 										}
@@ -239,23 +262,39 @@ public class Game {
 		}
 		return currentScore;
 	}
-	public int getWinningPlayerforRound(){
+	public ArrayList<Player> getWinningPlayerforRound(){
+		int winningplayerscore =0;
+		ArrayList<Player> winningplayers=new ArrayList<Player>();
 		for (int i=0;i<players.size();i++){
-			if(players.get(i).record.citiesReached.size()==5){
-				return i;//DOES NOT DEAL WITH TIES
+			if(players.get(i).record.score>winningplayerscore){
+				winningplayers.clear();
+				winningplayerscore=players.get(i).record.score;
+				winningplayers.add(players.get(i));
+			}
+			else{
+				if(players.get(i).record.score==winningplayerscore&winningplayerscore>0){
+					winningplayers.add(players.get(i));
+				}
 			}
 		}
-		System.out.println("um game not over?");
-		return -5;//if no winning player
+		return winningplayers;
 	}
-	public int getWinningPlayerforGame(){//This doesn't work idk why but check it
-		int winningplayer =-2;
+	public ArrayList<Player> getWinningPlayerforGame(){
+		int winningplayerscore =0;
+		ArrayList<Player> winningplayers=new ArrayList<Player>();
 		for (int i=0;i<players.size();i++){
-			if(winningplayer!=-1&&(winningplayer==-2||getCurrentScore()[i]>getCurrentScore()[winningplayer])){
-				winningplayer=i;
+			if(players.get(i).record.score>winningplayerscore){
+				winningplayers.clear();
+				winningplayerscore=players.get(i).record.score;
+				winningplayers.add(players.get(i));
+			}
+			else{
+				if(players.get(i).record.score==winningplayerscore&winningplayerscore>0){
+					winningplayers.add(players.get(i));
+				}
 			}
 		}
-		return winningplayer;//if no winning player
+		return winningplayers;
 	}
 	int[] returnScoreChange() {
 		int[] scoreChange = grid.railsMissing(players);
