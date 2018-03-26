@@ -15,7 +15,8 @@ import javax.swing.SwingConstants;
 public class MainGameScreen extends JPanel{
 	private BufferedImage backg;
 	static MapofUSA map;
-	BufferedImage train , eagle;
+	BufferedImage blueTrain, redTrain, yellowTrain, greenTrain, whiteTrain, brownTrain;
+	BufferedImage eagle;
 	Grid grid;
 	Game currentGame;
 
@@ -43,7 +44,12 @@ public class MainGameScreen extends JPanel{
 		
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
-			train = ImageIO.read(new File("Pix/Blue Train.jpg"));
+			blueTrain = ImageIO.read(new File("Pix/Blue Train.jpg"));
+			redTrain = ImageIO.read(new File("Pix/Red Train.jpg"));
+			yellowTrain = ImageIO.read(new File("Pix/Yellow Train.jpg"));
+			greenTrain = ImageIO.read(new File("Pix/Green Train.jpg"));
+			brownTrain = ImageIO.read(new File("Pix/Brown Train.jpg"));
+			whiteTrain = ImageIO.read(new File("Pix/White Train.jpg"));
 		}catch(Exception E){}
 
 		this.setLayout(null);
@@ -134,7 +140,12 @@ public class MainGameScreen extends JPanel{
 		}
 		
 		//g.drawImage(train, 1500, 50, 30, 30, null);
-		g2d.drawImage(train, 1500, 50, -30, 30, null);
+		g2d.drawImage(redTrain, 1500, 40, -30, 30, null);
+		g2d.drawImage(yellowTrain, 1500, 50, -30, 30, null);
+		g2d.drawImage(greenTrain, 1500, 60, -30, 30, null);
+		g2d.drawImage(blueTrain, 1500, 70, -30, 30, null);
+		g2d.drawImage(brownTrain, 1500, 80, -30, 30, null);
+		g2d.drawImage(whiteTrain, 1500, 90, -30, 30, null);
 		
 		
 		
