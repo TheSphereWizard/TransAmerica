@@ -92,14 +92,16 @@ public class ScoreScreen extends JPanel{
 	 */
 	private class Losers extends JPanel{
 		private Losers(ArrayList<Player> players){
-			setBounds(100, 100, 1000, 500);
+			setBounds(100, 100, 1300, 500);
 			
-			for(int i = 0; i < players.size(); i++)
+			for(int i = 0; i < players.size(); i++) {
 				if(!players.get(i).equals(players.get(game.getWinningPlayerforRound()))){
 					Loser l =new Loser(players.get(i));
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
+			}
+			
 		}
 	}
 	
@@ -124,6 +126,7 @@ public class ScoreScreen extends JPanel{
 			add(railsMissing);
 			add(pointsLost);
 			add(score);
+			setSize(300, 300);
 		}
 		/**
 		 * @param player
