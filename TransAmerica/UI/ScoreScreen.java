@@ -14,17 +14,21 @@ import javax.swing.*;
 public class ScoreScreen extends JPanel{
 	private Game game;
 	private BufferedImage backg;
+	boolean tie;
 	ScoreScreen(Game game){
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
 		setLayout(null);
 		this.game = game;
-		WinningPlayer wp =new WinningPlayer(game.players.get(game.getWinningPlayerforRound()));
-		wp.setSize(1600, 900);
-		add(wp);
-		add(new Losers(game.players));
-		
+		if(game.getWinningPlayerforRound().size()>1)
+			tie = true;
+		if(!tie) {//CODE CHANGES FOR TIES
+			WinningPlayer wp =new WinningPlayer(game.getWinningPlayerforRound().get(0));
+			wp.setSize(1600, 900);
+			add(wp);
+			add(new Losers(game.players));
+		}
 		/*
 		 * 
 		 * PLEASE whoever is making this, if you can't figure out how to get this to come up properly, 
@@ -93,12 +97,13 @@ public class ScoreScreen extends JPanel{
 	private class Losers extends JPanel{
 		private Losers(ArrayList<Player> players){
 			setBounds(100, 100, 1300, 500);
-			
-			for(int i = 0; i < players.size(); i++) {
-				if(!players.get(i).equals(players.get(game.getWinningPlayerforRound()))){
-					Loser l =new Loser(players.get(i));
-					l.setLocation(100*(i+1), 200);
-					add(l);
+			for(Player winner: game.getWinningPlayerforRound()) {
+				for(int i = 0; i < players.size(); i++) {
+					if(!players.get(i).equals(winner)){
+						Loser l =new Loser(players.get(i));
+						l.setLocation(100*(i+1), 200);
+						add(l);
+					}
 				}
 			}
 			
