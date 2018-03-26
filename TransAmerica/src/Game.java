@@ -136,9 +136,11 @@ public class Game {
 								}catch(Exception E){
 									try{
 										Rail r = (Rail) o;
-										grid.placeRail(r);
-										railsleft-=r.size;
-										placesleft=railsleft;
+										if(r.size>=railsleft){
+											grid.placeRail(r);
+											railsleft-=r.size;
+											placesleft=railsleft;
+										}
 									}catch(Exception er){
 										er.printStackTrace();
 									}
