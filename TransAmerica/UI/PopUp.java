@@ -53,13 +53,52 @@ public class PopUp extends JPanel implements ActionListener{
 	public int numberOfGamesToBeRun(){
 		return numberOfGivenGames;
 	}
-	public int[][] runGames(int games, ArrayList<Player> players){
-		Player,games won, games lost, rank, win Percentage
+	
+	public double[] sort(double[] gamesWon){
+		double[] sorted = new double[gamesWon.length];
+		int maximum = 0;
+		for(int counter = 1; counter<=sorted.length;counter++){
+			int i = 0;
+			int maxIndex = 0;
+			for(;i<gamesWon.length;i++){
+				if(gamesWon[i]>maximum){
+					maximum = (int) gamesWon[i];
+					maxIndex = i;
+				}
+			}
+			sorted[maxIndex]=counter;
+			gamesWon[maxIndex]=0;
+			maximum = 0;
+		}
+		return sorted;
+	}
+	
+	public double[][] runGames(int games, ArrayList<Player> players){
+		double[] gamesWon = new double[players.size()];
+		double[] gamesLost = new double[players.size()];
 		for(;games>0;games--){
 			Game game = new Game(players, false);
-			game.Round();
-			game.getWinningPlayerforGame()
+			game.runGame();
+			ArrayList<Player> winningPlayers = game.getWinningPlayerforGame();
+			for(Player p: winningPlayers){
+				for(int i = 0;i<players.size();i++){
+					if(p.equals(players.get(i))){
+						gamesWon[i]++;
+					}else{
+						gamesLost[i]++;
+					}
+				}
+			}
 		}
+		double[] rank = sort(gamesWon);
+		double[] winPercentage = new double[players.size()];
+		for(int i = 0;i<players.size();i++){
+			double winPer = gamesWon[i]/(gamesWon[i]+gamesLost[i]);
+			winPercentage[i]=winPer;
+		}
+		double[][] bigArray = {gamesWon,gamesLost,rank,winPercentage};
+		return bigArray;
+		
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -73,8 +112,8 @@ public class PopUp extends JPanel implements ActionListener{
 		if(games>0){
 			if(e.getSource().equals(fast)){
 				ArrayList<Player> players = new ArrayList<Player>();
-				runGames(games);
-				ComputerStrategyScreen screen = new ComputerStrategyScreen(games,);
+				double[][] info = runGames(games,players);
+				ComputerStrategyScreen screen = new ComputerStrategyScreen(games,info[0],info[1],info[2],info[3]);
 					StrategyAnalyzer analyzer = new StrategyAnalyzer(players);
 					TransAmerica.transamerica.add(analyzer);
 					TransAmerica.transamerica.remove(this);
@@ -131,5 +170,7 @@ public class PopUp extends JPanel implements ActionListener{
 			}
 		}	
 	}
+	
+
 	
 }
