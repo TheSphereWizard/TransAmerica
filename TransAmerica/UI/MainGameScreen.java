@@ -143,7 +143,7 @@ public class MainGameScreen extends JPanel{
 		
 		//if(currentGame.players.contains())
 		
-		currentGame.players.get(increment).getPlayerRecord();
+		//currentGame.players.get(increment).getPlayerRecord();
 		
 		g2d.drawImage(redTrain, 1525, 20, -30, 30, null);
 		g2d.drawImage(yellowTrain, 1540, 30, -30, 30, null);
