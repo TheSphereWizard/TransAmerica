@@ -126,10 +126,8 @@ public class Game {
 	static boolean ignoremap=true;
 	void startComputerRound(){
 		boolean FirstTurn =true;
-//		MapofUSA.firstturn=true;
-		MapofUSA.currentGrid=grid;
-//		System.out.println("Players"+players.size());
 		
+		//rotate through who goes first
 		while(!gameOver()){
 			for (Player p : players) {
 				int railsleft=2;
