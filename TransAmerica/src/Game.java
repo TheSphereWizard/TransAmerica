@@ -128,14 +128,12 @@ public class Game {
 		MapofUSA.currentGrid=grid;
 		
 		ArrayList<City> citiesfortesting = new ArrayList<City>();
-		citiesfortesting.add(new City("1",new Position(0,1),Color.blue));
-		citiesfortesting.add(new City("2",new Position(1,1),Color.cyan));
-		citiesfortesting.add(new City("3",new Position(1,2),Color.orange));
-		citiesfortesting.add(new City("4",new Position(4,5),Color.green));
-		citiesfortesting.add(new City("5",new Position(10,1),Color.red));
+		citiesfortesting.add(grid.allcities[5][0]);
+		citiesfortesting.add(grid.allcities[5][1]);
+		citiesfortesting.add(grid.allcities[5][2]);
+		citiesfortesting.add(grid.allcities[5][3]);
+		citiesfortesting.add(grid.allcities[5][4]);
 		players.get(0).record.cities=citiesfortesting;
-		
-//		System.out.println("Players"+players.size());
 		
 		while(!gameOver()){
 			for (Player p : players) {
@@ -201,9 +199,6 @@ public class Game {
 										}
 									}
 								}while(railsleft>0&!FirstTurn);
-//								try{
-//									System.out.println("red"+((Marker)c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid))).p);
-//								}catch(Exception e){}
 							}while(c.startMarker==null);
 						}
 					}catch(Exception Ee){
@@ -223,7 +218,7 @@ public class Game {
 			MapofUSA.firstturn=false;
 		}
 		System.out.println("GAMEOVER");
-		showScoreScreen=true;
+		
 		try {
 			Thread.sleep(1);
 		} catch (InterruptedException e) {
@@ -250,10 +245,11 @@ public class Game {
 //		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //		TransAmerica.transamerica.setVisible(true);
 //		TransAmerica.transamerica.repaint();
-		int[] p =returnScoreChange();
+		int[] p = grid.railsMissing2(players);
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
 		}
+//		showScoreScreen=true;
 //		boolean again=true;
 //		for(int i=0;i<players.size();i++){
 //			if(players.get(i).getPlayerRecord().score<=0){
@@ -321,9 +317,5 @@ public class Game {
 			}
 		}
 		return winningplayers;
-	}
-	int[] returnScoreChange() {
-		int[] scoreChange = grid.railsMissing(players);
-		return scoreChange;
 	}
 }
