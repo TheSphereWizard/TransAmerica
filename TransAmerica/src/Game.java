@@ -75,15 +75,19 @@ public class Game {
 	
 	
 	Timer gametimer = new Timer();
+	
 	void runGame(){
 		boolean goAgain = true;
 		while(goAgain){
 			this.Round();
 			for(Player p: players){
+				System.out.print(p.record.getScore()+" ");
 				if(p.record.getScore()<=0){
 					goAgain = false;
 				}
 			}
+			players.get(0).record.score--;
+			System.out.println();
 		}
 	}
 	

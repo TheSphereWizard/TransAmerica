@@ -16,6 +16,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	private BufferedImage backg;
 	boolean tie;
 	private JButton contButton = new JButton("Continue");
+	private boolean gameOver;
 	
 	ScoreScreen(Game game){
 		try{
@@ -39,16 +40,17 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		 * 
 		 * 
 		 */
-		
+		if(game.gameOver() == true) {
+			gameOver = true;
+		} else {
+			gameOver = false;
+		}
 		contButton.addActionListener(this);
-		
-		
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(contButton) && ) {
-			
+		if(e.getSource().equals(contButton) && gameOver == true) {
+			new TransAmerica();
 		} else {
 			
 		}
@@ -107,7 +109,8 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	/**
 	 * Displays the game losers
 	 */
-	private class Losers extends JPanel{
+	private class Losers extends JPanel {
+				
 		private Losers(ArrayList<Player> players){
 			setBounds(100, 100, 1300, 500);
 			
@@ -117,11 +120,10 @@ public class ScoreScreen extends JPanel implements ActionListener{
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
+
 			}
-			
 		}
 	}
-	
 	public ScoreScreen getScoreScreen() {
 		return this;
 	}
@@ -129,6 +131,8 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	 * An individual loser
 	 */
 	private class Loser extends JPanel{
+		
+		private Boolean gameOver;
 		
 		public Loser(Player player){
 			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -142,7 +146,9 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			add(pointsLost);
 			add(score);
 			setSize(300, 300);
+			
 		}
+		
 		/**
 		 * @param player
 		 * @return a String containing players unconnected cities
@@ -155,6 +161,8 @@ public class ScoreScreen extends JPanel implements ActionListener{
 				}
 			}
 			return content;
+		}
+		
 		}
 	}
 	
