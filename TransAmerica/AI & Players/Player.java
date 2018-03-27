@@ -13,6 +13,7 @@ String playerName(){}
 Int[] startMarker;
 Int[] getStartMarker();
 } */
+
 public abstract class Player {//give players playerrecords
 	boolean placedMarkerAlready;//this is never set
 	Marker startMarker;

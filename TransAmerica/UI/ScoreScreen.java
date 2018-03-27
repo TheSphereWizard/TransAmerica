@@ -16,6 +16,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	private BufferedImage backg;
 	boolean tie;
 	private JButton contButton = new JButton("Continue");
+	private boolean gameOver;
 	
 	ScoreScreen(Game game){
 		try{
@@ -39,12 +40,21 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		 * 
 		 * 
 		 */
-		
+		if(game.gameOver() == true) {
+			gameOver = true;
+		} else {
+			gameOver = false;
+		}
 		contButton.addActionListener(this);
-		
-		
 	}
 	
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(contButton) && gameOver == true) {
+			new TransAmerica();
+		} else {
+			
+		}
+	}
 	private class WinningPlayer extends JPanel{
 		
 		private WinningPlayer(ArrayList<Player> arrayList){
@@ -99,7 +109,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	/**
 	 * Displays the game losers
 	 */
-	private class Losers extends JPanel implements ActionListener{
+	private class Losers extends JPanel {
 				
 		private Losers(ArrayList<Player> players){
 			setBounds(100, 100, 1300, 500);
@@ -110,17 +120,10 @@ public class ScoreScreen extends JPanel implements ActionListener{
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
-				
-				if(players.get(i).getPlayerRecord().getScore() <= 0) {
-					gameOver = true;
-				} else {
-					gameOver = false;
-				}
+
 			}
-			new Loser(gameOver);
 		}
 	}
-	
 	public ScoreScreen getScoreScreen() {
 		return this;
 	}
@@ -146,9 +149,6 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			
 		}
 		
-		private Loser(Boolean gameEnd) {
-			gameOver = gameEnd;
-		}
 		/**
 		 * @param player
 		 * @return a String containing players unconnected cities
@@ -163,12 +163,6 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			return content;
 		}
 		
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource().equals(contButton) && gameOver == true) {
-				new TransAmerica();
-			} else {
-				
-			}
 		}
 	}
 	
