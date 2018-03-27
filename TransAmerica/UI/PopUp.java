@@ -79,11 +79,8 @@ public class PopUp extends JPanel implements ActionListener{
 		int[] gamesWon = new int[players.size()];
 		int[] gamesLost = new int[players.size()];
 		for(;games>0;games--){
-			System.out.println("Got Here 1!");
 			Game game = new Game(players, slowmode);
-			System.out.println("Got Here 2!");
 			game.runGame();
-			System.out.println("Got Here 3!");
 			ArrayList<Player> winningPlayers = game.getWinningPlayerforGame();
 			
 			for(Player p: winningPlayers){
@@ -112,15 +109,12 @@ public class PopUp extends JPanel implements ActionListener{
 		}
 		if(games>0){
 			if(e.getSource().equals(fast)){
-				System.out.println("Step 1");
 				int[][] info = runGames(games,players,false);
 				double[] winPercentage = new double[players.size()];
-				System.out.println("Step 2");
 				for(int i = 0;i<players.size();i++){
 					double winPer = info[0][i]/(info[0][i]+info[1][i]);
 					winPercentage[i]=winPer;
 				}
-				System.out.println("Step 3");
 				ComputerStrategyScreen screen = new ComputerStrategyScreen(games,info[0],info[1],info[2],winPercentage);
 				TransAmerica.transamerica.add(screen);
 				TransAmerica.transamerica.remove(this);
@@ -134,7 +128,6 @@ public class PopUp extends JPanel implements ActionListener{
 				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TransAmerica.transamerica.setVisible(true);
 				TransAmerica.transamerica.repaint();
-
 
 			}else if(e.getSource().equals(slow)){
 				for(int i=0;i<games;i++){

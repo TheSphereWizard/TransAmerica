@@ -133,6 +133,7 @@ public class Game {
 		
 		//rotate through who goes first
 		while(!gameOver()){
+			System.out.println("not gameover");
 			for (Player p : players) {
 				int railsleft=2;
 				placesleft=railsleft;
@@ -177,68 +178,24 @@ public class Game {
 		System.out.println("GAMEOVER");
 		showScoreScreen=true;
 		
-		//needs to run again until one player is at <0 score, then if a tie
-		//runs a new game between those players who tied in first
-		
-		//What do we do if there is a tie?
-//		ScoreScreen screen = new ScoreScreen(this);
-//
-//		TransAmerica.transamerica.add(screen);
-//		TransAmerica.transamerica.remove(0);
-//		TransAmerica.transamerica.dispose();
-//		JFrame f = new JFrame();
-//		f.add(screen);
-//		TransAmerica.transamerica = f;
-//		TransAmerica.transamerica.setTitle("TransAmerica");
-//		TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		TransAmerica.transamerica.dispose();
-//		TransAmerica.transamerica.setUndecorated(true);
-//		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//		TransAmerica.transamerica.setVisible(true);
-//		TransAmerica.transamerica.repaint();
 		int[] p =returnScoreChange();
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
 		}
-//		boolean again=true;
-//		for(int i=0;i<players.size();i++){
-//			if(players.get(i).getPlayerRecord().score<=0){
-//				again=false;
-//			}
-//		}
-//		if(again){
-//			MainGameScreen screen = new MainGameScreen(this);
-//
-////			TransAmerica.transamerica.add(screen);
-////			TransAmerica.transamerica.remove(0);
-//			TransAmerica.transamerica.dispose();
-//			JFrame f = new JFrame();
-//			f.add(screen);
-//			TransAmerica.transamerica = f;
-//			TransAmerica.transamerica.setTitle("TransAmerica");
-//			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//			TransAmerica.transamerica.dispose();
-//			TransAmerica.transamerica.setUndecorated(true);
-//			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//			TransAmerica.transamerica.setVisible(true);
-//			TransAmerica.transamerica.repaint();
-//			setcitiestoplayers();
-//			MapofUSA.currentGrid=grid;
-//			
-//		}
+
 	}
 	void startHumanRound() {
 		boolean FirstTurn =true;
 		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
 		
-		ArrayList<City> citiesfortesting = new ArrayList<City>();
+		/*ArrayList<City> citiesfortesting = new ArrayList<City>();
 		citiesfortesting.add(new City("1",new Position(0,1),Color.blue));
 		citiesfortesting.add(new City("2",new Position(1,1),Color.cyan));
 		citiesfortesting.add(new City("3",new Position(1,2),Color.orange));
 		citiesfortesting.add(new City("4",new Position(4,5),Color.green));
 		citiesfortesting.add(new City("5",new Position(10,1),Color.red));
-		players.get(0).record.cities=citiesfortesting;
+		players.get(0).record.cities=citiesfortesting;*/
 		
 		//rotate through who goes first
 		while(!gameOver()){
@@ -288,6 +245,7 @@ public class Game {
 										try{
 											Marker m = (Marker) o;
 											if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
+												System.out.println("markers");
 												c.startMarker=m;
 												grid.placeMarker(m.p, c);
 											}
