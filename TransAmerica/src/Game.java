@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
@@ -35,8 +36,13 @@ public class Game {
 	Game(ArrayList<Player> players, boolean slowMode){
 		this.players = players;
 		this.slowMode = slowMode;
+		isAIGame = true;
 		setcitiestoplayers();
-		
+		for(Player p:players) {
+			if(p.getClass()==HumanPlayer.class) {
+				isAIGame = false;
+			}
+		}
 		if(slowMode){
 			MapofUSA.currentGrid=grid;
 		}else{
@@ -90,8 +96,9 @@ public class Game {
 				grid = new Grid();
 				for (Player p : players) {
 					p.clearForNewRound(p.getPlayerRecord().getCities());
+				}if(!isAIGame) {
+					startHumanRound();
 				}
-				startHumanRound();
 //				System.out.println("hit");
 			}
 			
@@ -114,10 +121,22 @@ public class Game {
 		}
 		return over;
 	}
+	static boolean ignoremap=true;
 	void startHumanRound() {
 		boolean FirstTurn =true;
 		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
+		
+		ArrayList<City> citiesfortesting = new ArrayList<City>();
+		citiesfortesting.add(new City("1",new Position(0,1),Color.blue));
+		citiesfortesting.add(new City("2",new Position(1,1),Color.cyan));
+		citiesfortesting.add(new City("3",new Position(1,2),Color.orange));
+		citiesfortesting.add(new City("4",new Position(4,5),Color.green));
+		citiesfortesting.add(new City("5",new Position(10,1),Color.red));
+		players.get(0).record.cities=citiesfortesting;
+		
+//		System.out.println("Players"+players.size());
+		
 		while(!gameOver()){
 			for (Player p : players) {
 				int railsleft=2;
@@ -125,51 +144,23 @@ public class Game {
 				try{
 					HumanPlayer h = (HumanPlayer)p;
 					if(!gameOver()){
-						boolean markerplaced=false;
 						do{
-							Object o = h.runTurn(FirstTurn,!(railsleft==2),MainGameScreen.map);
-							if(o!=null){
-								try{
-									Marker m = (Marker) o;
-									try{
-										if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
-											h.startMarker=m;
-											grid.placeMarker(m.p, h);
-											markerplaced=true;
-										}
-									}catch(Exception E){}
-								}catch(Exception E){
-									try{
-										Rail r = (Rail) o;
-										if(r.size<=railsleft){//Ehhe
-											grid.placeRail(r);
-											railsleft-=r.size;
-											placesleft=railsleft;
-										}
-									}catch(Exception er){
-										er.printStackTrace();
-									}
-								}
-							}
-						}while(railsleft>0&(FirstTurn&!markerplaced));
-					}
-				}catch(Exception E){
-					try{
-						ComputerPlayer c = (ComputerPlayer)p;
-						if(!gameOver()){
 							do{
-								Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+								Object o = h.runTurn(FirstTurn,!(railsleft==2),MainGameScreen.map);
 								if(o!=null){
 									try{
 										Marker m = (Marker) o;
-										if(grid.alllandpositions[m.p.x][m.p.y]==1){
-											c.startMarker=m;
-											grid.placeMarker(m.p, c);
-										}
-									}catch(Exception Eer){
+										try{
+											if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1||ignoremap){
+												h.startMarker=m;
+												grid.placeMarker(m.p, h);
+												
+											}
+										}catch(Exception E){}
+									}catch(Exception E){
 										try{
 											Rail r = (Rail) o;
-											if(r.size<=railsleft){
+											if(r.size<=railsleft){//Ehhe
 												grid.placeRail(r);
 												railsleft-=r.size;
 												placesleft=railsleft;
@@ -180,6 +171,40 @@ public class Game {
 									}
 								}
 							}while(railsleft>0&!FirstTurn);
+						}while(h.startMarker==null);
+					}
+				}catch(Exception E){
+					try{
+						ComputerPlayer c = (ComputerPlayer)p;
+						if(!gameOver()){
+							do{
+								do{
+									Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+									if(o!=null){
+										try{
+											Marker m = (Marker) o;
+											if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
+												c.startMarker=m;
+												grid.placeMarker(m.p, c);
+											}
+										}catch(Exception Eer){
+											try{
+												Rail r = (Rail) o;
+												if(r.size<=railsleft){
+													grid.placeRail(r);
+													railsleft-=r.size;
+													placesleft=railsleft;
+												}
+											}catch(Exception er){
+												er.printStackTrace();
+											}
+										}
+									}
+								}while(railsleft>0&!FirstTurn);
+//								try{
+//									System.out.println("red"+((Marker)c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid))).p);
+//								}catch(Exception e){}
+							}while(c.startMarker==null);
 						}
 					}catch(Exception Ee){
 						Ee.printStackTrace();
@@ -197,6 +222,7 @@ public class Game {
 			FirstTurn=false;
 			MapofUSA.firstturn=false;
 		}
+		System.out.println("GAMEOVER");
 		showScoreScreen=true;
 		try {
 			Thread.sleep(1);

@@ -14,13 +14,14 @@ import javax.swing.*;
 public class ScoreScreen extends JPanel{
 	private Game game;
 	private BufferedImage backg;
+	boolean tie;
 	ScoreScreen(Game game){
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
 		setLayout(null);
 		this.game = game;
-		WinningPlayer wp =new WinningPlayer(game.players.get(game.getWinningPlayerforRound()));
+		WinningPlayer wp =new WinningPlayer(game.getWinningPlayerforRound());
 		wp.setSize(1600, 900);
 		add(wp);
 		add(new Losers(game.players));
@@ -42,21 +43,26 @@ public class ScoreScreen extends JPanel{
 		
 	}
 	private class WinningPlayer extends JPanel{
-		private WinningPlayer(Player winner){
-			
-			JLabel win = new JLabel(winner.getName()+" Connected All Their Cities", SwingConstants.CENTER);
-			win.setLocation(500, 0);
-			win.setSize(300, 100);
-			add(win);
-			String names = "";
-			for(int i = 0; i < 5; i++)
-				names = names+" "+winner.getPlayerRecord().getCitiesReached().get(i).getName();
-			setLayout(null);
-			WinnerInfo w =new WinnerInfo(new JLabel(names));
-			w.setLocation(0, 200);
-			w.setSize(300, 100);
 		
-			add(w);
+		private WinningPlayer(ArrayList<Player> arrayList){
+			//IT IS ABSOLUTELY NECCESSARY THAT TIES ARE TAKEN INTO ACCOUNT
+			//ALSO IT's SIZE WILL NEVER BE ZERO
+			if(arrayList.size()==1){
+				Player per=arrayList.get(0);
+				JLabel win = new JLabel(per.getName()+" Connected All Their Cities", SwingConstants.CENTER);
+				win.setLocation(500, 0);
+				win.setSize(300, 100);
+				add(win);
+				String names = "";
+				for(int i = 0; i < 5; i++)
+					names = names+" "+per.getPlayerRecord().getCitiesReached().get(i).getName();
+				setLayout(null);
+				WinnerInfo w =new WinnerInfo(new JLabel(names));
+				w.setLocation(0, 200);
+				w.setSize(300, 100);
+			
+				add(w);
+			}
 		}
 		public void paint(Graphics g){
 			for(int i=0;i<this.getComponentCount();i++){
@@ -92,14 +98,16 @@ public class ScoreScreen extends JPanel{
 	 */
 	private class Losers extends JPanel{
 		private Losers(ArrayList<Player> players){
-			setBounds(100, 100, 1000, 500);
+			setBounds(100, 100, 1300, 500);
 			
-			for(int i = 0; i < players.size(); i++)
+			for(int i = 0; i < players.size(); i++) {
 				if(!players.get(i).equals(players.get(game.getWinningPlayerforRound()))){
 					Loser l =new Loser(players.get(i));
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
+			}
+			
 		}
 	}
 	
@@ -116,14 +124,13 @@ public class ScoreScreen extends JPanel{
 			setBackground(player.getColor());
 			JLabel name = new JLabel(player.getName()), 
 					unconnected = new JLabel(unconnectedCities(player)),
-					railsMissing = new JLabel(),
-					pointsLost = new JLabel(),
+					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
-			add(railsMissing);
 			add(pointsLost);
 			add(score);
+			setSize(300, 300);
 		}
 		/**
 		 * @param player
