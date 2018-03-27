@@ -96,7 +96,7 @@ public class Game {
 				grid = new Grid();
 				for (Player p : players) {
 					p.clearForNewRound(p.getPlayerRecord().getCities());
-				}if(!isAIGame) {
+				}if(slowMode) {
 					startHumanRound();
 				}else{
 					startComputerRound();
@@ -126,9 +126,6 @@ public class Game {
 	static boolean ignoremap=true;
 	void startComputerRound(){
 		boolean FirstTurn =true;
-//		MapofUSA.firstturn=true;
-		MapofUSA.currentGrid=grid;
-//		System.out.println("Players"+players.size());
 		
 		while(!gameOver()){
 			for (Player p : players) {
