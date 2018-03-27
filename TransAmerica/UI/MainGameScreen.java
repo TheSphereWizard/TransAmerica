@@ -145,12 +145,53 @@ public class MainGameScreen extends JPanel{
 		
 		//currentGame.players.get(increment).getPlayerRecord();
 		
-		g2d.drawImage(redTrain, 1525, 20, -30, 30, null);
-		g2d.drawImage(yellowTrain, 1540, 30, -30, 30, null);
-		g2d.drawImage(greenTrain, 1555, 40, -30, 30, null);
-		g2d.drawImage(blueTrain, 1570, 50, -30, 30, null);
-		g2d.drawImage(brownTrain, 1585, 60, -30, 30, null);
-		g2d.drawImage(whiteTrain, 1600, 70, -30, 30, null);
+		for(int i=0;i<currentGame.players.size();i++){
+			Color playerColor = currentGame.players.get(i).getColor();
+			if(playerColor.equals(new Color(255,40,40))){
+				g2d.drawImage(redTrain, 1525, 20, -30, 30, null);
+			}else if(playerColor.equals(Color.yellow)){
+				g2d.drawImage(yellowTrain, 1540, 30, -30, 30, null);
+			}else if(playerColor.equals(new Color(0,204,0))){
+				g2d.drawImage(greenTrain, 1555, 40, -30, 30, null);
+			}else if(playerColor.equals(Color.blue)){
+				g2d.drawImage(blueTrain, 1570, 50, -30, 30, null);
+			}else if(playerColor.equals(new Color(139,69,19))){
+				g2d.drawImage(brownTrain, 1585, 60, -30, 30, null);
+			}else if(playerColor.equals(Color.white)){
+				g2d.drawImage(whiteTrain, 1600, 70, -30, 30, null);
+			}
+		}
+		
+		//final Positions
+		/*
+		 * redTrain: x = 0, y = 20
+		 * yellowTrain: 
+		 * greenTrain: 
+		 * blueTrain: 
+		 * brownTrain: 
+		 * whiteTrain: 
+		 */
+		
+		g2d.drawImage(redTrain, 30, 20, -30, 30, null);
+		g2d.drawImage(yellowTrain, 45, 30, -30, 30, null);
+		g2d.drawImage(greenTrain, 60, 40, -30, 30, null);
+		g2d.drawImage(blueTrain, 75, 50, -30, 30, null);
+		g2d.drawImage(brownTrain, 90, 60, -30, 30, null);
+		g2d.drawImage(whiteTrain, 105, 70, -30, 30, null);
+		
+		for(int i=0;i<currentGame.players.size();i++){
+			int score = currentGame.players.get(i).record.score;
+			if(score < 12){
+				
+			}else if(score <= 0){
+				//g.drawI
+			}
+		}
+		
+		
+		
+		
+		
 		
 		
 		
