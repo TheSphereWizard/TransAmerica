@@ -76,9 +76,6 @@ public class Game {
 	public int getNumberOfPlayers(){
 		return players.size();
 	}
-
-	
-	
 	Timer gametimer = new Timer();
 	
 	void runGame(){
