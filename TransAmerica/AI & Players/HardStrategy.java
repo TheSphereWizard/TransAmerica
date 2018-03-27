@@ -42,13 +42,6 @@ public class HardStrategy extends ComputerPlayer {
 		
 	}
 	public int distanceToCity(Rail rail, City city, ReadOnlyGrid grid) {
-		//returns distance from rail to city
-//		int distance = 0;
-//		if(grid.distbetweenpoints(rail.p1,city.getPos())>grid.distbetweenpoints(rail.p2, city.getPos())){
-//			distance = grid.distbetweenpoints(rail.p2, city.getPos());
-//		}else{
-//			distance = grid.distbetweenpoints(rail.p1, city.getPos());
-//		}
 		return Math.min(grid.distbetweenpoints(rail.p1,city.getPos()), grid.distbetweenpoints(rail.p2, city.getPos()));
 	}
 }

@@ -36,6 +36,10 @@ public class Game {
 	Game(ArrayList<Player> players, boolean slowMode){
 		this.players = players;
 		this.slowMode = slowMode;
+		startingScores = new int[players.size()];
+		for(int i = 0;i<players.size();i++) {
+			startingScores[i]=players.get(i).getPlayerRecord().getScore();
+		}
 		isAIGame = true;
 		setcitiestoplayers();
 		for(Player p:players) {
@@ -59,6 +63,7 @@ public class Game {
 	boolean showScoreScreen;
 	boolean isAIGame;
 	boolean slowMode;
+	int[] startingScores;
 	public boolean getShowScoreScreen(){
 		//called by MainGamePanel to determine when to change, maybe
 		if(showScoreScreen){
@@ -178,7 +183,7 @@ public class Game {
 		System.out.println("GAMEOVER");
 		showScoreScreen=true;
 		
-		int[] p =returnScoreChange();
+		int[] p = grid.railsMissing(players);
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
 		}
@@ -188,16 +193,15 @@ public class Game {
 		boolean FirstTurn =true;
 		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
+
+//		ArrayList<City> citiesfortesting = new ArrayList<City>();
+//		citiesfortesting.add(grid.allcities[5][0]);
+//		citiesfortesting.add(grid.allcities[5][1]);
+//		citiesfortesting.add(grid.allcities[5][2]);
+//		citiesfortesting.add(grid.allcities[5][3]);
+//		citiesfortesting.add(grid.allcities[5][4]);
+//		players.get(0).record.cities=citiesfortesting;
 		
-		/*ArrayList<City> citiesfortesting = new ArrayList<City>();
-		citiesfortesting.add(new City("1",new Position(0,1),Color.blue));
-		citiesfortesting.add(new City("2",new Position(1,1),Color.cyan));
-		citiesfortesting.add(new City("3",new Position(1,2),Color.orange));
-		citiesfortesting.add(new City("4",new Position(4,5),Color.green));
-		citiesfortesting.add(new City("5",new Position(10,1),Color.red));
-		players.get(0).record.cities=citiesfortesting;*/
-		
-		//rotate through who goes first
 		while(!gameOver()){
 			for (Player p : players) {
 				int railsleft=2;
@@ -240,12 +244,15 @@ public class Game {
 						if(!gameOver()){
 							do{
 								do{
-									Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+									Object o = null;
+									try {
+									o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+									}catch(Exception concmod) {
+									}
 									if(o!=null){
 										try{
 											Marker m = (Marker) o;
 											if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
-												System.out.println("markers");
 												c.startMarker=m;
 												grid.placeMarker(m.p, c);
 											}
@@ -263,9 +270,6 @@ public class Game {
 										}
 									}
 								}while(railsleft>0&!FirstTurn);
-//								try{
-//									System.out.println("red"+((Marker)c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid))).p);
-//								}catch(Exception e){}
 							}while(c.startMarker==null);
 						}
 					}catch(Exception Ee){
@@ -285,7 +289,7 @@ public class Game {
 			MapofUSA.firstturn=false;
 		}
 		System.out.println("GAMEOVER");
-		showScoreScreen=true;
+		
 		try {
 			Thread.sleep(1);
 		} catch (InterruptedException e) {
@@ -293,12 +297,22 @@ public class Game {
 			e.printStackTrace();
 		}
 		
-		int[] p =returnScoreChange();
+
+		int[] p =grid.railsMissing(players);
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
 		}
+
 	}
 	
+	public int[] returnScoreChange() {
+		int[] scoreChange = new int[players.size()];
+		int[] newScore = getCurrentScore();
+		for(int i = 0;i<scoreChange.length;i++) {
+			scoreChange[i]=startingScores[i]-newScore[i];
+		}
+		return scoreChange;
+	}
 	public int[] getCurrentScore(){
 		int[] currentScore =new int[players.size()];
 		for(int i=0;i<players.size();i++){
@@ -339,9 +353,5 @@ public class Game {
 			}
 		}
 		return winningplayers;
-	}
-	int[] returnScoreChange() {
-		int[] scoreChange = grid.railsMissing(players);
-		return scoreChange;
 	}
 }
