@@ -42,6 +42,13 @@ public class Grid {
 			new City("Salt Lake City",new Position(6,11),new Color(255, 0, 128)),
 			new City("Santa Fe",new Position(10,8),new Color(255, 0, 128)),
 			new City("Saint Louis",new Position(18,10),new Color(255, 0, 128)),},
+		{
+				new City("1",new Position(0,1),Color.blue),
+				new City("2",new Position(1,1),Color.cyan),
+				new City("3",new Position(1,2),Color.orange),
+				new City("4",new Position(4,5),Color.green),
+				new City("5",new Position(10,1),Color.red)
+		}
 	};
 	
 	Rail[][] railGrid;
@@ -65,7 +72,7 @@ public class Grid {
 		}
 	}
 	void placeRail(Rail rail) {//Places a rail on the grid, update all player networks
-		if(!allRails.contains(rail)&alllegalrails.contains(rail)&checkRail(rail,rail.player)){
+		if(!allRails.contains(rail)&(alllegalrails.contains(rail)&checkRail(rail,rail.player)||Game.ignoremap)){
 			allRails.add(rail);
 			connectCities(rail.player);
 			//This will only update at end of a players turn, if connecting another players turn, it should end imediately
@@ -132,16 +139,17 @@ public class Grid {
 			{0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,},
 			{0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,},
 		};//needs to be redone to shape of USA
+		System.out.println(alllandpositions[boardheight-10-1][21]);
 		ArrayList<Rail> all = new ArrayList<Rail>();
 		for(int x =0;x<boardwidth;x++){
 			for(int y =0;y<boardheight;y++){
 				for(int x1 =x-1<0?0:x-1;x1<((x+2>boardwidth)?boardwidth:x+2);x1++){
 					for(int y1 =y-1<0?0:y-1;y1<((y+2>boardheight)?boardheight:y+2);y1++){
-						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
+//						if(alllandpositions[boardheight-y-1][x]==1&alllandpositions[boardheight-1-y1][x1]==1){
 							try {
 								all.add(new Rail(new Position(x,y),new Position(x1,y1)));
 							} catch (Exception e) {}
-						}
+//						}
 					}
 				}
 			}
@@ -317,24 +325,20 @@ public class Grid {
 	
 	ArrayList<Rail> allValidMovesForPlayer(Player p){//returns all validmoves
 		ArrayList<Rail> allvalid;
-		if(p==null){
-			return null;
-		}else{
-			ArrayList<Rail> corners = immediateneighbors(p.startMarker.p);
-			allvalid = new ArrayList<Rail>();
-			for(int i=0;i<corners.size();i++){
-				Rail po=corners.get(i);
-				if(RailExists(po.p1,po.p2)){
-					for(Rail pr : immediateneighbors(po.p2)){
-						if(!corners.contains(pr)){
-							corners.add(pr);
-						}
+		ArrayList<Rail> corners = immediateneighbors(p.startMarker.p);
+		allvalid = new ArrayList<Rail>();
+		for(int i=0;i<corners.size();i++){
+			Rail po=corners.get(i);
+			if(RailExists(po.p1,po.p2)){
+				for(Rail pr : immediateneighbors(po.p2)){
+					if(!corners.contains(pr)){
+						corners.add(pr);
 					}
-				}else{
-					try {
-						allvalid.add(new Rail(po.p2,po.p1,p));
-					} catch (Exception e) {System.out.println("here");}
 				}
+			}else{
+				try {
+					allvalid.add(new Rail(po.p2,po.p1,p));
+				} catch (Exception e) {System.out.println("here");}
 			}
 		}
 		return allvalid;

@@ -16,22 +16,25 @@ public class HardStrategy extends ComputerPlayer {
 			return m;
 		}else{
 			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this);//getRailsAtPos(startMarker.p),startMarker.p, grid);
-			int minDistance = 100000;
-			Rail nextRail;
-			try {
-				nextRail = new Rail(new Position(0,0),new Position(0,1));
-			} catch (Exception e) {
-				nextRail=null;
+			if(this.record.citiesReached.size()==5){
+				
 			}
+			int minDistance = 100000;
+			Rail nextRail=null;
 			for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
-				for(City c: this.record.getCities()){
-					if(!record.citiesReached.contains(c)){
-						int distance = distanceToCity(r,c, grid);
-						if(distance<minDistance){
-							minDistance = distance;
-							nextRail = r;
+				if(!(firstRailPlaced&&r.size==2)){
+					if(record.citiesReached.size()==5){
+						nextRail=r;
+					}else
+						for(City c: this.record.getCities()){
+							if(!record.citiesReached.contains(c)){
+								int distance = distanceToCity(r,c, grid);
+								if(distance<minDistance){
+									minDistance = distance;
+									nextRail = r;
+								}
+							}
 						}
-					}
 				}
 			}
 			return nextRail;

@@ -158,7 +158,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 				Rail r = currentGrid.allRails.get(i);
 				if(r.player!=null){
 					g.setColor(r.player.getColor());
-					g2d.setStroke(new BasicStroke(6+r.size*2,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+					g2d.setStroke(new BasicStroke(4+r.size*3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 				}else{
 					g.setColor(Color.black);
 					g2d.setStroke(new BasicStroke(10,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
@@ -193,7 +193,8 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		
 		Rail colortoRail(int one,int x, int y){
 			Rail returnrail=null;
-			Position p1,p2;
+			Position p1=null,p2=null;
+			x+=scalefactor[0];//This fixes a strange rounding error on left side
 			switch (one){
 				case 2: 
 					if(((siz[1]-y-scalefactor[1]/2-1)/scalefactor[1])%2==1){
@@ -201,9 +202,6 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 					}
 					p1=new Position(x/scalefactor[0],((siz[1]-y-scalefactor[1]/2-1)/scalefactor[1]));
 					p2=new Position(x/scalefactor[0]+1,((siz[1]-y-scalefactor[1]/2-1)/scalefactor[1]));
-					try {
-						returnrail=new Rail(p1,p2,currentPlayer);
-					} catch (Exception e) {}
 					
 				break;
 				case 1: 
@@ -215,10 +213,6 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 						p1=new Position(x/scalefactor[0],((siz[1]-y-1)/scalefactor[1])-1);
 						p2=new Position(x/scalefactor[0]+1,((siz[1]-y-1)/scalefactor[1]));
 					}
-					try {
-						returnrail=new Rail(p1,p2,currentPlayer);
-					} catch (Exception e) {}
-				
 				break;
 				case 3: one=3;
 					if(((siz[1]-y-1)/scalefactor[1])%2==1){
@@ -229,11 +223,11 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 						p1=new Position(x/scalefactor[0],((siz[1]-y-1)/scalefactor[1])-1);
 						p2=new Position(x/scalefactor[0],((siz[1]-y-1)/scalefactor[1]));
 					}
-					try {
-						returnrail=new Rail(p1,p2,currentPlayer);
-					} catch (Exception e) {}
 				break;
 			}
+			try {
+				returnrail=new Rail(new Position(p1.x-1,p1.y),new Position(p2.x-1,p2.y),currentPlayer);
+			} catch (Exception e) {}
 			return returnrail;
 		}
 		int colorcode(int x,int y){
