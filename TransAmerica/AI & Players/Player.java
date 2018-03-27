@@ -17,6 +17,7 @@ public abstract class Player {//give players playerrecords
 	boolean placedMarkerAlready;//this is never set
 	Marker startMarker;
 	PlayerRecord record;
+	int playerNumber = 0;
 	
 	String name;
 	Color color;
@@ -48,6 +49,9 @@ public abstract class Player {//give players playerrecords
 	}
 	public Color getColor() {
 		return color;
+	}
+	public void setPlayerNumber(int num) {
+		playerNumber = num;
 	}
 	
 }

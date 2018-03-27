@@ -54,13 +54,15 @@ public class StrategyAnalyzer{
 	 */
 	private void calculateResults(int games, Game game){
 		//The position of the winning player
-		ArrayList<Player> winner = game.getWinningPlayerforGame();
-		for(int i = 0; i < players; i++){
-			if(i == winner)
-				gamesWon[winner]++;
+		ArrayList<Player> winners = game.getWinningPlayerforGame();
+		int counter = 0;
+		for(Player player : AIs){
+			if(winners.contains(player))
+				gamesWon[counter]++;
 			else
-				gamesLost[i] = gamesLost[i]++;
-			winPercentage[i] = gamesWon[i]/games;
+				gamesLost[counter] = gamesLost[counter]++;
+			winPercentage[counter] = gamesWon[counter]/games;
+			counter++;
 		}
 		calculateRank();
 	}
