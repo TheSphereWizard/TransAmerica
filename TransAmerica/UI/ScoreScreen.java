@@ -50,14 +50,18 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			contButton.setText("Continue");
 		}else {
 			contButton.setText("Next Round");
+			
 		}
+		contButton.setActionCommand(contButton.getText());
+		contButton.setSize(100,50);
+		contButton.setLocation((int) (800+200*(1))-50,60);
 		add(contButton);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(contButton) && gameOver == true) {
+		if(e.getSource().equals(contButton) && contButton.getActionCommand().equals("Continue")) {
 			new TransAmerica();
-		} else {
+		} else if(e.getSource().equals(contButton) && contButton.getActionCommand().equals("Next Round")){
 			
 		}
 	}

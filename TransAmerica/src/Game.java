@@ -36,6 +36,10 @@ public class Game {
 	Game(ArrayList<Player> players, boolean slowMode){
 		this.players = players;
 		this.slowMode = slowMode;
+		startingScores = new int[players.size()];
+		for(int i = 0;i<players.size();i++) {
+			startingScores[i]=players.get(i).getPlayerRecord().getScore();
+		}
 		isAIGame = true;
 		setcitiestoplayers();
 		for(Player p:players) {
@@ -59,6 +63,7 @@ public class Game {
 	boolean showScoreScreen;
 	boolean isAIGame;
 	boolean slowMode;
+	int[] startingScores;
 	public boolean getShowScoreScreen(){
 		//called by MainGamePanel to determine when to change, maybe
 		if(showScoreScreen){
@@ -300,6 +305,14 @@ public class Game {
 
 	}
 	
+	public int[] returnScoreChange() {
+		int[] scoreChange = new int[players.size()];
+		int[] newScore = getCurrentScore();
+		for(int i = 0;i<scoreChange.length;i++) {
+			scoreChange[i]=startingScores[i]-newScore[i];
+		}
+		return scoreChange;
+	}
 	public int[] getCurrentScore(){
 		int[] currentScore =new int[players.size()];
 		for(int i=0;i<players.size();i++){
