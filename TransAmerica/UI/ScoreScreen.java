@@ -11,10 +11,12 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-public class ScoreScreen extends JPanel{
+public class ScoreScreen extends JPanel implements ActionListener{
 	private Game game;
 	private BufferedImage backg;
 	boolean tie;
+	private JButton contButton = new JButton("Continue");
+	
 	ScoreScreen(Game game){
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
@@ -38,9 +40,18 @@ public class ScoreScreen extends JPanel{
 		 * 
 		 */
 		
+		contButton.addActionListener(this);
 		
 		
-		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(contButton) && ) {
+			
+		} else {
+			
+		}
 	}
 	private class WinningPlayer extends JPanel{
 		
@@ -146,4 +157,5 @@ public class ScoreScreen extends JPanel{
 			return content;
 		}
 	}
+	
 }
