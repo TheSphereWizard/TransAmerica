@@ -101,7 +101,7 @@ public class ScoreScreen extends JPanel{
 			setBounds(100, 100, 1300, 500);
 			
 			for(int i = 0; i < players.size(); i++) {
-				if(!players.get(i).equals(players.get(game.getWinningPlayerforRound()))){
+				if(!game.getWinningPlayerforRound().contains(players.get(i))){
 					Loser l =new Loser(players.get(i));
 					l.setLocation(100*(i+1), 200);
 					add(l);
