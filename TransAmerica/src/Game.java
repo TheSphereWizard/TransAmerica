@@ -178,7 +178,7 @@ public class Game {
 		System.out.println("GAMEOVER");
 		showScoreScreen=true;
 		
-		int[] p =returnScoreChange();
+		int[] p = grid.railsMissing(players);
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
 		}
@@ -188,16 +188,15 @@ public class Game {
 		boolean FirstTurn =true;
 		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
+
+//		ArrayList<City> citiesfortesting = new ArrayList<City>();
+//		citiesfortesting.add(grid.allcities[5][0]);
+//		citiesfortesting.add(grid.allcities[5][1]);
+//		citiesfortesting.add(grid.allcities[5][2]);
+//		citiesfortesting.add(grid.allcities[5][3]);
+//		citiesfortesting.add(grid.allcities[5][4]);
+//		players.get(0).record.cities=citiesfortesting;
 		
-		/*ArrayList<City> citiesfortesting = new ArrayList<City>();
-		citiesfortesting.add(new City("1",new Position(0,1),Color.blue));
-		citiesfortesting.add(new City("2",new Position(1,1),Color.cyan));
-		citiesfortesting.add(new City("3",new Position(1,2),Color.orange));
-		citiesfortesting.add(new City("4",new Position(4,5),Color.green));
-		citiesfortesting.add(new City("5",new Position(10,1),Color.red));
-		players.get(0).record.cities=citiesfortesting;*/
-		
-		//rotate through who goes first
 		while(!gameOver()){
 			for (Player p : players) {
 				int railsleft=2;
@@ -266,9 +265,6 @@ public class Game {
 										}
 									}
 								}while(railsleft>0&!FirstTurn);
-//								try{
-//									System.out.println("red"+((Marker)c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid))).p);
-//								}catch(Exception e){}
 							}while(c.startMarker==null);
 						}
 					}catch(Exception Ee){
@@ -288,7 +284,7 @@ public class Game {
 			MapofUSA.firstturn=false;
 		}
 		System.out.println("GAMEOVER");
-		showScoreScreen=true;
+		
 		try {
 			Thread.sleep(1);
 		} catch (InterruptedException e) {
@@ -296,10 +292,12 @@ public class Game {
 			e.printStackTrace();
 		}
 		
-		int[] p =returnScoreChange();
+
+		int[] p =grid.railsMissing(players);
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
 		}
+
 	}
 	
 	public int[] getCurrentScore(){
@@ -342,9 +340,5 @@ public class Game {
 			}
 		}
 		return winningplayers;
-	}
-	int[] returnScoreChange() {
-		int[] scoreChange = grid.railsMissing(players);
-		return scoreChange;
 	}
 }
