@@ -82,6 +82,7 @@ public class PopUp extends JPanel implements ActionListener{
 			Game game = new Game(players, slowmode);
 			game.runGame();
 			ArrayList<Player> winningPlayers = game.getWinningPlayerforGame();
+			
 			for(Player p: winningPlayers){
 				for(int i = 0;i<players.size();i++){
 					if(p.equals(players.get(i))){

@@ -75,15 +75,19 @@ public class Game {
 	
 	
 	Timer gametimer = new Timer();
+	
 	void runGame(){
 		boolean goAgain = true;
 		while(goAgain){
 			this.Round();
 			for(Player p: players){
+				System.out.print(p.record.getScore()+" ");
 				if(p.record.getScore()<=0){
 					goAgain = false;
 				}
 			}
+			players.get(0).record.score--;
+			System.out.println();
 		}
 	}
 	
@@ -96,8 +100,10 @@ public class Game {
 				grid = new Grid();
 				for (Player p : players) {
 					p.clearForNewRound(p.getPlayerRecord().getCities());
-				}if(!isAIGame) {
+				}if(slowMode) {
 					startHumanRound();
+				}else{
+					startComputerRound();
 				}
 //				System.out.println("hit");
 			}
@@ -122,18 +128,74 @@ public class Game {
 		return over;
 	}
 	static boolean ignoremap=true;
+	void startComputerRound(){
+		boolean FirstTurn =true;
+		
+		//rotate through who goes first
+		while(!gameOver()){
+			System.out.println("not gameover");
+			for (Player p : players) {
+				int railsleft=2;
+				placesleft=railsleft;
+					try{
+						ComputerPlayer c = (ComputerPlayer)p;
+						if(!gameOver()){
+							do{
+								do{
+									Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+									if(o!=null){
+										try{
+											Marker m = (Marker) o;
+											if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
+												c.startMarker=m;
+												grid.placeMarker(m.p, c);
+											}
+										}catch(Exception Eer){
+											try{
+												Rail r = (Rail) o;
+												if(r.size<=railsleft){
+													grid.placeRail(r);
+													railsleft-=r.size;
+													placesleft=railsleft;
+												}
+											}catch(Exception er){
+												er.printStackTrace();
+											}
+										}
+									}
+								}while(railsleft>0&!FirstTurn);
+//								try{
+//									System.out.println("red"+((Marker)c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid))).p);
+//								}catch(Exception e){}
+							}while(c.startMarker==null);
+						}
+					}catch(Exception Ee){
+						Ee.printStackTrace();
+					}
+				}
+			}
+			FirstTurn=false;
+		System.out.println("GAMEOVER");
+		showScoreScreen=true;
+		
+		int[] p = grid.railsMissing(players);
+		for(int i=0;i<players.size();i++){
+			players.get(i).getPlayerRecord().score-=p[i];
+		}
+
+	}
 	void startHumanRound() {
 		boolean FirstTurn =true;
 		MapofUSA.firstturn=true;
 		MapofUSA.currentGrid=grid;
-		
-		ArrayList<City> citiesfortesting = new ArrayList<City>();
-		citiesfortesting.add(grid.allcities[5][0]);
-		citiesfortesting.add(grid.allcities[5][1]);
-		citiesfortesting.add(grid.allcities[5][2]);
-		citiesfortesting.add(grid.allcities[5][3]);
-		citiesfortesting.add(grid.allcities[5][4]);
-		players.get(0).record.cities=citiesfortesting;
+
+//		ArrayList<City> citiesfortesting = new ArrayList<City>();
+//		citiesfortesting.add(grid.allcities[5][0]);
+//		citiesfortesting.add(grid.allcities[5][1]);
+//		citiesfortesting.add(grid.allcities[5][2]);
+//		citiesfortesting.add(grid.allcities[5][3]);
+//		citiesfortesting.add(grid.allcities[5][4]);
+//		players.get(0).record.cities=citiesfortesting;
 		
 		while(!gameOver()){
 			for (Player p : players) {
@@ -182,6 +244,7 @@ public class Game {
 										try{
 											Marker m = (Marker) o;
 											if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
+												System.out.println("markers");
 												c.startMarker=m;
 												grid.placeMarker(m.p, c);
 											}
@@ -226,57 +289,14 @@ public class Game {
 			e.printStackTrace();
 		}
 		
-		//needs to run again until one player is at <0 score, then if a tie
-		//runs a new game between those players who tied in first
-		
-		//What do we do if there is a tie?
-//		ScoreScreen screen = new ScoreScreen(this);
-//
-//		TransAmerica.transamerica.add(screen);
-//		TransAmerica.transamerica.remove(0);
-//		TransAmerica.transamerica.dispose();
-//		JFrame f = new JFrame();
-//		f.add(screen);
-//		TransAmerica.transamerica = f;
-//		TransAmerica.transamerica.setTitle("TransAmerica");
-//		TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		TransAmerica.transamerica.dispose();
-//		TransAmerica.transamerica.setUndecorated(true);
-//		TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//		TransAmerica.transamerica.setVisible(true);
-//		TransAmerica.transamerica.repaint();
-		int[] p = grid.railsMissing2(players);
+
+		int[] p =grid.railsMissing(players);
 		for(int i=0;i<players.size();i++){
 			players.get(i).getPlayerRecord().score-=p[i];
 		}
-//		showScoreScreen=true;
-//		boolean again=true;
-//		for(int i=0;i<players.size();i++){
-//			if(players.get(i).getPlayerRecord().score<=0){
-//				again=false;
-//			}
-//		}
-//		if(again){
-//			MainGameScreen screen = new MainGameScreen(this);
-//
-////			TransAmerica.transamerica.add(screen);
-////			TransAmerica.transamerica.remove(0);
-//			TransAmerica.transamerica.dispose();
-//			JFrame f = new JFrame();
-//			f.add(screen);
-//			TransAmerica.transamerica = f;
-//			TransAmerica.transamerica.setTitle("TransAmerica");
-//			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//			TransAmerica.transamerica.dispose();
-//			TransAmerica.transamerica.setUndecorated(true);
-//			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//			TransAmerica.transamerica.setVisible(true);
-//			TransAmerica.transamerica.repaint();
-//			setcitiestoplayers();
-//			MapofUSA.currentGrid=grid;
-//			
-//		}
+
 	}
+	
 	public int[] getCurrentScore(){
 		int[] currentScore =new int[players.size()];
 		for(int i=0;i<players.size();i++){

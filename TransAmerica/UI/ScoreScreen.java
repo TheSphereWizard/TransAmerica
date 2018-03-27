@@ -11,10 +11,13 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-public class ScoreScreen extends JPanel{
+public class ScoreScreen extends JPanel implements ActionListener{
 	private Game game;
 	private BufferedImage backg;
 	boolean tie;
+	private JButton contButton = new JButton("Continue");
+	private boolean gameOver;
+	
 	ScoreScreen(Game game){
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
@@ -37,10 +40,20 @@ public class ScoreScreen extends JPanel{
 		 * 
 		 * 
 		 */
-		
-		
-		
-		
+		if(game.gameOver() == true) {
+			gameOver = true;
+		} else {
+			gameOver = false;
+		}
+		contButton.addActionListener(this);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(contButton) && gameOver == true) {
+			new TransAmerica();
+		} else {
+			
+		}
 	}
 	private class WinningPlayer extends JPanel{
 		
@@ -96,21 +109,21 @@ public class ScoreScreen extends JPanel{
 	/**
 	 * Displays the game losers
 	 */
-	private class Losers extends JPanel{
+	private class Losers extends JPanel {
+				
 		private Losers(ArrayList<Player> players){
 			setBounds(100, 100, 1300, 500);
 			
 			for(int i = 0; i < players.size(); i++) {
-				if(!players.get(i).equals(players.get(game.getWinningPlayerforRound()))){
-					Loser l =new Loser(players.get(i));
+				if(!game.getWinningPlayerforRound().contains(players.get(i))){
+					Loser l =new Loser(players.get(i), i);
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
+
 			}
-			
 		}
 	}
-	
 	public ScoreScreen getScoreScreen() {
 		return this;
 	}
@@ -119,19 +132,23 @@ public class ScoreScreen extends JPanel{
 	 */
 	private class Loser extends JPanel{
 		
-		public Loser(Player player){
+		private Boolean gameOver;
+		
+		public Loser(Player player, int num){
 			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			setBackground(player.getColor());
 			JLabel name = new JLabel(player.getName()), 
 					unconnected = new JLabel(unconnectedCities(player)),
-					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()),
+					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()[num]),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
 			add(pointsLost);
 			add(score);
 			setSize(300, 300);
+			
 		}
+		
 		/**
 		 * @param player
 		 * @return a String containing players unconnected cities
@@ -145,5 +162,8 @@ public class ScoreScreen extends JPanel{
 			}
 			return content;
 		}
+		
+		
 	}
+	
 }
