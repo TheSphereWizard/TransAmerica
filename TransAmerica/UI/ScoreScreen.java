@@ -116,7 +116,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			
 			for(int i = 0; i < players.size(); i++) {
 				if(!game.getWinningPlayerforRound().contains(players.get(i))){
-					Loser l =new Loser(players.get(i));
+					Loser l =new Loser(players.get(i), i);
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
@@ -134,12 +134,12 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		
 		private Boolean gameOver;
 		
-		public Loser(Player player){
+		public Loser(Player player, int num){
 			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			setBackground(player.getColor());
 			JLabel name = new JLabel(player.getName()), 
 					unconnected = new JLabel(unconnectedCities(player)),
-					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()),
+					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()[num]),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
@@ -163,7 +163,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			return content;
 		}
 		
-		}
+		
 	}
 	
 }
