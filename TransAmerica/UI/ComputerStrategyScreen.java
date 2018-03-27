@@ -27,7 +27,7 @@ public class ComputerStrategyScreen extends JPanel{
 	}
 	private void setPlayers(int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage){
 		Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
-		for(int i = 0; i < 6; i++){
+		for(int i = 0; i < gamesWon.length; i++){
 			players.add(new PlayerInfo(gamesWon[i], gamesLost[i], rank[i], winPercentage[i], colors[i], i+1));
 		}
 	}
