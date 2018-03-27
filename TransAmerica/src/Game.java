@@ -281,6 +281,7 @@ public class Game {
 //			
 //		}
 	}
+	
 	public int[] getCurrentScore(){
 		int[] currentScore =new int[players.size()];
 		for(int i=0;i<players.size();i++){
