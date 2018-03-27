@@ -36,6 +36,10 @@ public class Game {
 	Game(ArrayList<Player> players, boolean slowMode){
 		this.players = players;
 		this.slowMode = slowMode;
+		startingScores = new int[players.size()];
+		for(int i = 0;i<players.size();i++) {
+			startingScores[i]=players.get(i).getPlayerRecord().getScore();
+		}
 		isAIGame = true;
 		setcitiestoplayers();
 		for(Player p:players) {
@@ -59,6 +63,7 @@ public class Game {
 	boolean showScoreScreen;
 	boolean isAIGame;
 	boolean slowMode;
+	int[] startingScores;
 	public boolean getShowScoreScreen(){
 		//called by MainGamePanel to determine when to change, maybe
 		if(showScoreScreen){
@@ -245,12 +250,15 @@ public class Game {
 						if(!gameOver()){
 							do{
 								do{
-									Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+									Object o = null;
+									try {
+									o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+									}catch(Exception concmod) {
+									}
 									if(o!=null){
 										try{
 											Marker m = (Marker) o;
 											if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
-//												System.out.println("markers");
 												c.startMarker=m;
 												grid.placeMarker(m.p, c);
 											}
@@ -303,6 +311,14 @@ public class Game {
 
 	}
 	
+	public int[] returnScoreChange() {
+		int[] scoreChange = new int[players.size()];
+		int[] newScore = getCurrentScore();
+		for(int i = 0;i<scoreChange.length;i++) {
+			scoreChange[i]=startingScores[i]-newScore[i];
+		}
+		return scoreChange;
+	}
 	public int[] getCurrentScore(){
 		int[] currentScore =new int[players.size()];
 		for(int i=0;i<players.size();i++){

@@ -331,7 +331,7 @@ public class Grid {
 			Rail po=corners.get(i);
 			if(RailExists(po.p1,po.p2)){
 				for(Rail pr : immediateneighbors(po.p2)){
-					if(!corners.contains(pr)){
+					if(!corners.contains(pr)&&!(pr.size>p.railsRemaining)){
 						corners.add(pr);
 					}
 				}
