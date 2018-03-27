@@ -35,20 +35,20 @@ public class Grid {
 			new City("Jacksonville",new Position(23,3),new Color(255,128,0)),
 			new City("New York",new Position(26,13),new Color(255,128,0)),},
 		{					
-			new City("Denver",new Position(10,10),new Color(255, 0, 128)),
-			new City("Kansas City",new Position(15,10),new Color(255, 0, 128)),
-			new City("Oklahoma City",new Position(14,8),new Color(255, 0, 128)),
-			new City("Omaha",new Position(15,12),new Color(255, 0, 128)),
-			new City("Salt Lake City",new Position(6,11),new Color(255, 0, 128)),
-			new City("Santa Fe",new Position(10,8),new Color(255, 0, 128)),
-			new City("Saint Louis",new Position(18,10),new Color(255, 0, 128)),},
-		{
-				new City("1",new Position(0,1),Color.blue),
-				new City("2",new Position(3,1),Color.cyan),
-				new City("3",new Position(3,4),Color.orange),
-				new City("4",new Position(6,4),Color.green),
-				new City("5",new Position(7,1),Color.red)
-		}
+			new City("Denver",new Position(10,10),Color.pink),
+			new City("Kansas City",new Position(15,10),Color.pink),
+			new City("Oklahoma City",new Position(14,8),Color.pink),
+			new City("Omaha",new Position(15,12),Color.pink),
+			new City("Salt Lake City",new Position(6,11),Color.pink),
+			new City("Santa Fe",new Position(10,8),Color.pink),
+			new City("Saint Louis",new Position(18,10),Color.pink),},
+//		{
+//				new City("1",new Position(0,1),Color.blue),
+//				new City("2",new Position(3,1),Color.cyan),
+//				new City("3",new Position(3,4),Color.orange),
+//				new City("4",new Position(6,4),Color.green),
+//				new City("5",new Position(7,1),Color.red)
+//		}
 	};
 	
 	Rail[][] railGrid;
@@ -364,38 +364,38 @@ public class Grid {
 		}
 		return network;
 	}
-	int[] railsMissing2(ArrayList<Player> players){
-		int[] scorechange = new int[players.size()];
-		for(int i=0;i<players.size();i++){
-			ArrayList<Path> allpathsfromallcities = new ArrayList<Path>();
-			ArrayList<City> citesneedingtobereached = new ArrayList<City>();
-			for(City c : players.get(i).record.cities){
-				if(!players.get(i).record.citiesReached.contains(c)){
-					citesneedingtobereached.add(c);
-				}
-			}
-			for(City c :citesneedingtobereached){
-				for(Rail r :immediateneighbors(c.p)){
-					allpathsfromallcities.add(new Path(r,new City[]{c}));
-				}
-			}
-			while(citesneedingtobereached.size()>0){
-				
-			}
-				
-			//Breadthfirst in parrellel from all missing cities
-
-			//IF HITS network, then that city done
-			//else if hits other city: cities not done but starts another check from the intersection
-			//if that intersection hits city then Ends both other citys.
-				
-			//IF it gets longer than 12 discard it?
-		}
-		return scorechange;
-	}
-	private class cloneGrid{
-		//AS I WILL ABSOLUTELY NEED TO PLACE RAILS 
-	}
+//	int[] railsMissing2(ArrayList<Player> players){
+//		int[] scorechange = new int[players.size()];
+//		for(int i=0;i<players.size();i++){
+//			ArrayList<Path> allpathsfromallcities = new ArrayList<Path>();
+//			ArrayList<City> citesneedingtobereached = new ArrayList<City>();
+//			for(City c : players.get(i).record.cities){
+//				if(!players.get(i).record.citiesReached.contains(c)){
+//					citesneedingtobereached.add(c);
+//				}
+//			}
+//			for(City c :citesneedingtobereached){
+//				for(Rail r :immediateneighbors(c.p)){
+//					allpathsfromallcities.add(new Path(r,new City[]{c}));
+//				}
+//			}
+//			while(citesneedingtobereached.size()>0){
+//				
+//			}
+//				
+//			//Breadthfirst in parrellel from all missing cities
+//
+//			//IF HITS network, then that city done
+//			//else if hits other city: cities not done but starts another check from the intersection
+//			//if that intersection hits city then Ends both other citys.
+//				
+//			//IF it gets longer than 12 discard it?
+//		}
+//		return scorechange;
+//	}
+//	private class cloneGrid{
+//		//AS I WILL ABSOLUTELY NEED TO PLACE RAILS 
+//	}
 	private class Path{
 		ArrayList<Rail> pathsofar = new ArrayList<Rail>();
 		ArrayList<City> cities = new ArrayList<City>();
@@ -436,6 +436,14 @@ public class Grid {
 	public int distanceToCity(Rail rail, City city, ReadOnlyGrid grid) {
 		return Math.min(grid.distbetweenpoints(rail.p1,city.getPos()), grid.distbetweenpoints(rail.p2, city.getPos()));
 	}
+//	int distfromplayertoCity(Player p,City c){
+//		int currdist=Integer.MAX_VALUE;
+//		for(Rail r :allRailsonPlayersNetwork(p)){
+//			currdist=Math.min(currdist,distbetweenpoints(r.p1,c.p));
+//			currdist=Math.min(currdist,distbetweenpoints(r.p2,c.p));
+//		}
+//		return currdist;
+//	}
 	int[] railsMissing(ArrayList<Player> players){
 		int[] loss = new int[players.size()];
 		//Below is Temporary as it will not always work. Should almost always though
@@ -455,11 +463,7 @@ public class Grid {
 			}
 			loss[i]=totaldist;
 		}
-		
-		
-		
-		//How actual one should work
-		//BREADTH FIRST BACK FROM EACH CITY GOAL, WHEN IT HITS OTHER CITY, MERGES,ELSE USES PATH WHEN IT HITS THE RAIL NETWORK
+		//Try a slightly better version that adds the shortest city's path one at a time then calculates total
 		return loss;
 	}
 }

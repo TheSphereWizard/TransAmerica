@@ -23,7 +23,7 @@ public class MainGameScreen extends JPanel{
 	private JLabel[] playerLabels = new JLabel[6];
 	private JLabel[] cityLabels = new JLabel[5];
 	private Color[] playerColors = new Color[] {Color.red, Color.yellow, Color.green, Color.blue, new Color(139,69,19),Color.white};
-	private Color[] cityColors = new Color[] {Color.red, Color.blue, Color.yellow, Color.green, new Color(255,128,0)};
+	private Color[] cityColors = new Color[] {Color.red, Color.blue, Color.yellow, new Color(0, 204, 0), Color.pink};
 	
 	MainGameScreen(Game game) {
 		currentGame=game;
@@ -112,6 +112,8 @@ public class MainGameScreen extends JPanel{
 			 if(map.currentPlayer.record.getCitiesReached().contains(new City(map.currentPlayer.record.getCities().get(i).getName(),new Position(0,0),Color.black))){
 				 g.setColor(Color.green);
 				 g.fillRect(l.getX()+l.getWidth()+5,l.getY()+5, 15, 15);
+//				 g.setFont(new Font("Arial",0,12));
+//				 g.drawString(""+grid.distfromplayertoCity(map.currentPlayer, map.currentPlayer.record.getCities().get(i)), l.getX()+l.getWidth()+5,l.getY()+5);
 			 }
 		}
 		for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest

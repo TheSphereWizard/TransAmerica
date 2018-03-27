@@ -88,7 +88,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 		double[] scalefactord;
 		int[] mos=new int[]{0,0};
 		int[] mos2=new int[]{0,0};
-		int markersize=26;
+		int markersize=35;
 		int citysize=14;
 		
 		void drawposline(double x1, double y1, double x2, double y2, Graphics g){
@@ -179,6 +179,15 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 			g.setFont(new Font("Arial",1,14));
 			for(City[] cer : currentGrid.allcities){
 				for(City c : cer){
+					HumanPlayer h=null;
+					try{
+						h= (HumanPlayer)currentPlayer;
+						if(h.record.cities.contains(c)){
+							g.setColor(Color.magenta);
+							g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-(citysize+10)/2, siz[1]-scalefactor[1]*(c.p.y+1)-(citysize+10)/2, citysize+10, citysize+10);
+						}
+					}catch(Exception E){}
+					
 					g.setColor(c.color);
 					g.drawString(c.getName(), -25+(int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2);
 					g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
