@@ -36,8 +36,13 @@ public class Game {
 	Game(ArrayList<Player> players, boolean slowMode){
 		this.players = players;
 		this.slowMode = slowMode;
+		isAIGame = true;
 		setcitiestoplayers();
-		
+		for(Player p:players) {
+			if(p.getClass()==HumanPlayer.class) {
+				isAIGame = false;
+			}
+		}
 		if(slowMode){
 			MapofUSA.currentGrid=grid;
 		}else{
@@ -91,8 +96,9 @@ public class Game {
 				grid = new Grid();
 				for (Player p : players) {
 					p.clearForNewRound(p.getPlayerRecord().getCities());
+				}if(!isAIGame) {
+					startHumanRound();
 				}
-				startHumanRound();
 //				System.out.println("hit");
 			}
 			

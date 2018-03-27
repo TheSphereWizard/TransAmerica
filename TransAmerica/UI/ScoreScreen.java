@@ -14,6 +14,7 @@ import javax.swing.*;
 public class ScoreScreen extends JPanel{
 	private Game game;
 	private BufferedImage backg;
+	boolean tie;
 	ScoreScreen(Game game){
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
