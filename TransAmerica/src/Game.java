@@ -127,6 +127,7 @@ public class Game {
 	void startComputerRound(){
 		boolean FirstTurn =true;
 		
+		//rotate through who goes first
 		while(!gameOver()){
 			for (Player p : players) {
 				int railsleft=2;
@@ -166,25 +167,11 @@ public class Game {
 					}catch(Exception Ee){
 						Ee.printStackTrace();
 					}
-					try {
-						//Thread.sleep(350);
-						Thread.sleep(5);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 				}
-				
 			}
 			FirstTurn=false;
 		System.out.println("GAMEOVER");
 		showScoreScreen=true;
-		try {
-			Thread.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		//needs to run again until one player is at <0 score, then if a tie
 		//runs a new game between those players who tied in first
@@ -249,8 +236,7 @@ public class Game {
 		citiesfortesting.add(new City("5",new Position(10,1),Color.red));
 		players.get(0).record.cities=citiesfortesting;
 		
-//		System.out.println("Players"+players.size());
-		
+		//rotate through who goes first
 		while(!gameOver()){
 			for (Player p : players) {
 				int railsleft=2;
