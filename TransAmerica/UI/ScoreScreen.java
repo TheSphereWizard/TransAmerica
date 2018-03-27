@@ -46,6 +46,12 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			gameOver = false;
 		}
 		contButton.addActionListener(this);
+		if(gameOver) {
+			contButton.setText("Continue");
+		}else {
+			contButton.setText("Next Round");
+		}
+		add(contButton);
 	}
 	
 	public void actionPerformed(ActionEvent e) {

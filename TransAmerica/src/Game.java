@@ -240,12 +240,15 @@ public class Game {
 						if(!gameOver()){
 							do{
 								do{
-									Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+									Object o = null;
+									try {
+									o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+									}catch(Exception concmod) {
+									}
 									if(o!=null){
 										try{
 											Marker m = (Marker) o;
 											if(grid.alllandpositions[grid.boardheight-1-m.p.y][m.p.x]==1){
-												System.out.println("markers");
 												c.startMarker=m;
 												grid.placeMarker(m.p, c);
 											}
