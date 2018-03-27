@@ -20,7 +20,7 @@ public class ScoreScreen extends JPanel{
 		}catch(Exception E){}
 		setLayout(null);
 		this.game = game;
-		WinningPlayer wp =new WinningPlayer(game.players.get(game.getWinningPlayerforRound()));
+		WinningPlayer wp =new WinningPlayer(game.getWinningPlayerforRound());
 		wp.setSize(1600, 900);
 		add(wp);
 		add(new Losers(game.players));
@@ -42,21 +42,26 @@ public class ScoreScreen extends JPanel{
 		
 	}
 	private class WinningPlayer extends JPanel{
-		private WinningPlayer(Player winner){
-			
-			JLabel win = new JLabel(winner.getName()+" Connected All Their Cities", SwingConstants.CENTER);
-			win.setLocation(500, 0);
-			win.setSize(300, 100);
-			add(win);
-			String names = "";
-			for(int i = 0; i < 5; i++)
-				names = names+" "+winner.getPlayerRecord().getCitiesReached().get(i).getName();
-			setLayout(null);
-			WinnerInfo w =new WinnerInfo(new JLabel(names));
-			w.setLocation(0, 200);
-			w.setSize(300, 100);
 		
-			add(w);
+		private WinningPlayer(ArrayList<Player> arrayList){
+			//IT IS ABSOLUTELY NECCESSARY THAT TIES ARE TAKEN INTO ACCOUNT
+			//ALSO IT's SIZE WILL NEVER BE ZERO
+			if(arrayList.size()==1){
+				Player per=arrayList.get(0);
+				JLabel win = new JLabel(per.getName()+" Connected All Their Cities", SwingConstants.CENTER);
+				win.setLocation(500, 0);
+				win.setSize(300, 100);
+				add(win);
+				String names = "";
+				for(int i = 0; i < 5; i++)
+					names = names+" "+per.getPlayerRecord().getCitiesReached().get(i).getName();
+				setLayout(null);
+				WinnerInfo w =new WinnerInfo(new JLabel(names));
+				w.setLocation(0, 200);
+				w.setSize(300, 100);
+			
+				add(w);
+			}
 		}
 		public void paint(Graphics g){
 			for(int i=0;i<this.getComponentCount();i++){
