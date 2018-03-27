@@ -396,25 +396,25 @@ public class Grid {
 //	private class cloneGrid{
 //		//AS I WILL ABSOLUTELY NEED TO PLACE RAILS 
 //	}
-	private class Path{
-		ArrayList<Rail> pathsofar = new ArrayList<Rail>();
-		ArrayList<City> cities = new ArrayList<City>();
-		Path(Rail r,City[] c){
-			pathsofar.add(r);
-			for(City ce : c){
-				cities.add(ce);
-			}
-		}
-		Path(Rail r,Path p,City[] c){
-			for(Rail re : p.pathsofar){
-				pathsofar.add(re);
-			}
-			pathsofar.add(r);
-			for(City ce : c){
-				cities.add(ce);
-			}
-		}
-	}
+//	private class Path{
+//		ArrayList<Rail> pathsofar = new ArrayList<Rail>();
+//		ArrayList<City> cities = new ArrayList<City>();
+//		Path(Rail r,City[] c){
+//			pathsofar.add(r);
+//			for(City ce : c){
+//				cities.add(ce);
+//			}
+//		}
+//		Path(Rail r,Path p,City[] c){
+//			for(Rail re : p.pathsofar){
+//				pathsofar.add(re);
+//			}
+//			pathsofar.add(r);
+//			for(City ce : c){
+//				cities.add(ce);
+//			}
+//		}
+//	}
 	/*
 	for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
 		if(!(firstRailPlaced&&r.size==2)){
