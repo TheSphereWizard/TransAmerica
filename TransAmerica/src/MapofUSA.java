@@ -148,7 +148,7 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 				if(currentGrid.alllegalrails.contains(highlighted))
 					g.drawLine((int)(scalefactor[0]*(highlighted.p1.y%2==1?highlighted.p1.x+0.5d:highlighted.p1.x)), siz[1]-scalefactor[1]*(highlighted.p1.y+1), (int)(scalefactor[0]*(highlighted.p2.y%2==1?highlighted.p2.x+0.5d:highlighted.p2.x)), siz[1]-scalefactor[1]*(highlighted.p2.y+1));
 			}
-			g.drawString(highlightedmarker.x+" "+highlightedmarker.y, 0, 50);
+//			g.drawString(highlightedmarker.x+" "+highlightedmarker.y, 0, 50);
 			g.setColor(Color.black);
 			for(Rail r: currentGrid.alllegalrails){
 				g2d.setStroke(new BasicStroke(r.size,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
@@ -184,10 +184,10 @@ public class MapofUSA extends JPanel implements MouseListener, MouseMotionListen
 					g.fillOval((int)(scalefactor[0]*((c.p.y)%2==1?c.p.x+0.5d:c.p.x))-citysize/2, siz[1]-scalefactor[1]*(c.p.y+1)-citysize/2, citysize, citysize);
 				}
 			}
-			for(int i=0;i<currentPlayer.record.citiesReached.size();i++){
-				g.setColor(Color.black);
-				g.drawString(currentPlayer.record.citiesReached.get(i).getName(), 0, -10-10*i);
-			}
+//			for(int i=0;i<currentPlayer.record.citiesReached.size();i++){
+//				g.setColor(Color.black);
+//				g.drawString(currentPlayer.record.citiesReached.get(i).getName(), 0, -10-10*i);
+//			}
 		}
 		ArrayList<Rail> ok =new ArrayList<Rail>();
 		
