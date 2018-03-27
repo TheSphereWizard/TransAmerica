@@ -1,4 +1,6 @@
+/AAAMessageFromBrianForTheWeekend.class
 /ActuallyCompetitiveStrategy.class
+/City.class
 /ComputerPlayer.class
 /ComputerStrategyScreen$GeneralInfo$Button.class
 /ComputerStrategyScreen$GeneralInfo$Text.class
@@ -7,6 +9,9 @@
 /ComputerStrategyScreen.class
 /EasyStrategy.class
 /ErrorMessage.class
+/Game$1.class
+/Game.class
+/Grid.class
 /HardStrategy.class
 /HumanPlayer.class
 /MainGameScreen.class
@@ -14,6 +19,7 @@
 /MainMenu.class
 /MapofUSA$1.class
 /MapofUSA$2.class
+/MapofUSA.class
 /Marker.class
 /Player.class
 /PlayerRecord.class
