@@ -45,14 +45,6 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(contButton) && ) {
-			
-		} else {
-			
-		}
-	}
 	private class WinningPlayer extends JPanel{
 		
 		private WinningPlayer(ArrayList<Player> arrayList){
@@ -107,18 +99,25 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	/**
 	 * Displays the game losers
 	 */
-	private class Losers extends JPanel{
+	private class Losers extends JPanel implements ActionListener{
+				
 		private Losers(ArrayList<Player> players){
 			setBounds(100, 100, 1300, 500);
 			
 			for(int i = 0; i < players.size(); i++) {
 				if(!game.getWinningPlayerforRound().contains(players.get(i))){
-					Loser l =new Loser(players.get(i), i);
+					Loser l =new Loser(players.get(i));
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
+				
+				if(players.get(i).getPlayerRecord().getScore() <= 0) {
+					gameOver = true;
+				} else {
+					gameOver = false;
+				}
 			}
-			
+			new Loser(gameOver);
 		}
 	}
 	
@@ -130,19 +129,25 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	 */
 	private class Loser extends JPanel{
 		
-		public Loser(Player player, int num){
-			
+		private Boolean gameOver;
+		
+		public Loser(Player player){
 			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			setBackground(player.getColor());
 			JLabel name = new JLabel(player.getName()), 
 					unconnected = new JLabel(unconnectedCities(player)),
-					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()[num]),
+					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
 			add(pointsLost);
 			add(score);
 			setSize(300, 300);
+			
+		}
+		
+		private Loser(Boolean gameEnd) {
+			gameOver = gameEnd;
 		}
 		/**
 		 * @param player
@@ -156,6 +161,14 @@ public class ScoreScreen extends JPanel implements ActionListener{
 				}
 			}
 			return content;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource().equals(contButton) && gameOver == true) {
+				new TransAmerica();
+			} else {
+				
+			}
 		}
 	}
 	
