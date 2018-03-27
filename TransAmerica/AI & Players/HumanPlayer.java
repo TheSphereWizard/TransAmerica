@@ -20,18 +20,18 @@ public class HumanPlayer extends Player {
 			System.out.println("Not a Map");
 		}
 		//accesses lastClick to map until it isn't null
-		try{
-			if(firstturn||map.currentGrid.allRails.contains(new Rail(new Position(0,3),new Position(1,2)))){
-				if(firstturn){
-					return new Marker(new Position(0,0),this);
-				}else{
-					try {
-						return new Rail(new Position(0,0),new Position(0,1),this);
-					} catch (Exception e) {
-						return null;
-					}
-				}
-			}else{
+//		try{
+//			if(firstturn||map.currentGrid.allRails.contains(new Rail(new Position(0,3),new Position(1,2)))){
+//				if(firstturn){
+//					return new Marker(new Position(0,0),this);
+//				}else{
+//					try {
+//						return new Rail(new Position(0,0),new Position(0,1),this);
+//					} catch (Exception e) {
+//						return null;
+//					}
+//				}
+//			}else{
 	
 			Object nextRail = null;
 			map.currentPlayer=this;
@@ -66,9 +66,9 @@ public class HumanPlayer extends Player {
 				}
 			}
 			return nextRail;
-			}
-		}catch(Exception E){}
-		return null;
+//			}
+//		}catch(Exception E){}
+//		return null;
 	}
 	
 //	Position getStartMarker() {

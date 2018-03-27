@@ -140,6 +140,9 @@ public class Game {
 		while(!gameOver()){
 			System.out.println("not gameover");
 			for (Player p : players) {
+				if(p.startMarker!=null){
+					grid.connectCities(p);
+				}
 				int railsleft=2;
 				placesleft=railsleft;
 				try{
@@ -204,10 +207,13 @@ public class Game {
 
 		while(!gameOver()){
 			for (Player p : players) {
+				if(p.startMarker!=null){
+					grid.connectCities(p);
+				}
 				int railsleft=2;
-				placesleft=railsleft;
 				try{
 					HumanPlayer h = (HumanPlayer)p;
+					placesleft=railsleft;
 					if(!gameOver()){
 						do{
 							do{
@@ -277,7 +283,7 @@ public class Game {
 					}
 					try {
 						//Thread.sleep(350);
-						Thread.sleep(5);
+						Thread.sleep(50);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
