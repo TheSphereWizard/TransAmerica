@@ -161,24 +161,24 @@ public class MainGameScreen extends JPanel{
 
 
 			//Below is Debug info:
-			g.setFont(new Font("Arial",0,13));
-			g.setColor(Color.black);
-			for(int j=0;j<currentGame.players.size();j++){
-				Player p=currentGame.players.get(j);
-				g.setColor(p.getColor());
-				g.drawString(p.name, map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*(-1));
-
-				for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest
-					g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
-					this.getComponent(i).paint(g);
-					g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
-				}
-				g.fillRect(map.getX()+map.getWidth()+50,map.getY()+50, 150, 150);//change to be button image
-				g.setColor(Color.white);
-				g.setFont(new Font("Arial",1,172));
-				g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
-			}
-				Graphics2D g2d = (Graphics2D)g;
+//			g.setFont(new Font("Arial",0,13));
+//			g.setColor(Color.black);
+//			for(int j=0;j<currentGame.players.size();j++){
+//				Player p=currentGame.players.get(j);
+//				g.setColor(p.getColor());
+//				g.drawString(p.name, map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*(-1));
+//
+//				for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest
+//					g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
+//					this.getComponent(i).paint(g);
+//					g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
+//				}
+//				g.fillRect(map.getX()+map.getWidth()+50,map.getY()+50, 150, 150);//change to be button image
+//				g.setColor(Color.white);
+//				g.setFont(new Font("Arial",1,172));
+//				g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
+//			}
+			Graphics2D g2d = (Graphics2D)g;
 			g2d.setColor(Color.black);
 			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			g2d.drawLine(5, 100, 1250, 100);
