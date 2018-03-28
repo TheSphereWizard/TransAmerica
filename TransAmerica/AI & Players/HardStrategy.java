@@ -37,9 +37,6 @@ public class HardStrategy extends ComputerPlayer {
 						}
 				}
 			}
-			railsRemaining-=nextRail.size;
-			if(railsRemaining == 0)
-				railsRemaining = 2;
 			return nextRail;
 		}
 		
