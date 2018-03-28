@@ -48,7 +48,6 @@ public class PopUp extends JPanel implements ActionListener{
 		frame.setSize(300, 150);
 		frame.setResizable(false);
 		frame.add(this);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 
