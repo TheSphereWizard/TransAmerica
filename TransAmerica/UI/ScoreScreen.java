@@ -24,6 +24,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		}catch(Exception E){}
 		setLayout(null);
 		this.game = game;
+		System.out.println(game.noMoreRounds());
 		WinningPlayer wp =new WinningPlayer(game.getWinningPlayerforRound());
 		wp.setSize(1600, 900);
 		add(wp);
@@ -40,7 +41,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		 * 
 		 * 
 		 */
-		if(game.gameOver() == true) {
+		if(game.noMoreRounds() == true) {
 			gameOver = true;
 		} else {
 			gameOver = false;
@@ -62,7 +63,20 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		if(e.getSource().equals(contButton) && contButton.getActionCommand().equals("Continue")) {
 			new TransAmerica();
 		} else if(e.getSource().equals(contButton) && contButton.getActionCommand().equals("Next Round")){
-			
+			MainGameScreen screen = new MainGameScreen(new Game(game.players,true));
+			TransAmerica.transamerica.add(screen);
+			TransAmerica.transamerica.remove(0);
+			TransAmerica.transamerica.dispose();
+			JFrame f = new JFrame();
+			f.add(screen);
+			TransAmerica.transamerica = f;
+			TransAmerica.transamerica.setTitle("TransAmerica");
+			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			TransAmerica.transamerica.dispose();
+			TransAmerica.transamerica.setUndecorated(true);
+			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			TransAmerica.transamerica.setVisible(true);
+			TransAmerica.transamerica.repaint();
 		}
 	}
 	private class WinningPlayer extends JPanel{
