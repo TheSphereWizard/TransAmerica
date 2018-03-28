@@ -87,6 +87,6 @@ public class StrategyAnalyzer{
 	 */
 	private void displayResults(int gamesPlayed){
 		ComputerStrategyScreen results = new ComputerStrategyScreen
-				(gamesPlayed, gamesWon, gamesLost, rank, winPercentage);
+				(gamesPlayed, gamesWon, gamesLost, rank, winPercentage, AIs);
 	}
 }
