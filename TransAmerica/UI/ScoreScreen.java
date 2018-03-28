@@ -136,7 +136,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	private class Losers extends JPanel {
 				
 		private Losers(ArrayList<Player> players){
-			setBounds(100, 100, 1300, 500);
+			setBounds(100, 100, players.size()*300, 300);
 			
 			for(int i = 0; i < players.size(); i++) {
 				if(!game.getWinningPlayerforRound().contains(players.get(i))){
