@@ -135,7 +135,7 @@ public class Game {
 
 		//rotate through who goes first
 		while(!gameOver()){
-			System.out.println("not gameover");
+//			System.out.println("not gameover");
 			for (Player p : players) {
 				if(p.startMarker!=null){
 					grid.connectCities(p);

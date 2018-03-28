@@ -57,9 +57,6 @@ public class HumanPlayer extends Player {
 						if(r!=null&map.currentGrid.checkRail(r, this)){
 							ok=false;
 						}
-						railsRemaining-=r.size;
-						if(railsRemaining == 0)
-							railsRemaining = 2;
 					}catch(Exception er){
 						
 					}
