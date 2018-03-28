@@ -115,7 +115,7 @@ public class PopUp extends JPanel implements ActionListener{
 					double winPer = info[0][i]/(info[0][i]+info[1][i]);
 					winPercentage[i]=winPer;
 				}
-				ComputerStrategyScreen screen = new ComputerStrategyScreen(games,info[0],info[1],info[2],winPercentage);
+				ComputerStrategyScreen screen = new ComputerStrategyScreen(games,info[0],info[1],info[2],winPercentage, players);
 				TransAmerica.transamerica.add(screen);
 				TransAmerica.transamerica.remove(this);
 				TransAmerica.transamerica.dispose();

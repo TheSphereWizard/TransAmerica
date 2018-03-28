@@ -14,9 +14,9 @@ import javax.swing.*;
 public class ComputerStrategyScreen extends JPanel{
 	private JPanel players = new JPanel();
 	private BufferedImage backg;
-	private ArrayList<ComputerPlayer> AIs;
+	private ArrayList<Player> AIs;
 	public ComputerStrategyScreen(int gamesPlayed, int[] gamesWon, int[] gamesLost,
-			int[] rank, double[] winPercentage, ArrayList<ComputerPlayer> compPlayers) {
+			int[] rank, double[] winPercentage, ArrayList<Player> compPlayers) {
 		AIs = compPlayers;
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
@@ -27,9 +27,9 @@ public class ComputerStrategyScreen extends JPanel{
 		add(players);
 		setLayout(new GridLayout(2,1,0,0));
 	}
-	//	public void paint(Graphics g){
-	//		g.drawImage(backg, 0, 0, 1600, 900, null);
-	//	}
+//		public void paint(Graphics g){
+//			g.drawImage(backg, 0, 0, 1600, 900, null);
+//		}
 	private void setPlayers(int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage){
 		for(int i = 0; i < gamesWon.length; i++){
 			players.add(new PlayerInfo(gamesWon[i], gamesLost[i], rank[i], winPercentage[i], AIs.get(i).getColor(), AIs.get(i).getName()));
