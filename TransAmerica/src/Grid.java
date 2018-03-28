@@ -244,18 +244,34 @@ public class Grid {
 				if(p2.y%2==0){
 					if(p1.y-p2.y>0){
 						if(p1.x-p2.x>=0){//-1,0
-							return 1+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
+							int what=1;
+							try {
+								what=new Rail(new Position(p2.x,p2.y+1),p2).size;
+							} catch (Exception e) {} 
+							return what+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
 						}
 						else{
-							return 1+distbetweenpoints(p1,new Position(p2.x-1,p2.y+1));
+							int what=1;
+							try {
+								what=new Rail(new Position(p2.x-1,p2.y+1),p2).size;
+							} catch (Exception e) {} 
+							return what+distbetweenpoints(p1,new Position(p2.x-1,p2.y+1));
 						}
 					}
 					if(p1.y-p2.y<0){
 						if(p1.x-p2.x>=0){//-1,0
-							return 1+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
+							int what=1;
+							try {
+								what=new Rail(new Position(p2.x,p2.y-1),p2).size;
+							} catch (Exception e) {} 
+							return what+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
 						}
 						else{
-							return 1+distbetweenpoints(p1,new Position(p2.x-1,p2.y-1));
+							int what=1;
+							try {
+								what=new Rail(new Position(p2.x-1,p2.y-1),p2).size;
+							} catch (Exception e) {} 
+							return what+distbetweenpoints(p1,new Position(p2.x-1,p2.y-1));
 						}
 					}
 					System.out.println("THIS SHOULD NOT HAPPEN");
@@ -263,18 +279,34 @@ public class Grid {
 				}
 				if(p1.y-p2.y>0){
 					if(p1.x-p2.x>0){//1,0
-						return 1+distbetweenpoints(p1,new Position(p2.x+1,p2.y+1));
+						int what=1;
+						try {
+							what=new Rail(new Position(p2.x+1,p2.y+1),p2).size;
+						} catch (Exception e) {} 
+						return what+distbetweenpoints(p1,new Position(p2.x+1,p2.y+1));
 					}
 					else{
-						return 1+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
+						int what=1;
+						try {
+							what=new Rail(new Position(p2.x,p2.y+1),p2).size;
+						} catch (Exception e) {} 
+						return what+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
 					}
 				}
 				if(p1.y-p2.y<0){
 					if(p1.x-p2.x>0){//1,0
-						return 1+distbetweenpoints(p1,new Position(p2.x+1,p2.y-1));
+						int what=1;
+						try {
+							what=new Rail(new Position(p2.x+1,p2.y-1),p2).size;
+						} catch (Exception e) {} 
+						return what+distbetweenpoints(p1,new Position(p2.x+1,p2.y-1));
 					}
 					else{
-						return 1+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
+						int what=1;
+						try {
+							what=new Rail(new Position(p2.x,p2.y-1),p2).size;
+						} catch (Exception e) {} 
+						return what+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
 					}
 				}
 				System.out.println("THIS SHOULD NOT HAPPEN");
