@@ -24,6 +24,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		}catch(Exception E){}
 		setLayout(null);
 		this.game = game;
+		System.out.println(game.noMoreRounds());
 		WinningPlayer wp =new WinningPlayer(game.getWinningPlayerforRound());
 		wp.setSize(1600, 900);
 		add(wp);
@@ -40,19 +41,42 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		 * 
 		 * 
 		 */
-		if(game.gameOver() == true) {
+		if(game.noMoreRounds() == true) {
 			gameOver = true;
 		} else {
 			gameOver = false;
 		}
 		contButton.addActionListener(this);
+		if(gameOver) {
+			contButton.setText("Continue");
+		}else {
+			contButton.setText("Next Round");
+			
+		}
+		contButton.setActionCommand(contButton.getText());
+		contButton.setSize(100,50);
+		contButton.setLocation((int) (800+200*(1))-50,60);
+		add(contButton);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(contButton) && gameOver == true) {
+		if(e.getSource().equals(contButton) && contButton.getActionCommand().equals("Continue")) {
 			new TransAmerica();
-		} else {
-			
+		} else if(e.getSource().equals(contButton) && contButton.getActionCommand().equals("Next Round")){
+			MainGameScreen screen = new MainGameScreen(new Game(game.players,true));
+			TransAmerica.transamerica.add(screen);
+			TransAmerica.transamerica.remove(0);
+			TransAmerica.transamerica.dispose();
+			JFrame f = new JFrame();
+			f.add(screen);
+			TransAmerica.transamerica = f;
+			TransAmerica.transamerica.setTitle("TransAmerica");
+			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			TransAmerica.transamerica.dispose();
+			TransAmerica.transamerica.setUndecorated(true);
+			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			TransAmerica.transamerica.setVisible(true);
+			TransAmerica.transamerica.repaint();
 		}
 	}
 	private class WinningPlayer extends JPanel{
@@ -116,7 +140,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			
 			for(int i = 0; i < players.size(); i++) {
 				if(!game.getWinningPlayerforRound().contains(players.get(i))){
-					Loser l =new Loser(players.get(i));
+					Loser l =new Loser(players.get(i), i);
 					l.setLocation(100*(i+1), 200);
 					add(l);
 				}
@@ -134,12 +158,12 @@ public class ScoreScreen extends JPanel implements ActionListener{
 		
 		private Boolean gameOver;
 		
-		public Loser(Player player){
+		public Loser(Player player, int num){
 			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			setBackground(player.getColor());
 			JLabel name = new JLabel(player.getName()), 
 					unconnected = new JLabel(unconnectedCities(player)),
-					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()),
+					pointsLost = new JLabel("Points lost: " + game.returnScoreChange()[num]),
 					score = new JLabel("Score: "+player.getPlayerRecord().getScore());
 			add(name);
 			add(unconnected);
@@ -163,7 +187,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 			return content;
 		}
 		
-		}
+		
 	}
 	
 }

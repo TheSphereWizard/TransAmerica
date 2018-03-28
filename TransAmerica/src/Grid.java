@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Grid {
 	City[][] allcities = new City[][]{
@@ -35,20 +36,20 @@ public class Grid {
 			new City("Jacksonville",new Position(23,3),new Color(255,128,0)),
 			new City("New York",new Position(26,13),new Color(255,128,0)),},
 		{					
-			new City("Denver",new Position(10,10),new Color(255, 0, 128)),
-			new City("Kansas City",new Position(15,10),new Color(255, 0, 128)),
-			new City("Oklahoma City",new Position(14,8),new Color(255, 0, 128)),
-			new City("Omaha",new Position(15,12),new Color(255, 0, 128)),
-			new City("Salt Lake City",new Position(6,11),new Color(255, 0, 128)),
-			new City("Santa Fe",new Position(10,8),new Color(255, 0, 128)),
-			new City("Saint Louis",new Position(18,10),new Color(255, 0, 128)),},
-		{
-				new City("1",new Position(0,1),Color.blue),
-				new City("2",new Position(1,1),Color.cyan),
-				new City("3",new Position(1,2),Color.orange),
-				new City("4",new Position(4,5),Color.green),
-				new City("5",new Position(10,1),Color.red)
-		}
+			new City("Denver",new Position(10,10),Color.pink),
+			new City("Kansas City",new Position(15,10),Color.pink),
+			new City("Oklahoma City",new Position(14,8),Color.pink),
+			new City("Omaha",new Position(15,12),Color.pink),
+			new City("Salt Lake City",new Position(6,11),Color.pink),
+			new City("Santa Fe",new Position(10,8),Color.pink),
+			new City("Saint Louis",new Position(18,10),Color.pink),},
+//		{
+//				new City("1",new Position(0,1),Color.blue),
+//				new City("2",new Position(3,1),Color.cyan),
+//				new City("3",new Position(3,4),Color.orange),
+//				new City("4",new Position(6,4),Color.green),
+//				new City("5",new Position(7,1),Color.red)
+//		}
 	};
 	
 	Rail[][] railGrid;
@@ -156,6 +157,81 @@ public class Grid {
 		}
 		return all;
 	}
+	int distbetweenpoints2(Position start, Position end){
+		node[][] all = new node[boardwidth][];
+		for(int i=0;i<boardwidth;i++){
+			for(int j=0;j<boardheight;j++){
+				all[i][j]=new node(new Position(i,j));
+			}
+		}
+		ArrayList<node> corners = new ArrayList<node>();
+		all[start.x][start.y].setdist(0);
+		boolean changes=true;
+		node starter = all[start.x][start.y];
+		ArrayList<node> unvisted = new ArrayList<node>();
+		unvisted.add(starter);
+		while(changes){
+			changes=false;
+//			Collections.sort(unvisted.tolist());ok need to sort but idk
+			node cur = unvisted.get((int)(Math.random()*unvisted.size()));
+			for(Position p : immediateneighbors2(cur.p)){
+				if(!all[p.x][p.y].done){
+					try{
+						if(all[p.x][p.y].dist>cur.dist+1)
+							all[p.x][p.y].setdist(cur.dist+1);
+					}catch(ArrayIndexOutOfBoundsException E){}
+				}
+			}
+			unvisted.remove(cur);
+			cur.done=true;
+		}
+		return all[end.x][end.y].path.size();
+	}
+	class node{
+		Position p;
+		int dist=Integer.MAX_VALUE;
+		ArrayList<Position> neigh;
+		ArrayList<Position> path=new ArrayList<Position>();
+		boolean done=false;
+		node(Position p_){
+			p=p_;
+			path.add(p);
+			neigh=immediateneighbors2(p_);
+		}
+		node(Position p_,ArrayList<Position> path_){
+			p=p_;
+			path=path_;
+			path.add(p);
+			neigh=immediateneighbors2(p_);
+		}
+//		public boolean equals(Object compareto){
+//			try{
+//				node n = (node)compareto;
+//				if(p.equals(n.p)){
+//					return true;
+//				}
+//			}catch(Exception e){
+//				return false;
+//			}
+//		}
+//		int compareTo(Object b){
+//			node c;
+//			try{
+//				c=(node)b;
+//				if(c.dist==dist){
+//					return 0;
+//				}else{
+//					return 
+//				}
+//			}catch(Exception E){
+//				return 0;
+//			}
+//			
+//		}
+		void setdist(int r ){
+			dist=r;
+		}
+	}
 	int distbetweenpoints(Position p1,Position p2){
 		if(p1.equals(p2)){
 			return 0;
@@ -168,18 +244,34 @@ public class Grid {
 				if(p2.y%2==0){
 					if(p1.y-p2.y>0){
 						if(p1.x-p2.x>=0){//-1,0
-							return 1+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
+							int what=1;
+							try {
+								what=new Rail(new Position(p2.x,p2.y+1),p2).size;
+							} catch (Exception e) {} 
+							return what+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
 						}
 						else{
-							return 1+distbetweenpoints(p1,new Position(p2.x-1,p2.y+1));
+							int what=1;
+							try {
+								what=new Rail(new Position(p2.x-1,p2.y+1),p2).size;
+							} catch (Exception e) {} 
+							return what+distbetweenpoints(p1,new Position(p2.x-1,p2.y+1));
 						}
 					}
 					if(p1.y-p2.y<0){
 						if(p1.x-p2.x>=0){//-1,0
-							return 1+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
+							int what=1;
+							try {
+								what=new Rail(new Position(p2.x,p2.y-1),p2).size;
+							} catch (Exception e) {} 
+							return what+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
 						}
 						else{
-							return 1+distbetweenpoints(p1,new Position(p2.x-1,p2.y-1));
+							int what=1;
+							try {
+								what=new Rail(new Position(p2.x-1,p2.y-1),p2).size;
+							} catch (Exception e) {} 
+							return what+distbetweenpoints(p1,new Position(p2.x-1,p2.y-1));
 						}
 					}
 					System.out.println("THIS SHOULD NOT HAPPEN");
@@ -187,18 +279,34 @@ public class Grid {
 				}
 				if(p1.y-p2.y>0){
 					if(p1.x-p2.x>0){//1,0
-						return 1+distbetweenpoints(p1,new Position(p2.x+1,p2.y+1));
+						int what=1;
+						try {
+							what=new Rail(new Position(p2.x+1,p2.y+1),p2).size;
+						} catch (Exception e) {} 
+						return what+distbetweenpoints(p1,new Position(p2.x+1,p2.y+1));
 					}
 					else{
-						return 1+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
+						int what=1;
+						try {
+							what=new Rail(new Position(p2.x,p2.y+1),p2).size;
+						} catch (Exception e) {} 
+						return what+distbetweenpoints(p1,new Position(p2.x,p2.y+1));
 					}
 				}
 				if(p1.y-p2.y<0){
 					if(p1.x-p2.x>0){//1,0
-						return 1+distbetweenpoints(p1,new Position(p2.x+1,p2.y-1));
+						int what=1;
+						try {
+							what=new Rail(new Position(p2.x+1,p2.y-1),p2).size;
+						} catch (Exception e) {} 
+						return what+distbetweenpoints(p1,new Position(p2.x+1,p2.y-1));
 					}
 					else{
-						return 1+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
+						int what=1;
+						try {
+							what=new Rail(new Position(p2.x,p2.y-1),p2).size;
+						} catch (Exception e) {} 
+						return what+distbetweenpoints(p1,new Position(p2.x,p2.y-1));
 					}
 				}
 				System.out.println("THIS SHOULD NOT HAPPEN");
@@ -331,7 +439,7 @@ public class Grid {
 			Rail po=corners.get(i);
 			if(RailExists(po.p1,po.p2)){
 				for(Rail pr : immediateneighbors(po.p2)){
-					if(!corners.contains(pr)){
+					if(!corners.contains(pr)&&!(pr.size>p.railsRemaining)){
 						corners.add(pr);
 					}
 				}
@@ -364,18 +472,11 @@ public class Grid {
 		}
 		return network;
 	}
-	int[] railsMissing2(ArrayList<Player> players){
-		//For each player
-			//Breadthfirst in parrellel from all missing cities
-			//IF HITS network, then that city done
-			//else if hits other city: cities not done but starts another check from the intersection
-			//if that intersection hits city then Ends both other citys.
-		
-		
-		//Don't be shy to make other data types for just this method
-		//Also ha lol need to do A*, but prob not happening as due tommorow.
-		return null;
+
+	public int distanceToCity(Rail rail, City city, ReadOnlyGrid grid) {
+		return Math.min(grid.distbetweenpoints(rail.p1,city.getPos()), grid.distbetweenpoints(rail.p2, city.getPos()));
 	}
+	
 	int[] railsMissing(ArrayList<Player> players){
 		int[] loss = new int[players.size()];
 		//Below is Temporary as it will not always work. Should almost always though
@@ -395,11 +496,7 @@ public class Grid {
 			}
 			loss[i]=totaldist;
 		}
-		
-		
-		
-		//How actual one should work
-		//BREADTH FIRST BACK FROM EACH CITY GOAL, WHEN IT HITS OTHER CITY, MERGES,ELSE USES PATH WHEN IT HITS THE RAIL NETWORK
+		//Try a slightly better version that adds the shortest city's path one at a time then calculates total
 		return loss;
 	}
 }

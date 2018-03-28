@@ -24,7 +24,7 @@ public class MainGameScreen extends JPanel{
 	private JLabel[] cityLabels = new JLabel[5];
 	private Color[] playerColors = new Color[] {Color.red, Color.yellow, Color.green, Color.blue, new Color(139,69,19),Color.white};
 	private Color[] cityColors = new Color[] {Color.red, Color.blue, Color.yellow, Color.green, new Color(255,128,0)};
-	
+
 	MainGameScreen(Game game) {
 		currentGame=game;
 		map = new MapofUSA(25,125,1080,1080/2,grid);//pls don't change dimensions of the Map without Asking
@@ -38,10 +38,10 @@ public class MainGameScreen extends JPanel{
 			System.out.println("grid is null");
 		}
 		this.add(map);
-		
+
 		//THIS IS TEMPORARILY REWRITTEN TO SCALE ON 1368/768 screen as This is my screen resolution:
 		//-BRIAN
-		
+
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 			blueTrain = ImageIO.read(new File("Pix/Blue Train.gif"));
@@ -56,9 +56,9 @@ public class MainGameScreen extends JPanel{
 		//THings needs on this Screen:
 		/*
 			the train scores at top
-			
+
 			and also technically making sure going to scorescreen works
-		*/
+		 */
 		Font fontf = new Font("Arial",1,25);
 		for(int i = 0; i < currentGame.players.size(); i++) {
 			playerLabels[i] = new JLabel("Player " + (i+1));
@@ -76,39 +76,45 @@ public class MainGameScreen extends JPanel{
 		}
 		TransAmerica.transamerica.repaint();
 		game.Round();
-//		while(!game.showScoreScreen){//Needs to Be a Timer
-//		}
-		
+		//		while(!game.showScoreScreen){//Needs to Be a Timer
+		//		}
+
 	}
-	
+
 	public void paint(Graphics g){
 		if(!currentGame.showScoreScreen) {
-		g.drawImage(backg, 0, 0, 1600, 900, null);
-		for(int i = 0; i < currentGame.players.size(); i++) {
-			JLabel l=null;
-			try{
-				 l =(JLabel)this.getComponents()[1+i];
-				 l.setText(currentGame.players.get(i).name);
-				 l.setHorizontalAlignment(SwingConstants.CENTER);
-				 g.setColor(currentGame.players.get(i).getColor());
-				 g.fillRect(l.getX(),l.getY(),l.getWidth(),l.getHeight());
-				
-			}catch(Exception e){
-				System.out.println("WRONG COMPONENT"+(1+i));
+			g.drawImage(backg, 0, 0, 1600, 900, null);
+			for(int i = 0; i < currentGame.players.size(); i++) {
+				JLabel l=null;
+				try{
+					l =(JLabel)this.getComponents()[1+i];
+					l.setText(currentGame.players.get(i).name);
+					l.setHorizontalAlignment(SwingConstants.CENTER);
+					g.setColor(currentGame.players.get(i).getColor());
+					g.fillRect(l.getX(),l.getY(),l.getWidth(),l.getHeight());
+
+				}catch(Exception e){
+					System.out.println("WRONG COMPONENT"+(1+i));
+				}
 			}
-		}
-		for(int i = 0; i < cityLabels.length; i++) {
-			JLabel l=null;
-			try{
-				 l =(JLabel)this.getComponents()[1+currentGame.players.size()+i];
-				 l.setText(map.currentPlayer.record.getCities().get(i).getName());
-				 l.setHorizontalAlignment(SwingConstants.CENTER);
-				 g.setColor(map.currentPlayer.record.getCities().get(i).color);
-				 g.fillRect(l.getX(),l.getY(),l.getWidth(),l.getHeight());
-				
-			}catch(Exception e){
-				System.out.println("WRONG COMPONENT"+(7+i));
+			for(int i = 0; i < cityLabels.length; i++) {
+				JLabel l=null;
+				try{
+					l =(JLabel)this.getComponents()[1+currentGame.players.size()+i];
+					l.setText(map.currentPlayer.record.getCities().get(i).getName());
+					l.setHorizontalAlignment(SwingConstants.CENTER);
+					g.setColor(map.currentPlayer.record.getCities().get(i).color);
+					g.fillRect(l.getX(),l.getY(),l.getWidth(),l.getHeight());
+
+				}catch(Exception e){
+					System.out.println("WRONG COMPONENT"+(7+i));
+				}
+				if(map.currentPlayer.record.getCitiesReached().contains(new City(map.currentPlayer.record.getCities().get(i).getName(),new Position(0,0),Color.black))){
+					g.setColor(Color.green);
+					g.fillRect(l.getX()+l.getWidth()+5,l.getY()+5, 15, 15);
+				}
 			}
+<<<<<<< HEAD
 			 if(map.currentPlayer.record.getCitiesReached().contains(new City(map.currentPlayer.record.getCities().get(i).getName(),new Position(0,0),Color.black))){
 				 g.setColor(Color.green);
 				 g.fillRect(l.getX()+l.getWidth()+5,l.getY()+5, 15, 15);
@@ -162,11 +168,75 @@ public class MainGameScreen extends JPanel{
 			Player p=currentGame.players.get(j);
 			g.setColor(p.getColor());
 			g.drawString(p.name, map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*(-1));
-			g.setColor(Color.BLACK);
-			for(int i=0;i<5;i++){
-				g.drawString(p.record.cities.get(i).getName(), map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*i);
+=======
+			for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest
+				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
+				this.getComponent(i).paint(g);
+				g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
 			}
-		}
+			g.fillRect(map.getX()+map.getWidth()+50,map.getY()+50, 150, 150);//change to be button image
+			g.setColor(Color.white);
+			g.setFont(new Font("Arial",1,172));
+			g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
+
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.setColor(Color.black);
+			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+			g2d.drawLine(5, 100, 1250, 100);
+			g2d.drawLine(5, 50, 1250, 50);
+			int increment = 0;
+			for(int i = 0; i < 12; i++){
+				if(i==0){
+					g.setColor(Color.RED);
+				}else{
+					g.setColor(Color.black);
+				}
+				g2d.drawLine(100 + increment, 40, 100 + increment, 110);
+				
+				increment += 100;
+			}
+>>>>>>> branch 'master' of https://github.com/TheSphereWizard/TransAmerica
+			g.setColor(Color.BLACK);
+			g.setFont(new Font("Arial",1,16));
+			for(int i=0;i<currentGame.players.size();i++){
+				g.drawString(currentGame.players.get(i).record.score+" ", 50*i, 20);
+			}
+
+			//g.drawImage(train, 1500, 50, 30, 30, null);
+
+			//if(currentGame.players.contains())
+
+			//currentGame.players.get(increment).getPlayerRecord();
+
+			for(int i=0;i<currentGame.players.size();i++){
+				Color playerColor = currentGame.players.get(i).getColor();
+				if(playerColor.equals(new Color(255,40,40))){
+					g2d.drawImage(redTrain, 30+100*currentGame.players.get(i).record.score, 20, -30, 30, null);
+				}else if(playerColor.equals(Color.yellow)){
+					g2d.drawImage(yellowTrain, 45+100*currentGame.players.get(i).record.score, 30, -30, 30, null);
+				}else if(playerColor.equals(new Color(0,204,0))){
+					g2d.drawImage(greenTrain, 60+100*currentGame.players.get(i).record.score, 40, -30, 30, null);
+				}else if(playerColor.equals(Color.blue)){
+					g2d.drawImage(blueTrain, 75+100*currentGame.players.get(i).record.score, 50, -30, 30, null);
+				}else if(playerColor.equals(new Color(139,69,19))){
+					g2d.drawImage(brownTrain, 90+100*currentGame.players.get(i).record.score, 60, -30, 30, null);
+				}else if(playerColor.equals(Color.white)){
+					g2d.drawImage(whiteTrain, 105+100*currentGame.players.get(i).record.score, 70, -30, 30, null);
+				}
+			}
+
+			//Below is Debug info:
+//			g.setFont(new Font("Arial",0,13));
+//			g.setColor(Color.black);
+//			for(int j=0;j<currentGame.players.size();j++){
+//				Player p=currentGame.players.get(j);
+//				g.setColor(p.getColor());
+//				g.drawString(p.name, map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*(-1));
+//				g.setColor(Color.BLACK);
+//				for(int i=0;i<5;i++){
+//					g.drawString(p.record.cities.get(i).getName(), map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*i);
+//				}
+//			}
 		}
 		else {
 			ScoreScreen screen = new ScoreScreen(currentGame);

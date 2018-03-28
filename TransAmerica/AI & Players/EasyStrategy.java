@@ -18,7 +18,7 @@ public class EasyStrategy extends ComputerPlayer{
 			return new Marker(new Position(Math.random()*Grid.boardwidth,Math.random()*Grid.boardheight),this);
 			//Needs to Check if this is not in the Ocean
 		}else{
-			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this);//getRailsAtPos(startMarker.p),startMarker.p, grid);//totalRails contains all the rails to be checked
+			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this,!firstRailPlaced);//getRailsAtPos(startMarker.p),startMarker.p, grid);//totalRails contains all the rails to be checked
 			if(firstRailPlaced){
 				for(Rail r: totalRails){
 					if(r.size==2){
@@ -28,6 +28,10 @@ public class EasyStrategy extends ComputerPlayer{
 			}
 			Random rand = new Random();
 			int pos = rand.nextInt(totalRails.size());
+			Rail r = totalRails.get(pos);
+			railsRemaining-=r.size;
+			if(railsRemaining == 0)
+				railsRemaining = 2;
 			return totalRails.get(pos);
 		}
 	}

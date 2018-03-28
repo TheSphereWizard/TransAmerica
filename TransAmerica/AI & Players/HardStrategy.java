@@ -15,7 +15,7 @@ public class HardStrategy extends ComputerPlayer {
 			Marker m=new Marker(record.cities.get(2).p,this);
 			return m;
 		}else{
-			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this);//getRailsAtPos(startMarker.p),startMarker.p, grid);
+			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this,firstRailPlaced);//getRailsAtPos(startMarker.p),startMarker.p, grid);
 			if(this.record.citiesReached.size()==5){
 				
 			}
@@ -37,18 +37,14 @@ public class HardStrategy extends ComputerPlayer {
 						}
 				}
 			}
+			railsRemaining-=nextRail.size;
+			if(railsRemaining == 0)
+				railsRemaining = 2;
 			return nextRail;
 		}
 		
 	}
 	public int distanceToCity(Rail rail, City city, ReadOnlyGrid grid) {
-		//returns distance from rail to city
-//		int distance = 0;
-//		if(grid.distbetweenpoints(rail.p1,city.getPos())>grid.distbetweenpoints(rail.p2, city.getPos())){
-//			distance = grid.distbetweenpoints(rail.p2, city.getPos());
-//		}else{
-//			distance = grid.distbetweenpoints(rail.p1, city.getPos());
-//		}
 		return Math.min(grid.distbetweenpoints(rail.p1,city.getPos()), grid.distbetweenpoints(rail.p2, city.getPos()));
 	}
 }

@@ -19,6 +19,7 @@ public abstract class Player {//give players playerrecords
 	Marker startMarker;
 	PlayerRecord record;
 	int playerNumber = 0;
+	int railsRemaining = 2;
 	
 	String name;
 	Color color;

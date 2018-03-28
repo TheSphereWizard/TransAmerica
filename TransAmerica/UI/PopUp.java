@@ -48,7 +48,6 @@ public class PopUp extends JPanel implements ActionListener{
 		frame.setSize(300, 150);
 		frame.setResizable(false);
 		frame.add(this);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 
@@ -79,11 +78,9 @@ public class PopUp extends JPanel implements ActionListener{
 		int[] gamesWon = new int[players.size()];
 		int[] gamesLost = new int[players.size()];
 		for(;games>0;games--){
-			System.out.println("Got Here 1!");
+			System.out.println("Start Game");
 			Game game = new Game(players, slowmode);
-			System.out.println("Got Here 2!");
 			game.runGame();
-			System.out.println("Got Here 3!");
 			ArrayList<Player> winningPlayers = game.getWinningPlayerforGame();
 			
 			for(Player p: winningPlayers){
@@ -95,6 +92,7 @@ public class PopUp extends JPanel implements ActionListener{
 					}
 				}
 			}
+			System.out.println("End Game");
 		}
 		int[] rank = sort(gamesWon);
 		int[][] bigArray = {gamesWon,gamesLost,rank};
@@ -112,16 +110,13 @@ public class PopUp extends JPanel implements ActionListener{
 		}
 		if(games>0){
 			if(e.getSource().equals(fast)){
-				System.out.println("Step 1");
 				int[][] info = runGames(games,players,false);
 				double[] winPercentage = new double[players.size()];
-				System.out.println("Step 2");
 				for(int i = 0;i<players.size();i++){
 					double winPer = info[0][i]/(info[0][i]+info[1][i]);
 					winPercentage[i]=winPer;
 				}
-				System.out.println("Step 3");
-				ComputerStrategyScreen screen = new ComputerStrategyScreen(games,info[0],info[1],info[2],winPercentage);
+				ComputerStrategyScreen screen = new ComputerStrategyScreen(games,info[0],info[1],info[2],winPercentage, players);
 				TransAmerica.transamerica.add(screen);
 				TransAmerica.transamerica.remove(this);
 				TransAmerica.transamerica.dispose();
@@ -134,10 +129,11 @@ public class PopUp extends JPanel implements ActionListener{
 				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TransAmerica.transamerica.setVisible(true);
 				TransAmerica.transamerica.repaint();
-
+				frame.dispose();
 
 			}else if(e.getSource().equals(slow)){
 				for(int i=0;i<games;i++){
+					System.out.println("Start Game");
 					MainGameScreen screen = new MainGameScreen(new Game(players,true));
 					TransAmerica.transamerica.add(screen);
 					TransAmerica.transamerica.remove(0);
@@ -152,6 +148,8 @@ public class PopUp extends JPanel implements ActionListener{
 					TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					TransAmerica.transamerica.setVisible(true);
 					TransAmerica.transamerica.repaint();
+					frame.dispose();
+					System.out.println("End Game");
 				}
 			}
 		}	
