@@ -156,6 +156,57 @@ public class Grid {
 		}
 		return all;
 	}
+	int distbetweenpoints2(Position start, Position end){
+		node[][] all = new node[boardwidth][];
+		for(int i=0;i<boardwidth;i++){
+			for(int j=0;j<boardheight;j++){
+				all[i][j]=new node(new Position(i,j));
+			}
+		}
+		ArrayList<node> corners = new ArrayList<node>();
+		all[start.x][start.y].setdist(0);
+		boolean changes=true;
+		node cur = all[start.x][start.y];
+		while(changes){
+			changes=false;
+			for(Rail r : immediateneighbors(cur.p)){
+				try{
+					
+				}catch(Exception E){}
+			}
+		}
+		return all[end.x][end.y].path.size();
+	}
+	class node{
+		Position p;
+		int dist=Integer.MAX_VALUE;
+		ArrayList<Position> neigh;
+		ArrayList<Position> path=new ArrayList<Position>();
+		node(Position p_){
+			p=p_;
+			path.add(p);
+			neigh=immediateneighbors2(p_);
+		}
+		node(Position p_,ArrayList<Position> path_){
+			p=p_;
+			path=path_;
+			path.add(p);
+			neigh=immediateneighbors2(p_);
+		}
+//		public boolean equals(Object compareto){
+//			try{
+//				node n = (node)compareto;
+//				if(p.equals(n.p)){
+//					return true;
+//				}
+//			}catch(Exception e){
+//				return false;
+//			}
+//		}
+		void setdist(int r ){
+			dist=r;
+		}
+	}
 	int distbetweenpoints(Position p1,Position p2){
 		if(p1.equals(p2)){
 			return 0;
@@ -364,86 +415,11 @@ public class Grid {
 		}
 		return network;
 	}
-//	int[] railsMissing2(ArrayList<Player> players){
-//		int[] scorechange = new int[players.size()];
-//		for(int i=0;i<players.size();i++){
-//			ArrayList<Path> allpathsfromallcities = new ArrayList<Path>();
-//			ArrayList<City> citesneedingtobereached = new ArrayList<City>();
-//			for(City c : players.get(i).record.cities){
-//				if(!players.get(i).record.citiesReached.contains(c)){
-//					citesneedingtobereached.add(c);
-//				}
-//			}
-//			for(City c :citesneedingtobereached){
-//				for(Rail r :immediateneighbors(c.p)){
-//					allpathsfromallcities.add(new Path(r,new City[]{c}));
-//				}
-//			}
-//			while(citesneedingtobereached.size()>0){
-//				
-//			}
-//				
-//			//Breadthfirst in parrellel from all missing cities
-//
-//			//IF HITS network, then that city done
-//			//else if hits other city: cities not done but starts another check from the intersection
-//			//if that intersection hits city then Ends both other citys.
-//				
-//			//IF it gets longer than 12 discard it?
-//		}
-//		return scorechange;
-//	}
-//	private class cloneGrid{
-//		//AS I WILL ABSOLUTELY NEED TO PLACE RAILS 
-//	}
-//	private class Path{
-//		ArrayList<Rail> pathsofar = new ArrayList<Rail>();
-//		ArrayList<City> cities = new ArrayList<City>();
-//		Path(Rail r,City[] c){
-//			pathsofar.add(r);
-//			for(City ce : c){
-//				cities.add(ce);
-//			}
-//		}
-//		Path(Rail r,Path p,City[] c){
-//			for(Rail re : p.pathsofar){
-//				pathsofar.add(re);
-//			}
-//			pathsofar.add(r);
-//			for(City ce : c){
-//				cities.add(ce);
-//			}
-//		}
-//	}
-	/*
-	for(Rail r: totalRails){//check the distance to city, set min and nextRail if this rail is closer than previous
-		if(!(firstRailPlaced&&r.size==2)){
-			if(record.citiesReached.size()==5){
-				nextRail=r;
-			}else
-				for(City c: this.record.getCities()){
-					if(!record.citiesReached.contains(c)){
-						int distance = distanceToCity(r,c, grid);
-						if(distance<minDistance){
-							minDistance = distance;
-							nextRail = r;
-						}
-					}
-				}
-		}
-	}
-	*/
+
 	public int distanceToCity(Rail rail, City city, ReadOnlyGrid grid) {
 		return Math.min(grid.distbetweenpoints(rail.p1,city.getPos()), grid.distbetweenpoints(rail.p2, city.getPos()));
 	}
-//	int distfromplayertoCity(Player p,City c){
-//		int currdist=Integer.MAX_VALUE;
-//		for(Rail r :allRailsonPlayersNetwork(p)){
-//			currdist=Math.min(currdist,distbetweenpoints(r.p1,c.p));
-//			currdist=Math.min(currdist,distbetweenpoints(r.p2,c.p));
-//		}
-//		return currdist;
-//	}
+	
 	int[] railsMissing(ArrayList<Player> players){
 		int[] loss = new int[players.size()];
 		//Below is Temporary as it will not always work. Should almost always though
