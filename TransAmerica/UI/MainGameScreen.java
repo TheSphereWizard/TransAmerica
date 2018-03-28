@@ -135,9 +135,9 @@ public class MainGameScreen extends JPanel{
 			increment += 140;
 		}
 		g.setFont(new Font("Arial",1,16));
-		for(int i=0;i<currentGame.players.size();i++){
-			g.drawString(currentGame.players.get(i).record.score+" ", 50*i, 20);
-		}
+//		for(int i=0;i<currentGame.players.size();i++){
+//			g.drawString(currentGame.players.get(i).record.score+" ", 50*i, 20);
+//		}
 		
 		//g.drawImage(train, 1500, 50, 30, 30, null);
 		
