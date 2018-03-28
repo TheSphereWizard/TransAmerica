@@ -89,7 +89,6 @@ public class Game {
 				}
 			}
 			players.get(0).record.score--;
-			System.out.println();
 		}
 	}
 
@@ -105,7 +104,10 @@ public class Game {
 				}if(slowMode) {
 					startHumanRound();
 				}else{
-					startComputerRound();
+					try{
+						startComputerRound();
+					}catch(Exception NullPointeronGamesEnd){
+					}
 				}
 				//				System.out.println("hit");
 			}
@@ -125,6 +127,15 @@ public class Game {
 			}
 			if(all){
 				over=true;
+			}
+		}
+		return over;
+	}
+	boolean noMoreRounds(){
+		boolean over=false;
+		for (Player p : players){
+			if(p.getPlayerRecord().getScore()<=0){
+				over = true;
 			}
 		}
 		return over;

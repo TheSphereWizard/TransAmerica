@@ -48,7 +48,6 @@ public class PopUp extends JPanel implements ActionListener{
 		frame.setSize(300, 150);
 		frame.setResizable(false);
 		frame.add(this);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 
@@ -79,6 +78,7 @@ public class PopUp extends JPanel implements ActionListener{
 		int[] gamesWon = new int[players.size()];
 		int[] gamesLost = new int[players.size()];
 		for(;games>0;games--){
+			System.out.println("Start Game");
 			Game game = new Game(players, slowmode);
 			game.runGame();
 			ArrayList<Player> winningPlayers = game.getWinningPlayerforGame();
@@ -92,6 +92,7 @@ public class PopUp extends JPanel implements ActionListener{
 					}
 				}
 			}
+			System.out.println("End Game");
 		}
 		int[] rank = sort(gamesWon);
 		int[][] bigArray = {gamesWon,gamesLost,rank};
@@ -133,6 +134,7 @@ public class PopUp extends JPanel implements ActionListener{
 
 			}else if(e.getSource().equals(slow)){
 				for(int i=0;i<games;i++){
+					System.out.println("Start Game");
 					MainGameScreen screen = new MainGameScreen(new Game(players,true));
 					TransAmerica.transamerica.add(screen);
 					TransAmerica.transamerica.remove(0);
@@ -148,6 +150,7 @@ public class PopUp extends JPanel implements ActionListener{
 					TransAmerica.transamerica.setVisible(true);
 					TransAmerica.transamerica.repaint();
 					frame.dispose();
+					System.out.println("End Game");
 				}
 			}
 		}	

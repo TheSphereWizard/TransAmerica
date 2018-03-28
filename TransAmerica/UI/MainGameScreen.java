@@ -113,6 +113,12 @@ public class MainGameScreen extends JPanel{
 					g.setColor(Color.green);
 					g.fillRect(l.getX()+l.getWidth()+5,l.getY()+5, 15, 15);
 				}
+
+
+				if(map.currentPlayer.record.getCitiesReached().contains(new City(map.currentPlayer.record.getCities().get(i).getName(),new Position(0,0),Color.black))){
+					g.setColor(Color.green);
+					g.fillRect(l.getX()+l.getWidth()+5,l.getY()+5, 15, 15);
+				}
 			}
 			for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest
 				g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
@@ -127,6 +133,55 @@ public class MainGameScreen extends JPanel{
 			Graphics2D g2d = (Graphics2D)g;
 			g2d.setColor(Color.black);
 			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+			g2d.drawLine(0, 100, 1600, 100);
+			g2d.drawLine(0, 50, 1600, 50);
+			int increment = 50;
+			for(int i = 0; i < 12; i++){
+				g2d.drawLine(50 + increment, 40, 50 + increment, 110);
+				increment += 140;
+			}
+			g.setFont(new Font("Arial",1,16));
+			//		for(int i=0;i<currentGame.players.size();i++){
+			//			g.drawString(currentGame.players.get(i).record.score+" ", 50*i, 20);
+			//		}
+
+			//g.drawImage(train, 1500, 50, 30, 30, null);
+
+			//if(currentGame.players.contains())
+
+			//currentGame.players.get(increment).getPlayerRecord();
+
+			g2d.drawImage(redTrain, 1525, 20, -30, 30, null);
+			g2d.drawImage(yellowTrain, 1540, 30, -30, 30, null);
+			g2d.drawImage(greenTrain, 1555, 40, -30, 30, null);
+			g2d.drawImage(blueTrain, 1570, 50, -30, 30, null);
+			g2d.drawImage(brownTrain, 1585, 60, -30, 30, null);
+			g2d.drawImage(whiteTrain, 1600, 70, -30, 30, null);
+
+
+
+
+			//Below is Debug info:
+			g.setFont(new Font("Arial",0,13));
+			g.setColor(Color.black);
+			for(int j=0;j<currentGame.players.size();j++){
+				Player p=currentGame.players.get(j);
+				g.setColor(p.getColor());
+				g.drawString(p.name, map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*(-1));
+
+				for(int i=0;i<this.getComponentCount();i++){//ha lolhalollasttest
+					g.translate(this.getComponent(i).getX(), this.getComponent(i).getY());
+					this.getComponent(i).paint(g);
+					g.translate(-this.getComponent(i).getX(), -this.getComponent(i).getY());
+				}
+				g.fillRect(map.getX()+map.getWidth()+50,map.getY()+50, 150, 150);//change to be button image
+				g.setColor(Color.white);
+				g.setFont(new Font("Arial",1,172));
+				g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
+			}
+				/*Graphics2D g2d = (Graphics2D)g;
+			g2d.setColor(Color.black);
+			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			g2d.drawLine(5, 100, 1250, 100);
 			g2d.drawLine(5, 50, 1250, 50);
 			int increment = 0;
@@ -137,66 +192,54 @@ public class MainGameScreen extends JPanel{
 					g.setColor(Color.black);
 				}
 				g2d.drawLine(100 + increment, 40, 100 + increment, 110);
-				
+
 				increment += 100;
-			}
-			g.setColor(Color.BLACK);
+			}*/
+
+				/*g.setColor(Color.BLACK);
 			g.setFont(new Font("Arial",1,16));
 			for(int i=0;i<currentGame.players.size();i++){
 				g.drawString(currentGame.players.get(i).record.score+" ", 50*i, 20);
-			}
+			}*/
 
-			//g.drawImage(train, 1500, 50, 30, 30, null);
+				//g.drawImage(train, 1500, 50, 30, 30, null);
 
-			//if(currentGame.players.contains())
+				//if(currentGame.players.contains())
 
-			//currentGame.players.get(increment).getPlayerRecord();
+				//currentGame.players.get(increment).getPlayerRecord();
 
-			for(int i=0;i<currentGame.players.size();i++){
-				Color playerColor = currentGame.players.get(i).getColor();
-				if(playerColor.equals(new Color(255,40,40))){
-					g2d.drawImage(redTrain, 30+100*currentGame.players.get(i).record.score, 20, -30, 30, null);
-				}else if(playerColor.equals(Color.yellow)){
-					g2d.drawImage(yellowTrain, 45+100*currentGame.players.get(i).record.score, 30, -30, 30, null);
-				}else if(playerColor.equals(new Color(0,204,0))){
-					g2d.drawImage(greenTrain, 60+100*currentGame.players.get(i).record.score, 40, -30, 30, null);
-				}else if(playerColor.equals(Color.blue)){
-					g2d.drawImage(blueTrain, 75+100*currentGame.players.get(i).record.score, 50, -30, 30, null);
-				}else if(playerColor.equals(new Color(139,69,19))){
-					g2d.drawImage(brownTrain, 90+100*currentGame.players.get(i).record.score, 60, -30, 30, null);
-				}else if(playerColor.equals(Color.white)){
-					g2d.drawImage(whiteTrain, 105+100*currentGame.players.get(i).record.score, 70, -30, 30, null);
+					for(int i=0;i<currentGame.players.size();i++){
+						Color playerColor = currentGame.players.get(i).getColor();
+						if(playerColor.equals(new Color(255,40,40))){
+							g2d.drawImage(redTrain, 30+100*currentGame.players.get(i).record.score, 20, -30, 30, null);
+						}else if(playerColor.equals(Color.yellow)){
+							g2d.drawImage(yellowTrain, 45+100*currentGame.players.get(i).record.score, 30, -30, 30, null);
+						}else if(playerColor.equals(new Color(0,204,0))){
+							g2d.drawImage(greenTrain, 60+100*currentGame.players.get(i).record.score, 40, -30, 30, null);
+						}else if(playerColor.equals(Color.blue)){
+							g2d.drawImage(blueTrain, 75+100*currentGame.players.get(i).record.score, 50, -30, 30, null);
+						}else if(playerColor.equals(new Color(139,69,19))){
+							g2d.drawImage(brownTrain, 90+100*currentGame.players.get(i).record.score, 60, -30, 30, null);
+						}else if(playerColor.equals(Color.white)){
+							g2d.drawImage(whiteTrain, 105+100*currentGame.players.get(i).record.score, 70, -30, 30, null);
+						}
+					}
+				}else {
+					ScoreScreen screen = new ScoreScreen(currentGame);
+					TransAmerica.transamerica.add(screen);
+					TransAmerica.transamerica.remove(this);
+					TransAmerica.transamerica.dispose();
+					JFrame f = new JFrame();
+					f.add(screen);
+					TransAmerica.transamerica = f;
+					TransAmerica.transamerica.setTitle("TransAmerica");
+					TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					TransAmerica.transamerica.dispose();
+					TransAmerica.transamerica.setUndecorated(true);
+					TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					TransAmerica.transamerica.setVisible(true);
+					TransAmerica.transamerica.repaint();
 				}
 			}
+		}
 
-			//Below is Debug info:
-//			g.setFont(new Font("Arial",0,13));
-//			g.setColor(Color.black);
-//			for(int j=0;j<currentGame.players.size();j++){
-//				Player p=currentGame.players.get(j);
-//				g.setColor(p.getColor());
-//				g.drawString(p.name, map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*(-1));
-//				g.setColor(Color.BLACK);
-//				for(int i=0;i<5;i++){
-//					g.drawString(p.record.cities.get(i).getName(), map.getX()+map.getWidth()+5+70*j, map.getY()+250+15*i);
-//				}
-//			}
-		}
-		else {
-			ScoreScreen screen = new ScoreScreen(currentGame);
-			TransAmerica.transamerica.add(screen);
-			TransAmerica.transamerica.remove(this);
-			TransAmerica.transamerica.dispose();
-			JFrame f = new JFrame();
-			f.add(screen);
-			TransAmerica.transamerica = f;
-			TransAmerica.transamerica.setTitle("TransAmerica");
-			TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			TransAmerica.transamerica.dispose();
-			TransAmerica.transamerica.setUndecorated(true);
-			TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			TransAmerica.transamerica.setVisible(true);
-			TransAmerica.transamerica.repaint();
-		}
-	}
-}
