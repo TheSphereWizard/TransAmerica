@@ -12,23 +12,16 @@ import javax.swing.*;
 //1600x900
 public class ComputerStrategyScreen extends JPanel{
 	private JPanel players = new JPanel();
-	private BufferedImage backg;
 	private ArrayList<Player> AIs;
 	public ComputerStrategyScreen(int gamesPlayed, int[] gamesWon, int[] gamesLost,
 			int[] rank, double[] winPercentage, ArrayList<Player> compPlayers) {
 		AIs = compPlayers;
-		try{
-			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
-		}catch(Exception E){}
 		add(new GeneralInfo(gamesPlayed));
 		players.setLayout(new GridLayout(2,3,10,10));
 		setPlayers(gamesWon, gamesLost, rank, winPercentage);
 		add(players);
 		setLayout(new GridLayout(2,1,0,0));
 	}
-//		public void paint(Graphics g){
-//			g.drawImage(backg, 0, 0, 1600, 900, null);
-//		}
 	private void setPlayers(int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage){
 		for(int i = 0; i < gamesWon.length; i++){
 			players.add(new PlayerInfo(gamesWon[i], gamesLost[i], rank[i], winPercentage[i], AIs.get(i).getColor(), AIs.get(i).getName()));
