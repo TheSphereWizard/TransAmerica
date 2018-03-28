@@ -122,6 +122,7 @@ public class PopUp extends JPanel implements ActionListener{
 				TransAmerica.transamerica.dispose();
 				JFrame f = new JFrame();
 				TransAmerica.transamerica = f;
+				TransAmerica.transamerica.add(screen);
 				TransAmerica.transamerica.setTitle("TransAmerica");
 				TransAmerica.transamerica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				TransAmerica.transamerica.dispose();
