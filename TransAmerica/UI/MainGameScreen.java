@@ -127,8 +127,8 @@ public class MainGameScreen extends JPanel{
 			Graphics2D g2d = (Graphics2D)g;
 			g2d.setColor(Color.black);
 			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-			g2d.drawLine(50, 100, 1250, 100);
-			g2d.drawLine(50, 50, 1250, 50);
+			g2d.drawLine(5, 100, 1250, 100);
+			g2d.drawLine(5, 50, 1250, 50);
 			int increment = 0;
 			for(int i = 0; i < 12; i++){
 				if(i==0){
@@ -167,42 +167,7 @@ public class MainGameScreen extends JPanel{
 				}else if(playerColor.equals(Color.white)){
 					g2d.drawImage(whiteTrain, 105+100*currentGame.players.get(i).record.score, 70, -30, 30, null);
 				}
-				
 			}
-
-			//final Positions
-			/*
-			 * redTrain: x = 0, y = 20
-			 * yellowTrain: 
-			 * greenTrain: 
-			 * blueTrain: 
-			 * brownTrain: 
-			 * whiteTrain: 
-			 */
-
-			
-			
-			
-			
-			
-			
-
-			for(int i=0;i<currentGame.players.size();i++){
-				int score = currentGame.players.get(i).record.score;
-				if(score < 12){
-
-				}else if(score <= 0){
-					//g.drawI
-				}
-			}
-
-
-
-
-
-
-
-
 
 			//Below is Debug info:
 //			g.setFont(new Font("Arial",0,13));
