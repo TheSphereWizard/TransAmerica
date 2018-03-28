@@ -1,3 +1,4 @@
+//REDO WITH PLAYER INFO
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -5,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +14,10 @@ import javax.swing.*;
 public class ComputerStrategyScreen extends JPanel{
 	private JPanel players = new JPanel();
 	private BufferedImage backg;
-	public ComputerStrategyScreen(int gamesPlayed, int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage) {
+	private ArrayList<ComputerPlayer> AIs;
+	public ComputerStrategyScreen(int gamesPlayed, int[] gamesWon, int[] gamesLost,
+			int[] rank, double[] winPercentage, ArrayList<ComputerPlayer> compPlayers) {
+		AIs = compPlayers;
 		try{
 			backg= ImageIO.read(new File("Pix/TransAmerica Background.jpg"));
 		}catch(Exception E){}
@@ -22,22 +27,21 @@ public class ComputerStrategyScreen extends JPanel{
 		add(players);
 		setLayout(new GridLayout(2,1,0,0));
 	}
-	public void paint(Graphics g){
-		g.drawImage(backg, 0, 0, 1600, 900, null);
-	}
+	//	public void paint(Graphics g){
+	//		g.drawImage(backg, 0, 0, 1600, 900, null);
+	//	}
 	private void setPlayers(int[] gamesWon, int[] gamesLost, int[] rank, double[] winPercentage){
-		Color[] colors = new Color[] {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE , new Color(139,69,19), Color.white};
 		for(int i = 0; i < gamesWon.length; i++){
-			players.add(new PlayerInfo(gamesWon[i], gamesLost[i], rank[i], winPercentage[i], colors[i], i+1));
+			players.add(new PlayerInfo(gamesWon[i], gamesLost[i], rank[i], winPercentage[i], AIs.get(i).getColor(), AIs.get(i).getName()));
 		}
 	}
 	private class PlayerInfo extends JPanel{
-		private PlayerInfo(int gamesWon, int gamesLost, int playerRank, double winPercentage, Color color, int playerNum){
+		private PlayerInfo(int gamesWon, int gamesLost, int playerRank, double winPercentage, Color color, String playerName){
 			setLayout(new GridLayout(5,1,0,0));
 			String filling = new String("                  ");
 			JLabel won = new JLabel(filling+"Games Won: " + gamesWon), lost = new JLabel(filling+"Games Lost: " + gamesLost),
 					rank = new JLabel(filling+"Rank: " + playerRank), percentage = new JLabel(filling+"Win Percentage: " + winPercentage), 
-					name = new JLabel(filling+"Strategy "+playerNum);
+					name = new JLabel(filling+playerName);
 			setBackground(color);
 			add(name);
 			add(won);
