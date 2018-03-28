@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Grid {
 	City[][] allcities = new City[][]{
@@ -166,14 +167,23 @@ public class Grid {
 		ArrayList<node> corners = new ArrayList<node>();
 		all[start.x][start.y].setdist(0);
 		boolean changes=true;
-		node cur = all[start.x][start.y];
+		node starter = all[start.x][start.y];
+		ArrayList<node> unvisted = new ArrayList<node>();
+		unvisted.add(starter);
 		while(changes){
 			changes=false;
-			for(Rail r : immediateneighbors(cur.p)){
-				try{
-					
-				}catch(Exception E){}
+//			Collections.sort(unvisted.tolist());ok need to sort but idk
+			node cur = unvisted.get((int)(Math.random()*unvisted.size()));
+			for(Position p : immediateneighbors2(cur.p)){
+				if(!all[p.x][p.y].done){
+					try{
+						if(all[p.x][p.y].dist>cur.dist+1)
+							all[p.x][p.y].setdist(cur.dist+1);
+					}catch(ArrayIndexOutOfBoundsException E){}
+				}
 			}
+			unvisted.remove(cur);
+			cur.done=true;
 		}
 		return all[end.x][end.y].path.size();
 	}
@@ -182,6 +192,7 @@ public class Grid {
 		int dist=Integer.MAX_VALUE;
 		ArrayList<Position> neigh;
 		ArrayList<Position> path=new ArrayList<Position>();
+		boolean done=false;
 		node(Position p_){
 			p=p_;
 			path.add(p);
@@ -202,6 +213,20 @@ public class Grid {
 //			}catch(Exception e){
 //				return false;
 //			}
+//		}
+//		int compareTo(Object b){
+//			node c;
+//			try{
+//				c=(node)b;
+//				if(c.dist==dist){
+//					return 0;
+//				}else{
+//					return 
+//				}
+//			}catch(Exception E){
+//				return 0;
+//			}
+//			
 //		}
 		void setdist(int r ){
 			dist=r;

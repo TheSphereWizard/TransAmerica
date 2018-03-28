@@ -128,6 +128,7 @@ public class PopUp extends JPanel implements ActionListener{
 				TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TransAmerica.transamerica.setVisible(true);
 				TransAmerica.transamerica.repaint();
+				frame.dispose();
 
 			}else if(e.getSource().equals(slow)){
 				for(int i=0;i<games;i++){
@@ -145,6 +146,7 @@ public class PopUp extends JPanel implements ActionListener{
 					TransAmerica.transamerica.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					TransAmerica.transamerica.setVisible(true);
 					TransAmerica.transamerica.repaint();
+					frame.dispose();
 				}
 			}
 		}	

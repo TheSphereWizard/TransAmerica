@@ -15,7 +15,7 @@ public class HardStrategy extends ComputerPlayer {
 			Marker m=new Marker(record.cities.get(2).p,this);
 			return m;
 		}else{
-			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this,!firstRailPlaced);//getRailsAtPos(startMarker.p),startMarker.p, grid);
+			ArrayList<Rail> totalRails = grid.allValidMovesforPlayer(this,firstRailPlaced);//getRailsAtPos(startMarker.p),startMarker.p, grid);
 			if(this.record.citiesReached.size()==5){
 				
 			}
