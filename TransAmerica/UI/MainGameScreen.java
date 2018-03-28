@@ -130,17 +130,22 @@ public class MainGameScreen extends JPanel{
 			g.setFont(new Font("Arial",1,172));
 			g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
 
-			Graphics2D g2d = (Graphics2D)g;
-			g2d.setColor(Color.black);
-			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-			g2d.drawLine(0, 100, 1600, 100);
-			g2d.drawLine(0, 50, 1600, 50);
-			int increment = 50;
-			for(int i = 0; i < 12; i++){
-				g2d.drawLine(50 + increment, 40, 50 + increment, 110);
-				increment += 140;
-			}
-			g.setFont(new Font("Arial",1,16));
+//			Graphics2D g2d = (Graphics2D)g;
+//			g2d.setColor(Color.black);
+//			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+//			g2d.drawLine(0, 100, 1600, 100);
+//			g2d.drawLine(0, 50, 1600, 50);
+//			int increment = 100;
+//			for(int i = 0; i < 12; i++){
+//				if(i==0){
+//					g.setColor(Color.red);
+//				}else{
+//					g.setColor(Color.black)
+//				}
+//				g2d.drawLine(100 + increment, 40, 100 + increment, 110);
+//				increment += 100;
+//			}
+//			g.setFont(new Font("Arial",1,16));
 			//		for(int i=0;i<currentGame.players.size();i++){
 			//			g.drawString(currentGame.players.get(i).record.score+" ", 50*i, 20);
 			//		}
@@ -151,12 +156,6 @@ public class MainGameScreen extends JPanel{
 
 			//currentGame.players.get(increment).getPlayerRecord();
 
-			g2d.drawImage(redTrain, 1525, 20, -30, 30, null);
-			g2d.drawImage(yellowTrain, 1540, 30, -30, 30, null);
-			g2d.drawImage(greenTrain, 1555, 40, -30, 30, null);
-			g2d.drawImage(blueTrain, 1570, 50, -30, 30, null);
-			g2d.drawImage(brownTrain, 1585, 60, -30, 30, null);
-			g2d.drawImage(whiteTrain, 1600, 70, -30, 30, null);
 
 
 
@@ -179,11 +178,11 @@ public class MainGameScreen extends JPanel{
 				g.setFont(new Font("Arial",1,172));
 				g.drawString(""+currentGame.placesleft, map.getX()+map.getWidth()+50+25,map.getY()+50+135);
 			}
-				/*Graphics2D g2d = (Graphics2D)g;
+				Graphics2D g2d = (Graphics2D)g;
 			g2d.setColor(Color.black);
 			g2d.setStroke(new BasicStroke(6,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
 			g2d.drawLine(5, 100, 1250, 100);
-			g2d.drawLine(5, 50, 1250, 50);
+			g2d.drawLine(5, 30, 1250, 30);
 			int increment = 0;
 			for(int i = 0; i < 12; i++){
 				if(i==0){
@@ -191,10 +190,10 @@ public class MainGameScreen extends JPanel{
 				}else{
 					g.setColor(Color.black);
 				}
-				g2d.drawLine(100 + increment, 40, 100 + increment, 110);
+				g2d.drawLine(100 + increment, 20, 100 + increment, 110);
 
 				increment += 100;
-			}*/
+			}
 
 				/*g.setColor(Color.BLACK);
 			g.setFont(new Font("Arial",1,16));
