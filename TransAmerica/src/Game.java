@@ -147,7 +147,7 @@ public class Game {
 					if(!gameOver()){
 						do{
 							do{
-								Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+								Object o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid,getCurrentScore()));
 								if(o!=null){
 									try{
 										Marker m = (Marker) o;
@@ -249,7 +249,7 @@ public class Game {
 								do{
 									Object o = null;
 									try {
-										o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid));
+										o = c.runTurn(FirstTurn,!(railsleft==2),new ReadOnlyGrid(grid,getCurrentScore()));
 									}catch(Exception concmod) {
 									}
 									if(o!=null){

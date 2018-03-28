@@ -15,11 +15,4 @@ public abstract class ComputerPlayer extends Player {
 	}
 
 	abstract Object runTurn(boolean firstturn,boolean firstRailPlaced, Object grid);
-	
-//	public ArrayList<Rail> scanRails(){
-//		return grid.allValidMovesforPlayer(this);
-//	}
-	public ArrayList<Rail> getRailsAtPos(Position pos) {
-		return grid.immediateneighbors(pos);
-	}
 }
