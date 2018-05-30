@@ -61,7 +61,9 @@ public class ScoreScreen extends JPanel implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(contButton) && contButton.getActionCommand().equals("Continue")) {
-			new TransAmerica();
+			TransAmerica.game.transamerica.setVisible(false);
+			TransAmerica newGame = new TransAmerica();
+			TransAmerica.game = newGame;
 		} else if(e.getSource().equals(contButton) && contButton.getActionCommand().equals("Next Round")){
 			MainGameScreen screen = new MainGameScreen(new Game(game.players,true));
 			TransAmerica.transamerica.add(screen);
@@ -91,7 +93,7 @@ public class ScoreScreen extends JPanel implements ActionListener{
 				win.setSize(300, 100);
 				add(win);
 				String names = "";
-				for(int i = 0; i < 5; i++)
+				for(int i = 0; i < per.getPlayerRecord().getCitiesReached().size(); i++)
 					names = names+" "+per.getPlayerRecord().getCitiesReached().get(i).getName();
 				setLayout(null);
 				WinnerInfo w =new WinnerInfo(new JLabel(names));

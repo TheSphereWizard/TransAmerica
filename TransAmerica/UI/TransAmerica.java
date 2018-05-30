@@ -3,6 +3,7 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 public class TransAmerica{
+	public static TransAmerica game;
 	public TransAmerica() {
 		transamerica = new JFrame();
 		transamerica.setTitle("TransAmerica");
@@ -16,7 +17,7 @@ public class TransAmerica{
 	static Timer t = new Timer();
 	static JFrame transamerica;
 	public static void main(String[] args){
-		new TransAmerica();
+		game = new TransAmerica();
 		t.schedule(new TimerTask(){
 			public void run() {
 				transamerica.repaint();
